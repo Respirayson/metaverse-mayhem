@@ -14,8 +14,8 @@ router.route("/").get((req, res) => {
 
 router.route("/").post((req, res) => {
     const user = User.create(req.body)
-		.then((user) => res.json(user))
-		.catch(next => console.log(next));
+      .then((user) => res.json(user))
+      .catch(next => console.log(next));
     res.send(user);
 })
 

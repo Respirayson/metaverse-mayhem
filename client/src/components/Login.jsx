@@ -3,7 +3,7 @@ import Web3 from 'web3';
 
 var web3 = new Web3(Web3.givenProvider || "http://127.0.0.1:8546");
 
-const Login = () => {
+const Login = (props) => {
     const [loading, setLoading] = React.useState(false); // Loading button state
 
     const handleAuthenticate = (publicAddress, signature) =>
@@ -97,7 +97,7 @@ const Login = () => {
                 const data = await handleAuthenticate(res.publicAddress, res.signature);
                 return data
             })
-            .then(res => localStorage.setItem("token", res.token))
+            .then(res => props.onLoggedIn(res.token))
 			.catch((err) => {
 				window.alert(err);
 				setLoading(false);

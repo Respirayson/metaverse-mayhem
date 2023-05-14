@@ -11,8 +11,8 @@ dotenv.config();
 const router = express.Router();
 
 router.route("/").post(async (req, res) => {
-    console.log(req.body)
     const { signature, publicAddress } = req.body;
+
 	if (!signature || !publicAddress)
 		res.status(400).send({ error: 'Request should have signature and publicAddress' });
 
@@ -22,9 +22,11 @@ router.route("/").post(async (req, res) => {
             error: `User with publicAddress ${publicAddress} is not found in database`,
         });
     }
-
+    
     // console.log(user)
+
     const msg = `I am signing my one-time nonce: ${user.nonce}`;
+    
     // We now are in possession of msg, publicAddress and signature. We
     // will use a helper from eth-sig-util to extract the address from the signature
     const msgBufferHex = bufferToHex(Buffer.from(msg, 'utf8'));
@@ -44,7 +46,7 @@ router.route("/").post(async (req, res) => {
         }, process.env.JWT_SECRET, {expiresIn: '6h'});
         res.status(200).json({
             success: true,
-            token: `${token}`,
+            token: `Bearer ${token}`,
             user: user,
             msg: "You are now logged in."
         });
@@ -57,35 +59,3 @@ router.route("/").post(async (req, res) => {
 })
 
 export default router;
-
-
-
-        ////////////////////////////////////////////////////
-        // Step 4: Create JWT
-        ////////////////////////////////////////////////////
-        // .then((user) => {
-        // 	return new Promise<string>((resolve, reject) =>
-        // 		jwt.sign(
-        // 			{
-        // 				payload: {
-        // 					id: user.id,
-        // 					publicAddress,
-        // 				},
-        // 			},
-        // 			config.secret,
-        // 			{
-        // 				algorithm: config.algorithms[0],
-        // 			},
-        // 			(err, token) => {
-        // 				if (err) {
-        // 					return reject(err);
-        // 				}
-        // 				if (!token) {
-        // 					return new Error('Empty token');
-        // 				}
-        // 				return resolve(token);
-        // 			}
-        // 		)
-        // 	);
-        // })
-        // .then((accessToken) => res.json({ accessToken }))
