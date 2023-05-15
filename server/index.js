@@ -17,7 +17,7 @@ app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/auth', authRoutes);
 
 app.get('/', async (req, res) => {
-    res.send("Hello from Metaverse Mayhem");
+    res.send("Hello from Metaverse Mayhem. This is to check whether the server is running.");
 })
 
 const startServer = async () => {

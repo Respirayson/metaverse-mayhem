@@ -1,8 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Link, Route, Routes, Navigate } from "react-router-dom";
 
-/* Navigate is the redirect we will edit the element to redirect people to the different pages given that they are not authenticated */
-
 import { Home, Marketplace } from "./pages";
 import { Login } from "./components";
 
@@ -10,15 +8,33 @@ const App = () => {
 
   const [authenticated, setAuthenticated ] = React.useState(false);
 
+  React.useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      fetch("http://127.0.0.1:5000/api/v1/auth/verify", {
+        body: JSON.stringify({ "token": token }),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: 'POST'
+      }).then(res => res.json()).then(data => {
+        if (data.error) {
+          setAuthenticated(false);
+        } else {
+          setAuthenticated(true);
+        }});
+    }
+  }, [])
+
   const handleLogin = (token) => {
     localStorage.setItem('token', token);
     setAuthenticated(true);
   }
 
-  // const handleLogout = () => {
-  //   localStorage.removeItem('token');
-  //   setAuthenticated(false);
-  // }
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setAuthenticated(false);
+  }
   
   return (
     <BrowserRouter>
@@ -35,7 +51,7 @@ const App = () => {
         <Link to="/community" className="font-inter font-medium px-4 py-2">
           Community
         </Link>
-        <Login onLoggedIn={handleLogin} />
+        {authenticated ? <button className="font-inter font-medium px-4 py-2" onClick={handleLogout}>Logout</button> : <Login onLoggedIn={handleLogin} />}
         
         
       </header>
