@@ -4,6 +4,11 @@ module.exports = {
   content: ['./src/**/*.{js,jsx}'],
   theme: {
     extend: {
+      colors: {
+        primary: "#564787",
+        secondary: "#DBCBD8",
+        tertiary: "#f2fdff",
+      },
       screens: {
         xs: '480px',
       },
@@ -13,6 +18,9 @@ module.exports = {
       boxShadow: {
         card: '0 0 1px 0 rgba(189,192,207,0.06),0 10px 16px -1px rgba(189,192,207,0.2)',
         cardhover: '0 0 1px 0 rgba(189,192,207,0.06),0 10px 16px -1px rgba(189,192,207,0.4)',
+      },
+      backgroundImage: {
+        "hero-pattern": "url('/src/assets/herobg.png')",
       },
     },
   },
