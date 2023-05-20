@@ -1,7 +1,9 @@
-import userActions from "./userActions";
+import playerActions from "./playerActions";
+import gameActions from "./gameActions";
 
 const allActions = {
-    userActions,
+    playerActions,
+    gameActions
 };
 
 export default allActions;

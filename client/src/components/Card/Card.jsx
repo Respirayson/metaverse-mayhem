@@ -25,7 +25,7 @@ const Card = (props) => {
 
 Card.propTypes = {
     index: PropTypes.number.isRequired,
-    onClick: PropTypes.func,
+    onCardClick: PropTypes.func,
 };
 
 

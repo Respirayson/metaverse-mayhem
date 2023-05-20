@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import Card from '../Card/Card'
+import { Card } from '../../components'
 import { useDispatch, useSelector } from 'react-redux'
 import allActions from '../../actions';
 
@@ -10,7 +10,7 @@ const Hand = () => {
     const cards = useSelector((state) => state.hand.cards);
 
     const playCard = (card, index) => {
-      dispatch(allActions.userActions.playCard(card, index));
+      dispatch(allActions.playerActions.playCard(card, index));
     }
 
     return (

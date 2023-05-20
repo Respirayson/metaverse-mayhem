@@ -54,13 +54,15 @@ const App = () => {
         {checkAuthenticated() ? <button className="font-inter font-medium px-4 py-2" onClick={handleLogout}>Logout</button> : <Login onLoggedIn={handleLogin} />}
       </header>
 
-      <main className="sm:p-8 px-4 py-8 w-full min-h-[calc(100vh-73px)]">
+      <main className="sm:p-8 px-4 py-8 w-full min-h-[calc(100vh-73px)] bg-hero-pattern bg-no-repeat bg-cover">
       <Routes>
         <Route path="/" element={<Home />} /> 
 
+
         <Route path="/game" element={<Game />} />
         <Route element={<PrivateRoutes authenticated={authenticated} />}>
-          
+        
+        {/* <Route path="/game" element={<Game />} /> */}
           <Route path="/marketplace" element={<Marketplace />} />
         </Route>
         <Route path="/community" element={<Community />} />
