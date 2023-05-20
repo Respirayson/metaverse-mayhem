@@ -1,8 +1,8 @@
-import deckReducer from "./deckReducer";
+import handReducer from "./handReducer";
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
-    deckReducer,
+    hand: handReducer,
 });
 
 export default rootReducer;

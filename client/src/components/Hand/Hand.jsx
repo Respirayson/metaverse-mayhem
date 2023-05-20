@@ -1,30 +1,25 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react'
-import { PropTypes } from 'prop-types'
 import Card from '../Card/Card'
 import { useDispatch, useSelector } from 'react-redux'
+import allActions from '../../actions';
 
 const Hand = () => {
 
-    const cards = useSelector((state) => state.cards); 
     const dispatch = useDispatch();
 
-    const placeCard = (card, index) => {
-      dispatch({ payload: {card, index}, type: 'PLACE_CARD' });
+    const cards = useSelector((state) => state.hand.cards);
+
+    const playCard = (card, index) => {
+      dispatch(allActions.userActions.playCard(card, index));
     }
 
     return (
       <div className="flex flex-row justify-center h-96">
-      { cards.map((card, index) => (
-        <Card {...card} key={card.id} index={index} onClick={placeCard} />
-      )) }
+        { cards.map((card, index) => (
+          <Card card={card} key={card.id} index={index} onCardClick={playCard} />
+        )) }
       </div>
     )
-}
-
-Hand.propTypes = {
-    cards: PropTypes.array,
-    dispatch: PropTypes.func,
 }
 
 export default Hand;

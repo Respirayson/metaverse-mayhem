@@ -4,15 +4,15 @@ import styles from './Card.module.css'
 
 const Card = (props) => {
 
-    const placeCard = () => {
-      const { index, id, name, mana, attack, defense, onClick } = props;
-      onClick({ id, name, mana, attack, defense }, index);
+    const playCard = () => {
+      const { index, card, onCardClick } = props;
+      onCardClick(card, index);
     }
 
-    const { name, mana, attack, defense } = props;
+    const { name, mana, attack, defense } = props.card;
 
     return (
-        <div onClick={placeCard} className={`${styles.Card} mt-48`}>
+        <div onClick={playCard} className={`${styles.Card} mt-48`}>
           <div className={styles.CardMana}>{ mana || 0 }</div>
           <h1 className={`${styles.CardName} font-medium`}>{ name }</h1>
           { attack ? <div className={styles.CardAttack}>{ attack }</div> : null }
@@ -25,11 +25,6 @@ const Card = (props) => {
 
 Card.propTypes = {
     index: PropTypes.number.isRequired,
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    mana: PropTypes.number,
-    attack: PropTypes.number,
-    defense: PropTypes.number,
     onClick: PropTypes.func,
 };
 

@@ -62,7 +62,7 @@ router.route("/").post(async (req, res) => {
 router.route("/verify").post(async (req, res) => {
 
     const { token } = req.body;
-    console.log(token)
+    // console.log(token)
     var payload;
     try {
         payload = jwt.verify(token, process.env.JWT_SECRET);
