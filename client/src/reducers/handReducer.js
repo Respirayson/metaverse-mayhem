@@ -15,11 +15,12 @@ const handReducer = (state = {}, action) => {
   
     if (action.type === 'DRAW_CARD') {
       if (state.cards.length + 1 > MAX_CARDS) {
-        return state;
+        console.log("hand is full");
+        return { cards: state.cards };
       }
 
-      const card = { id: 1, name: 'Gabria Warden', mana: 1, attack: 5, defense: 1 }
-      return { cards: state.cards.push(card)};
+      const card = { id: 5, name: 'Gabria Warden', mana: 1, attack: 5, defense: 1 }
+      return { cards: [...state.cards, card] };
     }
     return state;
 };
