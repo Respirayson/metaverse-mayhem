@@ -1,6 +1,4 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
-import { PropTypes } from 'prop-types'
 import styles from "./Player.module.css"
 import { Hand, PlayingArea } from "../../components"
 import allActions from '../../actions'

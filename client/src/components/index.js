@@ -5,6 +5,9 @@ import Hand from "./Hand/Hand";
 import Minion from "./Minion/Minion";
 import PlayingArea from "./PlayingArea/PlayingArea";
 import Player from "./Player/Player";
+import Opponent from "./Opponent/Opponent";
+import OpponentHand from "./OpponentHand/OpponentHand";
+import CardBack from "./CardBack/CardBack";
 
 export {
     Login,
@@ -13,5 +16,8 @@ export {
     Card,
     Minion,
     PlayingArea,
-    Player
+    Player,
+    Opponent,
+    OpponentHand,
+    CardBack,
 }

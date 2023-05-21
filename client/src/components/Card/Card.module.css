@@ -19,7 +19,9 @@
 }
 
 .CardOpponent {
-    transform: scale(0.60) translateY(-60%);
+    transform: translateY(-60%);
+    width: 120px;
+    height: 171px;
 }
 
 .CardName {
