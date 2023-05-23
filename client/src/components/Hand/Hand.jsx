@@ -18,7 +18,7 @@ const Hand = () => {
     ))
 
     return (
-      <div className="flex flex-row justify-center h-96">
+      <div className="flex flex-row justify-center h-72">
         { cardsList }
       </div>
     )
