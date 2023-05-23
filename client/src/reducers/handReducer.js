@@ -4,9 +4,10 @@ const handReducer = (state = {}, action) => {
     const MAX_CARDS = 5;
 
     if (action.type === 'PLAY_CARD') {
-      const index = action.payload.index;
       const length = state.cards.length;
       // console.log(action.payload.card);
+      
+      const index = state.cards.findIndex(item => item === action.payload.card)
       
       return {cards: [
         ...state.cards.slice(0, index),
