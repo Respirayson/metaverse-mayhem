@@ -1,0 +1,21 @@
+import { Player, Opponent } from '../components'
+import { useSelector } from 'react-redux'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+
+const Board = () => {
+
+  const { user, board, opponent, handCount } = useSelector(state => state)
+  
+  return (
+    <DndProvider backend={HTML5Backend}>
+      <div className='w-full my-24'>
+        <Opponent name={opponent} handCount={handCount} />
+        <Player name={user} board={board} />
+      </div>
+    </DndProvider>
+  )
+}
+
+
+export default Board
