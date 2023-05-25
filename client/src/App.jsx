@@ -39,24 +39,33 @@ const App = () => {
   return (
     <BrowserRouter>
       <header className="w-full flex justify-between items-center bg-primary sm:px-8 px-4 py-4">
-        <Link to='/'>
+      <div className="md:flex-[0.5] flex-initial justify-center items-center text-white font-bold text-2xl">
+      <Link to='/'>
           <h1>Metaverse Mayhem</h1>
         </Link>
-        <Link to="/game" className="font-inter font-medium px-4 py-2">
+      </div>
+        
+      <div className="text-white md:flex hidden list-none flex-row justify-between items-center flex-initial text-l">
+        <Link to="/game" className='mx-6'>
           Game
         </Link>
-        <Link to="/marketplace" className="font-inter font-medium px-4 py-2">
+        <Link to="/marketplace" className='mx-6'>
           Marketplace
         </Link>
-        <Link to="/community" className="font-inter font-medium px-4 py-2">
+        <Link to="/collection" className='mx-6'>
+          Collection
+        </Link>
+        <Link to="/community" className='mx-6'>
           Community
         </Link>
-        {checkAuthenticated() ? <button className="font-inter font-medium px-4 py-2" onClick={handleLogout}>Logout</button> : <Login onLoggedIn={handleLogin} />}
+        {checkAuthenticated() ? <button className="flex flex-row justify-center items-center bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd] font-semibold" onClick={handleLogout}>Logout</button> : <Login onLoggedIn={handleLogin} />}
+      </div>
+        
       </header>
 
-      <main className="sm:p-8 px-4 py-8 w-full min-h-[calc(100vh-73px)] bg-hero-pattern bg-no-repeat bg-cover">
+      <main className="sm:p-8 w-full min-h-[calc(100vh-73px)] bg-hero-pattern bg-no-repeat bg-cover">
       <Routes>
-        <Route path="/" element={<Home />} /> 
+        <Route path="/" element={<Home currentAccount={checkAuthenticated()} connectWallet={handleLogin}  />} /> 
 
 
         <Route path="/game" element={<Game />} />

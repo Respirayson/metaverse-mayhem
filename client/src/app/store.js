@@ -13,7 +13,7 @@ export default configureStore({
   reducer: rootReducer,
   preloadedState: {
     hand: initialHand,
-    user: "Player 1",
+    user: "You",
     opponent: "Player 2",
   }
 })

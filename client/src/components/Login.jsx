@@ -1,10 +1,12 @@
 import React from 'react'
-import { connectWallet, checkWalletConnected } from '../web3/connect';
+import { connectWallet, checkWalletConnected } from '../utils/connect';
+import { AiFillPlayCircle } from "react-icons/ai";
+
 
 const Login = (props) => {
     const [loading, setLoading] = React.useState(false); // Loading button state
     const [currentAccount, setCurrentAccount] = React.useState(''); // Connected wallet public address
-    const { onLoggedIn } = props;
+    const { onLoggedIn, bigButton } = props;
 
     React.useEffect(() => {
         async function fetchData() {
@@ -89,17 +91,21 @@ const Login = (props) => {
 
         // Look if user with current publicAddress is already present on backend
         connectWalletHandler().then((address) => authenticateUser(address));
-
-            
+  
 	};
 
 
   return (
-    <div>
-        <div onClick={handleClick} className="font-inter font-medium bg-[#bdcbd8] text-white rounded-md px-4 py-2 cursor-pointer">
-            {loading ? "Connecting..." : "Login with Metamask"}
-        </div>
-    </div>
+        <button
+            type="button"
+            onClick={handleClick}
+            className="flex flex-row justify-center items-center bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd]"
+            >
+            {loading ? "Connecting..." : (<><AiFillPlayCircle className="text-white mr-2" /><p className="text-white text-base font-semibold">
+              Connect Wallet
+          </p></>)}
+            
+        </button>
     
   )
 }
