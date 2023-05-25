@@ -9,7 +9,7 @@ const OpponentHand = (props) => {
     
 
     return (
-        <div className="flex flex-row justify-center h-96">
+        <div className="flex flex-row justify-center h-64">
             { Array(handCount).fill(0).map((_, i) => (
                 <CardBack key={i} />
             ))}

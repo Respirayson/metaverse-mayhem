@@ -8,7 +8,8 @@ dotenv.config();
 const router = express.Router();
 
 router.route("/").get((req, res) => {
-    const publicAddress = req.params.publicAddress;
+    const publicAddress = req.query;
+    console.log(publicAddress);
     return User.findOne(publicAddress).then((result) => res.json(result)).catch(err => console.log(err));
 })
 

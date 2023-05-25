@@ -26,7 +26,7 @@ const PlayingArea = (props) => {
     ));
 
     return (
-        <div ref={drop} className='flex flex-row items-center justify-center w-full h-full relative pt-64'>
+        <div ref={drop} className='flex flex-row items-center justify-center w-full h-full relative pt-32'>
             { minions }
             {isOver &&
           <div style={{

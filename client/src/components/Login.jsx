@@ -1,10 +1,20 @@
 import React from 'react'
-import Web3 from 'web3';
+import { connectWallet, checkWalletConnected } from '../utils/connect';
+import { AiFillPlayCircle } from "react-icons/ai";
 
-var web3 = new Web3(Web3.givenProvider || "http://127.0.0.1:8546");
 
 const Login = (props) => {
     const [loading, setLoading] = React.useState(false); // Loading button state
+    const [currentAccount, setCurrentAccount] = React.useState(''); // Connected wallet public address
+    const { onLoggedIn, bigButton } = props;
+
+    React.useEffect(() => {
+        async function fetchData() {
+          const account = await checkWalletConnected();
+          setCurrentAccount(account);
+        }
+        fetchData();
+      });
 
     const handleAuthenticate = (publicAddress, signature) =>
         fetch('http://127.0.0.1:5000/api/v1/auth', {
@@ -33,60 +43,30 @@ const Login = (props) => {
 
     const handleSignup = (publicAddress) =>
         fetch(`http://127.0.0.1:5000/api/v1/users/`, {
-            body: JSON.stringify({ "publicAddress": publicAddress, "username": "jason" }),
+            body: JSON.stringify({ "publicAddress": publicAddress, "username": publicAddress.slice(0, 3).append("...").append(publicAddress.slice(-3)) }),
             headers: {
                 'Content-Type': 'application/json',
             },
             method: 'POST',
         }).then((response) => response.json());
 
+    
+    const connectWalletHandler = async () => {
+        if (currentAccount === '') {
+            const account = await connectWallet();
+            setCurrentAccount(account);
+            return account;
+        }
+        return currentAccount;
+    }
 
-
-    const handleClick = async (e) => {
-        e.preventDefault();
-
-		// Check if MetaMask is installed
-		if (!window.ethereum) {
-			window.alert('Please install MetaMask first.');
-			return;
-		}
-
-		if (!web3) {
-			try {
-				// Request account access if needed
-				await window.ethereum.enable();
-
-				// We don't know window.web3 version, so we use our own instance of Web3
-				// with the injected provider given by MetaMask
-				web3 = new Web3(window.ethereum);
-			} catch (error) {
-				window.alert('You need to allow MetaMask.');
-				return;
-			}
-		}
-
-		const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
-        .catch((err) => {
-            if (err.code === 4001) {
-            // EIP-1193 userRejectedRequest error
-            // If this happens, the user rejected the connection request.
-            console.log('Please connect to MetaMask.');
-            } else {
-            console.error(err);
-            }
-        });
-        const publicAddress = accounts[0];
-        // console.log(publicAddress);
-
-		setLoading(true);
-
-		// Look if user with current publicAddress is already present on backend
-		fetch(`http://127.0.0.1:5000/api/v1/users?publicAddress=${publicAddress}`)
-			.then((response) => response.json())
-			// If yes, retrieve it. If no, create it.
-			.then(async users => {
+    const authenticateUser = (account) => {
+        fetch(`http://127.0.0.1:5000/api/v1/users?publicAddress=${account}`)
+            .then((response) => response.json())
+            // If yes, retrieve it. If no, create it.
+            .then(async users => {
                 if (users == null) {
-                    users = await handleSignup(publicAddress);
+                    users = await handleSignup(account);
                 }
                 return users;
             })
@@ -97,18 +77,36 @@ const Login = (props) => {
                 const data = await handleAuthenticate(res.publicAddress, res.signature);
                 return data
             })
-            .then(res => props.onLoggedIn(res.token))
-			.catch((err) => {
-				window.alert(err);
-				setLoading(false);
-			});
+            .then(res => onLoggedIn(res.token))
+            .catch((err) => {
+                window.alert(err);
+                setLoading(false);
+            });
+    }
+
+    const handleClick = async (e) => {
+        e.preventDefault();
+
+		setLoading(true);
+
+        // Look if user with current publicAddress is already present on backend
+        connectWalletHandler().then((address) => authenticateUser(address));
+  
 	};
 
 
   return (
-    <button onClick={handleClick} className="font-inter font-medium bg-[#bdcbd8] text-white rounded-md px-4 py-2">
-        {loading ? "Loading..." : "Login with Metamask"}
-    </button>
+        <button
+            type="button"
+            onClick={handleClick}
+            className="flex flex-row justify-center items-center bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd]"
+            >
+            {loading ? "Connecting..." : (<><AiFillPlayCircle className="text-white mr-2" /><p className="text-white text-base font-semibold">
+              Connect Wallet
+          </p></>)}
+            
+        </button>
+    
   )
 }
 
