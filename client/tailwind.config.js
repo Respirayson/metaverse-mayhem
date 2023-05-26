@@ -20,7 +20,7 @@ module.exports = {
         cardhover: '0 0 1px 0 rgba(189,192,207,0.06),0 10px 16px -1px rgba(189,192,207,0.4)',
       },
       backgroundImage: {
-        "hero-pattern": "url('/src/assets/herobg.png')",
+        "hero-pattern": "url('/herobg.png')",
       },
     },
   },

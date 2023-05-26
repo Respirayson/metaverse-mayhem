@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
 import { Home, Marketplace, Game, Community } from "./pages";
 import { Login, PrivateRoutes } from "./components";
 
+import { TradingCardMinterContext } from './context/TradingCardMinter';
+
 const App = () => {
   const [authenticated, setAuthenticated ] = React.useState(false);
+
+  const { value } = useContext(TradingCardMinterContext);
+  console.log(value);
 
   const checkAuthenticated = () => {
     const token = localStorage.getItem('token');
