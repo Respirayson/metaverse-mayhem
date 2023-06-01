@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { Card } from '../src/components';
-import { findRenderedDOMComponentWithTag } from 'react-dom/test-utils';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 const mockCard = {
     name: 'Test Minion',
@@ -11,12 +12,8 @@ const mockCard = {
 
 describe('Card', () => {
   it('renders correctly', () => {
-    const OriginalCard = Card.DecoratedComponent;
-
-    const identity = (el) => el;
-
-    render(<Card card={mockCard} connectDragSource={identity} />);
-
-    
+    render(<DndProvider backend={HTML5Backend}> <Card card={mockCard} /> </DndProvider>);
+    const name = screen.getByText(/Test Minion/i);
+    expect(name).toBeInTheDocument();
   });
 });

@@ -5,7 +5,7 @@ import itemTypes from '../../constants'
 import { useDrag } from 'react-dnd'
 
 const Card = (props) => {
-
+    
     // const playCard = () => {
     //   const { card, onCardClick } = props;
     //   onCardClick(card);
@@ -33,10 +33,6 @@ const Card = (props) => {
 
     
 }
-
-Card.propTypes = {
-    onCardClick: PropTypes.func,
-};
 
 
 export default Card
