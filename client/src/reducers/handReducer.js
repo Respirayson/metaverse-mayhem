@@ -21,7 +21,7 @@ const handReducer = (state = {}, action) => {
         return { cards: state.cards };
       }
 
-      const card = { id: 5, name: 'Starlord', mana: 1, attack: 5, defense: 1 }
+      const card = { id: 5, name: 'The Wizard Frog', mana: 1, attack: 5, defense: 1 }
       return { cards: [...state.cards, card] };
     }
     return state;

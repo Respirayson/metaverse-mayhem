@@ -28,9 +28,21 @@ const Login = (props) => {
 
     const handleSignMessage = async (publicAddress, nonce) => {
 		try {
+
+            const message = `By proceeding, you agree to the following terms and conditions:
+
+            1. You will comply with the provided terms.
+            2. You will use the service lawfully and responsibly.
+            3. Intellectual property rights belong to their respective owners.
+            4. Your personal information will be handled as per our Privacy Policy.
+            5. We are not liable for inaccuracies; use the service at your own risk.
+            6. These terms may be modified without prior notice.
+            
+            By signing your one-time nonce: ${nonce}, you confirm your understanding and acceptance of these terms and conditions.`
+
 			const signature = await window.ethereum.request({
                 method: 'personal_sign',
-                params: [`I am signing my one-time nonce: ${nonce}`, publicAddress, '']
+                params: [message, publicAddress, '']
             });
 			return { publicAddress, signature };
 		} catch (err) {
