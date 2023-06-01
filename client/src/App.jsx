@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
-import { Home, Marketplace, Game, Community } from "./pages";
+import { Home, Marketplace, Game, Community, Collection } from "./pages";
 import { Login, PrivateRoutes } from "./components";
 
 import { TradingCardMinterContext } from './context/TradingCardMinter';
@@ -78,6 +78,7 @@ const App = () => {
         
         {/* <Route path="/game" element={<Game />} /> */}
           <Route path="/marketplace" element={<Marketplace />} />
+          <Route path="/collection" element={<Collection />} />
         </Route>
         <Route path="/community" element={<Community />} />
       </Routes>

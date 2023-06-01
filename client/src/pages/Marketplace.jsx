@@ -1,8 +1,10 @@
 import React from 'react'
 
+import { DisplayMarketplace } from '../components'
+
 const Marketplace = () => {
   return (
-    <div>Marketplace</div>
+    <DisplayMarketplace />
   )
 }
 

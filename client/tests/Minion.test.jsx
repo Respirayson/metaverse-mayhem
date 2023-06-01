@@ -9,7 +9,7 @@ const mockCard = {
 }
 
 describe('Minion', () => {
-  it('renders headline', () => {
+  it('renders name', () => {
     render(<Minion card={mockCard} />);
     const name = screen.getByText(/Test Minion/i);
     expect(name).toBeInTheDocument();

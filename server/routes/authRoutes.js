@@ -25,7 +25,16 @@ router.route("/").post(async (req, res) => {
     
     // console.log(user)
 
-    const msg = `I am signing my one-time nonce: ${user.nonce}`;
+    const msg = `By proceeding, you agree to the following terms and conditions:
+
+            1. You will comply with the provided terms.
+            2. You will use the service lawfully and responsibly.
+            3. Intellectual property rights belong to their respective owners.
+            4. Your personal information will be handled as per our Privacy Policy.
+            5. We are not liable for inaccuracies; use the service at your own risk.
+            6. These terms may be modified without prior notice.
+            
+            By signing your one-time nonce: ${user.nonce}, you confirm your understanding and acceptance of these terms and conditions.`
 
     // We now are in possession of msg, publicAddress and signature. We
     // will use a helper from eth-sig-util to extract the address from the signature
