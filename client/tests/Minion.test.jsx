@@ -8,7 +8,7 @@ const mockCard = {
     defense: 1
 }
 
-describe('Minion', () => {
+describe('renders correctly with values given', () => {
   it('renders name', () => {
     render(<Minion card={mockCard} />);
     const name = screen.getByText(/Test Minion/i);

@@ -7,7 +7,7 @@ import { useDrop } from 'react-dnd';
 
 const PlayingArea = (props) => {
 
-    const [{isOver}, drop] = useDrop(() => ({
+    const [{ isOver }, drop] = useDrop(() => ({
         accept: itemTypes.CARD,
         drop: (item) => {
             const { card, playCard } = item;
@@ -26,7 +26,7 @@ const PlayingArea = (props) => {
     ));
 
     return (
-        <div ref={drop} className='flex flex-row items-center justify-center w-full h-full relative pt-32'>
+        <div data-testid="dropBoard" ref={drop} className='flex flex-row items-center justify-center w-full h-full relative pt-32'>
             { minions }
             {isOver &&
           <div style={{
