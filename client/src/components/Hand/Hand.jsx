@@ -14,12 +14,12 @@ const Hand = () => {
       dispatch(allActions.playerActions.playCard(card, index));
     }
 
-    const cardsList = cards.map((card) => (
-      <Card card={card} key={uuidv4()} onCardClick={playCard} />
+    const cardsList = cards.map((card, index) => (
+      <Card card={card} key={uuidv4()} onCardClick={playCard} cardsLength={cards.length} index={index} />
     ))
 
     return (
-      <div className="flex flex-row justify-center items-center mx-auto">
+      <div className="flex flex-row justify-center items-center pt-[90px] h-[260px]">
         { cardsList }
       </div>
     )

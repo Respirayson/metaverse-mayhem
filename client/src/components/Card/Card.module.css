@@ -14,7 +14,7 @@
 }
 
 .CardPlayer:hover {
-    transform: translateY(15px);
+    transform: translateY(-20%);
     z-index: 1;
 }
 
@@ -83,4 +83,293 @@
     background: red;
     bottom: 10px;
     right: 10px;
+}
+
+
+.CardTotal-1 {
+  margin: 0 -8vh;
+}
+.CardNumber-1-of-1 {
+  transform: scale(0.6) translateY(-30%);
+  transform-origin: bottom center;
+}
+
+.CardTotal-2 {
+  margin: 0 -8vh;
+}
+.CardNumber-1-of-2 {
+  transform: scale(0.6) rotate(-5deg) translateY(-30%);
+  transform-origin: bottom center;
+}
+.CardNumber-2-of-2 {
+  transform: scale(0.6) rotate(5deg) translateY(-30%);
+  transform-origin: bottom center;
+}
+.CardNumber-3-of-2 {
+  transform: scale(0.6) rotate(15deg) translateY(-23%);
+  transform-origin: bottom center;
+}
+.CardTotal-3 {
+  margin: 0 -8vh;
+}
+.CardNumber-1-of-3 {
+  transform: scale(0.6) rotate(-7.5deg) translateY(-30%);
+  transform-origin: bottom center;
+}
+.CardNumber-2-of-3 {
+  transform: scale(0.6) rotate(0deg) translateY(-33%);
+  transform-origin: bottom center;
+}
+.CardNumber-3-of-3 {
+  transform: scale(0.6) rotate(7.5deg) translateY(-30%);
+  transform-origin: bottom center;
+}
+.CardNumber-4-of-3 {
+  transform: scale(0.6) rotate(15deg) translateY(-23%);
+  transform-origin: bottom center;
+}
+.CardTotal-4 {
+  margin: 0 -8vh;
+}
+.CardNumber-1-of-4 {
+  transform: scale(0.6) rotate(-10deg) translateY(-30%);
+  transform-origin: bottom center;
+}
+.CardNumber-2-of-4 {
+  transform: scale(0.6) rotate(-3.3333333333deg) translateY(-37%);
+  transform-origin: bottom center;
+}
+.CardNumber-3-of-4 {
+  transform: scale(0.6) rotate(3.3333333333deg) translateY(-37%);
+  transform-origin: bottom center;
+}
+.CardNumber-4-of-4 {
+  transform: scale(0.6) rotate(10deg) translateY(-30%);
+  transform-origin: bottom center;
+}
+.CardNumber-5-of-4 {
+  transform: scale(0.6) rotate(16.6666666667deg) translateY(-23%);
+  transform-origin: bottom center;
+}
+.CardTotal-5 {
+  margin: 0 -8vh;
+}
+.CardNumber-1-of-5 {
+  transform: scale(0.6) rotate(-12.5deg) translateY(-30%);
+  transform-origin: bottom center;
+}
+.CardNumber-2-of-5 {
+  transform: scale(0.6) rotate(-6.25deg) translateY(-37%);
+  transform-origin: bottom center;
+}
+.CardNumber-3-of-5 {
+  transform: scale(0.6) rotate(0deg) translateY(-40%);
+  transform-origin: bottom center;
+}
+.CardNumber-4-of-5 {
+  transform: scale(0.6) rotate(6.25deg) translateY(-37%);
+  transform-origin: bottom center;
+}
+.CardNumber-5-of-5 {
+  transform: scale(0.6) rotate(12.5deg) translateY(-30%);
+  transform-origin: bottom center;
+}
+.CardNumber-6-of-5 {
+  transform: scale(0.6) rotate(18.75deg) translateY(-23%);
+  transform-origin: bottom center;
+}
+.CardTotal-6 {
+  margin: 0 -8vh;
+}
+.CardNumber-1-of-6 {
+  transform: scale(0.6) rotate(-15deg) translateY(-30%);
+  transform-origin: bottom center;
+}
+.CardNumber-2-of-6 {
+  transform: scale(0.6) rotate(-9deg) translateY(-40%);
+  transform-origin: bottom center;
+}
+.CardNumber-3-of-6 {
+  transform: scale(0.6) rotate(-3deg) translateY(-44%);
+  transform-origin: bottom center;
+}
+.CardNumber-4-of-6 {
+  transform: scale(0.6) rotate(3deg) translateY(-44%);
+  transform-origin: bottom center;
+}
+.CardNumber-5-of-6 {
+  transform: scale(0.6) rotate(9deg) translateY(-40%);
+  transform-origin: bottom center;
+}
+.CardNumber-6-of-6 {
+  transform: scale(0.6) rotate(15deg) translateY(-30%);
+  transform-origin: bottom center;
+}
+.CardNumber-7-of-6 {
+  transform: scale(0.6) rotate(21deg) translateY(-23%);
+  transform-origin: bottom center;
+}
+.CardTotal-7 {
+  margin: 0 -8vh;
+}
+.CardNumber-1-of-7 {
+  transform: scale(0.6) rotate(-17.5deg) translateY(-25%);
+  transform-origin: bottom center;
+}
+.CardNumber-2-of-7 {
+  transform: scale(0.6) rotate(-11.6666666667deg) translateY(-37%);
+  transform-origin: bottom center;
+}
+.CardNumber-3-of-7 {
+  transform: scale(0.6) rotate(-5.8333333333deg) translateY(-44%);
+  transform-origin: bottom center;
+}
+.CardNumber-4-of-7 {
+  transform: scale(0.6) rotate(0deg) translateY(-46%);
+  transform-origin: bottom center;
+}
+.CardNumber-5-of-7 {
+  transform: scale(0.6) rotate(5.8333333333deg) translateY(-44%);
+  transform-origin: bottom center;
+}
+.CardNumber-6-of-7 {
+  transform: scale(0.6) rotate(11.6666666667deg) translateY(-37%);
+  transform-origin: bottom center;
+}
+.CardNumber-7-of-7 {
+  transform: scale(0.6) rotate(17.5deg) translateY(-25%);
+  transform-origin: bottom center;
+}
+.CardNumber-8-of-7 {
+  transform: scale(0.6) rotate(23.3333333333deg) translateY(-23%);
+  transform-origin: bottom center;
+}
+.CardTotal-8 {
+  margin: 0 -8vh;
+}
+.CardNumber-1-of-8 {
+  transform: scale(0.6) rotate(-20deg) translateY(-30%);
+  transform-origin: bottom center;
+}
+.CardNumber-2-of-8 {
+  transform: scale(0.6) rotate(-14.2857142857deg) translateY(-37%);
+  transform-origin: bottom center;
+}
+.CardNumber-3-of-8 {
+  transform: scale(0.6) rotate(-8.5714285714deg) translateY(-44%);
+  transform-origin: bottom center;
+}
+.CardNumber-4-of-8 {
+  transform: scale(0.6) rotate(-2.8571428571deg) translateY(-51%);
+  transform-origin: bottom center;
+}
+.CardNumber-5-of-8 {
+  transform: scale(0.6) rotate(2.8571428571deg) translateY(-51%);
+  transform-origin: bottom center;
+}
+.CardNumber-6-of-8 {
+  transform: scale(0.6) rotate(8.5714285714deg) translateY(-44%);
+  transform-origin: bottom center;
+}
+.CardNumber-7-of-8 {
+  transform: scale(0.6) rotate(14.2857142857deg) translateY(-37%);
+  transform-origin: bottom center;
+}
+.CardNumber-8-of-8 {
+  transform: scale(0.6) rotate(20deg) translateY(-30%);
+  transform-origin: bottom center;
+}
+.CardNumber-9-of-8 {
+  transform: scale(0.6) rotate(25.7142857143deg) translateY(-23%);
+  transform-origin: bottom center;
+}
+.CardTotal-9 {
+  margin: 0 -8vh;
+}
+.CardNumber-1-of-9 {
+  transform: scale(0.6) rotate(-22.5deg) translateY(-30%);
+  transform-origin: bottom center;
+}
+.CardNumber-2-of-9 {
+  transform: scale(0.6) rotate(-16.875deg) translateY(-37%);
+  transform-origin: bottom center;
+}
+.CardNumber-3-of-9 {
+  transform: scale(0.6) rotate(-11.25deg) translateY(-44%);
+  transform-origin: bottom center;
+}
+.CardNumber-4-of-9 {
+  transform: scale(0.6) rotate(-5.625deg) translateY(-51%);
+  transform-origin: bottom center;
+}
+.CardNumber-5-of-9 {
+  transform: scale(0.6) rotate(0deg) translateY(-58%);
+  transform-origin: bottom center;
+}
+.CardNumber-6-of-9 {
+  transform: scale(0.6) rotate(5.625deg) translateY(-51%);
+  transform-origin: bottom center;
+}
+.CardNumber-7-of-9 {
+  transform: scale(0.6) rotate(11.25deg) translateY(-44%);
+  transform-origin: bottom center;
+}
+.CardNumber-8-of-9 {
+  transform: scale(0.6) rotate(16.875deg) translateY(-37%);
+  transform-origin: bottom center;
+}
+.CardNumber-9-of-9 {
+  transform: scale(0.6) rotate(22.5deg) translateY(-30%);
+  transform-origin: bottom center;
+}
+.CardNumber-10-of-9 {
+  transform: scale(0.6) rotate(28.125deg) translateY(-23%);
+  transform-origin: bottom center;
+}
+.CardTotal-10 {
+  margin: 0 -8vh;
+}
+.CardNumber-1-of-10 {
+  transform: scale(0.6) rotate(-25deg) translateY(-30%);
+  transform-origin: bottom center;
+}
+.CardNumber-2-of-10 {
+  transform: scale(0.6) rotate(-19.4444444444deg) translateY(-37%);
+  transform-origin: bottom center;
+}
+.CardNumber-3-of-10 {
+  transform: scale(0.6) rotate(-13.8888888889deg) translateY(-44%);
+  transform-origin: bottom center;
+}
+.CardNumber-4-of-10 {
+  transform: scale(0.6) rotate(-8.3333333333deg) translateY(-51%);
+  transform-origin: bottom center;
+}
+.CardNumber-5-of-10 {
+  transform: scale(0.6) rotate(-2.7777777778deg) translateY(-58%);
+  transform-origin: bottom center;
+}
+.CardNumber-6-of-10 {
+  transform: scale(0.6) rotate(2.7777777778deg) translateY(-58%);
+  transform-origin: bottom center;
+}
+.CardNumber-7-of-10 {
+  transform: scale(0.6) rotate(8.3333333333deg) translateY(-51%);
+  transform-origin: bottom center;
+}
+.CardNumber-8-of-10 {
+  transform: scale(0.6) rotate(13.8888888889deg) translateY(-44%);
+  transform-origin: bottom center;
+}
+.CardNumber-9-of-10 {
+  transform: scale(0.6) rotate(19.4444444444deg) translateY(-37%);
+  transform-origin: bottom center;
+}
+.CardNumber-10-of-10 {
+  transform: scale(0.6) rotate(25deg) translateY(-30%);
+  transform-origin: bottom center;
+}
+.CardNumber-11-of-10 {
+  transform: scale(0.6) rotate(30.5555555556deg) translateY(-23%);
+  transform-origin: bottom center;
 }
