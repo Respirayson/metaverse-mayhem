@@ -3,15 +3,14 @@
     position: relative;
     width: 200px;
     height: 285px;
-    background: #bdcbd8;
-    color: #000000;
     box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
     border-radius: 8px;
-    cursor: pointer;
 }
 
 .CardPlayer {
+    background: #776557;
     transform: translateY(25%);
+    cursor: pointer;
 }
 
 .CardPlayer:hover {
@@ -25,10 +24,28 @@
     height: 171px;
 }
 
+.CardPortrait {
+    position: absolute;
+    left: 19%;
+    width: 65%;
+    height: 65%;
+    border: 4px solid #968E86;
+    border-radius: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+
 .CardName {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    background: #D4B48F;
     text-align: center;
-    padding-top: 40px;
     font-size: 20px;
+    color: #ffffff;
+    padding: 10px;
+    box-sizing: border-box;
+    text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
 }
 
 

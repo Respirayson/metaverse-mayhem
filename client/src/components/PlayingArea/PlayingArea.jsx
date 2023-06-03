@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React, { useRef } from 'react'
 import styles from './PlayingArea.module.css'
 import { Minion } from '../../components';
 import itemTypes from '../../constants';
@@ -9,10 +9,21 @@ const PlayingArea = (props) => {
 
     const [{ isOver }, drop] = useDrop(() => ({
         accept: itemTypes.CARD,
-        drop: (item) => {
-            const { card, playCard } = item;
-            playCard(card);
+        drop: (item, monitor) => {
+
+            const boundingClientRect = document.querySelector('[data-testid="dropBoard"]').getBoundingClientRect();
+            const boardMiddleX = boundingClientRect.width / 2;
+            const mousePosition = monitor.getClientOffset();
+            const cardMiddleX = mousePosition.x - boundingClientRect.left;
+            
+            if (cardMiddleX < boardMiddleX) {
+                item.playCard(item.card, 0);
+            } else {
+                item.playCard(item.card, 1);
+            }
+
         },
+        
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),
         

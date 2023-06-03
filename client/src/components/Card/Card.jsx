@@ -19,11 +19,12 @@ const Card = (props) => {
       }),
     }))
 
-    const { name, mana, attack, defense } = props.card;
+    const { name, mana, attack, defense, portrait } = props.card;
 
     return (
       
         <div data-testid="dragCard" ref={drag} className={`${styles.Card} ${styles.CardPlayer}`}>
+          <div className={`${styles.CardPortrait} bg-[image:var(--image-url)]`} style={{'--image-url': `url(${portrait})`}}></div>
           <div className={styles.CardMana}>{ mana || 0 }</div>
           <h1 className={`${styles.CardName} font-medium`}>{ name }</h1>
           { attack ? <div className={styles.CardAttack}>{ attack }</div> : null }

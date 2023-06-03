@@ -1,6 +1,6 @@
 
 const playCard = (card, index) => {
-    return { payload: { card }, type: 'PLAY_CARD' }
+    return { payload: { card, index }, type: 'PLAY_CARD' }
 }
 
 const drawCard = () => {
