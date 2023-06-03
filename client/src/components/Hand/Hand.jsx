@@ -2,6 +2,7 @@
 import { Card } from '../../components'
 import { useDispatch, useSelector } from 'react-redux'
 import allActions from '../../actions';
+import { v4 as uuidv4 } from 'uuid';
 
 const Hand = () => {
 
@@ -14,11 +15,11 @@ const Hand = () => {
     }
 
     const cardsList = cards.map((card) => (
-      <Card card={card} key={card.id} onCardClick={playCard} />
+      <Card card={card} key={uuidv4()} onCardClick={playCard} />
     ))
 
     return (
-      <div className="flex flex-row justify-center h-18">
+      <div className="flex flex-row justify-center items-center mx-auto">
         { cardsList }
       </div>
     )

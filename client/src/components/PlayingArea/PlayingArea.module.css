@@ -1,0 +1,7 @@
+.PlayingArea {
+    height: 100%;
+    width: 100%;
+    background-color: #bd2bd8;
+    position: absolute;
+    opacity: 0.2;
+}

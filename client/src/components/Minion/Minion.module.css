@@ -1,7 +1,30 @@
 .Minion {
+    position: relative;
     width: 100px;
     height: 130px;
     background: #ffffff;
-    border: 3px solid #777777;
-    border-radius: 10%;
-  }
+    border: 5px solid #616065;
+    border-radius: 100%;
+    background-size: cover;
+    background-position: center;
+    margin: 0px 5px;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+}
+
+.MinionAttack {
+  position: absolute;
+  padding: 8px 16px;
+  background: orange;
+  bottom: 2px;
+  left: -10px;
+  border-radius: 50%;
+}
+
+.MinionDefense {
+  position: absolute;
+  padding: 8px 16px;
+  background: #bc3328;
+  bottom: 2px;
+  right: -10px;
+  border-radius: 50%;
+}

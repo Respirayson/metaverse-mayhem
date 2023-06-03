@@ -1,4 +1,5 @@
 import { newRandomCard } from "../utils/cards";
+import { v4 as uuidv4 } from 'uuid';
 
 const handReducer = (state = {}, action) => {
 
@@ -22,7 +23,7 @@ const handReducer = (state = {}, action) => {
         return { cards: state.cards };
       }
 
-      const card = newRandomCard();
+      const card = Object.assign({}, newRandomCard(), { id: uuidv4() });
       return { cards: [...state.cards, card] };
     }
     return state;
