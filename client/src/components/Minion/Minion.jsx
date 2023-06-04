@@ -2,16 +2,17 @@
 import React from 'react'
 import styles from './Minion.module.css'
 
+
+
+
 const Minion = (props) => {
 
-    const { mana, attack, defense, name } = props.card;
+    const { attack, defense, portrait } = props.card;
 
     return (
-        <div className={styles.Minion}>
-          <p>Name: { name }</p>
-          <p>Mana: { mana }</p>
-          <p>Attack: { attack }</p>
-          <p>Defense: { defense }</p>
+      <div className={`${styles.Minion} bg-[image:var(--image-url)]`} style={{'--image-url': `url(${portrait})`}}>
+          <div className={styles.MinionAttack}>{ attack }</div>
+          <div className={styles.MinionDefense}>{ defense }</div>
       </div>
     )
 }

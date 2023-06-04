@@ -1,7 +1,9 @@
+import { newRandomCard } from "../utils/cards";
+import { v4 as uuidv4 } from 'uuid';
 
 const handReducer = (state = {}, action) => {
 
-    const MAX_CARDS = 5;
+    const MAX_CARDS = 7;
 
     if (action.type === 'PLAY_CARD') {
       const length = state.cards.length;
@@ -21,7 +23,7 @@ const handReducer = (state = {}, action) => {
         return { cards: state.cards };
       }
 
-      const card = { id: 5, name: 'The Wizard Frog', mana: 1, attack: 5, defense: 1 }
+      const card = Object.assign({}, newRandomCard(), { id: uuidv4() });
       return { cards: [...state.cards, card] };
     }
     return state;

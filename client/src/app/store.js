@@ -1,13 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import rootReducer from '../reducers';
+import { newRandomCard } from '../utils/cards';
+import { v4 as uuidv4 } from 'uuid';
 
-const initialHand = { cards: [
-  { id: 1, name: 'The Red Dragon', mana: 1, attack: 5, defense: 1 },
-  { id: 2, name: 'The Onion', mana: 1, attack: 2, defense: 1 },
-  { id: 3, name: 'Fire Phoenix', mana: 3 },
-  { id: 4, name: 'Poison Flower', mana: 5, attack: 4, defense: 4 },
-]};
- 
+const initialHand = { cards:
+  Array(4).fill(0).map(() => Object.assign({}, newRandomCard(), { id: uuidv4() }))
+}
 
 export default configureStore({
   reducer: rootReducer,
