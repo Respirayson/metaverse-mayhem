@@ -36,6 +36,7 @@ describe('rendering correct with value given', () => {
     const defense = screen.getByText("1");
     expect(defense).toBeInTheDocument();
   });
+  
 
 });
 
