@@ -9,9 +9,10 @@ import { TradingCardMinterProvider } from './context/TradingCardMinter.jsx'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <TradingCardMinterProvider>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </TradingCardMinterProvider>
+  
+    <TradingCardMinterProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </TradingCardMinterProvider>
   );
