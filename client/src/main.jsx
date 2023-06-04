@@ -10,9 +10,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   
-    <TradingCardMinterProvider>
+    // <TradingCardMinterProvider>
       <Provider store={store}>
         <App />
       </Provider>
-    </TradingCardMinterProvider>
+    // </TradingCardMinterProvider>
   );

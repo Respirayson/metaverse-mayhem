@@ -10,7 +10,7 @@ const Board = () => {
   return (
     <DndProvider backend={HTML5Backend}>
       <div className='w-full mt-24'>
-          <Opponent name={opponent} handCount={handCount} />
+          <Opponent board={board.board} name={opponent} handCount={handCount} />
           <Player name={user} board={board} />
       </div>
     </DndProvider>

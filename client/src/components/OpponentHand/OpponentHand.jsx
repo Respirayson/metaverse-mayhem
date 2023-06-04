@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-import styles from "../Card/Card.module.css"
 import CardBack from '../CardBack/CardBack';
 
 const OpponentHand = (props) => {
@@ -9,9 +8,9 @@ const OpponentHand = (props) => {
     
 
     return (
-        <div className="flex flex-row justify-center h-64">
+        <div className="flex flex-row justify-center items-center h-48">
             { Array(handCount).fill(0).map((_, i) => (
-                <CardBack key={i} />
+                <CardBack cardsLength={handCount} key={i} index={i} />
             ))}
         </div>
     )

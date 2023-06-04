@@ -9,8 +9,8 @@ import { TradingCardMinterContext } from './context/TradingCardMinter';
 const App = () => {
   const [authenticated, setAuthenticated ] = React.useState(false);
 
-  const { value } = useContext(TradingCardMinterContext);
-  console.log(value);
+  // const { value } = useContext(TradingCardMinterContext);
+  // console.log(value);
 
   const checkAuthenticated = () => {
     const token = localStorage.getItem('token');
