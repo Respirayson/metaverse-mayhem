@@ -6,15 +6,17 @@ const handReducer = (state = {}, action) => {
     const MAX_CARDS = 7;
 
     if (action.type === 'PLAY_CARD') {
-      const length = state.cards.length;
-      // console.log(action.payload.card);
-      
-      const index = state.cards.findIndex(item => item === action.payload.card)
-      
-      return {cards: [
-        ...state.cards.slice(0, index),
-        ...state.cards.slice(index + 1, length),
-      ]};
+        if (action.payload.source === "PLAYER") {
+        const length = state.cards.length;
+        // console.log(action.payload.card);
+        
+        const index = state.cards.findIndex(item => item === action.payload.card)
+        
+        return {cards: [
+          ...state.cards.slice(0, index),
+          ...state.cards.slice(index + 1, length),
+        ]};
+      }
     }
   
     if (action.type === 'DRAW_CARD') {

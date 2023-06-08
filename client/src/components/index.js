@@ -11,6 +11,7 @@ import CardBack from "./CardBack/CardBack";
 import DisplayMarketplace from "./DisplayMarketplace";
 import Listing from "./Listing";
 import DisplayCollection from "./DisplayCollection";
+import Hero from "./Hero/Hero";
 
 export {
     Login,
@@ -25,5 +26,6 @@ export {
     CardBack,
     DisplayMarketplace,
     Listing,
-    DisplayCollection
+    DisplayCollection,
+    Hero
 }

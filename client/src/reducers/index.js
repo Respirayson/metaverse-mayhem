@@ -3,7 +3,7 @@ import userReducer from "./userReducer";
 import opponentReducer from "./opponentReducer";
 import characterReducer from "./characterReducer";
 import boardReducer from "./boardReducer";
-import handCountReducer from "./handCountReducer";
+import opponentHandCountReducer from "./opponentHandCountReducer";
 import deckCountReducer from "./deckCountReducer";
 
 import { combineReducers } from "redux";
@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
     opponent: opponentReducer,
     character: characterReducer,
     board: boardReducer,
-    handCount: handCountReducer,
+    handCount: opponentHandCountReducer,
     deckCount: deckCountReducer,
 });
 

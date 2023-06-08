@@ -1,15 +1,33 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import styles from './Opponent.module.css'
+import { EnemyMinion, TargetableHero } from '../../containers'
 import OpponentHand from '../OpponentHand/OpponentHand'
-import Minion from '../Minion/Minion'
+import { useDispatch } from 'react-redux'
+import allActions from '../../actions'
+import { newRandomCard } from '../../utils/cards'
+import { v4 as uuidv4 } from 'uuid'
 
 const Opponent = (props) => {
 
-  const { name, handCount, board } = props;
+  const dispatch = useDispatch();
+
+  const { name, handCount, character } = props;
+  const { board } = props.board;
+  
+  React.useEffect(() => {
+    dispatch(allActions.playerActions.playCard({...newRandomCard(), key: uuidv4()}, 0, "OPPONENT"));
+    dispatch(allActions.playerActions.playCard({...newRandomCard(), key: uuidv4()}, 0, "OPPONENT"));
+  }, [dispatch]);
+
+  
+
+  const hitFace = (damage, target) => {
+    dispatch(allActions.playerActions.hitFace(damage, target));
+  }
 
   const minions = board.map((card, index) => (
-    <Minion key={index} card={card} />
+    <EnemyMinion key={index} card={card} />
   ));
 
 
@@ -17,6 +35,7 @@ const Opponent = (props) => {
     <div className={styles.Opponent}>
       <h1 className={styles.OpponentName}>
           { name || 'Unnamed' }
+          <TargetableHero character={character} hitFace={hitFace} />
         </h1>
         <div className={styles.OpponentHandWrapper}>
           <OpponentHand handCount={handCount} />

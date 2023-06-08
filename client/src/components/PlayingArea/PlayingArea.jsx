@@ -7,15 +7,19 @@ import { useState } from 'react';
 
 import { motion } from 'framer-motion';
 import { slideAnimation } from "../../utils/motion"
+import PlayerMinion from '../../containers/PlayerMinion';
 
 const PlayingArea = (props) => {
 
+    const [boardLength, setBoardLength] = useState(0)
+    const { board } = props;
+    
     const [cardLastPlayed, setCardLastPlayed] = useState();
 
     const [{ isOver }, drop] = useDrop(() => ({
         accept: itemTypes.CARD,
         drop: (item, monitor) => {
-
+            setBoardLength(boardLength + 1)
             setCardLastPlayed(item.card)
             const boundingClientRect = document.querySelector('[data-testid="dropBoard"]').getBoundingClientRect();
             const boardMiddleX = boundingClientRect.width / 2;
@@ -35,14 +39,11 @@ const PlayingArea = (props) => {
         
         }),
     }));
-
-    const { board } = props;
-    console.log(board)
-    console.log(cardLastPlayed)
+    
     const minions = board.map((card, i) => (
         card 
         ? card === cardLastPlayed ? 
-            <motion.div key={card["id"]} {...slideAnimation("up")}> <Minion card={card} key={i} /> </motion.div> : <Minion card={card} key={i} />
+            <motion.div key={card["id"]} {...slideAnimation("up")}> <PlayerMinion card={card} key={i} /> </motion.div> : <PlayerMinion card={card} key={i} />
         : <div key={i} />
     ));
 
