@@ -3,25 +3,16 @@ import { Minion } from '../components'
 import { useDrop } from 'react-dnd'
 import itemTypes from '../constants'
 
-const EnemyMinion = ({ card, killMinion, hitMinion }) => {
+const EnemyMinion = ({ card, attackMinion }) => {
 
 
     const [, drop] = useDrop(() => ({
         accept: itemTypes.MINION,
         drop: (item, monitor) => {
             // console.log(card)
-            const { attack, defense, id } = item.card;
-            const enemyKey = card.key;
+            const { attack } = item.card;
 
-            if (attack >= card.defense) {
-                killMinion(enemyKey, "PLAYER");
-            }
-
-            if (card.attack >= defense) {
-                killMinion(id, "OPPONENT")
-            }
-
-            hitMinion(attack, card.attack, card, item.card);
+            attackMinion(attack, card.attack, card, item.card);
 
         },
         

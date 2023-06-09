@@ -25,7 +25,7 @@ const handReducer = (state = {}, action) => {
         return { cards: state.cards };
       }
 
-      const card = Object.assign({}, newRandomCard(), { id: uuidv4() });
+      const card = Object.assign({}, newRandomCard(), { key: uuidv4() });
       return { cards: [...state.cards, card] };
     }
     return state;

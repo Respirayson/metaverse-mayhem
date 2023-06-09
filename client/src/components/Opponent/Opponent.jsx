@@ -23,16 +23,12 @@ const Opponent = (props) => {
     dispatch(allActions.playerActions.hitFace(damage, target));
   }
 
-  const killMinion = (key, source) => {
-    dispatch(allActions.playerActions.killMinion(key, source))
-  }
-
-  const hitMinion = (attack, counterAttack, target, source) => {
-    dispatch(allActions.playerActions.hitMinion(attack, counterAttack, target, source));
+  const attackMinion = (attack, counterAttack, target, source) => {
+    dispatch(allActions.playerActions.attackMinion(attack, counterAttack, target, source));
   }
 
   const minions = board.map((card, index) => (
-    <EnemyMinion key={index} card={card} killMinion={killMinion} hitMinion={hitMinion} />
+    <EnemyMinion key={index} card={card} attackMinion={attackMinion} />
   ));
 
 

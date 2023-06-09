@@ -52,23 +52,35 @@ const boardReducer = (state = initialState, action) => {
         if (action.payload.source === "OPPONENT") {
             const index = action.payload.key;
             // console.log(index);
-            return { Opponent: state.Opponent, Player: { board: state.Player.board.filter(card => card.id !== index) } };
+            return { Opponent: state.Opponent, Player: { board: state.Player.board.filter(card => card.key !== index) } };
         }
 
     }
 
     if (action.type === "HIT_MINION") {
 
-        const { attack, counterAttack, source, target } = action.payload;
+        const { attack, target, source } = action.payload;
         console.log(state);
-        return {
-            Player: {
-                board: state.Player.board.map(card => card === source ? { ...card, defense: card.defense - counterAttack } : card)
-            },
-            Opponent: {
-                board: state.Opponent.board.map(card => card === target ? { ...card, defense: card.defense - attack } : card)
+
+        if (source === "PLAYER") {
+            return {
+                Opponent: {
+                    board: state.Opponent.board.map(card => card === target ? { ...card, defense: card.defense - attack } : card)
+                },
+                Player: state.Player
+            }
+        } 
+        
+        if (source === "OPPONENT") {
+            return {
+                Player: {
+                    board: state.Player.board.map(card => card === target ? { ...card, defense: card.defense - attack } : card)
+                },
+                Opponent: state.Opponent
             }
         }
+
+        
 
     }
 
