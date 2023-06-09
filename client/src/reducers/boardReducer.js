@@ -1,3 +1,4 @@
+
 const MAX_CARDS = 7;
 const initialState = { 
 
@@ -38,9 +39,39 @@ const boardReducer = (state = initialState, action) => {
                 }
             }
         }
-
-        
     }
+
+    if (action.type === "KILL_MINION") {
+
+        if (action.payload.source === "PLAYER") {
+            const index = action.payload.key;
+            // console.log(index);
+            return { Player: state.Player, Opponent: { board: state.Opponent.board.filter(card => card.key !== index) } };
+        }
+
+        if (action.payload.source === "OPPONENT") {
+            const index = action.payload.key;
+            // console.log(index);
+            return { Opponent: state.Opponent, Player: { board: state.Player.board.filter(card => card.id !== index) } };
+        }
+
+    }
+
+    if (action.type === "HIT_MINION") {
+
+        const { attack, counterAttack, source, target } = action.payload;
+        console.log(state);
+        return {
+            Player: {
+                board: state.Player.board.map(card => card === source ? { ...card, defense: card.defense - counterAttack } : card)
+            },
+            Opponent: {
+                board: state.Opponent.board.map(card => card === target ? { ...card, defense: card.defense - attack } : card)
+            }
+        }
+
+    }
+
     return state;
 
 }

@@ -7,7 +7,7 @@ const PlayerMinion = ({ card }) => {
 
     const [, drag] = useDrag(() => ({
       type: itemTypes.MINION,
-      item: { attack: card.attack },
+      item: { card },
       collect: (monitor) => ({
         isDragging: !!monitor.isDragging(),
       }),

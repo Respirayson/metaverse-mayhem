@@ -11,13 +11,18 @@ const hitFace = (damage, target) => {
     return { payload: { damage, target }, type: 'HIT_FACE'}
 }
 
-const hitMinion = (damage, target) => {
-    return { payload: { damage, target }, type: 'HIT_MINION'}
+const hitMinion = (attack, counterAttack, target, source) => {
+    return { payload: { attack, counterAttack, target, source }, type: 'HIT_MINION'}
+}
+
+const killMinion = (target, source) => {
+    return { payload: { key: target, source }, type: 'KILL_MINION'}
 }
 
 export default {
     playCard,
     drawCard,
     hitFace,
-    hitMinion
+    hitMinion,
+    killMinion
 }
