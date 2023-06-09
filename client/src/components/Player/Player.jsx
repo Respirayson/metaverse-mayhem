@@ -22,7 +22,7 @@ const Player = (props) => {
               { name || 'Unnamed' }
               <TargetableHero character={character} />
             </h1>
-            <PlayingArea board={board.board} />
+            <PlayingArea board={board.board} exhaustedMinions={board.exhaustedMinions} />
             <Hand />
           </div>
       </div>

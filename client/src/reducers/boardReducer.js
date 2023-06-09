@@ -4,9 +4,11 @@ const initialState = {
 
     Player: {
         board: [],
+        exhaustedMinions: [],
     },
     Opponent: {
         board: [],
+        exhaustedMinions: [],
     }
 
  };
@@ -20,9 +22,21 @@ const boardReducer = (state = initialState, action) => {
                 return state;
             } else {
                 if (action.payload.index === 0) {
-                    return { Opponent: state.Opponent, Player: { board: [action.payload.card, ...state.Player.board.slice(0, state.Player.board.length)] } };
+                    return { 
+                        Opponent: state.Opponent, 
+                        Player: { 
+                            board: [action.payload.card, ...state.Player.board.slice(0, state.Player.board.length)],
+                            exhaustedMinions: [...state.Player.exhaustedMinions, action.payload.card.key]
+                        } 
+                    };
                 } else {
-                    return { Opponent: state.Opponent, Player: { board: [...state.Player.board.slice(0, state.Player.board.length), action.payload.card] } };
+                    return { 
+                        Opponent: state.Opponent, 
+                        Player: { 
+                            board: [...state.Player.board.slice(0, state.Player.board.length), action.payload.card],
+                            exhaustedMinions: [...state.Player.exhaustedMinions, action.payload.card.key]
+                        }
+                    };
                 }
             }
         }
@@ -33,9 +47,15 @@ const boardReducer = (state = initialState, action) => {
                 return state;
             } else {
                 if (action.payload.index === 0) {
-                    return { Player: state.Player, Opponent: { board: [action.payload.card, ...state.Opponent.board.slice(0, state.Opponent.board.length)] } };
+                    return { Player: state.Player, Opponent: { 
+                        board: [action.payload.card, ...state.Opponent.board.slice(0, state.Opponent.board.length)],
+                        exhaustedMinions: [...state.Opponent.exhaustedMinions, action.payload.card.key]
+                     } };
                 } else {
-                    return { Player: state.Player, Opponent: { board: [...state.Opponent.board.slice(0, state.Opponent.board.length), action.payload.card] } };
+                    return { Player: state.Player, Opponent: { 
+                        board: [...state.Opponent.board.slice(0, state.Opponent.board.length), action.payload.card],
+                        exhaustedMinions: [...state.Opponent.exhaustedMinions, action.payload.card.key]
+                    } };
                 }
             }
         }
@@ -84,6 +104,22 @@ const boardReducer = (state = initialState, action) => {
 
     }
 
+    if (action.type === "END_TURN") {
+        if (action.payload.source === "PLAYER") {
+            return { Opponent: state.Opponent, Player: { 
+                board: state.Player.board,
+                exhaustedMinions: []
+            } };
+        }
+
+        if (action.payload.source === "OPPONENT") {
+            return { Player: state.Player, Opponent: { 
+                board: state.Opponent.board,
+                exhaustedMinions: []
+            } };
+        }
+    }
+    
     return state;
 
 }

@@ -4,12 +4,15 @@ import styles from './Minion.module.css'
 
 const Minion = (props) => {
 
-  const { attack, defense, portrait } = props.card;
-
+  const { card, exhausted } = props;
+  const { attack, defense, portrait } = card;
+  
   return (
-    <div className={`${styles.Minion} bg-[image:var(--image-url)]`} style={{'--image-url': `url(${portrait})`}}>
-        <div className={styles.MinionAttack}>{ attack }</div>
-        <div className={styles.MinionDefense}>{ defense }</div>
+    <div 
+      className={`${styles.Minion} bg-[image:var(--image-url)] ${exhausted ? styles.MinionSleeping : null}`} 
+      style={{'--image-url': `url(${portrait})`}}>
+        <div className={`${styles.MinionAttack} text-[2.5vh]`}>{ attack }</div>
+        <div className={`${styles.MinionDefense} text-[2.5vh]`}>{ defense }</div>
     </div>
   )
 }
