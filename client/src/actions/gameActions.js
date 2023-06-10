@@ -28,8 +28,6 @@ const endTurn = () => {
         dispatch(addMana(source));
         dispatch(allActions.playerActions.drawCard(source));
     }
-
-    // return { payload: { source }, type: 'END_TURN' };
 }
 
 export default {
