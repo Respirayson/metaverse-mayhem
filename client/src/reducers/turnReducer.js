@@ -5,6 +5,10 @@ const turnReducer = (state=true, action) => {
         return !state;
     }
 
+    if (action.type === "NEW_GAME") {
+        return action.payload.playerStarts;
+    }
+
     return state;
 }
 

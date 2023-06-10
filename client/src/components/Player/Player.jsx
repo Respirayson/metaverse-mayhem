@@ -8,12 +8,11 @@ import { TargetableHero } from "../../containers"
 const Player = (props) => {
 
     const { name, board, character, playerTurn } = props;
-    console.log(board.exhaustedMinions)
 
     const dispatch = useDispatch();
 
     const drawCard = () => {
-      dispatch(allActions.playerActions.drawCard());
+      dispatch(allActions.playerActions.drawCard("PLAYER"));
     }
 
     return (

@@ -3,8 +3,8 @@ const playCard = (card, index, source) => {
     return { payload: { card, index, source }, type: 'PLAY_CARD' }
 }
 
-const drawCard = () => {
-    return { payload: {}, type: 'DRAW_CARD'}
+const drawCard = (target) => {
+    return { payload: { target }, type: 'DRAW_CARD'}
 }
 
 const hitFace = (damage, target) => {

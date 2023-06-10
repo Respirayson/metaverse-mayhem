@@ -80,7 +80,6 @@ const boardReducer = (state = initialState, action) => {
     if (action.type === "HIT_MINION") {
 
         const { attack, target, source } = action.payload;
-        console.log(state);
 
         if (source === "PLAYER") {
             return {
@@ -95,7 +94,7 @@ const boardReducer = (state = initialState, action) => {
         if (source === "OPPONENT") {
             return {
                 Player: {
-                    ...state.Player,
+                    exhaustedMinions: [ ...state.Player.exhaustedMinions, target.key ],
                     board: state.Player.board.map(card => card === target ? { ...card, defense: card.defense - attack } : card),
                 },
                 Opponent: state.Opponent

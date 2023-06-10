@@ -20,13 +20,15 @@ const handReducer = (state = {}, action) => {
     }
   
     if (action.type === 'DRAW_CARD') {
-      if (state.cards.length + 1 > MAX_CARDS) {
-        console.log("hand is full");
-        return { cards: state.cards };
+      if (action.payload.target === "PLAYER") {
+        if (state.cards.length + 1 > MAX_CARDS) {
+          console.log("hand is full");
+          return { cards: state.cards };
+        }
+  
+        const card = Object.assign({}, newRandomCard(), { key: uuidv4() });
+        return { cards: [...state.cards, card] };
       }
-
-      const card = Object.assign({}, newRandomCard(), { key: uuidv4() });
-      return { cards: [...state.cards, card] };
     }
     return state;
 };

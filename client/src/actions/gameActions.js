@@ -1,13 +1,39 @@
+import allActions from ".";
 
-const newGame = (user, opponent) => {
-    return { payload: { user, opponent }, type: 'NEW_GAME' };
+const addMana = (target, amount = 1) => {
+    return { payload: { target, amount }, type: 'ADD_MANA' };
 }
 
-const endTurn = (source) => {
-    return { payload: { source }, type: 'END_TURN' };
+const newGame = (user, opponent, playerStarts) => {
+
+    return dispatch => {
+        
+        const starting = playerStarts ? "PLAYER" : "OPPONENT";
+        dispatch(addMana(starting));
+
+        return dispatch({ payload: { user, opponent, playerStarts }, type: 'NEW_GAME' });
+        
+    }
+}
+
+const endTurn = () => {
+
+    return (dispatch, getState) => {
+
+        const { turn } = getState();
+
+        const source = turn ? "OPPONENT" : "PLAYER";
+
+        dispatch({ payload: { source }, type: 'END_TURN' });
+        dispatch(addMana(source));
+        dispatch(allActions.playerActions.drawCard(source));
+    }
+
+    // return { payload: { source }, type: 'END_TURN' };
 }
 
 export default {
     newGame,
-    endTurn
+    endTurn,
+    addMana
 };

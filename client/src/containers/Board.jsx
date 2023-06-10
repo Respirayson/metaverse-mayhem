@@ -1,3 +1,4 @@
+import React from 'react'
 import { Player, Opponent } from '../components'
 import { useDispatch, useSelector } from 'react-redux'
 import { DndProvider } from 'react-dnd'
@@ -6,12 +7,17 @@ import allActions from '../actions'
 
 const Board = () => {
   const { user, board, opponent, handCount, character, turn } = useSelector(state => state)
+  console.log(turn ? "Your turn" : "Enemy turn")
   
   const dispatch = useDispatch();
 
   const endTurn = (source) => {
     dispatch(allActions.gameActions.endTurn(source));
   }
+
+  React.useEffect(() => {
+    dispatch(allActions.gameActions.newGame("Jason", "Hello", Math.random() > 0.5));
+  }, [dispatch])
 
   return (
     <DndProvider backend={HTML5Backend}>

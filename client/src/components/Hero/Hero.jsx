@@ -10,7 +10,7 @@ const Hero = (props) => {
                 Health: { health }
             </div>
             <div className='w-[150px] h-[40px] bg-blue-700 rounded'>
-                Mana: { mana }
+                Mana: { mana.current } / { mana.total }
             </div>
         </div>
         
