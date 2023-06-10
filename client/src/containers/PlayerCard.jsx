@@ -3,17 +3,16 @@ import { Card } from '../components'
 import { useDrag } from 'react-dnd'
 import itemTypes from '../constants'
 
-const PlayerCard = (props) => {
-
-    const { card, index, cardsLength } = props;
+const PlayerCard = ({ card, index, cardsLength, canDrag, onCardClick }) => {
 
     const [, drag] = useDrag(() => ({
         type: itemTypes.CARD,
-        item: { card: props.card, index: props.index, playCard: props.onCardClick },
+        canDrag: canDrag,
+        item: { card: card, index: index, playCard: onCardClick },
         collect: (monitor) => ({
           isDragging: !!monitor.isDragging(),
         }),
-    }))
+    }), [canDrag])
 
     return (
         <div ref={drag} className='pt-[120px]'>

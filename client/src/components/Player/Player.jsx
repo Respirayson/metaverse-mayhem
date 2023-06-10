@@ -7,7 +7,8 @@ import { TargetableHero } from "../../containers"
 
 const Player = (props) => {
 
-    const { name, board, character } = props;
+    const { name, board, character, playerTurn } = props;
+    console.log(board.exhaustedMinions)
 
     const dispatch = useDispatch();
 
@@ -22,8 +23,8 @@ const Player = (props) => {
               { name || 'Unnamed' }
               <TargetableHero character={character} />
             </h1>
-            <PlayingArea board={board.board} exhaustedMinions={board.exhaustedMinions} />
-            <Hand />
+            <PlayingArea playerTurn={playerTurn} board={board.board} exhaustedMinions={board.exhaustedMinions} />
+            <Hand playerTurn={playerTurn} />
           </div>
       </div>
     )

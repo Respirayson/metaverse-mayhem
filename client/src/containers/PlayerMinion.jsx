@@ -3,18 +3,22 @@ import { Minion } from '../components'
 import { useDrag } from 'react-dnd'
 import itemTypes from '../constants'
 
-const PlayerMinion = ({ card, exhausted }) => {
+const PlayerMinion = ({ card, exhausted, canDrag }) => {
 
     const [, drag] = useDrag(() => ({
       canDrag: (monitor) => {
-        return !exhausted;
+        if (exhausted) {
+          return false
+        }
+        return canDrag
+
       },
       type: itemTypes.MINION,
       item: { card },
       collect: (monitor) => ({
         isDragging: !!monitor.isDragging(),
       }),
-    }), [card, exhausted])
+    }), [card, exhausted, canDrag])
 
 
 

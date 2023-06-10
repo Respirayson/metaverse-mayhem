@@ -12,12 +12,15 @@ import PlayerMinion from '../../containers/PlayerMinion';
 const PlayingArea = (props) => {
 
     const [boardLength, setBoardLength] = useState(0)
-    const { board, exhaustedMinions } = props;
+    const { board, exhaustedMinions, playerTurn } = props;
     
     const [cardLastPlayed, setCardLastPlayed] = useState();
 
     const [{ isOver }, drop] = useDrop(() => ({
         accept: itemTypes.CARD,
+        canDrop: (item, monitor) => {
+            return boardLength < 7;
+        },
         drop: (item, monitor) => {
             setBoardLength(boardLength + 1)
             setCardLastPlayed(item.card)
@@ -38,15 +41,15 @@ const PlayingArea = (props) => {
             isOver: !!monitor.isOver(),
         
         }),
-    }));
+    }), [boardLength]);
     
     const minions = board.map((card, i) => (
         card 
         ? card === cardLastPlayed 
             ? <motion.div key={card["key"]} {...slideAnimation("up")}> 
-                <PlayerMinion card={card} key={i} exhausted={exhaustedMinions.includes(card.key)} /> 
+                <PlayerMinion canDrag={playerTurn} card={card} key={i} exhausted={exhaustedMinions.includes(card.key)} /> 
               </motion.div> 
-            : <PlayerMinion card={card} key={i} exhausted={exhaustedMinions.includes(card.key)} />
+            : <PlayerMinion canDrag={playerTurn} card={card} key={i} exhausted={exhaustedMinions.includes(card.key)} />
         : <div key={i} />
     ));
 

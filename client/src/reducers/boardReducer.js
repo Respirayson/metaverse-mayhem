@@ -66,13 +66,13 @@ const boardReducer = (state = initialState, action) => {
         if (action.payload.source === "PLAYER") {
             const index = action.payload.key;
             // console.log(index);
-            return { Player: state.Player, Opponent: { board: state.Opponent.board.filter(card => card.key !== index) } };
+            return { Player: state.Player, Opponent: { ...state.Opponent, board: state.Opponent.board.filter(card => card.key !== index) } };
         }
 
         if (action.payload.source === "OPPONENT") {
             const index = action.payload.key;
             // console.log(index);
-            return { Opponent: state.Opponent, Player: { board: state.Player.board.filter(card => card.key !== index) } };
+            return { Opponent: state.Opponent, Player: { ...state.Player, board: state.Player.board.filter(card => card.key !== index) } };
         }
 
     }
@@ -85,7 +85,8 @@ const boardReducer = (state = initialState, action) => {
         if (source === "PLAYER") {
             return {
                 Opponent: {
-                    board: state.Opponent.board.map(card => card === target ? { ...card, defense: card.defense - attack } : card)
+                    ...state.Opponent,
+                    board: state.Opponent.board.map(card => card === target ? { ...card, defense: card.defense - attack } : card),
                 },
                 Player: state.Player
             }
@@ -94,7 +95,8 @@ const boardReducer = (state = initialState, action) => {
         if (source === "OPPONENT") {
             return {
                 Player: {
-                    board: state.Player.board.map(card => card === target ? { ...card, defense: card.defense - attack } : card)
+                    ...state.Player,
+                    board: state.Player.board.map(card => card === target ? { ...card, defense: card.defense - attack } : card),
                 },
                 Opponent: state.Opponent
             }
@@ -105,6 +107,7 @@ const boardReducer = (state = initialState, action) => {
     }
 
     if (action.type === "END_TURN") {
+        console.log(state)
         if (action.payload.source === "PLAYER") {
             return { Opponent: state.Opponent, Player: { 
                 board: state.Player.board,
