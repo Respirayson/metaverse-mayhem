@@ -1,5 +1,5 @@
 
-const userReducer = (state = {}, action) => {
+const userReducer = (state = "", action) => {
 
     if (action.type === 'NEW_GAME') {
       return action.payload.user;

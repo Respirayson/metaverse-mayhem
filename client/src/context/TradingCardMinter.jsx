@@ -8,6 +8,7 @@ export const TradingCardMinterContext = React.createContext();
 const { ethereum } = window;
 
 const getEthereumContract = () => {
+    if (!ethereum) return alert("Please install MetaMask")
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(contractAddress, contractABI, signer);
@@ -31,7 +32,10 @@ export const TradingCardMinterProvider = ({ children }) => {
 
     const checkIfWalletIsConnected = async () => {
         try {
-            if (!ethereum) return alert("Please install MetaMask");
+            if (!ethereum) {
+                window.alert("Please install MetaMask");
+                return;
+            }
 
             const accounts = await ethereum.request({ method: "eth_accounts" });
 
@@ -66,7 +70,11 @@ export const TradingCardMinterProvider = ({ children }) => {
 
 
     useEffect(() => {
-        checkIfWalletIsConnected();
+        async function fetchData() {
+            console.log("Fetching data...")
+            await checkIfWalletIsConnected();
+        }
+        fetchData();
     }, [])
 
     return (

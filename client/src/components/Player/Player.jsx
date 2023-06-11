@@ -3,24 +3,27 @@ import styles from "./Player.module.css"
 import { Hand, PlayingArea } from "../../components"
 import allActions from '../../actions'
 import { useDispatch } from 'react-redux'
+import { TargetableHero } from "../../containers"
 
 const Player = (props) => {
 
-    const { name, board } = props;
-    // console.log(board)
+    const { name, board, character, playerTurn } = props;
 
     const dispatch = useDispatch();
 
     const drawCard = () => {
-      dispatch(allActions.playerActions.drawCard());
+      dispatch(allActions.playerActions.drawCard("PLAYER"));
     }
 
     return (
       <div className={styles.Player}>
-          <div className={styles.PlayerHandWrapper}>
-            <h1 onClick={drawCard} className={`${styles.PlayerName}`}>{ name || 'Unnamed' }</h1>
-            <PlayingArea board={board.board} />
-            <Hand />
+          <div className={`${styles.PlayerHandWrapper}`}>
+            <h1 onClick={drawCard} className={`${styles.PlayerName}`}>
+              { name || 'Unnamed' }
+              <TargetableHero character={character} />
+            </h1>
+            <PlayingArea playerTurn={playerTurn} board={board.board} exhaustedMinions={board.exhaustedMinions} />
+            <Hand playerTurn={playerTurn} />
           </div>
       </div>
     )

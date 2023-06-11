@@ -28,3 +28,19 @@
   right: -10px;
   border-radius: 50%;
 }
+
+.MinionSleeping::before {
+  content: 'z';
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+.MinionSleeping::after {
+  content: 'z z';
+  position: absolute;
+  top: -15px;
+  right: 7px;
+  width: 5px;
+  line-height: 0.7;
+  text-indent: 5px;
+}

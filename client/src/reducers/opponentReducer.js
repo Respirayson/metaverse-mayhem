@@ -1,8 +1,8 @@
 
-const opponentReducer = (state = {}, action) => {
+const opponentReducer = (state = "", action) => {
 
     if (action.type === 'NEW_GAME') {
-      return action.payload.opponent;
+      return action.payload.opponent
     }
   
     return state;
