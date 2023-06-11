@@ -181,9 +181,9 @@ describe("Player Actions", () => {
           },
         },
         {
-            type: "KILL_MINION",
-            payload: { key: target.key, source: "PLAYER" },
-          },
+          type: "KILL_MINION",
+          payload: { key: target.key, source: "PLAYER" },
+        },
       ];
 
       store.dispatch(

@@ -13,5 +13,10 @@ export default defineConfig({
       provider: 'c8',
       reporter: ['text', 'json', 'html'],
     },
+    css: {
+      modules: {
+          classNameStrategy: 'non-scoped'
+      }
+  }
   }
 })

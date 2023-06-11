@@ -93,7 +93,8 @@
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -123,44 +124,46 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react'
-import { Minion } from '../components'
-import { useDrop } from 'react-dnd'
-import itemTypes from '../constants'
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from "react";
+import { Minion } from "../components";
+import { useDrop } from "react-dnd";
+import itemTypes from "../constants";
 &nbsp;
 const EnemyMinion = <span class="fstat-no" title="function not covered" >({ card, attackMinion }) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const [, drop] = useDrop(</span>
+<span class="cstat-no" title="statement not covered" >    () =&gt; ({</span>
+<span class="cstat-no" title="statement not covered" >      accept: itemTypes.MINION,</span>
+<span class="cstat-no" title="statement not covered" >      drop: (item, monitor) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        // console.log(card)</span>
+<span class="cstat-no" title="statement not covered" >        const { attack } = item.card;</span>
 <span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >        attackMinion(attack, card.attack, card, item.card);</span>
+<span class="cstat-no" title="statement not covered" >      },</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    const [, drop] = useDrop(() =&gt; ({</span>
-<span class="cstat-no" title="statement not covered" >        accept: itemTypes.MINION,</span>
-<span class="cstat-no" title="statement not covered" >        drop: (item, monitor) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            // console.log(card)</span>
-<span class="cstat-no" title="statement not covered" >            const { attack } = item.card;</span>
+<span class="cstat-no" title="statement not covered" >      collect: (monitor) =&gt; ({</span>
+<span class="cstat-no" title="statement not covered" >        isOver: !!monitor.isOver(),</span>
+<span class="cstat-no" title="statement not covered" >      }),</span>
+<span class="cstat-no" title="statement not covered" >    }),</span>
+<span class="cstat-no" title="statement not covered" >    [card]</span>
+<span class="cstat-no" title="statement not covered" >  );</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >            attackMinion(attack, card.attack, card, item.card);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        },</span>
-<span class="cstat-no" title="statement not covered" >        </span>
-<span class="cstat-no" title="statement not covered" >        collect: (monitor) =&gt; ({</span>
-<span class="cstat-no" title="statement not covered" >            isOver: !!monitor.isOver(),</span>
-<span class="cstat-no" title="statement not covered" >        }),</span>
-<span class="cstat-no" title="statement not covered" >    }), [card]);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    return (</span>
-<span class="cstat-no" title="statement not covered" >        &lt;div ref={drop}&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;Minion card={card} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >    )</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" >  return (</span>
+<span class="cstat-no" title="statement not covered" >    &lt;div ref={drop}&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;Minion card={card} /&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >  );</span>
+<span class="cstat-no" title="statement not covered" >};</span>
 &nbsp;
-export default EnemyMinion</pre></td></tr></table></pre>
+export default EnemyMinion;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-10T19:55:59.813Z
+                at 2023-06-11T10:22:53.062Z
             </div>
         <script src="../prettify.js"></script>
         <script>

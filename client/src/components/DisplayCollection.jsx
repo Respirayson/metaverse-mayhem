@@ -1,5 +1,4 @@
 import React from 'react'
-import { CardBack } from '../components'
 import Collectible from './Collectible'
 
 const DisplayCollection = () => {

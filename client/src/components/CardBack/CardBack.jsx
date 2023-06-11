@@ -4,10 +4,8 @@ import cardBackStyles from './CardBack.module.css'
 
 const CardBack = (props) => {
 
-    const { cardsLength, index } = props;
-
     return (
-        <div className={`${styles.Card} ${styles.CardOpponent} ${cardBackStyles.CardBackDefault}`} />
+        <div data-testid='card-back' className={`${styles.Card} ${styles.CardOpponent} ${cardBackStyles.CardBackDefault}`} />
     )
 }
 

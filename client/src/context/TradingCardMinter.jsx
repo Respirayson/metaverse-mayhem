@@ -8,80 +8,72 @@ export const TradingCardMinterContext = React.createContext();
 const { ethereum } = window;
 
 const getEthereumContract = () => {
-    if (!ethereum) return alert("Please install MetaMask")
-    const provider = new ethers.providers.Web3Provider(ethereum);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(contractAddress, contractABI, signer);
+  if (!ethereum) return alert("Please install MetaMask");
+  const provider = new ethers.providers.Web3Provider(ethereum);
+  const signer = provider.getSigner();
+  const contract = new ethers.Contract(contractAddress, contractABI, signer);
 
-    console.log({
-        provider,
-        signer,
-        contract
-    })
+  console.log({
+    provider,
+    signer,
+    contract,
+  });
 
-    return contract;
-}
+  return contract;
+};
 
 export const TradingCardMinterProvider = ({ children }) => {
+  const [currentAccount, setCurrentAccount] = useState(null);
+  const [formData, setFormData] = useState({
+    addressTo: "",
+    name: "",
+  });
 
-    const [currentAccount, setCurrentAccount] = useState(null);
-    const [formData, setFormData] = useState({
-        addressTo: "",
-        name: "",
-    });
+  const checkIfWalletIsConnected = async () => {
+    try {
+      if (!ethereum) {
+        window.alert("Please install MetaMask");
+        return;
+      }
 
-    const checkIfWalletIsConnected = async () => {
-        try {
-            if (!ethereum) {
-                window.alert("Please install MetaMask");
-                return;
-            }
+      const accounts = await ethereum.request({ method: "eth_accounts" });
 
-            const accounts = await ethereum.request({ method: "eth_accounts" });
-
-            if (accounts.length) {
-                const account = accounts[0];
-                console.log("Found an authorized account: ", account);
-                setCurrentAccount(account);
-            } else {
-                console.log("No authorized account found");
-            }
-        } catch (err) {
-            console.log(err);
-        }
+      if (accounts.length) {
+        const account = accounts[0];
+        console.log("Found an authorized account: ", account);
+        setCurrentAccount(account);
+      } else {
+        console.log("No authorized account found");
+      }
+    } catch (err) {
+      console.log(err);
     }
+  };
 
-    const mintTradingCard = async () => {
-        try {
-            if (!ethereum) return alert("Please install MetaMask");
+  const mintTradingCard = async () => {
+    try {
+      if (!ethereum) return alert("Please install MetaMask");
 
-            const { addressTo, name } = formData;
-            const contract = getEthereumContract();
+      const { addressTo, name } = formData;
+      const contract = getEthereumContract();
 
-            const transaction = await contract.mint(name);
-            await transaction.wait();
-            console.log(`1 Card successfully sent to ${addressTo} - Transaction hash: ${transaction.hash}`);
-
-            
-        } catch (err) {
-            console.log(err);
-        }
+      const transaction = await contract.mint(name);
+      await transaction.wait();
+      console.log(
+        `1 Card successfully sent to ${addressTo} - Transaction hash: ${transaction.hash}`
+      );
+    } catch (err) {
+      console.log(err);
     }
+  };
 
+  useEffect(() => {
+    checkIfWalletIsConnected();
+  }, []);
 
-    useEffect(() => {
-        async function fetchData() {
-            console.log("Fetching data...")
-            await checkIfWalletIsConnected();
-        }
-        fetchData();
-    }, [])
-
-    return (
-        <TradingCardMinterContext.Provider value={{ value: getEthereumContract() }}>
-            {children}
-        </TradingCardMinterContext.Provider>
-    )
-
-
-}
+  return (
+    <TradingCardMinterContext.Provider value={{  }}>
+      {children}
+    </TradingCardMinterContext.Provider>
+  );
+};
