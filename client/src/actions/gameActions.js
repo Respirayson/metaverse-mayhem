@@ -1,7 +1,26 @@
 import allActions from ".";
 
-const addMana = (target, amount = 1) => {
-    return { payload: { target, amount }, type: 'ADD_MANA' };
+const addMaxMana = (target, amount = 1) => {
+    return { payload: { target, amount }, type: 'ADD_MAX_MANA' };
+}
+
+const addPlayableMana = (target, amount = 1) => {
+    return { payload: { target, amount }, type: 'ADD_PLAYABLE_MANA' };
+}
+
+const fillMana = (target) => {
+    return { payload: { target }, type: 'FILL_MANA' };
+}
+
+const addAndFillMana = (target, amount = 1) => {
+    return dispatch => {
+        dispatch(addMaxMana(target, amount));
+        dispatch(fillMana(target));
+    }
+}
+
+const useMana = (target, amount) => {
+    return { payload: { target, amount }, type: 'USE_MANA' };
 }
 
 const newGame = (user, opponent, playerStarts) => {
@@ -9,7 +28,7 @@ const newGame = (user, opponent, playerStarts) => {
     return dispatch => {
         
         const starting = playerStarts ? "PLAYER" : "OPPONENT";
-        dispatch(addMana(starting));
+        dispatch(addAndFillMana(starting));
 
         return dispatch({ payload: { user, opponent, playerStarts }, type: 'NEW_GAME' });
         
@@ -25,7 +44,7 @@ const endTurn = () => {
         const source = turn ? "OPPONENT" : "PLAYER";
 
         dispatch({ payload: { source }, type: 'END_TURN' });
-        dispatch(addMana(source));
+        dispatch(addAndFillMana(source));
         dispatch(allActions.playerActions.drawCard(source));
     }
 }
@@ -33,5 +52,9 @@ const endTurn = () => {
 export default {
     newGame,
     endTurn,
-    addMana
+    addMaxMana,
+    addPlayableMana,
+    fillMana,
+    addAndFillMana,
+    useMana
 };
