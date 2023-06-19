@@ -4,6 +4,9 @@ import PlayerCard from "./PlayerCard";
 import TargetableHero from "./TargetableHero";
 import EnemyMinion from "./EnemyMinion";
 import OpponentContainer from "./OpponentContainer";
+import PlayerContainer from "./PlayerContainer";
+import HandContainer from "./HandContainer";
+import PlayingAreaContainer from "./PlayingAreaContainer";
 
 export {
     Board,
@@ -11,5 +14,8 @@ export {
     PlayerCard,
     TargetableHero,
     EnemyMinion,
-    OpponentContainer
+    OpponentContainer,
+    PlayerContainer,
+    HandContainer,
+    PlayingAreaContainer,
 }

@@ -1,4 +1,4 @@
-import { Player } from "../components";
+import PlayerContainer from "./PlayerContainer";
 import OpponentContainer from "./OpponentContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { DndProvider } from "react-dnd";
@@ -26,7 +26,7 @@ const Board = () => {
 					handCount={handCount}
 					character={character.Enemy}
 				/>
-				<Player
+				<PlayerContainer
 					name={user}
 					board={board.Player}
 					character={character.Player}

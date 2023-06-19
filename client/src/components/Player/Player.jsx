@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Player.module.css";
-import { Hand, PlayingArea } from "../../components";
-import { TargetableHero } from "../../containers";
+import { PlayingArea } from "../../components";
+import { TargetableHero, HandContainer, PlayingAreaContainer } from "../../containers";
 
 const Player = ({
 	name,
@@ -28,12 +28,12 @@ const Player = ({
 				>
 					End Turn
 				</button>
-				<PlayingArea
+				<PlayingAreaContainer
 					playerTurn={playerTurn}
 					board={board.board}
 					exhaustedMinions={board.exhaustedMinions}
 				/>
-				<Hand
+				<HandContainer
 					currentMana={character.mana.current}
 					playerTurn={playerTurn}
 				/>
