@@ -121,9 +121,9 @@ const App = () => {
 							<PrivateRoutes authenticated={authenticated} />
 						}
 					>
+						<Route path="/collection" element={<Collection />} />
 						<Route path="/marketplace" element={<Marketplace />} />
 					</Route>
-					<Route path="/community" element={<Community />} />
 				</Routes>
 			</main>
 		</BrowserRouter>

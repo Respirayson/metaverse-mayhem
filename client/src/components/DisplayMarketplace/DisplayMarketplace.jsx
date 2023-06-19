@@ -1,5 +1,5 @@
 import React from 'react'
-import { Listing } from '.'
+import { Listing } from '..'
 
 const DisplayMarketplace = () => {
   return (

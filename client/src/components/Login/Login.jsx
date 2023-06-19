@@ -1,5 +1,5 @@
 import React from "react";
-import { connectWallet, checkWalletConnected } from "../utils/connect";
+import { connectWallet, checkWalletConnected } from "../../utils/connect";
 import { AiFillPlayCircle } from "react-icons/ai";
 
 const Login = (props) => {
