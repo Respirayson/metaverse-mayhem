@@ -3,7 +3,7 @@ import { Minion } from "../components";
 import { useDrop } from "react-dnd";
 import itemTypes from "../constants";
 
-const EnemyMinion = ({ card, attackMinion }) => {
+const EnemyMinion = ({ card, attackMinion, exhaustedMinions }) => {
   const [, drop] = useDrop(
     () => ({
       accept: itemTypes.MINION,
@@ -23,7 +23,7 @@ const EnemyMinion = ({ card, attackMinion }) => {
 
   return (
     <div ref={drop}>
-      <Minion card={card} />
+      <Minion card={card} exhausted={exhaustedMinions.includes(card.key)} />
     </div>
   );
 };
