@@ -65,7 +65,6 @@ const useMana = (target, amount) => {
  */
 const newGame = (user, opponent, playerStarts, viaServer) => {
 	return (dispatch) => {
-		const starting = playerStarts ? "PLAYER" : "OPPONENT";
 		dispatch(addAndFillMana("PLAYER", 1, viaServer));
 		dispatch({
 			payload: { user, opponent, playerStarts, viaServer },
@@ -88,6 +87,11 @@ const endTurn = () => {
 	};
 };
 
+/**
+ * Action creator for ending the game.
+ * @param {string} target - The target of the game end (e.g., "PLAYER" or "OPPONENT").
+ * @returns {object} Action object with type 'END_GAME' and the payload.
+ */
 const endGame = (target) => {
 	return { payload: { target }, type: "END_GAME" };
 };
@@ -101,5 +105,5 @@ export default {
 	fillMana,
 	addAndFillMana,
 	useMana,
-	endGame
+	endGame,
 };

@@ -74,6 +74,11 @@ const isNewGameFetched = (state, force) => {
 	return true;
 };
 
+/**
+ * Action creator for updating the hasOpponent flag.
+ * @param {boolean} hasOpponent - Flag indicating whether the game has an opponent.
+ * @returns {object} Action object with type UPDATE_HAS_OPPONENT and the hasOpponent payload.
+ */
 const updateHasOpponent = (hasOpponent) => {
 	return {
 		payload: {
@@ -83,6 +88,10 @@ const updateHasOpponent = (hasOpponent) => {
 	};
 };
 
+/**
+ * Action creator for resetting the game state.
+ * @returns {object} Action object with type RESET_GAME.
+ */
 const resetGame = () => {
 	return {
 		type: RESET_GAME,

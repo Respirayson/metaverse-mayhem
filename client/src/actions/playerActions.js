@@ -59,12 +59,11 @@ const attackHero = (card, target) => {
 		dispatch(hitFace(card, target));
 		console.log(character.Enemy.health);
 
-
-		if (character.Enemy.health <= 0) {
-			dispatch(gameActions.endGame("PLAYER"));
-		}
+		// if (character.Enemy.health <= 0) {
+		//   dispatch(gameActions.endGame("PLAYER"));
+		// }
 	};
-}
+};
 
 /**
  * Action creator for hitting a minion with a card.
