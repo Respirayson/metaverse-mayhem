@@ -20,166 +20,210 @@ app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/game", gameRoutes);
 
+/**
+ * GET route for checking server status
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
 app.get("/", async (req, res) => {
-	res.send(
-		"Hello from Metaverse Mayhem. This is to check whether the server is running."
-	);
+    res.send(
+        "Hello from Metaverse Mayhem. This is to check whether the server is running."
+    );
 });
 
 const httpServer = createServer();
 const io = new Server(httpServer, {
-	cors: {
-		origin: "*",
-		methods: ["GET", "POST"],
-	},
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"],
+    },
 });
 httpServer.listen(8000);
 
+/**
+ * Get the number of clients in a room
+ * @param {Object} io - Socket.IO server object
+ * @param {string} name - Room name
+ * @returns {number} - Number of clients in the room
+ */
 const sizeOfRoom = (io, name) => {
-	const room = io.sockets.adapter.rooms.get(name);
+    const room = io.sockets.adapter.rooms.get(name);
 
-	if (room) {
-		return room.size;
-	}
+    if (room) {
+        return room.size;
+    }
 
-	return 0;
-}
-
-const getSocketsInRoom = (io, name) => {
-	const room = io.sockets.adapter.rooms.get(name);
-
-	if (room) {
-		return Array.from(room);
-	}
-
-	return [];
-}
-
-const isSocketInRoom = (io, roomName, clientId) => {
-	const clients = getSocketsInRoom(io, roomName);
-
-	return clients.indexOf(clientId) !== -1;
-}
-
-const connectSockets = () => {
-	io.on("connection", (socket) => {
-		socket.on("joinGame", async ({ gameId }) => {
-			const getPlayerCount = () => sizeOfRoom(io, gameId);
-			if (getPlayerCount() === 2) {
-				return;
-			};
-
-			await socket.join(gameId);
-
-			io.in(gameId).emit("playerJoined", {
-				playerCount: getPlayerCount(),
-			});
-
-			console.log(
-				"[GAMEJOIN] Current players:",
-				getSocketsInRoom(io, gameId)
-			);
-
-			if (getPlayerCount() === 2) {
-				console.log(
-					"[GAMEJOIN] [START] Time to start the game",
-					gameId
-				);
-				const playerOneStarts = Math.random() >= 0.5;
-				const [playerOne, playerTwo] = getSocketsInRoom(io, gameId);
-				console.log("playerOne", playerOne);
-				console.log("playerTwo", playerTwo);
-				io.to(playerOne).emit("newGame", {
-					gameId: gameId,
-					opponentName: "GuardianBanana",
-					isStarting: playerOneStarts,
-				});
-				io.to(playerTwo).emit("newGame", {
-					gameId: gameId,
-					opponentName: "hello",
-					isStarting: !playerOneStarts,
-				});
-			}
-		});
-
-		// TODO: implement leave socket logic
-		socket.on("gameLeave", ({ gameId }) => {
-			socket.leave(gameId);
-		});
-
-		socket.on("disconnect", function () {
-			console.log("User Disconnected");
-		});
-
-		socket.on("action", (payload) => {
-			console.log(payload);
-			var action = payload.action;
-			const gameId = payload.gameId;
-			console.log(payload);
-			console.log("====================================");
-
-			console.log(
-				"[ACTION] current clients:",
-				getSocketsInRoom(io, gameId)
-			);
-			console.log(
-				"[ACTION] Current action from:",
-				`Player${getSocketsInRoom(io, gameId).indexOf(socket.id) + 1}`
-			);
-
-			// Validate if player is actually part of this game.
-			if (!isSocketInRoom(io, gameId, socket.id)) {
-				return;
-			};
-
-			let newAction = action;
-			if (action.payload.target) {
-				const newPayload = Object.assign({}, action.payload, {
-					target:
-						action.payload.target === "PLAYER"
-							? "OPPONENT"
-							: "PLAYER",
-				});
-
-				newAction = Object.assign({}, action, {
-					payload: newPayload,
-				});
-			}
-
-			if (action.payload.source) {
-				const newPayload = Object.assign({}, action.payload, {
-					source:
-						action.payload.source === "PLAYER"
-							? "OPPONENT"
-							: "PLAYER",
-				});
-
-				newAction = Object.assign({}, action, {
-					payload: newPayload,
-				});
-			}
-			console.log("[ACTION] Broadcasting an action to:", gameId);
-			console.log("[ACTION] Action being sent is:", newAction);
-			socket.broadcast.to(gameId).emit("action", { action: newAction });
-		});
-	});
+    return 0;
 };
 
+/**
+ * Get an array of socket IDs in a room
+ * @param {Object} io - Socket.IO server object
+ * @param {string} name - Room name
+ * @returns {string[]} - Array of socket IDs in the room
+ */
+const getSocketsInRoom = (io, name) => {
+    const room = io.sockets.adapter.rooms.get(name);
+
+    if (room) {
+        return Array.from(room);
+    }
+
+    return [];
+};
+
+/**
+ * Check if a socket is in a room
+ * @param {Object} io - Socket.IO server object
+ * @param {string} roomName - Room name
+ * @param {string} clientId - Socket ID of the client
+ * @returns {boolean} - True if the socket is in the room, false otherwise
+ */
+const isSocketInRoom = (io, roomName, clientId) => {
+    const clients = getSocketsInRoom(io, roomName);
+
+    return clients.indexOf(clientId) !== -1;
+};
+
+/**
+ * Handle Socket.IO connections and events
+ */
+const connectSockets = () => {
+    io.on("connection", (socket) => {
+        /**
+         * Handle joining a game
+         * @param {Object} data - Data containing the gameId
+         */
+        socket.on("joinGame", async ({ gameId }) => {
+            const getPlayerCount = () => sizeOfRoom(io, gameId);
+            if (getPlayerCount() === 2) {
+                return;
+            }
+
+            await socket.join(gameId);
+
+            io.in(gameId).emit("playerJoined", {
+                playerCount: getPlayerCount(),
+            });
+
+            console.log(
+                "[JOIN_GAME] Current players:",
+                getSocketsInRoom(io, gameId)
+            );
+
+            if (getPlayerCount() === 2) {
+                console.log(
+                    "[JOIN_GAME] [START] Time to start the game",
+                    gameId
+                );
+                const playerOneStarts = Math.random() >= 0.5;
+                const [playerOne, playerTwo] = getSocketsInRoom(io, gameId);
+                console.log("playerOne", playerOne);
+                console.log("playerTwo", playerTwo);
+                io.to(playerOne).emit("newGame", {
+                    gameId: gameId,
+                    opponentName: "Mr Trying my best",
+                    isStarting: playerOneStarts,
+                });
+                io.to(playerTwo).emit("newGame", {
+                    gameId: gameId,
+                    opponentName: "Struggling to win",
+                    isStarting: !playerOneStarts,
+                });
+            }
+        });
+
+        // TODO: implement leave socket logic
+        /**
+         * Handle leaving a game
+         * @param {Object} data - Data containing the gameId
+         */
+        socket.on("gameLeave", ({ gameId }) => {
+            socket.leave(gameId);
+        });
+
+        /**
+         * Handle disconnection of a client
+         */
+        socket.on("disconnect", function () {
+            console.log("User Disconnected");
+        });
+
+        /**
+         * Handle game actions
+         * @param {Object} payload - Data containing the action and gameId
+         */
+        socket.on("action", (payload) => {
+            var action = payload.action;
+            const gameId = payload.gameId;
+            console.log(payload);
+            console.log("====================================");
+
+            console.log(
+                "[ACTION] current clients:",
+                getSocketsInRoom(io, gameId)
+            );
+            console.log(
+                "[ACTION] Current action from:",
+                `Player${getSocketsInRoom(io, gameId).indexOf(socket.id) + 1}`
+            );
+
+            // Validate if player is actually part of this game.
+            if (!isSocketInRoom(io, gameId, socket.id)) {
+                return;
+            }
+
+            let newAction = action;
+            if (action.payload.target) {
+                const newPayload = Object.assign({}, action.payload, {
+                    target:
+                        action.payload.target === "PLAYER"
+                            ? "OPPONENT"
+                            : "PLAYER",
+                });
+
+                newAction = Object.assign({}, action, {
+                    payload: newPayload,
+                });
+            }
+
+            if (action.payload.source) {
+                const newPayload = Object.assign({}, newAction.payload, {
+                    source:
+                        action.payload.source === "PLAYER"
+                            ? "OPPONENT"
+                            : "PLAYER",
+                });
+
+                newAction = Object.assign({}, action, {
+                    payload: newPayload,
+                });
+            }
+            console.log("[ACTION] Broadcasting an action to:", gameId);
+            console.log("[ACTION] Action being sent is:", newAction);
+            socket.broadcast.to(gameId).emit("action", { action: newAction });
+        });
+    });
+};
+
+/**
+ * Start the server
+ */
 const startServer = async () => {
-	try {
-		// MONGODB CONNECTION
-		connectDB(process.env.ATLAS_URL);
+    try {
+        // Connect to MongoDB
+        connectDB(process.env.ATLAS_URL);
 
-		// SERVER LISTENING
-		app.listen(5000, () => {
-			console.log("Server started on Port: 5000");
-		});
+        // Start the HTTP server
+        app.listen(5000, () => {
+            console.log("Server started on Port: 5000");
+        });
 
-		// SOCKET CONNECTION
-		connectSockets();
-	} catch (e) {
-		console.log(e);
-	}
+        // Start Socket.IO connection
+        connectSockets();
+    } catch (e) {
+        console.log(e);
+    }
 };
 
 startServer();

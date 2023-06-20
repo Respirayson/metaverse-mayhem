@@ -1,5 +1,14 @@
 import allActions from ".";
 
+// Action types
+export const ADD_MAX_MANA = "ADD_MAX_MANA";
+export const ADD_PLAYABLE_MANA = "ADD_PLAYABLE_MANA";
+export const FILL_MANA = "FILL_MANA";
+export const USE_MANA = "USE_MANA";
+export const NEW_GAME = "NEW_GAME";
+export const END_TURN = "END_TURN";
+export const END_GAME = "END_GAME";
+
 /**
  * Action creator for adding maximum mana to a target.
  * @param {string} target - The target to add maximum mana to.
@@ -8,7 +17,7 @@ import allActions from ".";
  * @returns {object} Action object with type 'ADD_MAX_MANA' and the payload.
  */
 const addMaxMana = (target, amount = 1, viaServer) => {
-	return { payload: { target, amount, viaServer }, type: "ADD_MAX_MANA" };
+    return { payload: { target, amount, viaServer }, type: ADD_MAX_MANA };
 };
 
 /**
@@ -18,7 +27,7 @@ const addMaxMana = (target, amount = 1, viaServer) => {
  * @returns {object} Action object with type 'ADD_PLAYABLE_MANA' and the payload.
  */
 const addPlayableMana = (target, amount = 1) => {
-	return { payload: { target, amount }, type: "ADD_PLAYABLE_MANA" };
+    return { payload: { target, amount }, type: ADD_PLAYABLE_MANA };
 };
 
 /**
@@ -28,7 +37,7 @@ const addPlayableMana = (target, amount = 1) => {
  * @returns {object} Action object with type 'FILL_MANA' and the payload.
  */
 const fillMana = (target, viaServer) => {
-	return { payload: { target, viaServer }, type: "FILL_MANA" };
+    return { payload: { target, viaServer }, type: FILL_MANA };
 };
 
 /**
@@ -39,10 +48,10 @@ const fillMana = (target, viaServer) => {
  * @returns {function} Thunk function that dispatches addMaxMana and fillMana actions.
  */
 const addAndFillMana = (target, amount = 1, viaServer) => {
-	return (dispatch) => {
-		dispatch(addMaxMana(target, amount, viaServer));
-		dispatch(fillMana(target, viaServer));
-	};
+    return (dispatch) => {
+        dispatch(addMaxMana(target, amount, viaServer));
+        dispatch(fillMana(target, viaServer));
+    };
 };
 
 /**
@@ -52,7 +61,7 @@ const addAndFillMana = (target, amount = 1, viaServer) => {
  * @returns {object} Action object with type 'USE_MANA' and the payload.
  */
 const useMana = (target, amount) => {
-	return { payload: { target, amount }, type: "USE_MANA" };
+    return { payload: { target, amount }, type: USE_MANA };
 };
 
 /**
@@ -64,13 +73,13 @@ const useMana = (target, amount) => {
  * @returns {function} Thunk function that dispatches addAndFillMana and 'NEW_GAME' action.
  */
 const newGame = (user, opponent, playerStarts, viaServer) => {
-	return (dispatch) => {
-		dispatch(addAndFillMana("PLAYER", 1, viaServer));
-		dispatch({
-			payload: { user, opponent, playerStarts, viaServer },
-			type: "NEW_GAME",
-		});
-	};
+    return (dispatch) => {
+        dispatch(addAndFillMana("PLAYER", 1, viaServer));
+        dispatch({
+            payload: { user, opponent, playerStarts, viaServer },
+            type: NEW_GAME,
+        });
+    };
 };
 
 /**
@@ -78,13 +87,13 @@ const newGame = (user, opponent, playerStarts, viaServer) => {
  * @returns {function} Thunk function that dispatches 'END_TURN', addAndFillMana, and drawCard actions.
  */
 const endTurn = () => {
-	return (dispatch, getState) => {
-		const { turn } = getState();
-		const source = turn ? "OPPONENT" : "PLAYER";
-		dispatch({ payload: { source }, type: "END_TURN" });
-		dispatch(addAndFillMana(source));
-		dispatch(allActions.playerActions.drawCard(source));
-	};
+    return (dispatch, getState) => {
+        const { turn } = getState();
+        const source = turn ? "OPPONENT" : "PLAYER";
+        dispatch({ payload: { source }, type: END_TURN });
+        dispatch(addAndFillMana(source));
+        dispatch(allActions.playerActions.drawCard(source));
+    };
 };
 
 /**
@@ -93,17 +102,17 @@ const endTurn = () => {
  * @returns {object} Action object with type 'END_GAME' and the payload.
  */
 const endGame = (target) => {
-	return { payload: { target }, type: "END_GAME" };
+    return { payload: { target }, type: END_GAME };
 };
 
 // Export an object with all the action creators
 export default {
-	newGame,
-	endTurn,
-	addMaxMana,
-	addPlayableMana,
-	fillMana,
-	addAndFillMana,
-	useMana,
-	endGame,
+    newGame,
+    endTurn,
+    addMaxMana,
+    addPlayableMana,
+    fillMana,
+    addAndFillMana,
+    useMana,
+    endGame,
 };
