@@ -1,4 +1,15 @@
+import { PLAY_CARD } from "../actions/playerActions";
+
+/**
+ * Maximum number of cards allowed on the board.
+ * @type {number}
+ */
 const MAX_CARDS = 7;
+
+/**
+ * Initial state of the game board.
+ * @type {Object}
+ */
 const initialState = {
     Player: {
         board: [],
@@ -10,8 +21,15 @@ const initialState = {
     },
 };
 
+/**
+ * Reducer function that handles actions related to the game board.
+ *
+ * @param {Object} state - Current state of the board.
+ * @param {Object} action - Action object containing the type and payload.
+ * @returns {Object} - Updated state of the board.
+ */
 const boardReducer = (state = initialState, action) => {
-    if (action.type === "PLAY_CARD") {
+    if (action.type === PLAY_CARD) {
         if (action.payload.source === "PLAYER") {
             if (state.Player.board.length === MAX_CARDS) {
                 return state;
