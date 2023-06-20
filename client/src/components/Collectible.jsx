@@ -9,7 +9,7 @@ const Collectible = ({ name, description, mana, attack, defense }) => {
         <div className='flex flex-col p-4'>
             <div className='block'>
                 <h3 className='font-semibold text-white text-[16px] text-left leading-[26px] truncate'>{name}</h3>
-                <p className='mt-[5px] font-normal text-[#808191] text-left leading-[18px] truncate'>{description}.</p>
+                <p className='mt-[5px] font-normal text-[#808191] text-left leading-[18px] truncate'>{description}</p>
             </div>
 
             <div className='flex flex-wrap justify-between gap-2 mt-[15px]'>

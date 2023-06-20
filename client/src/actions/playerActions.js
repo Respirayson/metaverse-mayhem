@@ -41,5 +41,7 @@ export default {
     playCard,
     drawCard,
     hitFace,
-    attackMinion
+    attackMinion,
+    killMinion,
+    hitMinion
 }
