@@ -30,7 +30,6 @@ const connectWallet = async () => {
 const checkWalletConnected = async () => {
   // Check if MetaMask is installed
   if (!window.ethereum) {
-    window.alert("Please install MetaMask first.");
     return;
   }
 

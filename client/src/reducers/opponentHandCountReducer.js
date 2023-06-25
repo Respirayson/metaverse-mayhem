@@ -1,6 +1,17 @@
+const opponentHandCountReducer = (state = 4, action) => {
+	if (action.type === "PLAY_CARD") {
+		if (action.payload.source === "OPPONENT") {
+			return state - 1;
+		}
+	}
 
-const opponentHandCountReducer = (state = 3, action) => {
-    return state;
-}
+	if (action.type === "DRAW_CARD") {
+		if (action.payload.target === "OPPONENT") {
+			return state + 1;
+		}
+	}
+
+	return state;
+};
 
 export default opponentHandCountReducer;

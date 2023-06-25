@@ -6,6 +6,7 @@ import boardReducer from "./boardReducer";
 import opponentHandCountReducer from "./opponentHandCountReducer";
 import deckCountReducer from "./deckCountReducer";
 import turnReducer from "./turnReducer";
+import currentGameReducer from "./currentGameReducer";
 
 import { combineReducers } from "redux";
 
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
     board: boardReducer,
     handCount: opponentHandCountReducer,
     deckCount: deckCountReducer,
-    turn: turnReducer
+    turn: turnReducer,
+    current: currentGameReducer,
 });
 
 export default rootReducer;

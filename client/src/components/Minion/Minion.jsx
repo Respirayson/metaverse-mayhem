@@ -17,4 +17,4 @@ const Minion = (props) => {
   )
 }
 
-export default Minion
+export default Minion;

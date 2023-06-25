@@ -1,35 +1,42 @@
-import React from 'react'
-import { Player, Opponent } from '../components'
-import { useDispatch, useSelector } from 'react-redux'
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
-import allActions from '../actions'
+import PlayerContainer from "./PlayerContainer";
+import OpponentContainer from "./OpponentContainer";
+import { useDispatch, useSelector } from "react-redux";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import allActions from "../actions";
 
 const Board = () => {
-  const { user, board, opponent, handCount, character, turn } = useSelector(state => state)
-  console.log(turn ? "Your turn" : "Enemy turn")
-  
-  const dispatch = useDispatch();
+	const { user, board, opponent, handCount, character, turn } = useSelector(
+		(state) => state
+	);
+	console.log(turn ? "Your turn" : "Enemy turn");
 
-  const endTurn = (source) => {
-    dispatch(allActions.gameActions.endTurn(source));
-  }
+	const dispatch = useDispatch();
 
-  React.useEffect(() => {
-    dispatch(allActions.gameActions.newGame("Jason", "Hello", Math.random() > 0.5));
-  }, [dispatch])
+	const endTurn = () => {
+		dispatch(allActions.gameActions.endTurn());
+	};
 
-  return (
-    <DndProvider backend={HTML5Backend}>
-      <div className='w-full mt-24'>
-          <Opponent board={board.Opponent} name={opponent} handCount={handCount} character={character.Enemy} opponentsTurn={!turn} />
-          <Player name={user} board={board.Player} character={character.Player} playerTurn={turn} />
-      </div>
-      <button onClick={() => endTurn("PLAYER")} disabled={!turn}>End turn (yours)</button>
-      <button onClick={() => endTurn("OPPONENT")} disabled={turn}>End turn (enemy)</button>
-    </DndProvider>
-  )
-}
+	return (
+		<DndProvider backend={HTML5Backend}>
+			<div className="w-full mt-24">
+				<OpponentContainer
+					board={board.Opponent}
+					name={opponent}
+					handCount={handCount}
+					character={character.Enemy}
+				/>
+				<PlayerContainer
+					name={user}
+					board={board.Player}
+					character={character.Player}
+					playerTurn={turn}
+					onClick={endTurn}
+					turn={turn}
+				/>
+			</div>
+		</DndProvider>
+	);
+};
 
-
-export default Board
+export default Board;
