@@ -30,7 +30,7 @@ const TargetableHero = (props) => {
     );
 
     return (
-        <div ref={drop} className="flex h-16">
+        <div ref={drop} className="flex h-16" data-testid="targetable-hero">
             <Hero character={props.character} />
         </div>
     );

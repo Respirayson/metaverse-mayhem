@@ -8,6 +8,12 @@ import {
 } from "../actions/gameActions";
 
 /**
+ * Maximum amount of mana in each character.
+ * @type {number}
+ */
+const MAX_MANA = 10;
+
+/**
  * Initial state of the characters (player and enemy).
  * @type {Object}
  */
@@ -60,6 +66,10 @@ const characterReducer = (state = initialState, action) => {
 
     if (action.type === ADD_MAX_MANA) {
         if (action.payload.target === "PLAYER") {
+            if (state.Player.mana.total === MAX_MANA) {
+                return state;
+            }
+
             return {
                 Enemy: state.Enemy,
                 Player: {
@@ -73,6 +83,10 @@ const characterReducer = (state = initialState, action) => {
         }
 
         if (action.payload.target === "OPPONENT") {
+            if (state.Enemy.mana.total === MAX_MANA) {
+                return state;
+            }
+
             return {
                 Player: state.Player,
                 Enemy: {

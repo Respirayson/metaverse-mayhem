@@ -16,7 +16,6 @@ import { slideAnimation } from "../utils/motion";
  */
 const PlayingAreaContainer = ({ board, exhaustedMinions, playerTurn }) => {
     const [boardLength, setBoardLength] = useState(0);
-    const [cardLastPlayed, setCardLastPlayed] = useState();
 
     /**
      * Hook to enable dropping functionality for cards onto the playing area.
@@ -29,7 +28,6 @@ const PlayingAreaContainer = ({ board, exhaustedMinions, playerTurn }) => {
             },
             drop: (item, monitor) => {
                 setBoardLength(boardLength + 1);
-                setCardLastPlayed(item.card);
                 const boundingClientRect = document
                     .querySelector('[data-testid="dropBoard"]')
                     .getBoundingClientRect();
@@ -51,29 +49,16 @@ const PlayingAreaContainer = ({ board, exhaustedMinions, playerTurn }) => {
         [boardLength]
     );
 
-    const minions = board.map((card, i) =>
-        card ? (
-            card === cardLastPlayed ? (
-                <motion.div key={card.key} {...slideAnimation("up")}>
-                    <PlayerMinion
-                        canDrag={playerTurn}
-                        card={card}
-                        key={i}
-                        exhausted={exhaustedMinions.includes(card.key)}
-                    />
-                </motion.div>
-            ) : (
-                <PlayerMinion
-                    canDrag={playerTurn}
-                    card={card}
-                    key={i}
-                    exhausted={exhaustedMinions.includes(card.key)}
-                />
-            )
-        ) : (
-            <div key={i} />
-        )
-    );
+    const minions = board.map((card, i) => (
+        <motion.div key={card.key} {...slideAnimation("up")}>
+            <PlayerMinion
+                canDrag={playerTurn}
+                card={card}
+                key={i}
+                exhausted={exhaustedMinions.includes(card.key)}
+            />
+        </motion.div>
+    ));
 
     return <PlayingArea dropRef={drop} minions={minions} isOver={isOver} />;
 };

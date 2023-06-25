@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Opponent.module.css";
-import { EnemyMinion, TargetableHero } from "../../containers";
+import { TargetableHero } from "../../containers";
 import OpponentHand from "../OpponentHand/OpponentHand";
 
 /**
@@ -21,23 +21,10 @@ const Opponent = ({
     name,
     handCount,
     character,
-    board,
-    exhaustedMinions,
     drawCard,
     hitFace,
-    attackMinion,
-    turn,
+    minions,
 }) => {
-    const minions = board.map((card, index) => (
-        <EnemyMinion
-            key={index}
-            card={card}
-            attackMinion={attackMinion}
-            exhaustedMinions={exhaustedMinions}
-            turn={turn}
-        />
-    ));
-
     return (
         <div className={styles.Opponent}>
             <h1 className={styles.OpponentName} onClick={drawCard}>

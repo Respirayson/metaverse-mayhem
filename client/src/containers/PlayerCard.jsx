@@ -1,7 +1,8 @@
-import React from "react";
 import { Card } from "../components";
 import { useDrag } from "react-dnd";
 import itemTypes from "../constants";
+import { useEffect } from "react";
+import { getEmptyImage } from "react-dnd-html5-backend";
 
 /**
  * Component for a player's card.
@@ -22,7 +23,7 @@ const PlayerCard = ({
     onCardClick,
     currentMana,
 }) => {
-    const [, drag] = useDrag(
+    const [{ isDragging }, drag, preview] = useDrag(
         () => ({
             type: itemTypes.CARD,
             canDrag: canDrag && card.mana <= currentMana,
@@ -34,8 +35,12 @@ const PlayerCard = ({
         [canDrag, card, currentMana]
     );
 
+    useEffect(() => {
+        preview(getEmptyImage(), { captureDraggingState: true });
+    }, [preview]);
+
     return (
-        <div ref={drag} className="pt-[120px]">
+        <div ref={drag} className={`pt-[120px] ${isDragging ? "opacity-0" : "opacity: 1"}`}>
             <Card
                 canDrag={canDrag && card.mana <= currentMana}
                 card={card}

@@ -5,6 +5,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import allActions from "../actions";
 import PlayerContainer from "./PlayerContainer";
 import OpponentContainer from "./OpponentContainer";
+import CustomDragLayer from "./CustomDragLayer";
 
 /**
  * Component representing the game board
@@ -28,6 +29,7 @@ const Board = () => {
 
     return (
         <DndProvider backend={HTML5Backend}>
+            <CustomDragLayer />
             <div className="w-full mt-24">
                 <OpponentContainer
                     board={board.Opponent}

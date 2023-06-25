@@ -4,6 +4,9 @@ import allActions from "../actions";
 import { newRandomCard } from "../utils/cards";
 import { v4 as uuidv4 } from "uuid";
 import { Opponent } from "../components";
+import EnemyMinion from "./EnemyMinion";
+import { motion } from "framer-motion";
+import { slideAnimation } from "../utils/motion";
 
 /**
  * Container component for the opponent.
@@ -63,6 +66,18 @@ const OpponentContainer = (props) => {
         );
     };
 
+    const minions = board.map((card, index) => (
+        <motion.div key={card.key} {...slideAnimation("down")}>
+            <EnemyMinion
+                key={index}
+                card={card}
+                attackMinion={attackMinion}
+                exhaustedMinions={exhaustedMinions}
+                turn={turn}
+            />
+        </motion.div>
+    ));
+
     return (
         <Opponent
             name={name}
@@ -74,6 +89,7 @@ const OpponentContainer = (props) => {
             hitFace={hitFace}
             attackMinion={attackMinion}
             turn={turn}
+            minions={minions}
         />
     );
 };

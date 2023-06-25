@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Minion } from "../components";
 import { useDrag } from "react-dnd";
 import itemTypes from "../constants";
+import { getEmptyImage } from "react-dnd-html5-backend";
 
 /**
  * Component for a player's minion.
@@ -15,7 +16,7 @@ const PlayerMinion = ({ card, exhausted, canDrag }) => {
     /**
      * Hook to enable dragging functionality for the minion.
      */
-    const [, drag] = useDrag(
+    const [, drag, preview] = useDrag(
         () => ({
             canDrag: (monitor) => {
                 if (exhausted) {
@@ -31,6 +32,10 @@ const PlayerMinion = ({ card, exhausted, canDrag }) => {
         }),
         [card, exhausted, canDrag]
     );
+
+    useEffect(() => {
+        preview(getEmptyImage(), { captureDraggingState: true });
+    }, [preview]);
 
     return (
         <div ref={drag} className="cursor-pointer relative">

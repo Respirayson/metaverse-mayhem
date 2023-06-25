@@ -50,14 +50,14 @@ describe("Player Actions", () => {
 
   describe("hitFace", () => {
     it("should create an action to hit the face", () => {
-      const damage = 5;
+      const card = { name: "Dragon", defense: 5, key: "Dragon123" };
       const target = "OPPONENT";
       const expectedAction = {
         type: "HIT_FACE",
-        payload: { damage, target },
+        payload: { card, target },
       };
 
-      store.dispatch(playerActions.hitFace(damage, target));
+      store.dispatch(playerActions.hitFace(card, target));
       const actions = store.getActions();
 
       expect(actions).toEqual([expectedAction]);
@@ -67,14 +67,14 @@ describe("Player Actions", () => {
   describe("hitMinion", () => {
     it("should create an action to hit a minion", () => {
       const attack = 4;
-      const target = { name: "Dragon", defense: 5, key: "Dragon123" };
+      const minion = { name: "Dragon", defense: 5, key: "Dragon123" };
       const source = "PLAYER";
       const expectedAction = {
         type: "HIT_MINION",
-        payload: { attack, target, source },
+        payload: { attack, minion, source },
       };
 
-      store.dispatch(playerActions.hitMinion(attack, target, source));
+      store.dispatch(playerActions.hitMinion(attack, minion, source));
       const actions = store.getActions();
 
       expect(actions).toEqual([expectedAction]);
@@ -101,29 +101,29 @@ describe("Player Actions", () => {
     it("should create actions to attack a minion and handle counter-attack", () => {
       const attack = 6;
       const counterAttack = 3;
-      const target = { name: "Dragon", defense: 5, key: "Dragon123" };
-      const source = { name: "Knight", defense: 4, key: "Knight456" };
+      const minion = { name: "Dragon", defense: 5, key: "Dragon123" };
+      const from = { name: "Knight", defense: 4, key: "Knight456" };
       const expectedActions = [
         {
           type: "HIT_MINION",
-          payload: { attack, target, source: "PLAYER" },
+          payload: { attack, minion: minion, source: "PLAYER" },
         },
         {
           type: "HIT_MINION",
           payload: {
             attack: counterAttack,
-            target: source,
+            minion: from,
             source: "OPPONENT",
           },
         },
         {
           type: "KILL_MINION",
-          payload: { key: target.key, source: "PLAYER" },
+          payload: { key: minion.key, source: "PLAYER" },
         },
       ];
 
       store.dispatch(
-        playerActions.attackMinion(attack, counterAttack, target, source)
+        playerActions.attackMinion(attack, counterAttack, minion, from)
       );
       const actions = store.getActions();
 
@@ -138,13 +138,13 @@ describe("Player Actions", () => {
       const expectedActions = [
         {
           type: "HIT_MINION",
-          payload: { attack, target, source: "PLAYER" },
+          payload: { attack, minion: target, source: "PLAYER" },
         },
         {
           type: "HIT_MINION",
           payload: {
             attack: counterAttack,
-            target: source,
+            minion: source,
             source: "OPPONENT",
           },
         },
@@ -170,13 +170,13 @@ describe("Player Actions", () => {
       const expectedActions = [
         {
           type: "HIT_MINION",
-          payload: { attack, target, source: "PLAYER" },
+          payload: { attack, minion: target, source: "PLAYER" },
         },
         {
           type: "HIT_MINION",
           payload: {
             attack: counterAttack,
-            target: source,
+            minion: source,
             source: "OPPONENT",
           },
         },

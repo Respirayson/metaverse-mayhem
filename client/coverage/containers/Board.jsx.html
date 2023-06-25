@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">31.42% </span>
+                <span class="strong">29.62% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/35</span>
+                <span class='fraction'>16/54</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">31.42% </span>
+                <span class="strong">29.62% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/35</span>
+                <span class='fraction'>16/54</span>
             </div>
         
             
@@ -97,7 +97,27 @@
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -105,6 +125,26 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -131,48 +171,68 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react'
-import { Player, Opponent } from '../components'
-import { useDispatch, useSelector } from 'react-redux'
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
-import allActions from '../actions'
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import allActions from "../actions";
+import PlayerContainer from "./PlayerContainer";
+import OpponentContainer from "./OpponentContainer";
+import CustomDragLayer from "./CustomDragLayer";
 &nbsp;
+/**
+ * Component representing the game board
+ * @returns {JSX.Element} - The JSX element
+ */
 const Board = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const { user, board, opponent, handCount, character, turn } = useSelector(state =&gt; state)</span>
-<span class="cstat-no" title="statement not covered" >  console.log(turn ? "Your turn" : "Enemy turn")</span>
-<span class="cstat-no" title="statement not covered" >  </span>
-<span class="cstat-no" title="statement not covered" >  const dispatch = useDispatch();</span>
+<span class="cstat-no" title="statement not covered" >    // Get state values using useSelector hook</span>
+<span class="cstat-no" title="statement not covered" >    const { user, board, opponent, handCount, character, turn } = useSelector(</span>
+<span class="cstat-no" title="statement not covered" >        (state) =&gt; state</span>
+<span class="cstat-no" title="statement not covered" >    );</span>
+<span class="cstat-no" title="statement not covered" >    console.log(turn ? "Your turn" : "Enemy turn");</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const endTurn = (source) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    dispatch(allActions.gameActions.endTurn(source));</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >    const dispatch = useDispatch();</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  React.useEffect(() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    dispatch(allActions.gameActions.newGame("Jason", "Hello", Math.random() &gt; 0.5));</span>
-<span class="cstat-no" title="statement not covered" >  }, [dispatch])</span>
+<span class="cstat-no" title="statement not covered" >    /**</span>
+<span class="cstat-no" title="statement not covered" >     * Ends the turn by dispatching the endTurn action</span>
+<span class="cstat-no" title="statement not covered" >     */</span>
+<span class="cstat-no" title="statement not covered" >    const endTurn = () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        dispatch(allActions.gameActions.endTurn());</span>
+<span class="cstat-no" title="statement not covered" >    };</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;DndProvider backend={HTML5Backend}&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;div className='w-full mt-24'&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;Opponent board={board.Opponent} name={opponent} handCount={handCount} character={character.Enemy} opponentsTurn={!turn} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;Player name={user} board={board.Player} character={character.Player} playerTurn={turn} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;button onClick={() =&gt; endTurn("PLAYER")} disabled={!turn}&gt;End turn (yours)&lt;/button&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;button onClick={() =&gt; endTurn("OPPONENT")} disabled={turn}&gt;End turn (enemy)&lt;/button&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/DndProvider&gt;</span>
-<span class="cstat-no" title="statement not covered" >  )</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+<span class="cstat-no" title="statement not covered" >    return (</span>
+<span class="cstat-no" title="statement not covered" >        &lt;DndProvider backend={HTML5Backend}&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;CustomDragLayer /&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;div className="w-full mt-24"&gt;</span>
+<span class="cstat-no" title="statement not covered" >                &lt;OpponentContainer</span>
+<span class="cstat-no" title="statement not covered" >                    board={board.Opponent}</span>
+<span class="cstat-no" title="statement not covered" >                    name={opponent}</span>
+<span class="cstat-no" title="statement not covered" >                    handCount={handCount}</span>
+<span class="cstat-no" title="statement not covered" >                    character={character.Enemy}</span>
+<span class="cstat-no" title="statement not covered" >                    turn={!turn}</span>
+<span class="cstat-no" title="statement not covered" >                /&gt;</span>
+<span class="cstat-no" title="statement not covered" >                &lt;PlayerContainer</span>
+<span class="cstat-no" title="statement not covered" >                    name={user}</span>
+<span class="cstat-no" title="statement not covered" >                    board={board.Player}</span>
+<span class="cstat-no" title="statement not covered" >                    character={character.Player}</span>
+<span class="cstat-no" title="statement not covered" >                    playerTurn={turn}</span>
+<span class="cstat-no" title="statement not covered" >                    onClick={endTurn}</span>
+<span class="cstat-no" title="statement not covered" >                    turn={turn}</span>
+<span class="cstat-no" title="statement not covered" >                /&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/DndProvider&gt;</span>
+<span class="cstat-no" title="statement not covered" >    );</span>
+<span class="cstat-no" title="statement not covered" >};</span>
 &nbsp;
-&nbsp;
-export default Board</pre></td></tr></table></pre>
+export default Board;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-13T14:06:04.470Z
+                at 2023-06-25T15:57:30.775Z
             </div>
         <script src="../prettify.js"></script>
         <script>

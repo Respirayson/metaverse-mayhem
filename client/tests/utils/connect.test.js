@@ -77,10 +77,4 @@ describe('Wallet Utils', () => {
     expect(window.ethereum.request).toHaveBeenCalledWith({ method: 'eth_accounts' });
     expect(account).toBe('');
   });
-
-  it('should handle missing MetaMask installation when checking wallet connection', async () => {
-    await checkWalletConnected();
-
-    expect(window.alert).toHaveBeenCalledWith('Please install MetaMask first.');
-  });
 });

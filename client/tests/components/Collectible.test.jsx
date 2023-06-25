@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Collectible from '../../src/components/Collectible';
+import Collectible from '../../src/components/Collectible/Collectible';
 
 describe('Collectible component', () => {
   const props = {

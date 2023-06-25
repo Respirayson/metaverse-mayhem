@@ -31,7 +31,7 @@ const Login = (props) => {
      * @returns {Promise<Object>} Authentication response.
      */
     const handleAuthenticate = (publicAddress, signature) =>
-        fetch("http://127.0.0.1:5000/api/v1/auth", {
+        fetch("https://metaverse-mayhem.onrender.com/api/v1/auth", {
             body: JSON.stringify({
                 publicAddress: publicAddress,
                 signature: signature,
@@ -80,7 +80,7 @@ const Login = (props) => {
      * @returns {Promise<Object>} Signup response.
      */
     const handleSignup = (publicAddress) =>
-        fetch(`http://127.0.0.1:5000/api/v1/users/`, {
+        fetch(`https://metaverse-mayhem.onrender.com/api/v1/users/`, {
             body: JSON.stringify({
                 publicAddress: publicAddress,
                 username: publicAddress
@@ -112,7 +112,7 @@ const Login = (props) => {
      * @param {string} account - Wallet public address.
      */
     const authenticateUser = (account) => {
-        fetch(`http://127.0.0.1:5000/api/v1/users?publicAddress=${account}`)
+        fetch(`https://metaverse-mayhem.onrender.com/api/v1/users?publicAddress=${account}`)
             .then((response) => response.json())
             // If yes, retrieve it. If no, create it.
             .then(async (users) => {
