@@ -32,7 +32,7 @@ const App = () => {
     const checkAuthenticated = () => {
         const token = localStorage.getItem("token");
         if (token) {
-            fetch("https://metaverse-mayhem.vercel.app/api/v1/auth/verify", {
+            fetch("https://metaverse-mayhem.onrender.com/api/v1/auth/verify", {
                 body: JSON.stringify({ token: token }),
                 headers: {
                     "Content-Type": "application/json",

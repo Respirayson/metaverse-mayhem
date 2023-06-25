@@ -20,6 +20,14 @@ app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/game", gameRoutes);
 
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"],
+    },
+});
+
 /**
  * GET route for checking server status
  * @param {Object} req - Express request object
@@ -30,15 +38,6 @@ app.get("/", async (req, res) => {
         "Hello from Metaverse Mayhem. This is to check whether the server is running."
     );
 });
-
-const httpServer = createServer();
-const io = new Server(httpServer, {
-    cors: {
-        origin: "*",
-        methods: ["GET", "POST"],
-    },
-});
-httpServer.listen(8000);
 
 /**
  * Get the number of clients in a room
@@ -215,8 +214,10 @@ const startServer = async () => {
         connectDB(process.env.ATLAS_URL);
 
         // Start the HTTP server
-        app.listen(5000, () => {
-            console.log("Server started on Port: 5000");
+        httpServer.listen(process.env.PORT || 8000, () => {
+            console.log(
+                `Server is running on port ${process.env.PORT || 8000}`
+            );
         });
 
         // Start Socket.IO connection
