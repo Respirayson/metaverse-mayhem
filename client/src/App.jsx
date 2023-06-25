@@ -32,7 +32,7 @@ const App = () => {
     const checkAuthenticated = () => {
         const token = localStorage.getItem("token");
         if (token) {
-            fetch("http://127.0.0.1:5000/api/v1/auth/verify", {
+            fetch("https://metaverse-mayhem.vercel.app/api/v1/auth/verify", {
                 body: JSON.stringify({ token: token }),
                 headers: {
                     "Content-Type": "application/json",
