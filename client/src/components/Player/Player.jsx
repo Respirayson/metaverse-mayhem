@@ -28,7 +28,7 @@ const Player = ({
     drawCard,
 }) => {
     return (
-        <div className={styles.Player}>
+        <div className={styles.Player} data-testid="targetable-player-hero">
             <div className={`${styles.PlayerHandWrapper}`}>
                 <h1 onClick={drawCard} className={`${styles.PlayerName}`}>
                     {name || "Unnamed"}

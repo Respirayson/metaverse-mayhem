@@ -8,6 +8,7 @@ import {
     Collection,
     GameNewScreen,
     StartScreen,
+    CreateListing,
 } from "./pages";
 
 import { Login, PrivateRoutes } from "./components";
@@ -96,7 +97,7 @@ const App = () => {
                 </div>
             </header>
 
-            <main className="sm:p-8 w-full min-h-[calc(100vh-73px)] bg-hero-pattern bg-no-repeat bg-cover">
+            <main className="w-full min-h-[calc(100vh-73px)] bg-hero-pattern bg-no-repeat bg-cover">
                 <Routes>
                     <Route
                         path="/"
@@ -113,6 +114,8 @@ const App = () => {
                         <Route path="new" element={<GameNewScreen />} />
                         <Route path=":id" element={<Game />} />
                     </Route>
+                    <Route path="/marketplace" element={<Marketplace />} />
+                    <Route path="/create" element={<CreateListing />} />
 
                     <Route
                         element={
@@ -120,7 +123,6 @@ const App = () => {
                         }
                     >
                         <Route path="/collection" element={<Collection />} />
-                        <Route path="/marketplace" element={<Marketplace />} />
                     </Route>
                 </Routes>
             </main>

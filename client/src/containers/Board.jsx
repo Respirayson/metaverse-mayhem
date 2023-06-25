@@ -30,7 +30,7 @@ const Board = () => {
     return (
         <DndProvider backend={HTML5Backend}>
             <CustomDragLayer />
-            <div className="w-full mt-24">
+            <div className="w-full pt-24">
                 <OpponentContainer
                     board={board.Opponent}
                     name={opponent}

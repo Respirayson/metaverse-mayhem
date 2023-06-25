@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">36.17% </span>
+                <span class="strong">74.46% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>17/47</span>
+                <span class='fraction'>35/47</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">36.17% </span>
+                <span class="strong">74.46% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>17/47</span>
+                <span class='fraction'>35/47</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -125,6 +125,11 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -137,24 +142,19 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useEffect } from "react";
@@ -171,12 +171,12 @@ import { getEmptyImage } from "react-dnd-html5-backend";
  * @param {boolean} props.canDrag - Indicates if the minion can be dragged.
  * @returns {JSX.Element} PlayerMinion component.
  */
-const PlayerMinion = <span class="fstat-no" title="function not covered" >({ card, exhausted, canDrag }) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    /**</span>
-<span class="cstat-no" title="statement not covered" >     * Hook to enable dragging functionality for the minion.</span>
-<span class="cstat-no" title="statement not covered" >     */</span>
-<span class="cstat-no" title="statement not covered" >    const [, drag, preview] = useDrag(</span>
-<span class="cstat-no" title="statement not covered" >        () =&gt; ({</span>
+const PlayerMinion = ({ card, exhausted, canDrag }) =&gt; {
+    /**
+     * Hook to enable dragging functionality for the minion.
+     */
+    const [, drag, preview] = useDrag(
+        () =&gt; ({
 <span class="cstat-no" title="statement not covered" >            canDrag: (monitor) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >                if (exhausted) {</span>
 <span class="cstat-no" title="statement not covered" >                    return false;</span>
@@ -189,19 +189,19 @@ const PlayerMinion = <span class="fstat-no" title="function not covered" >({ car
 <span class="cstat-no" title="statement not covered" >                isDragging: !!monitor.isDragging(),</span>
 <span class="cstat-no" title="statement not covered" >            }),</span>
 <span class="cstat-no" title="statement not covered" >        }),</span>
-<span class="cstat-no" title="statement not covered" >        [card, exhausted, canDrag]</span>
-<span class="cstat-no" title="statement not covered" >    );</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    useEffect(() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        preview(getEmptyImage(), { captureDraggingState: true });</span>
-<span class="cstat-no" title="statement not covered" >    }, [preview]);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    return (</span>
-<span class="cstat-no" title="statement not covered" >        &lt;div ref={drag} className="cursor-pointer relative"&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;Minion card={card} exhausted={exhausted || !canDrag} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >    );</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+        [card, exhausted, canDrag]
+    );
+&nbsp;
+    useEffect(() =&gt; {
+        preview(getEmptyImage(), { captureDraggingState: true });
+    }, [preview]);
+&nbsp;
+    return (
+        &lt;div ref={drag} className="cursor-pointer relative"&gt;
+            &lt;Minion card={card} exhausted={exhausted || !canDrag} /&gt;
+        &lt;/div&gt;
+    );
+};
 &nbsp;
 export default PlayerMinion;
 &nbsp;</pre></td></tr></table></pre>
@@ -211,7 +211,7 @@ export default PlayerMinion;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-25T15:57:30.775Z
+                at 2023-06-25T20:20:49.520Z
             </div>
         <script src="../prettify.js"></script>
         <script>

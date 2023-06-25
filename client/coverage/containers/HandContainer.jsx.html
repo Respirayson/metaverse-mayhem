@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">39.47% </span>
+                <span class="strong">89.47% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/38</span>
+                <span class='fraction'>34/38</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">39.47% </span>
+                <span class="strong">89.47% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/38</span>
+                <span class='fraction'>34/38</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -114,29 +114,29 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from "react";
@@ -151,30 +151,30 @@ import { Hand } from "../components";
  * @param {number} props.currentMana - The current mana of the player.
  * @returns {JSX.Element} HandContainer component.
  */
-const HandContainer = <span class="fstat-no" title="function not covered" >({ playerTurn, currentMana }) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    const cards = useSelector((state) =&gt; state.hand.cards);</span>
-<span class="cstat-no" title="statement not covered" >    const dispatch = useDispatch();</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    /**</span>
-<span class="cstat-no" title="statement not covered" >     * Function to play a card from the hand.</span>
-<span class="cstat-no" title="statement not covered" >     * @param {Object} card - The card object to be played.</span>
-<span class="cstat-no" title="statement not covered" >     * @param {number} index - The index of the card in the hand.</span>
-<span class="cstat-no" title="statement not covered" >     */</span>
-<span class="cstat-no" title="statement not covered" >    const playCard = (card, index) =&gt; {</span>
+const HandContainer = ({ playerTurn, currentMana }) =&gt; {
+    const cards = useSelector((state) =&gt; state.hand.cards);
+    const dispatch = useDispatch();
+&nbsp;
+    /**
+     * Function to play a card from the hand.
+     * @param {Object} card - The card object to be played.
+     * @param {number} index - The index of the card in the hand.
+     */
+    const playCard = <span class="fstat-no" title="function not covered" >(card, index) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        dispatch(</span>
 <span class="cstat-no" title="statement not covered" >            allActions.playerActions.spendManaAndPlayCard(card, index, "PLAYER")</span>
 <span class="cstat-no" title="statement not covered" >        );</span>
 <span class="cstat-no" title="statement not covered" >    };</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    return (</span>
-<span class="cstat-no" title="statement not covered" >        &lt;Hand</span>
-<span class="cstat-no" title="statement not covered" >            cards={cards}</span>
-<span class="cstat-no" title="statement not covered" >            currentMana={currentMana}</span>
-<span class="cstat-no" title="statement not covered" >            playerTurn={playerTurn}</span>
-<span class="cstat-no" title="statement not covered" >            playCard={playCard}</span>
-<span class="cstat-no" title="statement not covered" >        /&gt;</span>
-<span class="cstat-no" title="statement not covered" >    );</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+&nbsp;
+    return (
+        &lt;Hand
+            cards={cards}
+            currentMana={currentMana}
+            playerTurn={playerTurn}
+            playCard={playCard}
+        /&gt;
+    );
+};
 &nbsp;
 export default HandContainer;
 &nbsp;</pre></td></tr></table></pre>
@@ -184,7 +184,7 @@ export default HandContainer;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-25T15:57:30.775Z
+                at 2023-06-25T20:20:49.520Z
             </div>
         <script src="../prettify.js"></script>
         <script>
