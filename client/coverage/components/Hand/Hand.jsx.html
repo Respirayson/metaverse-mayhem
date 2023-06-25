@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.85% </span>
+                <span class="strong">47.05% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>26/28</span>
+                <span class='fraction'>16/34</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.85% </span>
+                <span class="strong">47.05% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>26/28</span>
+                <span class='fraction'>16/34</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -90,7 +90,15 @@
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
 <a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -105,53 +113,66 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable react/prop-types */
-import { PlayerCard } from '../../containers';
-import { useDispatch, useSelector } from 'react-redux'
-import allActions from '../../actions';
-import { v4 as uuidv4 } from 'uuid';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from "react";
+import { PlayerCard } from "../../containers";
+import { v4 as uuidv4 } from "uuid";
 &nbsp;
-const Hand = ({ playerTurn, currentMana }) =&gt; {
+/**
+ * Component representing the player's hand of cards
+ * @param {object} props - The component props
+ * @param {boolean} props.playerTurn - Flag indicating if it's the player's turn
+ * @param {number} props.currentMana - The current mana of the player
+ * @param {Array} props.cards - The cards in the player's hand
+ * @param {function} props.playCard - Function to handle playing a card
+ * @returns {JSX.Element} - The JSX element
+ */
+const Hand = <span class="fstat-no" title="function not covered" >({ playerTurn, currentMana, cards, playCard }) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const cardsList = cards.map((card, index) =&gt; (</span>
+<span class="cstat-no" title="statement not covered" >        &lt;PlayerCard</span>
+<span class="cstat-no" title="statement not covered" >            currentMana={currentMana}</span>
+<span class="cstat-no" title="statement not covered" >            canDrag={playerTurn}</span>
+<span class="cstat-no" title="statement not covered" >            card={card}</span>
+<span class="cstat-no" title="statement not covered" >            key={uuidv4()}</span>
+<span class="cstat-no" title="statement not covered" >            onCardClick={playCard}</span>
+<span class="cstat-no" title="statement not covered" >            cardsLength={cards.length}</span>
+<span class="cstat-no" title="statement not covered" >            index={index}</span>
+<span class="cstat-no" title="statement not covered" >        /&gt;</span>
+<span class="cstat-no" title="statement not covered" >    ));</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    return (</span>
+<span class="cstat-no" title="statement not covered" >        &lt;div className="flex flex-row justify-center items-center h-[260px]"&gt;</span>
+<span class="cstat-no" title="statement not covered" >            {cardsList}</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >    );</span>
+<span class="cstat-no" title="statement not covered" >};</span>
 &nbsp;
-  const cards = useSelector((state) =&gt; state.hand.cards);
-  
-  const dispatch = useDispatch();
-&nbsp;
-  const playCard = <span class="fstat-no" title="function not covered" >(card, index) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    dispatch(allActions.playerActions.spendManaAndPlayCard(card, index, "PLAYER"));</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-&nbsp;
-  const cardsList = cards.map((card, index) =&gt; (
-    &lt;PlayerCard currentMana={currentMana} canDrag={playerTurn} card={card} key={uuidv4()} onCardClick={playCard} cardsLength={cards.length} index={index} /&gt;
-  ))
-&nbsp;
-  return (
-    &lt;div className="flex flex-row justify-center items-center h-[260px]"&gt;
-      { cardsList }
-    &lt;/div&gt;
-  )
-}
-&nbsp;
-export default Hand;</pre></td></tr></table></pre>
+export default Hand;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-13T14:06:04.470Z
+                at 2023-06-25T15:57:30.775Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

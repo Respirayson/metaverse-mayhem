@@ -7,6 +7,7 @@ import OpponentContainer from "./OpponentContainer";
 import PlayerContainer from "./PlayerContainer";
 import HandContainer from "./HandContainer";
 import PlayingAreaContainer from "./PlayingAreaContainer";
+import CustomDragLayer from "./CustomDragLayer";
 
 export {
     Board,
@@ -18,4 +19,5 @@ export {
     PlayerContainer,
     HandContainer,
     PlayingAreaContainer,
+    CustomDragLayer,
 }

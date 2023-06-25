@@ -9,9 +9,10 @@ vi.mock('react-dnd', () => ({
 
 describe('PlayerMinion component', () => {
   const mockDrag = vi.fn();
+  const preview = vi.fn();
 
   beforeEach(() => {
-    useDrag.mockReturnValue([{}, mockDrag]);
+    useDrag.mockReturnValue([{}, mockDrag, preview]);
   });
 
   afterEach(() => {

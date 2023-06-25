@@ -132,4 +132,5 @@ export default {
 	joinGame,
 	updateHasOpponent,
 	resetGame,
+	isNewGameFetched,
 };

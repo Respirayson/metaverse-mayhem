@@ -6,124 +6,145 @@ import allActions from "../../src/actions";
 const mockStore = configureStore([thunk]);
 
 describe("Actions", () => {
-  let store;
+    let store;
 
-  beforeEach(() => {
-    store = mockStore({});
-  });
-
-  afterEach(() => {
-    store.clearActions();
-  });
-
-  describe("addMana", () => {
-    it("should create an action to add mana with default amount", () => {
-      const target = "PLAYER";
-      const expectedAction = {
-        type: "ADD_MANA",
-        payload: { target, amount: 1 },
-      };
-
-      store.dispatch(allActions.gameActions.addMana(target));
-      const actions = store.getActions();
-
-      expect(actions).toEqual([expectedAction]);
+    beforeEach(() => {
+        store = mockStore({});
     });
 
-    it("should create an action to add mana with custom amount", () => {
-      const target = "OPPONENT";
-      const amount = 3;
-      const expectedAction = {
-        type: "ADD_MANA",
-        payload: { target, amount },
-      };
-
-      store.dispatch(allActions.gameActions.addMana(target, amount));
-      const actions = store.getActions();
-
-      expect(actions).toEqual([expectedAction]);
-    });
-  });
-
-  describe("newGame", () => {
-    it("should create an action to start a new game", () => {
-      const user = "Alice";
-      const opponent = "Bob";
-      const playerStarts = true;
-      const expectedActions = [
-        {
-          type: "ADD_MANA",
-          payload: { target: "PLAYER", amount: 1 },
-        },
-        {
-          type: "NEW_GAME",
-          payload: { user, opponent, playerStarts },
-        },
-      ];
-
-      store.dispatch(
-        allActions.gameActions.newGame(user, opponent, playerStarts)
-      );
-      const actions = store.getActions();
-
-      expect(actions).toEqual(expectedActions);
+    afterEach(() => {
+        store.clearActions();
     });
 
-    it("should create an action to start a new game with opponent starting", () => {
-      const user = "Alice";
-      const opponent = "Bob";
-      const playerStarts = false;
-      const expectedActions = [
-        {
-          type: "ADD_MANA",
-          payload: { target: "OPPONENT", amount: 1 },
-        },
-        {
-          type: "NEW_GAME",
-          payload: { user, opponent, playerStarts },
-        },
-      ];
+    describe("addMana", () => {
+        it("should create an action to add maximum mana", () => {
+            const target = "PLAYER";
+            const amount = 2;
+            const viaServer = true;
+            const expectedAction = {
+                type: "ADD_MAX_MANA",
+                payload: { target, amount, viaServer },
+            };
 
-      store.dispatch(
-        allActions.gameActions.newGame(user, opponent, playerStarts)
-      );
-      const actions = store.getActions();
+            expect(
+                allActions.gameActions.addMaxMana(target, amount, viaServer)
+            ).toEqual(expectedAction);
+        });
 
-      expect(actions).toEqual(expectedActions);
+        it("should create an action to add playable mana", () => {
+            const target = "PLAYER";
+            const amount = 2;
+            const expectedAction = {
+                type: "ADD_PLAYABLE_MANA",
+                payload: { target, amount },
+            };
+
+            expect(
+                allActions.gameActions.addPlayableMana(target, amount)
+            ).toEqual(expectedAction);
+        });
+
+        it("should create an action to fill mana", () => {
+            const target = "PLAYER";
+            const viaServer = false;
+            const expectedAction = {
+                type: "FILL_MANA",
+                payload: { target, viaServer },
+            };
+
+            expect(allActions.gameActions.fillMana(target, viaServer)).toEqual(
+                expectedAction
+            );
+        });
     });
-  });
 
-  describe("endTurn", () => {
-    it("should create actions to end the turn and perform turn-specific actions (turn = true)", () => {
-      store = mockStore({ turn: true }); // Set initial state with turn = false
+    describe("newGame", () => {
+        it("should create an action to start a new game", () => {
+            const user = "123";
+            const opponent = "456";
+            const playerStarts = true;
+            const viaServer = true;
+            const expectedActions = [
+                {
+                    type: "ADD_MAX_MANA",
+                    payload: { target: "PLAYER", amount: 1, viaServer },
+                },
+                {
+                    type: "FILL_MANA",
+                    payload: { target: "PLAYER", viaServer },
+                },
+                {
+                    type: "NEW_GAME",
+                    payload: { user, opponent, playerStarts, viaServer },
+                },
+            ];
 
-      const expectedActions = [
-        { type: "END_TURN", payload: { source: "OPPONENT" } },
-        { type: "ADD_MANA", payload: { target: "OPPONENT", amount: 1 } },
-        // Assuming playerActions.drawCard is a valid action creator
-        allActions.playerActions.drawCard("OPPONENT"),
-      ];
+            store.dispatch(
+                allActions.gameActions.newGame(
+                    user,
+                    opponent,
+                    playerStarts,
+                    viaServer
+                )
+            );
 
-      store.dispatch(allActions.gameActions.endTurn());
-      const actions = store.getActions();
+            expect(store.getActions()).toEqual(expectedActions);
+        });
 
-      expect(actions).toEqual(expectedActions);
+        it("should create actions to end the turn", () => {
+            const expectedActions = [
+                { type: "END_TURN", payload: { source: "OPPONENT" } },
+                {
+                    type: "ADD_MAX_MANA",
+                    payload: {
+                        target: "OPPONENT",
+                        amount: 1,
+                        viaServer: undefined,
+                    },
+                },
+                {
+                    type: "FILL_MANA",
+                    payload: { target: "OPPONENT", viaServer: undefined },
+                },
+                {
+                    type: "DRAW_CARD",
+                    payload: { target: "OPPONENT", viaServer: undefined },
+                },
+            ];
+
+            const store = mockStore({ turn: true });
+            store.dispatch(allActions.gameActions.endTurn());
+
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+
+        it("should create an action to end the game", () => {
+            const target = "PLAYER";
+            const expectedAction = {
+                type: "END_GAME",
+                payload: { target },
+            };
+
+            expect(allActions.gameActions.endGame(target)).toEqual(expectedAction);
+        });
     });
 
-    it("should create actions to end the turn and perform turn-specific actions (turn = false)", () => {
-      store = mockStore({ turn: false }); // Set initial state with turn = false
+    describe("Async Actions", () => {
+        it("should dispatch addMaxMana and fillMana actions", () => {
+            const target = "PLAYER";
+            const amount = 2;
+            const viaServer = false;
+            const expectedActions = [
+                {
+                    type: "ADD_MAX_MANA",
+                    payload: { target, amount, viaServer },
+                },
+                { type: "FILL_MANA", payload: { target, viaServer } },
+            ];
 
-      const expectedActions = [
-        { type: "END_TURN", payload: { source: "PLAYER" } },
-        { type: "ADD_MANA", payload: { target: "PLAYER", amount: 1 } },
-        // Assuming playerActions.drawCard is a valid action creator
-        allActions.playerActions.drawCard("PLAYER"),
-      ];
+            store.dispatch(allActions.gameActions.addAndFillMana(target, amount, viaServer));
 
-      store.dispatch(allActions.gameActions.endTurn());
-      const actions = store.getActions();
-
-      expect(actions).toEqual(expectedActions);
+            expect(store.getActions()).toEqual(expectedActions);
+        });
     });
-  });
 });
