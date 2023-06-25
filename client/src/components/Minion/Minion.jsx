@@ -9,7 +9,7 @@ const Minion = (props) => {
   
   return (
     <div 
-      className={`${styles.Minion} bg-[image:var(--image-url)] ${exhausted ? styles.MinionSleeping : null}`} 
+      className={`${styles.Minion} bg-[image:var(--image-url)] ${exhausted ? styles.MinionSleeping : styles.MinionAwake}`} 
       style={{'--image-url': `url(${portrait})`}}>
         <div className={`${styles.MinionAttack} text-[2.5vh]`}>{ attack }</div>
         <div className={`${styles.MinionDefense} text-[2.5vh]`}>{ defense }</div>

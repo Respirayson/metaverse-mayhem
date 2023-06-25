@@ -9,7 +9,7 @@ const TargetableHero = (props) => {
     const [, drop] = useDrop(() => ({
         accept: itemTypes.MINION,
         drop: (item, monitor) => {
-            props.hitFace(item.card.attack, "OPPONENT");
+            props.hitFace(item.card, "OPPONENT");
         },
         
         collect: (monitor) => ({

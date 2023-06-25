@@ -1,14 +1,31 @@
+import gameActions from "./gameActions"
 
 const playCard = (card, index, source) => {
     return { payload: { card, index, source }, type: 'PLAY_CARD' }
+}
+
+const spendManaAndPlayCard = (card, index, source) => {
+    return (dispatch, getState) => {
+
+        const player = source === "PLAYER" ? "Player" : "Opponent";
+
+        const currentMana = getState().character[player].mana.current;
+
+        if (currentMana < card.mana) {
+            return;
+        }
+
+        dispatch(playCard(card, index, source));
+        dispatch(gameActions.useMana(source, card.mana));
+    }
 }
 
 const drawCard = (target) => {
     return { payload: { target }, type: 'DRAW_CARD'}
 }
 
-const hitFace = (damage, target) => {
-    return { payload: { damage, target }, type: 'HIT_FACE'}
+const hitFace = (card, target) => {
+    return { payload: { card, target }, type: 'HIT_FACE'}
 }
 
 const hitMinion = (attack, target, source) => {
@@ -43,5 +60,6 @@ export default {
     hitFace,
     attackMinion,
     killMinion,
-    hitMinion
+    hitMinion,
+    spendManaAndPlayCard
 }

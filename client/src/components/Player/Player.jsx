@@ -23,7 +23,7 @@ const Player = (props) => {
               <TargetableHero character={character} />
             </h1>
             <PlayingArea playerTurn={playerTurn} board={board.board} exhaustedMinions={board.exhaustedMinions} />
-            <Hand playerTurn={playerTurn} />
+            <Hand currentMana={character.mana.current} playerTurn={playerTurn} />
           </div>
       </div>
     )
