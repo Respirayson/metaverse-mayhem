@@ -17,7 +17,7 @@ const Game = () => {
 
 
   return (
-    <section className="bg-secondary w-full h-100vh">
+    <section className="bg-board bg-cover w-full h-100vh">
       <Board />
     </section>
   );

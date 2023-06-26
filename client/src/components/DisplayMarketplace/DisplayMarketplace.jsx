@@ -1,36 +1,35 @@
-import React from 'react'
-import { Listing } from '..'
+import React from "react";
+import { Listing } from "..";
+import { useNavigate } from "react-router-dom";
+import { cards } from "../../utils/cards";
 
 const DisplayMarketplace = () => {
-  return (
-    <div>
-        <h1 className='font-semibold text-white text-left text-[18px]'>All Listings &#40;3&#41;</h1>
+    const navigate = useNavigate();
 
-        <div className='flex flex-wrap mt-[20px] gap-[26px]'>
-            <Listing
-                name="The Red Dragon"
-                description="A dragon that is red."
-                seller="0x1234567890"
-                price="0.055 ETH"
-                minion="Minion"
-             />
-             <Listing
-                name="The Blue Dragon"
-                description="A dragon that is blue."
-                seller="0x1234567890"
-                price="0.005 ETH"
-                minion="Minion"
-             />
-             <Listing
-                name="The Green Dragon"
-                description="A dragon that is green."
-                seller="0x1234567890"
-                price="0.0023 ETH"
-                minion="Minion"
-             />
+    return (
+        <div className="p-16">
+            <h1 className="font-semibold text-white text-left text-[18px]">
+                All Listings &#40;3&#41;
+            </h1>
+            <button className="text-white" onClick={() => navigate("/create")}>Create Listing</button>
+
+            <div className="flex flex-wrap mt-[20px] gap-[26px]">
+                {cards.map((card, index) => {
+                    return (
+                        <Listing
+                            key={index}
+                            name={card.name}
+                            description={"test"}
+                            seller={"hello"}
+                            price={Math.random()}
+                            minion={card.minion}
+                            image={card.portrait}
+                        />
+                    );
+                })}
+            </div>
         </div>
-    </div>
-  )
-}
+    );
+};
 
-export default DisplayMarketplace
+export default DisplayMarketplace;

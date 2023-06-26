@@ -12,6 +12,8 @@ import DisplayMarketplace from "./DisplayMarketplace/DisplayMarketplace";
 import Listing from "./Listing/Listing";
 import DisplayCollection from "./DisplayCollection/DisplayCollection";
 import Hero from "./Hero/Hero";
+import FormField from "./FormField";
+import CustomButton from "./CustomButton";
 
 export {
     Login,
@@ -27,5 +29,7 @@ export {
     DisplayMarketplace,
     Listing,
     DisplayCollection,
-    Hero
+    Hero,
+    FormField,
+    CustomButton,
 }

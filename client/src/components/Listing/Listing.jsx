@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Listing = ({ minion, name, description, seller, price }) => {
+const Listing = ({ minion, name, description, seller, price, image }) => {
   return (
     <div className='sm:w-[288px] w-full rounded-[15px] bg-[#1c1c24] cursor-pointer'>
-        <img src='https://images.unsplash.com/photo-1621574539436-4b7b0b0b0b0b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmF0dGxlJTIwY2FyZHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80' 
-        className='h-[158px] w-full object-cover rounded-[15px]' />
+        <img src={image} 
+        className='h-[288px] w-full object-cover rounded-[15px]' />
 
         <div className='flex flex-col p-4'>
             <div className='flex flex-row items-center mb-[18px]'>

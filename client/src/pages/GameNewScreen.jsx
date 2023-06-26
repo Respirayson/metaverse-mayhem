@@ -11,7 +11,6 @@ const GameNewScreen = () => {
 	const navigate = useNavigate();
 
 	const { loading, gameId, hasOpponent } = currentGame;
-	const { protocol, host } = window.location;
 	const previousGameId = useRef(gameId);
 
 	useEffect(() => {

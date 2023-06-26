@@ -19,6 +19,7 @@
     "ethers": "^5.7.2",
     "file-saver": "^2.0.5",
     "framer-motion": "^10.12.16",
+    "lottie-react": "^2.4.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-cookie": "^4.1.1",
