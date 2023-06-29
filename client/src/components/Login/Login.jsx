@@ -79,9 +79,8 @@ const Login = (props) => {
      * @param {string} publicAddress - Wallet public address.
      * @returns {Promise<Object>} Signup response.
      */
-    const handleSignup = (publicAddress) => {
-        console.log(publicAddress, "publicAddress");
-        return fetch(`https://metaverse-mayhem.onrender.com/api/v1/users/`, {
+    const handleSignup = (publicAddress) =>
+        fetch(`https://metaverse-mayhem.onrender.com/api/v1/users/`, {
             body: JSON.stringify({
                 publicAddress: publicAddress,
                 username: publicAddress
@@ -94,7 +93,6 @@ const Login = (props) => {
             },
             method: "POST",
         }).then((response) => response.json());
-    };
 
     /**
      * Handles the connection to the wallet.
@@ -124,7 +122,7 @@ const Login = (props) => {
                 return users;
             })
             // Popup MetaMask confirmation modal to sign message
-            .then((res) => handleSignMessage(res.publicAddress, res.nonce))
+            .then(async (res) => await handleSignMessage(res.publicAddress, res.nonce))
             // Send signature to backend on the /auth route
             .then(async (res) => {
                 const data = await handleAuthenticate(
