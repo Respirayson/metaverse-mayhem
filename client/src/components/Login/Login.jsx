@@ -79,20 +79,22 @@ const Login = (props) => {
      * @param {string} publicAddress - Wallet public address.
      * @returns {Promise<Object>} Signup response.
      */
-    const handleSignup = (publicAddress) =>
-        fetch(`https://metaverse-mayhem.onrender.com/api/v1/users/`, {
+    const handleSignup = (publicAddress) => {
+        console.log(publicAddress, "publicAddress");
+        return fetch(`https://metaverse-mayhem.onrender.com/api/v1/users/`, {
             body: JSON.stringify({
                 publicAddress: publicAddress,
                 username: publicAddress
                     .slice(0, 3)
-                    .append("...")
-                    .append(publicAddress.slice(-3)),
+                    .concat("...")
+                    .concat(publicAddress.slice(-3)),
             }),
             headers: {
                 "Content-Type": "application/json",
             },
             method: "POST",
         }).then((response) => response.json());
+    };
 
     /**
      * Handles the connection to the wallet.
