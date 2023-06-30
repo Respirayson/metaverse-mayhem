@@ -85,8 +85,8 @@ const Login = (props) => {
                 publicAddress: publicAddress,
                 username: publicAddress
                     .slice(0, 3)
-                    .append("...")
-                    .append(publicAddress.slice(-3)),
+                    .concat("...")
+                    .concat(publicAddress.slice(-3)),
             }),
             headers: {
                 "Content-Type": "application/json",
@@ -122,7 +122,7 @@ const Login = (props) => {
                 return users;
             })
             // Popup MetaMask confirmation modal to sign message
-            .then((res) => handleSignMessage(res.publicAddress, res.nonce))
+            .then(async (res) => await handleSignMessage(res.publicAddress, res.nonce))
             // Send signature to backend on the /auth route
             .then(async (res) => {
                 const data = await handleAuthenticate(
