@@ -1,11 +1,11 @@
-import { DisplayCollection } from '../components'
+import { DisplayCollection } from '../components';
 
-const Collection = () => {
+function Collection() {
   return (
     <div>
-        <DisplayCollection />
+      <DisplayCollection />
     </div>
-  )
+  );
 }
 
-export default Collection
+export default Collection;

@@ -1,4 +1,4 @@
-import { END_TURN, NEW_GAME } from "../actions/gameActions";
+import { END_TURN, NEW_GAME } from '../actions/gameActions';
 
 /**
  * Reducer function that handles the current turn state.
@@ -8,15 +8,15 @@ import { END_TURN, NEW_GAME } from "../actions/gameActions";
  * @returns {boolean} - Updated turn state.
  */
 const turnReducer = (state = true, action) => {
-    if (action.type === END_TURN) {
-        return !state;
-    }
+  if (action.type === END_TURN) {
+    return !state;
+  }
 
-    if (action.type === NEW_GAME) {
-        return action.payload.playerStarts;
-    }
+  if (action.type === NEW_GAME) {
+    return action.payload.playerStarts;
+  }
 
-    return state;
+  return state;
 };
 
 export default turnReducer;

@@ -1,6 +1,6 @@
-import styles from "./Opponent.module.css";
-import { TargetableHero } from "../../containers";
-import OpponentHand from "../OpponentHand/OpponentHand";
+import styles from './Opponent.module.css';
+import { TargetableHero } from '../../containers';
+import OpponentHand from '../OpponentHand/OpponentHand';
 
 /**
  * Component for rendering the opponent's side of the game board.
@@ -16,28 +16,28 @@ import OpponentHand from "../OpponentHand/OpponentHand";
  * @param {boolean} props.turn - Flag indicating if it's the opponent's turn.
  * @returns {JSX.Element} Opponent component.
  */
-const Opponent = ({
-    name,
-    handCount,
-    character,
-    drawCard,
-    hitFace,
-    minions,
-}) => {
-    return (
-        <div className={styles.Opponent}>
-            <h1 className={styles.OpponentName} onClick={drawCard}>
-                {name || "Unnamed"}
-                <TargetableHero character={character} hitFace={hitFace} />
-            </h1>
-            <div className={styles.OpponentHandWrapper}>
-                <OpponentHand handCount={handCount} />
-            </div>
-            <div className="flex flex-row items-center justify-center w-full h-[180px]">
-                {minions}
-            </div>
-        </div>
-    );
-};
+function Opponent({
+  name,
+  handCount,
+  character,
+  drawCard,
+  hitFace,
+  minions,
+}) {
+  return (
+    <div className={styles.Opponent}>
+      <h1 className={styles.OpponentName} onClick={drawCard}>
+        {name || 'Unnamed'}
+        <TargetableHero character={character} hitFace={hitFace} />
+      </h1>
+      <div className={styles.OpponentHandWrapper}>
+        <OpponentHand handCount={handCount} />
+      </div>
+      <div className="flex flex-row items-center justify-center w-full h-[180px]">
+        {minions}
+      </div>
+    </div>
+  );
+}
 
 export default Opponent;

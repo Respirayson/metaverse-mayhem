@@ -1,6 +1,6 @@
 const itemTypes = {
-    CARD: 'card',
-    MINION: 'minion',
-}
+  CARD: 'card',
+  MINION: 'minion',
+};
 
 export default itemTypes;

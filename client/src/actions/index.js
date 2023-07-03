@@ -1,12 +1,12 @@
-import playerActions from "./playerActions";
-import gameActions from "./gameActions";
-import beforeGameActions from "./beforeGameActions";
+import playerActions from './playerActions';
+import gameActions from './gameActions';
+import beforeGameActions from './beforeGameActions';
 
 // Create an object named allActions that contains references to the action modules
 const allActions = {
   playerActions,
   gameActions,
-  beforeGameActions
+  beforeGameActions,
 };
 
 // Export the allActions object as the default export of the module

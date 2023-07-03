@@ -1,4 +1,4 @@
-import styles from "./PlayingArea.module.css";
+import styles from './PlayingArea.module.css';
 
 /**
  * Component for rendering the playing area where minions are placed.
@@ -8,17 +8,17 @@ import styles from "./PlayingArea.module.css";
  * @param {boolean} props.isOver - Indicates if a draggable item is being dragged over the playing area.
  * @returns {JSX.Element} PlayingArea component.
  */
-const PlayingArea = ({ dropRef, minions, isOver }) => {
-    return (
-        <div
-            data-testid="dropBoard"
-            ref={dropRef}
-            className="flex flex-row items-center justify-center w-full h-[180px] relative z-10"
-        >
-            {minions}
-            {isOver && <div className={styles.PlayingArea} />}
-        </div>
-    );
-};
+function PlayingArea({ dropRef, minions, isOver }) {
+  return (
+    <div
+      data-testid="dropBoard"
+      ref={dropRef}
+      className="flex flex-row items-center justify-center w-full h-[180px] relative z-10"
+    >
+      {minions}
+      {isOver && <div className={styles.PlayingArea} />}
+    </div>
+  );
+}
 
 export default PlayingArea;
