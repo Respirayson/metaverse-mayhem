@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Opponent.module.css";
 import { TargetableHero } from "../../containers";
 import OpponentHand from "../OpponentHand/OpponentHand";

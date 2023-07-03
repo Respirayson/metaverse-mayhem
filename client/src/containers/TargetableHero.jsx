@@ -1,5 +1,4 @@
-/* eslint-disable react/prop-types */
-import React from "react";
+ 
 import { Hero } from "../components";
 import { useDrop } from "react-dnd";
 import itemTypes from "../constants";
@@ -18,7 +17,7 @@ const TargetableHero = (props) => {
     const [, drop] = useDrop(
         () => ({
             accept: itemTypes.MINION,
-            drop: (item, monitor) => {
+            drop: (item) => {
                 props.hitFace(item.card, "OPPONENT");
             },
 

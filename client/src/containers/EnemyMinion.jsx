@@ -1,4 +1,3 @@
-import React from "react";
 import { Minion } from "../components";
 import { useDrop } from "react-dnd";
 import itemTypes from "../constants";
@@ -16,7 +15,7 @@ const EnemyMinion = ({ card, attackMinion, exhaustedMinions, turn }) => {
     const [, drop] = useDrop(
         () => ({
             accept: itemTypes.MINION,
-            drop: (item, monitor) => {
+            drop: (item) => {
                 const { attack } = item.card;
                 attackMinion(attack, card.attack, card, item.card);
             },

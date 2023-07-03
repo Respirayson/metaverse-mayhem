@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDrop } from "react-dnd";
 import { motion } from "framer-motion";
 import { PlayingArea } from "../components";
@@ -23,7 +23,7 @@ const PlayingAreaContainer = ({ board, exhaustedMinions, playerTurn }) => {
     const [{ isOver }, drop] = useDrop(
         () => ({
             accept: itemTypes.CARD,
-            canDrop: (item, monitor) => {
+            canDrop: () => {
                 return boardLength < 7;
             },
             drop: (item, monitor) => {

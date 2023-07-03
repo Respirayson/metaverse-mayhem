@@ -1,4 +1,3 @@
-import React from "react";
 import { Login } from "../components";
 import { SiEthereum } from "react-icons/si";
 import { useLottie } from "lottie-react";
@@ -27,7 +26,7 @@ const Home = (props) => {
                         </h1>
                         <p className="text-left my-5 text-white font-light md:w-9/12 w-11/12 text-base">
                             Enter the Battlegrounds, a world of infinite
-                            possibilities where you'll compete in fast-paced
+                            possibilities where you&apos;ll compete in fast-paced
                             battles using powerful cards. Build your deck,
                             collect your heroes, and earn all while playing.
                         </p>

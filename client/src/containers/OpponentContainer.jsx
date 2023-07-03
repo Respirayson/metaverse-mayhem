@@ -1,5 +1,4 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import allActions from "../actions";
 import { newRandomCard } from "../utils/cards";
 import { v4 as uuidv4 } from "uuid";

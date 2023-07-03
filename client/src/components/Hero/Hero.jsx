@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 
 /**
  * Component representing the hero character

@@ -7,7 +7,7 @@ const main = async () => {
   const lockedAmount = hre.ethers.utils.parseEther("1");
 
   const TradingCardMinter = await hre.ethers.getContractFactory("TradingCardMinter");
-  const cardMinter = await TradingCardMinter.deploy(unlockTime, { value: lockedAmount });
+  const cardMinter = await TradingCardMinter.deploy({ value: lockedAmount });
 
   await cardMinter.deployed();
 

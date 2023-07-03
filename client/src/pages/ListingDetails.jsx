@@ -1,5 +1,3 @@
-import React, { useprops, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 
 const CampaignDetails = (props) => {
 

@@ -1,4 +1,3 @@
-import React from "react";
 
 const Collectible = ({ name, description, mana, attack, defense, image }) => {
     return (

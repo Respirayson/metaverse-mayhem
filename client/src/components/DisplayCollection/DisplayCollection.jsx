@@ -1,8 +1,7 @@
-import React from "react";
 import Collectible from "../Collectible/Collectible";
 import { cards } from "../../utils/cards";
 import { motion } from "framer-motion";
-import { fadeAnimation, slideAnimation } from "../../utils/motion";
+import { slideAnimation } from "../../utils/motion";
 
 const DisplayCollection = () => {
     console.log(cards);

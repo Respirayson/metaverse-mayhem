@@ -1,4 +1,3 @@
-import React from 'react'
 import { DisplayCollection } from '../components'
 
 const Collection = () => {

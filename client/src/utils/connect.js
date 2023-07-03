@@ -1,8 +1,3 @@
-import Web3 from "web3";
-
-// Create a new instance of Web3 with the given provider or local node URL
-var web3 = new Web3(Web3.givenProvider || "http://127.0.0.1:8546");
-
 /**
  * Connects the wallet using MetaMask
  * @returns {Promise<string>} - The connected account address

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Minion } from "../components";
 import { useDrag } from "react-dnd";
 import itemTypes from "../constants";
@@ -18,7 +18,7 @@ const PlayerMinion = ({ card, exhausted, canDrag }) => {
      */
     const [, drag, preview] = useDrag(
         () => ({
-            canDrag: (monitor) => {
+            canDrag: () => {
                 if (exhausted) {
                     return false;
                 }

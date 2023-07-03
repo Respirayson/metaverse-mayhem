@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Player.module.css";
 import {
     TargetableHero,
@@ -35,7 +34,7 @@ const Player = ({
                     <TargetableHero character={character} />
                 </h1>
                 <button
-                    className={`absolute right-[60px] top-[640px] font-semibold ${
+                    className={`absolute right-[60px] top-[630px] font-semibold ${
                         turn ? "bg-green-700" : "bg-gray-700"
                     } text-white p-2 rounded-full px-4`}
                     onClick={onClick}

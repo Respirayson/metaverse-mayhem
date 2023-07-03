@@ -1,4 +1,3 @@
-import React from 'react'
 
 const Listing = ({ minion, name, description, seller, price, image }) => {
   return (

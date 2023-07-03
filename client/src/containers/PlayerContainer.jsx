@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch } from "react-redux";
 import allActions from "../actions";
 import { Player } from "../components";

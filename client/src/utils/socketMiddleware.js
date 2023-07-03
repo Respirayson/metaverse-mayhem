@@ -4,8 +4,8 @@
  * @returns {Function} - The middleware function
  */
 export const socketMiddleware = (socket) => (params) => (next) => (action) => {
-    // Extract dispatch and getState from the parameters
-    const { dispatch, getState } = params;
+    // Extract getState from the parameters
+    const { getState } = params;
 
     // Get the gameId and hasOpponent from the current state
     const { gameId, hasOpponent } = getState().current;

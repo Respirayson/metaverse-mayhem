@@ -26,6 +26,7 @@ const getEthereumContract = () => {
 
 export const TradingCardMinterProvider = ({ children }) => {
     const [currentAccount, setCurrentAccount] = useState(null);
+    console.log(currentAccount);
     const [formData, setFormData] = useState({
         addressTo: "",
         name: "",
@@ -54,19 +55,47 @@ export const TradingCardMinterProvider = ({ children }) => {
 
     const mintTradingCard = async () => {
         try {
-            if (!ethereum) return alert("Please install MetaMask");
+            if (ethereum) {
+                const { addressTo, name } = formData;
+                const contract = getEthereumContract();
 
-            const { addressTo, name } = formData;
-            const contract = getEthereumContract();
-
-            const transaction = await contract.mint(name);
-            await transaction.wait();
-            console.log(
-                `1 Card successfully sent to ${addressTo} - Transaction hash: ${transaction.hash}`
-            );
+                const transaction = await contract.requestNewCard(
+                    "Hello World!"
+                );
+                await transaction.wait();
+                console.log(
+                    `1 Card successfully sent to ${addressTo} under ${name} - Transaction hash: ${transaction.hash}`
+                );
+            } else {
+                console.log("Ethereum is not present");
+            }
         } catch (err) {
             console.log(err);
         }
+    };
+
+    const createRandomNumber = async () => {
+        try {
+            if (ethereum) {
+                const contract = getEthereumContract();
+
+                const number = await contract._createRandomNum(
+                    15,
+                    ethers.utils.getAddress(
+                        "0xf10718695c5aE9f0382410C15ecAf3D27a37840F"
+                    )
+                );
+
+                await number.wait();
+                console.log(number);
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const handleChange = (e, name) => {
+        setFormData({ ...formData, [name]: e.target.value });
     };
 
     useEffect(() => {
@@ -74,7 +103,14 @@ export const TradingCardMinterProvider = ({ children }) => {
     }, []);
 
     return (
-        <TradingCardMinterContext.Provider value={{}}>
+        <TradingCardMinterContext.Provider
+            value={{
+                handleChange,
+                formData,
+                mintTradingCard,
+                createRandomNumber,
+            }}
+        >
             {children}
         </TradingCardMinterContext.Provider>
     );

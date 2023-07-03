@@ -1,5 +1,4 @@
 import { useDragLayer } from "react-dnd";
-import React from "react";
 import { Card, Minion } from "../components";
 import itemTypes from "../constants";
 
