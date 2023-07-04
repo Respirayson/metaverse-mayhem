@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">23.07% </span>
+                <span class="strong">21.62% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/39</span>
+                <span class='fraction'>8/37</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">23.07% </span>
+                <span class="strong">21.62% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/39</span>
+                <span class='fraction'>8/37</span>
             </div>
         
             
@@ -100,16 +100,12 @@
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a>
-<a name='L39'></a><a href='#L39'>39</a>
-<a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -141,43 +137,41 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from "react";
-import { Listing } from "..";
-import { useNavigate } from "react-router-dom";
-import { cards } from "../../utils/cards";
-import { TradingCardMinterContext } from "../../context/TradingCardMinter";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Listing } from '..';
+import { cards } from '../../utils/cards';
+import { TradingCardMinterContext } from '../../context/TradingCardMinter';
 &nbsp;
-const DisplayMarketplace = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    const navigate = useNavigate();</span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function DisplayMarketplace() {</span></span>
+<span class="cstat-no" title="statement not covered" >  const navigate = useNavigate();</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    const { createRandomNumber } = React.useContext(TradingCardMinterContext);</span>
+<span class="cstat-no" title="statement not covered" >  const { createRandomNumber } = React.useContext(TradingCardMinterContext);</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    return (</span>
-<span class="cstat-no" title="statement not covered" >        &lt;div className="p-16"&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;h1 className="font-semibold text-white text-left text-[18px]"&gt;</span>
-<span class="cstat-no" title="statement not covered" >                All Listings &amp;#40;3&amp;#41;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;/h1&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;button className="text-white" onClick={() =&gt; navigate("/create")}&gt;Create Listing&lt;/button&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;button className="text-white" onClick={() =&gt; createRandomNumber()}&gt;Test Contract&lt;/button&gt;</span>
+<span class="cstat-no" title="statement not covered" >  return (</span>
+<span class="cstat-no" title="statement not covered" >    &lt;div className="p-16"&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;h1 className="font-semibold text-white text-left text-[18px]"&gt;</span>
+<span class="cstat-no" title="statement not covered" >        All Listings &amp;#40;3&amp;#41;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;/h1&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;button className="text-white" onClick={() =&gt; navigate('/create')}&gt;Create Listing&lt;/button&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;button className="text-white" onClick={() =&gt; createRandomNumber()}&gt;Test Contract&lt;/button&gt;</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >            &lt;div className="flex flex-wrap mt-[20px] gap-[26px]"&gt;</span>
-<span class="cstat-no" title="statement not covered" >                {cards.map((card, index) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >                    return (</span>
-<span class="cstat-no" title="statement not covered" >                        &lt;Listing</span>
-<span class="cstat-no" title="statement not covered" >                            key={index}</span>
-<span class="cstat-no" title="statement not covered" >                            name={card.name}</span>
-<span class="cstat-no" title="statement not covered" >                            description={"test"}</span>
-<span class="cstat-no" title="statement not covered" >                            seller={"hello"}</span>
-<span class="cstat-no" title="statement not covered" >                            price={Math.random()}</span>
-<span class="cstat-no" title="statement not covered" >                            minion={card.minion}</span>
-<span class="cstat-no" title="statement not covered" >                            image={card.portrait}</span>
-<span class="cstat-no" title="statement not covered" >                        /&gt;</span>
-<span class="cstat-no" title="statement not covered" >                    );</span>
-<span class="cstat-no" title="statement not covered" >                })}</span>
-<span class="cstat-no" title="statement not covered" >            &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >    );</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+<span class="cstat-no" title="statement not covered" >      &lt;div className="flex flex-wrap mt-[20px] gap-[26px]"&gt;</span>
+<span class="cstat-no" title="statement not covered" >        {cards.map((card, index) =&gt; (</span>
+<span class="cstat-no" title="statement not covered" >          &lt;Listing</span>
+<span class="cstat-no" title="statement not covered" >            key={index}</span>
+<span class="cstat-no" title="statement not covered" >            name={card.name}</span>
+<span class="cstat-no" title="statement not covered" >            description="test"</span>
+<span class="cstat-no" title="statement not covered" >            seller="hello"</span>
+<span class="cstat-no" title="statement not covered" >            price={Math.random()}</span>
+<span class="cstat-no" title="statement not covered" >            minion={card.minion}</span>
+<span class="cstat-no" title="statement not covered" >            image={card.portrait}</span>
+<span class="cstat-no" title="statement not covered" >          /&gt;</span>
+<span class="cstat-no" title="statement not covered" >        ))}</span>
+<span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >  );</span>
+<span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;
 export default DisplayMarketplace;
 &nbsp;</pre></td></tr></table></pre>
@@ -187,7 +181,7 @@ export default DisplayMarketplace;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-03T22:11:11.564Z
+                at 2023-07-04T05:29:04.834Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

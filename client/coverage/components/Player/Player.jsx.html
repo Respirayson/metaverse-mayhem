@@ -141,52 +141,52 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import styles from "./Player.module.css";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import styles from './Player.module.css';
 import {
-    TargetableHero,
-    HandContainer,
-    PlayingAreaContainer,
-} from "../../containers";
+  TargetableHero,
+  HandContainer,
+  PlayingAreaContainer,
+} from '../../containers';
 &nbsp;
 /**
  * Component for rendering the player's area including hand and playing area.
@@ -200,44 +200,44 @@ import {
  * @param {function} props.drawCard - Function to draw a card.
  * @returns {JSX.Element} Player component.
  */
-const Player = ({
-    name,
-    board,
-    character,
-    playerTurn,
-    onClick,
-    turn,
-    drawCard,
-}) =&gt; {
-    return (
-        &lt;div className={styles.Player} data-testid="targetable-player-hero"&gt;
-            &lt;div className={`${styles.PlayerHandWrapper}`}&gt;
-                &lt;h1 onClick={drawCard} className={`${styles.PlayerName}`}&gt;
-                    {name || "Unnamed"}
-                    &lt;TargetableHero character={character} /&gt;
-                &lt;/h1&gt;
-                &lt;button
-                    className={`absolute right-[60px] top-[630px] font-semibold ${
-                        turn ? <span class="branch-0 cbranch-no" title="branch not covered" >"bg-green-700" : "bg-gray-700"</span>
-                    } text-white p-2 rounded-full px-4`}
-                    onClick={onClick}
-                    disabled={!turn}
-                &gt;
-                    End Turn
-                &lt;/button&gt;
-                &lt;PlayingAreaContainer
-                    playerTurn={playerTurn}
-                    board={board.board}
-                    exhaustedMinions={board.exhaustedMinions}
-                /&gt;
-                &lt;HandContainer
-                    currentMana={character.mana.current}
-                    playerTurn={playerTurn}
-                /&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    );
-};
+function Player({
+  name,
+  board,
+  character,
+  playerTurn,
+  onClick,
+  turn,
+  drawCard,
+}) {
+  return (
+    &lt;div className={styles.Player} data-testid="targetable-player-hero"&gt;
+      &lt;div className={`${styles.PlayerHandWrapper}`}&gt;
+        &lt;h1 onClick={drawCard} className={`${styles.PlayerName}`}&gt;
+          {name || 'Unnamed'}
+          &lt;TargetableHero character={character} /&gt;
+        &lt;/h1&gt;
+        &lt;button
+          className={`absolute right-[60px] top-[630px] font-semibold ${
+            turn ? <span class="branch-0 cbranch-no" title="branch not covered" >'bg-green-700' : 'bg-gray-700'</span>
+          } text-white p-2 rounded-full px-4`}
+          onClick={onClick}
+          disabled={!turn}
+        &gt;
+          End Turn
+        &lt;/button&gt;
+        &lt;PlayingAreaContainer
+          playerTurn={playerTurn}
+          board={board.board}
+          exhaustedMinions={board.exhaustedMinions}
+        /&gt;
+        &lt;HandContainer
+          currentMana={character.mana.current}
+          playerTurn={playerTurn}
+        /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
 &nbsp;
 export default Player;
 &nbsp;</pre></td></tr></table></pre>
@@ -247,7 +247,7 @@ export default Player;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-03T22:11:11.564Z
+                at 2023-07-04T05:29:04.834Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
