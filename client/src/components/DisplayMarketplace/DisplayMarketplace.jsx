@@ -6,8 +6,21 @@ import { TradingCardMinterContext } from '../../context/TradingCardMinter';
 
 function DisplayMarketplace() {
   const navigate = useNavigate();
+  const [userCards, setUserCards] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
 
-  const { createRandomNumber } = React.useContext(TradingCardMinterContext);
+  const { mintTradingCard, getCardsUnderAddress } = React.useContext(TradingCardMinterContext);
+
+  React.useEffect(() => {
+    const fetchCards = async () => {
+      setLoading(true);
+      const data = await getCardsUnderAddress();
+      setUserCards(data);
+      setLoading(false);
+    };
+
+    fetchCards();
+  }, [getCardsUnderAddress]);
 
   return (
     <div className="p-16">
@@ -15,7 +28,7 @@ function DisplayMarketplace() {
         All Listings &#40;3&#41;
       </h1>
       <button className="text-white" onClick={() => navigate('/create')}>Create Listing</button>
-      <button className="text-white" onClick={() => createRandomNumber()}>Test Contract</button>
+      <button className="text-white" onClick={() => getCardsUnderAddress()}>Test Contract</button>
 
       <div className="flex flex-wrap mt-[20px] gap-[26px]">
         {cards.map((card, index) => (

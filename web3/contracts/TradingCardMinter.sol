@@ -101,11 +101,7 @@ contract TradingCardMinter is ERC721, ERC721Enumerable {
         );
 
         for (int i = 0; i < 5; i++) {
-            uint256 id = cards.length;
-            uint256 cardId = _createRandomNum(15, msg.sender);
-
-            cards.push(Card(name, cardId, 0, 0, 0, "common"));
-            _safeMint(msg.sender, id);
+            requestNewCard(name);
         }
     }
 

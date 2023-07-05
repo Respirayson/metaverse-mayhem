@@ -1,20 +1,39 @@
 import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
 import Collectible from '../Collectible/Collectible';
 import { cards } from '../../utils/cards';
 import { slideAnimation } from '../../utils/motion';
+import { TradingCardMinterContext } from '../../context/TradingCardMinter';
 
 function DisplayCollection() {
-  console.log(cards);
+  const [userCards, setUserCards] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const { getCardsUnderAddress, mintTradingCard } = React.useContext(TradingCardMinterContext);
+
+  useEffect(() => {
+    const fetchCards = async () => {
+      setLoading(true);
+      const data = await getCardsUnderAddress();
+      setUserCards(data);
+      setLoading(false);
+    };
+
+    fetchCards();
+  }, [getCardsUnderAddress]);
+
   return (
+    <>
+    <button className="text-white" onClick={() => mintTradingCard()}>Test Contract</button>
     <div className="p-16">
       <h1 className="font-semibold text-white text-left text-[18px]">
         All Collection &#40;
-        {cards.length}
+        {userCards.length}
         &#41;
       </h1>
 
       <div className="flex flex-wrap mt-[20px] gap-[26px]">
-        {cards.map((card, index) => (
+        {userCards.map((card, index) => (
           <motion.div key={index} {...slideAnimation('left')}>
             <Collectible
               image={card.portrait}
@@ -29,6 +48,7 @@ function DisplayCollection() {
         ))}
       </div>
     </div>
+    </>
   );
 }
 

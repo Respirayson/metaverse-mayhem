@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 
 import { contractABI, contractAddress } from '../utils/constants';
+import { cards } from '../utils/cards';
 
 export const TradingCardMinterContext = React.createContext();
 
@@ -35,6 +36,7 @@ export function TradingCardMinterProvider({ children }) {
   const checkIfWalletIsConnected = async () => {
     try {
       if (!ethereum) {
+        // eslint-disable-next-line no-alert
         window.alert('Please install MetaMask');
         return;
       }
@@ -74,24 +76,20 @@ export function TradingCardMinterProvider({ children }) {
     }
   };
 
-  const createRandomNumber = async () => {
+  const getCardsUnderAddress = async () => {
     try {
       if (ethereum) {
         const contract = getEthereumContract();
 
-        const number = await contract._createRandomNum(
-          15,
-          ethers.utils.getAddress(
-            '0xf10718695c5aE9f0382410C15ecAf3D27a37840F',
-          ),
-        );
-
-        await number.wait();
-        console.log(number);
+        const data = await contract.getCardsUnderOwner(currentAccount);
+        const ids = data.map((card) => cards[card.cardId.toNumber()]);
+        return ids;
       }
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log(err);
     }
+    return [];
   };
 
   const handleChange = (e, name) => {
@@ -108,7 +106,7 @@ export function TradingCardMinterProvider({ children }) {
         handleChange,
         formData,
         mintTradingCard,
-        createRandomNumber,
+        getCardsUnderAddress,
       }}
     >
       {children}
