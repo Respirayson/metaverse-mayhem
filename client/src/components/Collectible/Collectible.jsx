@@ -4,6 +4,7 @@ function Collectible({
   return (
     <div className="sm:w-[288px] w-full rounded-[15px] bg-[#1c1c24] cursor-pointer">
       <img
+        alt="portrait"
         src={image}
         className="h-[288px] w-full object-cover rounded-[15px]"
       />

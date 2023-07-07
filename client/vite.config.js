@@ -8,6 +8,15 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./tests/setup.js'],
     testMatch: ['./tests/**/*.test.jsx'],
+    deps: {
+      inline: ['vitest-canvas-mock'],
+    },
+    threads: false,
+    environmentOptions: {
+      jsdom: {
+        resources: 'usable',
+      },
+    },
     globals: true,
     coverage: {
       provider: 'c8',

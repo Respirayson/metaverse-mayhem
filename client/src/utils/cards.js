@@ -13,7 +13,7 @@ export const cards = [
     mana: 2,
     attack: 2,
     defense: 2,
-    portrait: 'https://i.imgur.com/RvcO0pg.png?1',
+    portrait: 'https://i.imgur.com/RvcO0pg.png',
   },
   {
     id: 3,

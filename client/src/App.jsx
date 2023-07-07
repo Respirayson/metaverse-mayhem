@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter, Link, Route, Routes,
 } from 'react-router-dom';
-
+import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 import {
   Home,
@@ -14,9 +14,8 @@ import {
   CreateListing,
 } from './pages';
 
-import { Login, PrivateRoutes } from './components';
-
-import { TradingCardMinterContext } from './context/TradingCardMinter';
+import { Login, PrivateRoutes, Footer } from './components';
+import { navVariants } from './utils/motion';
 
 import { socketActions } from './utils/socketActions';
 import { socket } from './utils/socket';
@@ -28,9 +27,6 @@ function App() {
   useEffect(() => {
     socketActions(dispatch, socket);
   }, [dispatch]);
-
-  const { value } = useContext(TradingCardMinterContext);
-  console.log(value);
 
   const checkAuthenticated = () => {
     const token = localStorage.getItem('token');
@@ -69,46 +65,49 @@ function App() {
 
   return (
     <BrowserRouter>
-      <header className="w-full flex justify-between items-center bg-primary sm:px-8 px-4 py-4">
-        <div className="md:flex-[0.5] flex-initial justify-center items-center text-white font-bold text-2xl">
-          <Link to="/">
-            <h1>Metaverse Mayhem</h1>
-          </Link>
-        </div>
+      <header>
+        <motion.nav
+          variants={navVariants}
+          initial="hidden"
+          whileInView="show"
+          className="w-full flex justify-between items-center bg-primary-black sm:px-8 px-4 py-4"
+        >
+          <div className="md:flex-[0.5] flex-initial justify-center items-center text-white font-bold text-2xl">
+            <Link to="/">
+              <h1>Metaverse Mayhem</h1>
+            </Link>
+          </div>
 
-        <div className="text-white md:flex hidden list-none flex-row justify-between items-center flex-initial text-l">
-          <Link to="/game" className="mx-6">
-            Game
-          </Link>
-          <Link to="/marketplace" className="mx-6">
-            Marketplace
-          </Link>
-          <Link to="/collection" className="mx-6">
-            Collection
-          </Link>
-          {checkAuthenticated() ? (
-            <button
-              className="flex flex-row justify-center items-center bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd] font-semibold"
-              onClick={handleLogout}
-            >
-              Logout
-            </button>
-          ) : (
-            <Login onLoggedIn={handleLogin} />
-          )}
-        </div>
+          <div className="text-white md:flex hidden list-none flex-row justify-between items-center flex-initial text-l">
+            <Link to="/game" className="mx-6">
+              Game
+            </Link>
+            <Link to="/marketplace" className="mx-6">
+              Marketplace
+            </Link>
+            <Link to="/collection" className="mx-6">
+              Collection
+            </Link>
+            {checkAuthenticated() ? (
+              <button
+                type="button"
+                className="flex items-center h-fit py-4 px-6 bg-[#25618B] rounded-[32px] gap-[12px]"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            ) : (
+              <Login onLoggedIn={handleLogin} text="Connect Wallet" />
+            )}
+          </div>
+        </motion.nav>
       </header>
 
-      <main className="w-full min-h-[calc(100vh-73px)] bg-hero-pattern bg-no-repeat bg-cover">
+      <main className="w-full min-h-[calc(100vh-73px)] bg-primary-black overflow-hidden">
         <Routes>
           <Route
             path="/"
-            element={(
-              <Home
-                currentAccount={checkAuthenticated()}
-                connectWallet={handleLogin}
-              />
-                          )}
+            element={<Home handleLogin={handleLogin} />}
           />
 
           <Route path="/game">
@@ -128,6 +127,13 @@ function App() {
           </Route>
         </Routes>
       </main>
+      <footer className="bg-primary-black">
+        <Footer
+          handleLogin={handleLogin}
+          authenticated={checkAuthenticated()}
+          handleLogout={handleLogout}
+        />
+      </footer>
     </BrowserRouter>
   );
 }

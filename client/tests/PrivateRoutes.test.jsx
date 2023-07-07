@@ -2,6 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { Outlet, Navigate } from "react-router-dom";
 import { PrivateRoutes } from "../src/components";
+import { vi } from "vitest";
 
 vi.mock("react-router-dom", () => ({
   Outlet: vi.fn(() => null),
