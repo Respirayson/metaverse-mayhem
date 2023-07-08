@@ -10,6 +10,7 @@ function Footer({ handleLogin, authenticated, handleLogout }) {
       variants={footerVariants}
       initial="hidden"
       whileInView="show"
+      viewport={{ once: true }}
       className="sm:px-16 px-6 py-8 relative"
     >
       <div className="footer-gradient" />

@@ -5,9 +5,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#564787",
-        secondary: "#DBCBD8",
-        tertiary: "#f2fdff",
+        primary: '#564787',
+        secondary: '#DBCBD8',
+        tertiary: '#f2fdff',
         'primary-black': '#1A232E',
         'secondary-white': '#c7c7c7',
       },
@@ -25,9 +25,9 @@ module.exports = {
         cardhover: '0 0 1px 0 rgba(189,192,207,0.06),0 10px 16px -1px rgba(189,192,207,0.4)',
       },
       backgroundImage: {
-        "hero-pattern": "url('/herobg.png')",
-        "about": "url('/about-section.jpg')",
-        "board": "url('/board.jpg')",
+        board: "url('/board.jpg')",
+        board1: "url('/moon.jpg')",
+        board2: "url('/board2.jpg')",
       },
     },
   },

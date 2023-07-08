@@ -70,6 +70,7 @@ function App() {
           variants={navVariants}
           initial="hidden"
           whileInView="show"
+          viewport={{ once: true }}
           className="w-full flex justify-between items-center bg-primary-black sm:px-8 px-4 py-4"
         >
           <div className="md:flex-[0.5] flex-initial justify-center items-center text-white font-bold text-2xl">

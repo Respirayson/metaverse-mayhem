@@ -16,7 +16,7 @@ function Game() {
   }, [currentGame, navigate]);
 
   return (
-    <section className="bg-board bg-cover w-full h-100vh">
+    <section className="bg-board2 bg-cover w-full h-100vh">
       <Board />
     </section>
   );
