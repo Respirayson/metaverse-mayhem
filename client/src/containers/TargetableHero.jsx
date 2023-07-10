@@ -9,27 +9,27 @@ import itemTypes from '../constants';
  * @param {Function} props.hitFace - Function to handle hitting the opponent's face.
  * @returns {JSX.Element} TargetableHero component.
  */
-function TargetableHero(props) {
+function TargetableHero({ hitFace, character, name, isOpponent }) {
   /**
      * Hook to enable dropping functionality for minions onto the hero.
      */
-  const [, drop] = useDrop(
+  const [{ isOver }, drop] = useDrop(
     () => ({
       accept: itemTypes.MINION,
       drop: (item) => {
-        props.hitFace(item.card, 'OPPONENT');
+        hitFace(item.card, 'OPPONENT');
       },
 
       collect: (monitor) => ({
         isOver: !!monitor.isOver(),
       }),
     }),
-    [props],
+    [hitFace],
   );
 
   return (
-    <div ref={drop} className="flex h-16" data-testid="targetable-hero">
-      <Hero character={props.character} />
+    <div ref={drop} data-testid="targetable-hero">
+      <Hero character={character} name={name} isOpponent={isOpponent} isOver={isOver} />
     </div>
   );
 }

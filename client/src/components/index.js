@@ -20,6 +20,9 @@ import GetStarted from './GetStarted';
 import Map from './Map';
 import NewFeatures from './NewFeatures';
 import Footer from './Footer';
+import CustomInput from './CustomInput';
+import GameInstruction from './GameInstruction';
+import LoadingScreen from './LoadingScreen';
 
 export {
   Login,
@@ -44,4 +47,7 @@ export {
   Map,
   NewFeatures,
   Footer,
+  CustomInput,
+  GameInstruction,
+  LoadingScreen,
 };

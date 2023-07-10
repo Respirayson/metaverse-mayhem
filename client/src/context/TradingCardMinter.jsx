@@ -107,6 +107,7 @@ export function TradingCardMinterProvider({ children }) {
         formData,
         mintTradingCard,
         getCardsUnderAddress,
+        currentAccount,
       }}
     >
       {children}

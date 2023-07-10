@@ -13,7 +13,6 @@
 }
 
 .CardPlayer {
-    background: #776557;
     transform: translateY(25%);
     cursor: pointer;
 }

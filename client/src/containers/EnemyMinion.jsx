@@ -14,7 +14,7 @@ import itemTypes from '../constants';
 function EnemyMinion({
   card, attackMinion, exhaustedMinions, turn,
 }) {
-  const [, drop] = useDrop(
+  const [{ isOver }, drop] = useDrop(
     () => ({
       accept: itemTypes.MINION,
       drop: (item) => {
@@ -34,6 +34,7 @@ function EnemyMinion({
       <Minion
         card={card}
         exhausted={exhaustedMinions.includes(card.key) || !turn}
+        isOver={isOver}
       />
     </div>
   );

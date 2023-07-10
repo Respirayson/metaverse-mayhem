@@ -5,7 +5,7 @@ import { fadeIn, staggerContainer } from '../utils/motion';
 
 function About() {
   return (
-    <section className="sm:p-16 xs:p-8 px-6 py-12 relative z-10">
+    <section data-testid="component" className="sm:p-16 xs:p-8 px-6 py-12 relative z-10">
       <div className="gradient-02 z-0" />
       <motion.div
         variants={staggerContainer}

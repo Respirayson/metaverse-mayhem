@@ -8,7 +8,8 @@ import styles from './Minion.module.css';
  * @returns {JSX.Element} Minion component.
  */
 function Minion(props) {
-  const { card, exhausted } = props;
+  const { card, exhausted, isOver } = props;
+  console.log('Minion props: ', props);
   const { attack, defense, portrait } = card;
 
   return (
@@ -18,6 +19,7 @@ function Minion(props) {
       }`}
       style={{ '--image-url': `url(${portrait})` }}
     >
+      {isOver && <div className="absolute bg-red-500 w-full h-full bg-opacity-50 rounded-full" />}
       <div className={`${styles.MinionAttack} text-[2.5vh]`}>
         {attack}
       </div>

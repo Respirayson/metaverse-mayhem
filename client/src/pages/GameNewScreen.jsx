@@ -1,8 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import allActions from '../actions';
 import { socket } from '../utils/socket';
+import { CustomInput, LoadingScreen } from '../components';
 
 function GameNewScreen() {
   const currentGame = useSelector((state) => state.current);
@@ -12,6 +13,8 @@ function GameNewScreen() {
 
   const { loading, gameId, hasOpponent } = currentGame;
   const previousGameId = useRef(gameId);
+  const [battleName, setBattleName] = useState('');
+  const [waiting, setWaiting] = useState(false);
 
   useEffect(() => {
     dispatch(allActions.beforeGameActions.fetchNewGame(true)).then(
@@ -36,59 +39,27 @@ function GameNewScreen() {
     }
   }, [dispatch, gameId, navigate]);
 
-  const joinNewGame = (gameId) => {
-    dispatch(allActions.beforeGameActions.joinGame(gameId));
-    socket.emit('joinGame', { gameId });
-    navigate(`/game/${gameId}`);
-  };
-
-  const promptForGameId = () => {
-    const gameId = prompt('Enter game ID');
-
-    console.log('gameId is', gameId);
-    if (gameId) {
-      joinNewGame(gameId);
-    }
-  };
+  const handleClick = () => {
+	setWaiting(true);
+  }
 
   return (
-    <div className="text-white">
-      <h1>Game New Screen</h1>
-      <div>
-        <p>
-          Loading:
-          {' '}
-          {loading ? (
-            <img
-              src="http://chimplyimage.appspot.com/images/samples/classic-spinner/animatedCircle.gif"
-              className="w-[16px] h-[16px]"
-            />
-          ) : (
-            'no'
-          )}
-        </p>
-        <p>
-          found opponent?
-          {hasOpponent ? 'yes' : 'no'}
-        </p>
-        {gameId ? (
-          <div className="mt-4">
-            <p>Hey dude, send this ID to your friend 😁</p>
-            <div className="bg-gray-200 p-8 rounded-md text-black">
-              {loading ? 'Creating new Game ID' : `${gameId}`}
-            </div>
-            <div className="mt-4">
-              <button onClick={() => navigate(`/game/${gameId}`)} className="mr-4 bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd] font-semibold">
-                Join Current Game
-              </button>
-              <button onClick={promptForGameId} className="mr-4 bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd] font-semibold">
-                Join Specific Game
-              </button>
-            </div>
+    <>
+      {waiting && <LoadingScreen loading={loading} gameId={gameId} battleName={battleName} />}
+      <div className="flex flex-1 justify-between py-8 sm:px-12 px-8 flex-col">
+        <div className="flex-1 flex justify-center flex-col xl:mt-0 my-16">
+          <div className="flex flex-row w-full">
+            <h1 className="flex font-bold text-white sm:text-6xl text-4xl head-text">Create new Battle</h1>
           </div>
-        ) : null}
+          <p className="font-normal text-[24px] text-white my-10">Create your own battle or wait for other players to join</p>
+          <CustomInput label="Username" placeHolder="Enter Battle Name" value={battleName} handleValueChange={setBattleName} />
+          <button type="button" className="px-4 py-2 rounded-lg bg-siteBlue w-fit text-white font-bold my-4" onClick={handleClick}>Enter the Arena</button>
+          <p className="font-medium text-lg text-siteBlue cursor-pointer" onClick={() => navigate('/game/join-battle')}>
+            Or join already existing battles
+          </p>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

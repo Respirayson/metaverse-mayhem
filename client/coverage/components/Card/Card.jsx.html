@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>41/41</span>
+                <span class='fraction'>44/44</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">85.71% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/7</span>
+                <span class='fraction'>4/5</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>41/41</span>
+                <span class='fraction'>44/44</span>
             </div>
         
             
@@ -104,7 +104,10 @@
 <a name='L39'></a><a href='#L39'>39</a>
 <a name='L40'></a><a href='#L40'>40</a>
 <a name='L41'></a><a href='#L41'>41</a>
-<a name='L42'></a><a href='#L42'>42</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -116,33 +119,36 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import styles from './Card.module.css';
@@ -154,33 +160,36 @@
  * @param {number} props.cardsLength - The total number of cards in the deck.
  * @param {number} props.index - The index of the card in the deck.
  * @param {boolean} props.canDrag - Flag indicating if the card is draggable.
- * @param {Object} props.card - The card object with properties like name, mana, attack, defense, and portrait.
+ * @param {Object} props.card - The card object with properties like
+ * name, mana, attack, defense, and portrait.
  * @returns {JSX.Element} The rendered Card component.
  */
 function Card(props) {
-  const { cardsLength, index, canDrag } = props;
+  const { cardsLength, index, canDrag, card } = props;
   const {
     name, mana, attack, defense, portrait,
-  } = props.card;
+  } = card;
 &nbsp;
   return (
     &lt;div
       data-testid="dragCard"
-      className={`${styles.Card} ${styles.CardPlayer} ${
+      className={`${styles.Card} ${styles.CardPlayer} ${<span class="branch-0 cbranch-no" title="branch not covered" >canDrag ? styles.CardAbleToDrag : n</span>ull} ${
         styles[`CardTotal-${cardsLength}`]
-      } ${styles[`CardNumber-${index + 1}-of-${cardsLength}`]} 
-      ${<span class="branch-0 cbranch-no" title="branch not covered" >canDrag ? styles.CardAbleToDrag : n</span>ull}`}
+      } ${styles[`CardNumber-${index + 1}-of-${cardsLength}`]} relative w-[180px] h-[285px] z-0 transition-all`}
     &gt;
-      &lt;div
-        className={`${styles.CardPortrait} bg-[image:var(--image-url)]`}
-        style={{ '--image-url': `url(${portrait})` }}
-      /&gt;
-      &lt;div className={styles.CardMana}&gt;{mana || 0}&lt;/div&gt;
-      &lt;h1 className={`${styles.CardName} font-medium`}&gt;{name}&lt;/h1&gt;
-      {attack ? &lt;div className={styles.CardAttack}&gt;{attack}&lt;/div&gt; : null}
-      {defense ? (
-        &lt;div className={styles.CardDefense}&gt;{defense}&lt;/div&gt;
-      ) : null}
+      &lt;img src="/cardtryout.jpg" alt={name} className="w-full h-full object-fill" /&gt;
+&nbsp;
+      &lt;div className="absolute w-[32px] h-[32px] rounded-[25px] top-[2.8%] left-[5.9%] flex items-center justify-center"&gt;
+        &lt;p className="text-[20px] font-bold text-blue-200"&gt;{mana || 0}&lt;/p&gt;
+      &lt;/div&gt;
+&nbsp;
+      &lt;div className="absolute w-[32px] h-[32px] rounded-[25px] bottom-[50.2%] left-[5.9%] flex items-center justify-center"&gt;
+        &lt;p className="text-[20px] font-bold text-yellow-400"&gt;{attack || 0}&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div className="absolute w-[32px] h-[32px] rounded-[25px] bottom-[50.2%] right-[5.2%] flex items-center justify-center"&gt;
+        &lt;p className="text-[20px] font-bold text-red-700"&gt;{defense || 0}&lt;/p&gt;
+      &lt;/div&gt;
+&nbsp;
     &lt;/div&gt;
   );
 }
@@ -193,7 +202,7 @@ export default Card;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-07T23:04:22.712Z
+                at 2023-07-10T18:18:48.286Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

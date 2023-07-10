@@ -20,20 +20,16 @@ function Opponent({
   name,
   handCount,
   character,
-  drawCard,
   hitFace,
   minions,
 }) {
   return (
-    <div className={styles.Opponent}>
-      <h1 className={styles.OpponentName} onClick={drawCard}>
-        {name || 'Unnamed'}
-        <TargetableHero character={character} hitFace={hitFace} />
-      </h1>
-      <div className={styles.OpponentHandWrapper}>
+    <div className="relative w-full h-full pt-16">
+      <TargetableHero character={character} hitFace={hitFace} name={name} isOpponent />
+      <div className="absolute top-[40%] right-0 scale-[60%]">
         <OpponentHand handCount={handCount} />
       </div>
-      <div className="flex flex-row items-center justify-center w-full h-[180px]">
+      <div className="flex flex-row items-center justify-center w-full h-[180px] mt-36">
         {minions}
       </div>
     </div>

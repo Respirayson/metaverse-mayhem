@@ -11,7 +11,7 @@ function DisplayMarketplace() {
   const { mintTradingCard, getCardsUnderAddress } = React.useContext(TradingCardMinterContext);
 
   return (
-    <div className="p-16">
+    <>
       <h1 className="font-semibold text-white text-left text-[18px]">
         All Listings &#40;3&#41;
       </h1>
@@ -30,7 +30,7 @@ function DisplayMarketplace() {
           />
         ))}
       </div>
-    </div>
+    </>
   );
 }
 

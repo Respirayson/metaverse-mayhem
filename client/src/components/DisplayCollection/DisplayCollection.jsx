@@ -22,7 +22,6 @@ function DisplayCollection() {
   return (
     <>
       <button className="text-white" onClick={() => mintTradingCard()}>Test Contract</button>
-      <div className="p-16">
         <h1 className="font-semibold text-white text-left text-[18px]">
           All Collection &#40;
           {userCards.length}
@@ -44,7 +43,6 @@ function DisplayCollection() {
             </div>
           ))}
         </div>
-      </div>
     </>
   );
 }

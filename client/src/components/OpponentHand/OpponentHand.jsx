@@ -10,7 +10,7 @@ function OpponentHand(props) {
   const { handCount } = props;
 
   return (
-    <div className="flex flex-row justify-center items-center h-48">
+    <div className="flex flex-row justify-center items-center">
       {Array(handCount)
         .fill(0)
         .map((_, i) => (

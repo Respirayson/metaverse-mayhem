@@ -25,22 +25,6 @@ function OpponentContainer(props) {
   const { board, exhaustedMinions } = props.board;
 
   /**
-     * Function to draw a card for the opponent.
-     */
-  const drawCard = () => {
-    dispatch(
-      allActions.playerActions.playCard(
-        {
-          ...newRandomCard(),
-          key: uuidv4(),
-        },
-        0,
-        'OPPONENT',
-      ),
-    );
-  };
-
-  /**
      * Function to hit the opponent's face with a minion.
      * @param {Object} minion - The attacking minion.
      * @param {Object} target - The target (opponent's face).
@@ -86,7 +70,6 @@ function OpponentContainer(props) {
       character={character}
       board={board}
       exhaustedMinions={exhaustedMinions}
-      drawCard={drawCard}
       hitFace={hitFace}
       attackMinion={attackMinion}
       turn={turn}

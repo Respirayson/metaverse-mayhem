@@ -120,3 +120,21 @@ html, body {
     background: #65c4fa;
     filter: blur(150px);
   }
+
+  .head-text::before {
+    content: "";
+    display: flex;
+    width: 4px;
+    height: 100%;
+    background: #65c4fa;
+    margin-right: 12px;
+  }
+
+  .gameload {
+    background: rgba(127, 70, 240, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(3px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }

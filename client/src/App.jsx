@@ -12,6 +12,7 @@ import {
   GameNewScreen,
   StartScreen,
   CreateListing,
+  JoinBattle
 } from './pages';
 
 import { Login, PrivateRoutes, Footer } from './components';
@@ -114,18 +115,19 @@ function App() {
           <Route path="/game">
             <Route path="" element={<StartScreen />} />
             <Route path="new" element={<GameNewScreen />} />
+            <Route path="join-battle" element={<JoinBattle />} />
             <Route path=":id" element={<Game />} />
           </Route>
           <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/create" element={<CreateListing />} />
+          <Route path="/collection" element={<Collection />} />
 
-          <Route
+          {/* <Route
             element={
               <PrivateRoutes authenticated={authenticated} />
                         }
           >
-            <Route path="/collection" element={<Collection />} />
-          </Route>
+          </Route> */}
         </Routes>
       </main>
       <footer className="bg-primary-black">

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">65.78% </span>
+                <span class="strong">74.21% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>125/190</span>
+                <span class='fraction'>141/190</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">91.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>17/17</span>
+                <span class='fraction'>22/24</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">14.28% </span>
+                <span class="strong">28.57% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/7</span>
+                <span class='fraction'>2/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">65.78% </span>
+                <span class="strong">74.21% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>125/190</span>
+                <span class='fraction'>141/190</span>
             </div>
         
             
@@ -389,22 +389,22 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -578,23 +578,23 @@ export const fadeAnimation = {
   },
 };
 &nbsp;
-export const fadeIn = <span class="fstat-no" title="function not covered" >(direction, type, delay, duration) =&gt; ({</span>
-<span class="cstat-no" title="statement not covered" >  hidden: {</span>
-<span class="cstat-no" title="statement not covered" >    x: direction === 'left' ? 100 : direction === 'right' ? -100 : 0,</span>
-<span class="cstat-no" title="statement not covered" >    y: direction === 'up' ? 100 : direction === 'down' ? -100 : 0,</span>
-<span class="cstat-no" title="statement not covered" >    opacity: 0,</span>
-<span class="cstat-no" title="statement not covered" >  },</span>
-<span class="cstat-no" title="statement not covered" >  show: {</span>
-<span class="cstat-no" title="statement not covered" >    x: 0,</span>
-<span class="cstat-no" title="statement not covered" >    y: 0,</span>
-<span class="cstat-no" title="statement not covered" >    opacity: 1,</span>
-<span class="cstat-no" title="statement not covered" >    transition: {</span>
-<span class="cstat-no" title="statement not covered" >      type,</span>
-<span class="cstat-no" title="statement not covered" >      delay,</span>
-<span class="cstat-no" title="statement not covered" >      duration,</span>
-<span class="cstat-no" title="statement not covered" >      ease: 'easeOut',</span>
-<span class="cstat-no" title="statement not covered" >    },</span>
-<span class="cstat-no" title="statement not covered" >  },</span>
+export const fadeIn = (direction, type, delay, duration) =&gt; ({
+  hidden: {
+    x: direction === 'left' <span class="branch-0 cbranch-no" title="branch not covered" >? 100 </span>: direction === 'right' ? -100 : 0,
+    y: direction === 'up' ? 100 : direction === 'down' <span class="branch-0 cbranch-no" title="branch not covered" >? -100 </span>: 0,
+    opacity: 0,
+  },
+  show: {
+    x: 0,
+    y: 0,
+    opacity: 1,
+    transition: {
+      type,
+      delay,
+      duration,
+      ease: 'easeOut',
+    },
+  },
 });
 &nbsp;
 export const dioramaAnimation = <span class="fstat-no" title="function not covered" >(direction) =&gt; ({</span>
@@ -640,7 +640,7 @@ export const footerVariants = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-07T23:04:22.712Z
+                at 2023-07-10T18:18:48.286Z
             </div>
         <script src="../prettify.js"></script>
         <script>

@@ -5,6 +5,7 @@ import allActions from '../actions';
 import PlayerContainer from './PlayerContainer';
 import OpponentContainer from './OpponentContainer';
 import CustomDragLayer from './CustomDragLayer';
+import { GameInstruction } from '../components';
 
 /**
  * Component representing the game board
@@ -17,8 +18,6 @@ function Board() {
   } = useSelector(
     (state) => state,
   );
-  console.log(turn ? 'Your turn' : 'Enemy turn');
-
   const dispatch = useDispatch();
 
   /**
@@ -31,7 +30,7 @@ function Board() {
   return (
     <DndProvider backend={HTML5Backend}>
       <CustomDragLayer />
-      <div className="w-full pt-24">
+      <div className="w-full">
         <OpponentContainer
           board={board.Opponent}
           name={opponent}
@@ -48,6 +47,7 @@ function Board() {
           turn={turn}
         />
       </div>
+      <GameInstruction />
     </DndProvider>
   );
 }
