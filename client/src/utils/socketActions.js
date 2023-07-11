@@ -27,10 +27,10 @@ export const socketActions = (dispatch, socket) => {
   });
 
   socket.on('newGame', (payload) => {
-    const { opponentName, isStarting } = payload;
+    const { user, opponentName, isStarting } = payload;
     dispatch(
       allActions.gameActions.newGame(
-        'You',
+        user,
         opponentName,
         isStarting,
         true,

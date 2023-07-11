@@ -2,19 +2,19 @@ function Collectible({
   name, description, mana, attack, defense, image,
 }) {
   return (
-    <div className="sm:w-[288px] w-full rounded-[15px] bg-[#1c1c24] cursor-pointer">
+    <div className="md:w-[14rem] 2xl:w-[288px] h-full rounded-[15px] bg-[#1c1c24] cursor-pointer">
       <img
         alt="portrait"
         src={image}
-        className="h-[288px] w-full object-cover rounded-[15px]"
+        className="md:h-[14rem] 2xl:h-[288px] w-full object-cover rounded-[15px]"
       />
 
       <div className="flex flex-col p-4">
         <div className="block">
-          <h3 className="font-semibold text-white text-[16px] text-left leading-[26px] truncate">
+          <h3 className="font-semibold text-white text-[16px] text-left leading-[26px]">
             {name}
           </h3>
-          <p className="mt-[5px] font-normal text-[#808191] text-left leading-[18px] truncate">
+          <p className="mt-[5px] font-normal text-[#808191] text-left leading-[18px]">
             {description}
           </p>
         </div>

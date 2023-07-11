@@ -10,7 +10,9 @@ import { Tooltip } from 'react-tooltip';
  * @param {number} props.character.mana.total - The total mana of the hero
  * @returns {JSX.Element} - The JSX element
  */
-function Hero({ character, isOpponent, name, isOver }) {
+function Hero({
+  character, isOpponent, name, isOver,
+}) {
   const { health, mana } = character;
 
   const getHealthColours = (hp) => (hp >= 15 ? 'bg-green-500' : hp >= 8 ? 'bg-orange-500' : 'bg-red-500');

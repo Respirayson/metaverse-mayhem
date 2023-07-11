@@ -12,7 +12,9 @@ import styles from './Card.module.css';
  * @returns {JSX.Element} The rendered Card component.
  */
 function Card(props) {
-  const { cardsLength, index, canDrag, card } = props;
+  const {
+    cardsLength, index, canDrag, card,
+  } = props;
   const {
     name, mana, attack, defense, portrait,
   } = card;

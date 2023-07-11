@@ -1,8 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid';
 import { motion } from 'framer-motion';
 import allActions from '../actions';
-import { newRandomCard } from '../utils/cards';
 import { Opponent } from '../components';
 import EnemyMinion from './EnemyMinion';
 import { slideAnimation } from '../utils/motion';

@@ -14,7 +14,7 @@ function LoadingScreen({ loading, gameId, battleName }) {
       whileInView="show"
       viewport={{ once: true }}
     >
-      <div className="flex justify-between items-center absolute z-10 w-full h-screen gameload inset-0 flex-col">
+      <div className="flex justify-between items-center absolute z-20 w-full h-screen gameload inset-0 flex-col">
 
         <div className="flex-1 flex items-center justify-center flex-col">
           <h1 className="font-bold text-white sm:text-6xl text-4xl text-center">
@@ -33,7 +33,7 @@ function LoadingScreen({ loading, gameId, battleName }) {
 
           <div className="flex justify-evenly items-center mt-12">
             <div className="flex items-center justify-center flex-col">
-              <img src="/player01.jpg" alt='player01' className="md:w-36 w-24 md:h-36 h-24 object-contain rounded-full drop-shadow-lg" />
+              <img src="/player01.jpg" alt="player01" className="md:w-36 w-24 md:h-36 h-24 object-contain rounded-full drop-shadow-lg" />
               <p className="mt-3 text-white md:text-xl text-base">
                 {battleName}
               </p>
@@ -42,7 +42,7 @@ function LoadingScreen({ loading, gameId, battleName }) {
             <h2 className="font-extrabold text-siteViolet text-7xl mx-16">Vs</h2>
 
             <div className="flex items-center justify-center flex-col">
-              <img src="/player02.jpg" alt='player02' className="md:w-36 w-24 md:h-36 h-24 object-contain rounded-full drop-shadow-lg" />
+              <img src="/player02.jpg" alt="player02" className="md:w-36 w-24 md:h-36 h-24 object-contain rounded-full drop-shadow-lg" />
               <p className="mt-3 text-white md:text-xl text-base">??????????</p>
             </div>
           </div>

@@ -12,10 +12,10 @@ import {
   GameNewScreen,
   StartScreen,
   CreateListing,
-  JoinBattle
+  JoinBattle,
 } from './pages';
 
-import { Login, PrivateRoutes, Footer } from './components';
+import { Login, Footer } from './components';
 import { navVariants } from './utils/motion';
 
 import { socketActions } from './utils/socketActions';

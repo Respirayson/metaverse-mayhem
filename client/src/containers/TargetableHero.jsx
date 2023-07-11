@@ -9,7 +9,9 @@ import itemTypes from '../constants';
  * @param {Function} props.hitFace - Function to handle hitting the opponent's face.
  * @returns {JSX.Element} TargetableHero component.
  */
-function TargetableHero({ hitFace, character, name, isOpponent }) {
+function TargetableHero({
+  hitFace, character, name, isOpponent,
+}) {
   /**
      * Hook to enable dropping functionality for minions onto the hero.
      */

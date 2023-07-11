@@ -43,10 +43,7 @@ const newGameFailure = (errors) => ({
  * @param {string} gameId - The ID of the game to join.
  * @returns {object} Action object created by newGameSuccess.
  */
-const joinGame = (gameId) => {
-  console.log('join game running');
-  return newGameSuccess(gameId);
-};
+const joinGame = (gameId) => newGameSuccess(gameId);
 
 /**
  * Checks if a new game has already been fetched from the server.
@@ -95,7 +92,7 @@ const resetGame = () => ({
  */
 const fetchNewGame = (force = false) => (dispatch, getState) => {
   if (!isNewGameFetched(getState(), force)) {
-    return;
+    return undefined;
   }
 
   dispatch(newGameRequest());

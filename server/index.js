@@ -93,16 +93,17 @@ const connectSockets = () => {
          * Handle joining a game
          * @param {Object} data - Data containing the gameId
          */
-    socket.on('joinGame', async ({ gameId }) => {
+    socket.on('joinGame', async ({ gameId, name }) => {
       const getPlayerCount = () => sizeOfRoom(io, gameId);
       if (getPlayerCount() === 2) {
         return;
       }
-
+      socket.data.username = name;
       await socket.join(gameId);
 
       io.in(gameId).emit('playerJoined', {
         playerCount: getPlayerCount(),
+        name,
       });
 
       console.log(
@@ -117,16 +118,17 @@ const connectSockets = () => {
         );
         const playerOneStarts = Math.random() >= 0.5;
         const [playerOne, playerTwo] = getSocketsInRoom(io, gameId);
-        console.log('playerOne', playerOne);
-        console.log('playerTwo', playerTwo);
+        const sockets = await io.in(gameId).fetchSockets();
         io.to(playerOne).emit('newGame', {
+          user: sockets[1].data.username,
           gameId,
-          opponentName: 'Mr Trying my best',
+          opponentName: sockets[0].data.username,
           isStarting: playerOneStarts,
         });
         io.to(playerTwo).emit('newGame', {
+          user: sockets[0].data.username,
           gameId,
-          opponentName: 'Struggling to win',
+          opponentName: sockets[1].data.username,
           isStarting: !playerOneStarts,
         });
       }

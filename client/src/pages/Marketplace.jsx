@@ -1,4 +1,4 @@
-import { DisplayMarketplace } from "../components";
+import { DisplayMarketplace } from '../components';
 
 function Marketplace() {
   return (
