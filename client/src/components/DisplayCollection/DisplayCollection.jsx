@@ -1,67 +1,100 @@
 import React, { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import Collectible from '../Collectible/Collectible';
 import { TradingCardMinterContext } from '../../context/TradingCardMinter';
+import { cards } from '../../utils/cards';
+import { fadeIn } from '../../utils/motion';
 
-function DisplayCollection() {
-  const [userCards, setUserCards] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  const { getCardsUnderAddress, mintTradingCard } = React.useContext(
-    TradingCardMinterContext,
-  );
+function DisplayCollection({ index, userCards, loading }) {
+  const { mintTradingCard } = React.useContext(TradingCardMinterContext);
+  const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    const fetchCards = async () => {
-      setLoading(true);
-      const data = await getCardsUnderAddress();
-      setUserCards(data);
-      setLoading(false);
-    };
-
-    fetchCards();
-  }, [getCardsUnderAddress]);
+    if (!loading) {
+      setTimeout(() => {
+        setLoader(false);
+      }, 2000);
+    }
+  }, [loading]);
 
   return (
     <>
-      <button className="text-white" onClick={() => mintTradingCard()}>
-        Test Contract
-      </button>
-      <h1 className="font-semibold text-white text-left text-[18px]">
-        All Collection &#40;
-        {userCards.length}
-        &#41;
-      </h1>
-      <div className="flex flex-row">
-        <div className="w-[50%] flex flex-wrap justify-end mt-[20px] gap-[26px]">
-          {userCards.map((card, index) => (
-            <div key={index}>
-              <Collectible
-                image={card.portrait}
-                key={index}
-                name={card.name}
-                description={card.description}
-                mana={card.mana}
-                attack={card.attack}
-                defense={card.defense}
-              />
+      {loader && (
+        <div className="preloader">
+          <div className="preloader-wrapper">
+            <div className="loading">
+              <div className="circle" />
+              <div className="circle" />
+              <div className="circle" />
             </div>
-          ))}
+          </div>
         </div>
+      )}
 
-        <div className="w-[50%] flex flex-wrap justify-end mt-[20px] gap-[26px]">
-          {userCards.map((card, index) => (
-            <div key={index}>
-              <Collectible
-                image={card.portrait}
-                key={index}
-                name={card.name}
-                description={card.description}
-                mana={card.mana}
-                attack={card.attack}
-                defense={card.defense}
-              />
+      <div className="px-16 pt-4">
+        <button className="text-white" onClick={() => mintTradingCard()}>
+          Test Contract
+        </button>
+        <h1 className="font-semibold text-white text-left text-[18px]">
+          All Collection &#40;
+          {userCards.length}
+          &#41;
+        </h1>
+        <div className="flex flex-row justify-end">
+          <div className="grid grid-cols-2 gap-[26px] mt-[20px]">
+            {cards.slice(index, index + 4).map((card, index) => (
+              <AnimatePresence initial mode="wait">
+                <motion.div
+                  key={card.name}
+                  whileHover={{ scale: 1.1 }}
+                  variants={fadeIn('up', 'tween', (loader ? 2 : 0) + index / 10, 0.5)}
+                  initial="hidden"
+                  whileInView="show"
+                >
+                  <Collectible
+                    image={card.portrait}
+                    key={index}
+                    name={card.name}
+                    description={card.description}
+                    mana={card.mana}
+                    attack={card.attack}
+                    defense={card.defense}
+                  />
+                </motion.div>
+              </AnimatePresence>
+            ))}
+          </div>
+
+          {userCards.length > 0 ? (
+            <div className="grid grid-cols-2 gap-[26px] mt-[20px] ml-[15%]">
+              {userCards.map((card, index) => (
+                <AnimatePresence initial mode="wait">
+                  <motion.div
+                    key={index}
+                    variants={fadeIn('up', 'tween', index / 10, 0.5)}
+                    initial="hidden"
+                    whileInView="show"
+                  >
+                    <Collectible
+                      image={card.portrait}
+                      key={index}
+                      name={card.name}
+                      description={card.description}
+                      mana={card.mana}
+                      attack={card.attack}
+                      defense={card.defense}
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              ))}
             </div>
-          ))}
+          ) : (
+            <div className="flex mt-[20px] ml-[15%]">
+              <h1 className="font-semibold text-white text-left text-[18px]">
+                No Trading Cards found in your Collection
+              </h1>
+            </div>
+          )}
         </div>
       </div>
     </>
