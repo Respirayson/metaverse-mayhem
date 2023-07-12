@@ -32,7 +32,7 @@ function DisplayCollection({ index, userCards, loading }) {
       )}
 
       <div className="px-16 pt-4">
-        <button className="text-white" onClick={() => mintTradingCard()}>
+        <button type="button" className="text-white" onClick={() => mintTradingCard()}>
           Test Contract
         </button>
         <h1 className="font-semibold text-white text-left text-[18px]">
@@ -42,18 +42,23 @@ function DisplayCollection({ index, userCards, loading }) {
         </h1>
         <div className="flex flex-row justify-end">
           <div className="grid grid-cols-2 gap-[26px] mt-[20px]">
-            {cards.slice(index, index + 4).map((card, index) => (
+            {cards.slice(index, index + 4).map((card, i) => (
               <AnimatePresence initial mode="wait">
                 <motion.div
                   key={card.name}
                   whileHover={{ scale: 1.1 }}
-                  variants={fadeIn('up', 'tween', (loader ? 2 : 0) + index / 10, 0.5)}
+                  variants={fadeIn(
+                    'up',
+                    'tween',
+                    (loader ? 2 : 0) + index / 10,
+                    0.5,
+                  )}
                   initial="hidden"
                   whileInView="show"
                 >
                   <Collectible
                     image={card.portrait}
-                    key={index}
+                    key={i}
                     name={card.name}
                     description={card.description}
                     mana={card.mana}
@@ -68,9 +73,10 @@ function DisplayCollection({ index, userCards, loading }) {
           {userCards.length > 0 ? (
             <div className="grid grid-cols-2 gap-[26px] mt-[20px] ml-[15%]">
               {userCards.map((card, index) => (
+                // Remove duplicates: change to [...new Set(userCards)]
                 <AnimatePresence initial mode="wait">
                   <motion.div
-                    key={index}
+                    key={card.name}
                     variants={fadeIn('up', 'tween', index / 10, 0.5)}
                     initial="hidden"
                     whileInView="show"

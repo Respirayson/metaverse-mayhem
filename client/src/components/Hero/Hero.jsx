@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { Tooltip } from 'react-tooltip';
+import sparcle from '../../utils/animations';
 
 /**
  * Component representing the hero character
@@ -11,26 +13,32 @@ import { Tooltip } from 'react-tooltip';
  * @returns {JSX.Element} - The JSX element
  */
 function Hero({
-  character, isOpponent, name, isOver,
+  character, isOpponent, name, isOver, heroRef, getCoords,
 }) {
   const { health, mana } = character;
+
+  useEffect(() => {
+    if (health < 30) {
+      sparcle(getCoords(heroRef));
+    }
+  }, [getCoords, health, heroRef]);
 
   const getHealthColours = (hp) => (hp >= 15 ? 'bg-green-500' : hp >= 8 ? 'bg-orange-500' : 'bg-red-500');
 
   return (
-    <div className="flex items-center justify-center mt-16">
-      {isOver && <div className="absolute w-[85%] h-[18%] rounded-xl bg-red-500 bg-opacity-50" />}
+    <div ref={heroRef} className="flex items-center justify-center mt-4">
+      {isOver && <div className="absolute w-[60%] h-[30%] rounded-xl bg-red-500 bg-opacity-50" />}
       <img data-testid="player" id={`Player-${isOpponent ? '1' : '2'}`} src={isOpponent ? '/player02.jpg' : '/player01.jpg'} alt="player-icon" className="w-14 h-14 object-contain rounded-full" />
 
       <div data-testid="health" id={`Health-${isOpponent ? '1' : '2'}`} className="flex flex-row bg-white rounded-md p-2 sm:min-w-[512px] min-w-[312px] sm:min-h-[48px] min-h-[40px] bg-opacity-10 backdrop-filter backdrop-blur-lg mx-3">
-        {[...Array(Math.abs(health)).keys()].map((item, index) => (
+        {[...Array(Math.abs(health)).keys()].map((item, _index) => (
           <div
             key={`player-item-${item}`}
             className={`sm:w-4 w-2 sm:h-8 h-6 rounded-sm ${getHealthColours(health)} mr-1`}
           />
         ))}
       </div>
-      <div data-testid="mana" id={`Mana-${isOpponent ? '1' : '2'}`} className="flex items-center justify-center bg-blue-700 backdrop-filter backdrop-blur-lg bg-opacity-10 w-20 h-14 rounded-full text-white font-extrabold text-2xl cursor-pointer">
+      <div data-testid="mana" id={`Mana-${isOpponent ? '1' : '2'}`} className="flex items-center justify-center bg-blue-700 backdrop-filter backdrop-blur-lg bg-opacity-10 w-20 h-14 rounded-full text-white font-extrabold text-2xl">
         {mana.current}
       </div>
 

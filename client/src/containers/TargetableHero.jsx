@@ -1,6 +1,7 @@
 import { useDrop } from 'react-dnd';
 import { Hero } from '../components';
 import itemTypes from '../constants';
+import sparcle, { getCoords } from '../utils/animations';
 
 /**
  * Component representing a targetable hero.
@@ -10,11 +11,11 @@ import itemTypes from '../constants';
  * @returns {JSX.Element} TargetableHero component.
  */
 function TargetableHero({
-  hitFace, character, name, isOpponent,
+  hitFace, character, name, isOpponent, heroRef, getCoords,
 }) {
   /**
-     * Hook to enable dropping functionality for minions onto the hero.
-     */
+   * Hook to enable dropping functionality for minions onto the hero.
+   */
   const [{ isOver }, drop] = useDrop(
     () => ({
       accept: itemTypes.MINION,
@@ -31,7 +32,14 @@ function TargetableHero({
 
   return (
     <div ref={drop} data-testid="targetable-hero">
-      <Hero character={character} name={name} isOpponent={isOpponent} isOver={isOver} />
+      <Hero
+        heroRef={heroRef}
+        character={character}
+        name={name}
+        isOpponent={isOpponent}
+        isOver={isOver}
+        getCoords={getCoords}
+      />
     </div>
   );
 }

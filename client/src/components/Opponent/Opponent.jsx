@@ -1,3 +1,4 @@
+import { Tooltip } from 'react-tooltip';
 import { TargetableHero } from '../../containers';
 import OpponentHand from '../OpponentHand/OpponentHand';
 
@@ -11,7 +12,8 @@ import OpponentHand from '../OpponentHand/OpponentHand';
  * @param {string[]} props.exhaustedMinions - Array of IDs of exhausted minions.
  * @param {Function} props.drawCard - Function to handle drawing a card from the opponent's deck.
  * @param {Function} props.hitFace - Function to handle attacking the opponent's face.
- * @param {Function} props.attackMinion - Function to handle attacking a minion on the opponent's board.
+ * @param {Function} props.attackMinion - Function to handle attacking
+ * a minion on the opponent's board.
  * @param {boolean} props.turn - Flag indicating if it's the opponent's turn.
  * @returns {JSX.Element} Opponent component.
  */
@@ -21,17 +23,28 @@ function Opponent({
   character,
   hitFace,
   minions,
+  heroRef,
+  getCoords,
 }) {
   return (
-    <div className="relative w-full h-full pt-16">
-      <TargetableHero character={character} hitFace={hitFace} name={name} isOpponent />
-      <div className="absolute top-[40%] right-0 scale-[60%]">
+    <>
+      <div className="absolute top-0 right-[12%]">
         <OpponentHand handCount={handCount} />
       </div>
-      <div className="flex flex-row items-center justify-center w-full h-[180px] mt-36">
-        {minions}
+      <div className="relative w-full h-full pt-4">
+        <TargetableHero
+          heroRef={heroRef}
+          character={character}
+          hitFace={hitFace}
+          name={name}
+          isOpponent
+          getCoords={getCoords}
+        />
+        <div className="flex flex-row items-center justify-center w-full h-[170px] mt-5">
+          {minions}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

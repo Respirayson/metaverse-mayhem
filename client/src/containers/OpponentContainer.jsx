@@ -1,9 +1,12 @@
 import { useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
+import { useContext } from 'react';
 import allActions from '../actions';
 import { Opponent } from '../components';
 import EnemyMinion from './EnemyMinion';
 import { slideAnimation } from '../utils/motion';
+import { TradingCardMinterContext } from '../context/TradingCardMinter';
+import { getCoords } from '../utils/animations';
 
 /**
  * Container component for the opponent.
@@ -16,6 +19,7 @@ import { slideAnimation } from '../utils/motion';
  */
 function OpponentContainer(props) {
   const dispatch = useDispatch();
+  const { player1Ref } = useContext(TradingCardMinterContext);
 
   const {
     name, handCount, character, turn,
@@ -72,6 +76,8 @@ function OpponentContainer(props) {
       attackMinion={attackMinion}
       turn={turn}
       minions={minions}
+      heroRef={player1Ref}
+      getCoords={getCoords}
     />
   );
 }

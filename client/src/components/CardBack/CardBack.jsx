@@ -6,11 +6,13 @@ import cardBackStyles from './CardBack.module.css';
  * @param {object} props - The component props
  * @returns {JSX.Element} - The JSX element
  */
-function CardBack() {
+function CardBack({ index, cardsLength }) {
   return (
     <div
       data-testid="card-back"
-      className={`${styles.Card} ${styles.CardOpponent} ${cardBackStyles.CardBackDefault}`}
+      className={`${cardBackStyles.CardBackDefault} ${
+        styles[`OpponentCardTotal-${cardsLength}`]
+      } ${styles[`OpponentCardNumber-${cardsLength - index + 1}-of-${cardsLength}`]} w-[180px] h-[285px] z-0 rounded-xl`}
     />
   );
 }

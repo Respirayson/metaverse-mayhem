@@ -43,6 +43,8 @@ function GameNewScreen() {
   }, [dispatch, gameId, navigate]);
 
   const handleClick = () => {
+    document.querySelector('footer').style.display = 'none';
+    document.querySelector('header').style.display = 'none';
     setWaiting(true);
   };
 

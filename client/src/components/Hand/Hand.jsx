@@ -26,7 +26,7 @@ function Hand({
   ));
 
   return (
-    <div className="flex flex-row justify-center items-center h-[220px] mt-2">
+    <div className="flex flex-row justify-center items-center h-[180px] z-30 relative my-10">
       {cardsList}
     </div>
   );

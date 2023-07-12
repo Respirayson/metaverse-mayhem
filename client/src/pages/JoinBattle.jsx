@@ -14,6 +14,8 @@ function JoinBattle() {
 
   useEffect(() => {
     setUsername(localStorage.getItem('username'));
+    document.querySelector('footer').style.display = 'block';
+    document.querySelector('header').style.display = 'block';
   }, []);
 
   const joinNewGame = (gameId) => {
@@ -43,7 +45,7 @@ function JoinBattle() {
           value={gameId}
           handleValueChange={setGameId}
         />
-        <button type="button" onClick={handleClick} className="mt-6 px-4 py-2 rounded-lg bg-siteBlue w-fit text-white font-bold">Join a specific game</button>
+        <button type="button" onClick={handleClick} className="mt-6 px-4 py-2 rounded-lg bg-siteBlue w-fit text-white font-bold z-10 relative">Join a specific game</button>
 
         <p className="font-medium text-lg text-siteBlue cursor-pointer mt-4" onClick={() => navigate('/game/new')}>
           Or create a new battle

@@ -80,7 +80,7 @@ function App() {
             </Link>
           </div>
 
-          <div className="text-white md:flex hidden list-none flex-row justify-between items-center flex-initial text-l">
+          <div className="relative z-20 text-white md:flex hidden list-none flex-row justify-between items-center flex-initial text-l">
             <Link to="/game" className="mx-6">
               Game
             </Link>
@@ -105,7 +105,7 @@ function App() {
         </motion.nav>
       </header>
 
-      <main className="w-full min-h-[calc(100vh-73px)] bg-primary-black overflow-hidden">
+      <main className="w-full min-h-[100vh] bg-primary-black overflow-hidden">
         <Routes>
           <Route
             path="/"

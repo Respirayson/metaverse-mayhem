@@ -23,13 +23,15 @@ function Player({
   playerTurn,
   onClick,
   turn,
+  heroRef,
+  getCoords,
 }) {
   return (
-    <div className="flex flex-end w-full mt-4" data-testid="targetable-player-hero">
+    <div className="flex flex-end w-full" data-testid="targetable-player-hero">
       <div className={`${styles.PlayerHandWrapper}`}>
         <button
           type="button"
-          className={`absolute right-[60px] top-[530px] font-semibold ${
+          className={`z-50 absolute right-[60px] top-[50%] font-semibold ${
             turn ? 'bg-green-700' : 'bg-gray-700'
           } text-white p-2 rounded-full px-4`}
           onClick={onClick}
@@ -46,7 +48,7 @@ function Player({
           currentMana={character.mana.current}
           playerTurn={playerTurn}
         />
-        <TargetableHero character={character} name={name} />
+        <TargetableHero getCoords={getCoords} heroRef={heroRef} character={character} name={name} />
 
       </div>
     </div>

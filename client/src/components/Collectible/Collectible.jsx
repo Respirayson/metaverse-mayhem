@@ -1,25 +1,6 @@
 import { useState, useRef } from "react";
 
 function Collectible({ name, description, mana, attack, defense, image }) {
-  const [selectedId, setSelectedId] = useState(null);
-  const [canDrag, setCanDrag] = useState(false);
-  const containerRefs = useRef(new Array());
-  const handlePanEnd = (e, info, card) => {
-    if (selectedId) {
-      if (Math.abs(info.offset.x) < 5) {
-        const styles = getComputedStyle(containerRefs.current[card]);
-        const timeout = styles.transform.split(",")[4] * -0.6;
-        setCanDrag(false);
-        setTimeout(() => {
-          setSelectedId(null);
-        }, timeout);
-      }
-    } else {
-      setCanDrag(true);
-      setSelectedId(card);
-    }
-  };
-
   return (
     <div className="md:w-[12rem] 2xl:w-[288px] rounded-[15px] bg-[#1c1c24] cursor-pointer">
       <img

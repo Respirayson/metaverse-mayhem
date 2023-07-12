@@ -9,7 +9,6 @@ import styles from './Minion.module.css';
  */
 function Minion(props) {
   const { card, exhausted, isOver } = props;
-  console.log('Minion props: ', props);
   const { attack, defense, portrait } = card;
 
   return (

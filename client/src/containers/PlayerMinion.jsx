@@ -38,7 +38,7 @@ function PlayerMinion({ card, exhausted, canDrag }) {
   }, [preview]);
 
   return (
-    <div ref={drag} className="cursor-pointer relative">
+    <div ref={drag} className="cursor-pointer">
       <Minion card={card} exhausted={exhausted || !canDrag} />
     </div>
   );
