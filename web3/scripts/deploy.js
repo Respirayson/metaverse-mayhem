@@ -1,23 +1,18 @@
 const hre = require("hardhat");
 
 const main = async () => {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const unlockTime = currentTimestampInSeconds + 60;
-
-  const lockedAmount = hre.ethers.utils.parseEther("1");
+  const lockedAmount = hre.ethers.utils.parseEther("0.5");
 
   const TradingCardMinter = await hre.ethers.getContractFactory("TradingCardMinter");
-  const cardMinter = await TradingCardMinter.deploy(unlockTime, { value: lockedAmount });
+  const cardMinter = await TradingCardMinter.deploy({ value: lockedAmount });
 
   await cardMinter.deployed();
 
-  // console.log(
-  //   `Lock with ${ethers.utils.formatEther(
-  //     lockedAmount
-  //   )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`
-  // );
+  const NftMarketplace = await hre.ethers.getContractFactory("NftMarketplace");
+  const nftMarketplace = await NftMarketplace.deploy();
 
   console.log("TradingCardMinter deployed to:", cardMinter.address);
+  console.log("NftMarketplace deployed to:", nftMarketplace.address);
 }
 
 const runMain = async () => {

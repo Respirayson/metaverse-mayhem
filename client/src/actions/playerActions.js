@@ -1,11 +1,11 @@
-import gameActions from "./gameActions";
+import gameActions from './gameActions';
 
 // Action types
-export const PLAY_CARD = "PLAY_CARD";
-export const DRAW_CARD = "DRAW_CARD";
-export const HIT_FACE = "HIT_FACE";
-export const HIT_MINION = "HIT_MINION";
-export const KILL_MINION = "KILL_MINION";
+export const PLAY_CARD = 'PLAY_CARD';
+export const DRAW_CARD = 'DRAW_CARD';
+export const HIT_FACE = 'HIT_FACE';
+export const HIT_MINION = 'HIT_MINION';
+export const KILL_MINION = 'KILL_MINION';
 
 /**
  * Action creator for playing a card.
@@ -15,9 +15,12 @@ export const KILL_MINION = "KILL_MINION";
  * @param {boolean} viaServer - Flag indicating if the action is performed via the server.
  * @returns {object} Action object with type 'PLAY_CARD' and the payload.
  */
-const playCard = (card, index, source, viaServer) => {
-    return { payload: { card, index, source, viaServer }, type: PLAY_CARD };
-};
+const playCard = (card, index, source, viaServer) => ({
+  payload: {
+    card, index, source, viaServer,
+  },
+  type: PLAY_CARD,
+});
 
 /**
  * Thunk action creator for spending mana and playing a card.
@@ -26,18 +29,16 @@ const playCard = (card, index, source, viaServer) => {
  * @param {string} source - The source of the card (PLAYER or OPPONENT).
  * @returns {function} Thunk function that dispatches playCard and gameActions.useMana actions.
  */
-const spendManaAndPlayCard = (card, index, source) => {
-    return (dispatch, getState) => {
-        const player = source === "PLAYER" ? "Player" : "Opponent";
-        const currentMana = getState().character[player].mana.current;
+const spendManaAndPlayCard = (card, index, source) => (dispatch, getState) => {
+  const player = source === 'PLAYER' ? 'Player' : 'Opponent';
+  const currentMana = getState().character[player].mana.current;
 
-        if (currentMana < card.mana) {
-            return;
-        }
+  if (currentMana < card.mana) {
+    return;
+  }
 
-        dispatch(playCard(card, index, source));
-        dispatch(gameActions.useMana(source, card.mana));
-    };
+  dispatch(playCard(card, index, source));
+  dispatch(gameActions.useMana(source, card.mana));
 };
 
 /**
@@ -46,9 +47,7 @@ const spendManaAndPlayCard = (card, index, source) => {
  * @param {boolean} viaServer - Flag indicating if the action is performed via the server.
  * @returns {object} Action object with type 'DRAW_CARD' and the payload.
  */
-const drawCard = (target, viaServer) => {
-    return { payload: { target, viaServer }, type: DRAW_CARD };
-};
+const drawCard = (target, viaServer) => ({ payload: { target, viaServer }, type: DRAW_CARD });
 
 /**
  * Action creator for hitting the opponent's face with a card.
@@ -56,20 +55,16 @@ const drawCard = (target, viaServer) => {
  * @param {string} target - The target to hit (PLAYER or OPPONENT).
  * @returns {object} Action object with type 'HIT_FACE' and the payload.
  */
-const hitFace = (card, target) => {
-    return { payload: { card, target }, type: HIT_FACE };
-};
+const hitFace = (card, target) => ({ payload: { card, target }, type: HIT_FACE });
 
-const attackHero = (card, target) => {
-    return (dispatch, getState) => {
-        const { character } = getState();
-        dispatch(hitFace(card, target));
-        console.log(character.Enemy.health);
+const attackHero = (card, target) => (dispatch, getState) => {
+  const { character } = getState();
+  dispatch(hitFace(card, target));
+  console.log(character.Enemy.health);
 
-        // if (character.Enemy.health <= 0) {
-        //   dispatch(gameActions.endGame("PLAYER"));
-        // }
-    };
+  // if (character.Enemy.health <= 0) {
+  //   dispatch(gameActions.endGame("PLAYER"));
+  // }
 };
 
 /**
@@ -79,9 +74,7 @@ const attackHero = (card, target) => {
  * @param {object} source - The source minion that is attacking.
  * @returns {object} Action object with type 'HIT_MINION' and the payload.
  */
-const hitMinion = (attack, minion, source) => {
-    return { payload: { attack, minion, source }, type: HIT_MINION };
-};
+const hitMinion = (attack, minion, source) => ({ payload: { attack, minion, source }, type: HIT_MINION });
 
 /**
  * Action creator for killing a minion.
@@ -89,9 +82,7 @@ const hitMinion = (attack, minion, source) => {
  * @param {string} source - The source of the action (PLAYER or OPPONENT).
  * @returns {object} Action object with type 'KILL_MINION' and the payload.
  */
-const killMinion = (target, source) => {
-    return { payload: { key: target, source }, type: KILL_MINION };
-};
+const killMinion = (target, source) => ({ payload: { key: target, source }, type: KILL_MINION });
 
 /**
  * Thunk action creator for attacking a minion.
@@ -101,28 +92,26 @@ const killMinion = (target, source) => {
  * @param {object} source - The source minion that is attacking.
  * @returns {function} Thunk function that dispatches hitMinion and killMinion actions.
  */
-const attackMinion = (attack, counterAttack, target, source) => {
-    return (dispatch) => {
-        dispatch(hitMinion(attack, target, "PLAYER"));
-        dispatch(hitMinion(counterAttack, source, "OPPONENT"));
+const attackMinion = (attack, counterAttack, target, source) => (dispatch) => {
+  dispatch(hitMinion(attack, target, 'PLAYER'));
+  dispatch(hitMinion(counterAttack, source, 'OPPONENT'));
 
-        if (attack >= target.defense) {
-            dispatch(killMinion(target.key, "PLAYER"));
-        }
+  if (attack >= target.defense) {
+    dispatch(killMinion(target.key, 'PLAYER'));
+  }
 
-        if (counterAttack >= source.defense) {
-            dispatch(killMinion(source.key, "OPPONENT"));
-        }
-    };
+  if (counterAttack >= source.defense) {
+    dispatch(killMinion(source.key, 'OPPONENT'));
+  }
 };
 
 export default {
-    playCard,
-    drawCard,
-    hitFace,
-    attackMinion,
-    killMinion,
-    hitMinion,
-    spendManaAndPlayCard,
-    attackHero,
+  playCard,
+  drawCard,
+  hitFace,
+  attackMinion,
+  killMinion,
+  hitMinion,
+  spendManaAndPlayCard,
+  attackHero,
 };

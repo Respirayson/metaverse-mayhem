@@ -1,9 +1,9 @@
-import { Board } from "../containers/";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Board } from '../containers';
 
-const Game = () => {
+function Game() {
   const currentGame = useSelector((state) => state.current);
   console.log(currentGame);
   const navigate = useNavigate();
@@ -11,16 +11,15 @@ const Game = () => {
   useEffect(() => {
     console.log(currentGame);
     if (!currentGame.gameId) {
-      navigate("/game/new");
+      navigate('/game/new');
     }
   }, [currentGame, navigate]);
-
 
   return (
     <section className="bg-board bg-cover w-full h-100vh">
       <Board />
     </section>
   );
-};
+}
 
 export default Game;

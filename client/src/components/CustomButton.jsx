@@ -1,24 +1,23 @@
-import React from 'react'
-
-const CustomButton = ({ type, title, customStyles, handleClick }) => {
-
+function CustomButton({
+  type, title, customStyles, handleClick,
+}) {
   const generateStyle = (type) => {
-    switch(type) {
+    switch (type) {
       case 'filled':
         return {
-          backgroundColor: "#bdcbd8",
-          color: "#000000"
-        }
+          backgroundColor: '#bdcbd8',
+          color: '#000000',
+        };
       case 'outline':
         return {
           borderWidth: '2px',
-          borderColor: "#bdcbd8",
-          color: "#000000"
-        }
+          borderColor: '#bdcbd8',
+          color: '#000000',
+        };
       default:
-        return {}
+        return {};
     }
-  }
+  };
 
   return (
     <button
@@ -28,7 +27,7 @@ const CustomButton = ({ type, title, customStyles, handleClick }) => {
     >
       {title}
     </button>
-  )
+  );
 }
 
-export default CustomButton
+export default CustomButton;

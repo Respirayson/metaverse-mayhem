@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>44/44</span>
+                <span class='fraction'>43/43</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>44/44</span>
+                <span class='fraction'>43/43</span>
             </div>
         
             
@@ -106,8 +106,7 @@
 <a name='L41'></a><a href='#L41'>41</a>
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
-<a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L44'></a><a href='#L44'>44</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -125,36 +124,34 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from "react";
-import styles from "./Opponent.module.css";
-import { TargetableHero } from "../../containers";
-import OpponentHand from "../OpponentHand/OpponentHand";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import styles from './Opponent.module.css';
+import { TargetableHero } from '../../containers';
+import OpponentHand from '../OpponentHand/OpponentHand';
 &nbsp;
 /**
  * Component for rendering the opponent's side of the game board.
@@ -170,29 +167,29 @@ import OpponentHand from "../OpponentHand/OpponentHand";
  * @param {boolean} props.turn - Flag indicating if it's the opponent's turn.
  * @returns {JSX.Element} Opponent component.
  */
-const Opponent = ({
-    name,
-    handCount,
-    character,
-    drawCard,
-    hitFace,
-    minions,
-}) =&gt; {
-    return (
-        &lt;div className={styles.Opponent}&gt;
-            &lt;h1 className={styles.OpponentName} onClick={drawCard}&gt;
-                {name || "Unnamed"}
-                &lt;TargetableHero character={character} hitFace={hitFace} /&gt;
-            &lt;/h1&gt;
-            &lt;div className={styles.OpponentHandWrapper}&gt;
-                &lt;OpponentHand handCount={handCount} /&gt;
-            &lt;/div&gt;
-            &lt;div className="flex flex-row items-center justify-center w-full h-[180px]"&gt;
-                {minions}
-            &lt;/div&gt;
-        &lt;/div&gt;
-    );
-};
+function Opponent({
+  name,
+  handCount,
+  character,
+  drawCard,
+  hitFace,
+  minions,
+}) {
+  return (
+    &lt;div className={styles.Opponent}&gt;
+      &lt;h1 className={styles.OpponentName} onClick={drawCard}&gt;
+        {name || 'Unnamed'}
+        &lt;TargetableHero character={character} hitFace={hitFace} /&gt;
+      &lt;/h1&gt;
+      &lt;div className={styles.OpponentHandWrapper}&gt;
+        &lt;OpponentHand handCount={handCount} /&gt;
+      &lt;/div&gt;
+      &lt;div className="flex flex-row items-center justify-center w-full h-[180px]"&gt;
+        {minions}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
 &nbsp;
 export default Opponent;
 &nbsp;</pre></td></tr></table></pre>
@@ -202,7 +199,7 @@ export default Opponent;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-25T20:20:49.520Z
+                at 2023-07-04T05:29:04.834Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

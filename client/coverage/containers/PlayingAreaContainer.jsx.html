@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">63.63% </span>
+                <span class="strong">65.62% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>42/66</span>
+                <span class='fraction'>42/64</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">63.63% </span>
+                <span class="strong">65.62% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>42/66</span>
+                <span class='fraction'>42/64</span>
             </div>
         
             
@@ -127,10 +127,7 @@
 <a name='L62'></a><a href='#L62'>62</a>
 <a name='L63'></a><a href='#L63'>63</a>
 <a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -155,8 +152,7 @@
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -195,13 +191,13 @@
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState } from "react";
-import { useDrop } from "react-dnd";
-import { motion } from "framer-motion";
-import { PlayingArea } from "../components";
-import PlayerMinion from "./PlayerMinion";
-import itemTypes from "../constants";
-import { slideAnimation } from "../utils/motion";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useState } from 'react';
+import { useDrop } from 'react-dnd';
+import { motion } from 'framer-motion';
+import { PlayingArea } from '../components';
+import PlayerMinion from './PlayerMinion';
+import itemTypes from '../constants';
+import { slideAnimation } from '../utils/motion';
 &nbsp;
 /**
  * Container component for the playing area.
@@ -211,54 +207,52 @@ import { slideAnimation } from "../utils/motion";
  * @param {boolean} props.playerTurn - Indicates if it's the player's turn.
  * @returns {JSX.Element} PlayingAreaContainer component.
  */
-const PlayingAreaContainer = ({ board, exhaustedMinions, playerTurn }) =&gt; {
-    const [boardLength, setBoardLength] = useState(0);
+function PlayingAreaContainer({ board, exhaustedMinions, playerTurn }) {
+  const [boardLength, setBoardLength] = useState(0);
 &nbsp;
-    /**
+  /**
      * Hook to enable dropping functionality for cards onto the playing area.
      */
-    const [{ isOver }, drop] = useDrop(
-        () =&gt; ({
-            accept: itemTypes.CARD,
-            canDrop: <span class="fstat-no" title="function not covered" >(item, monitor) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >                return boardLength &lt; 7;</span>
-<span class="cstat-no" title="statement not covered" >            },</span>
-            drop: <span class="fstat-no" title="function not covered" >(item, monitor) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >                setBoardLength(boardLength + 1);</span>
-<span class="cstat-no" title="statement not covered" >                const boundingClientRect = document</span>
-<span class="cstat-no" title="statement not covered" >                    .querySelector('[data-testid="dropBoard"]')</span>
-<span class="cstat-no" title="statement not covered" >                    .getBoundingClientRect();</span>
-<span class="cstat-no" title="statement not covered" >                const boardMiddleX = boundingClientRect.width / 2;</span>
-<span class="cstat-no" title="statement not covered" >                const mousePosition = monitor.getClientOffset();</span>
-<span class="cstat-no" title="statement not covered" >                const cardMiddleX = mousePosition.x - boundingClientRect.left;</span>
+  const [{ isOver }, drop] = useDrop(
+    () =&gt; ({
+      accept: itemTypes.CARD,
+      canDrop: <span class="fstat-no" title="function not covered" >() =&gt; boardLength &lt; 7,</span>
+      drop: <span class="fstat-no" title="function not covered" >(item, monitor) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        setBoardLength(boardLength + 1);</span>
+<span class="cstat-no" title="statement not covered" >        const boundingClientRect = document</span>
+<span class="cstat-no" title="statement not covered" >          .querySelector('[data-testid="dropBoard"]')</span>
+<span class="cstat-no" title="statement not covered" >          .getBoundingClientRect();</span>
+<span class="cstat-no" title="statement not covered" >        const boardMiddleX = boundingClientRect.width / 2;</span>
+<span class="cstat-no" title="statement not covered" >        const mousePosition = monitor.getClientOffset();</span>
+<span class="cstat-no" title="statement not covered" >        const cardMiddleX = mousePosition.x - boundingClientRect.left;</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >                if (cardMiddleX &lt; boardMiddleX) {</span>
-<span class="cstat-no" title="statement not covered" >                    item.playCard(item.card, 0);</span>
-<span class="cstat-no" title="statement not covered" >                } else {</span>
-<span class="cstat-no" title="statement not covered" >                    item.playCard(item.card, 1);</span>
-<span class="cstat-no" title="statement not covered" >                }</span>
-<span class="cstat-no" title="statement not covered" >            },</span>
+<span class="cstat-no" title="statement not covered" >        if (cardMiddleX &lt; boardMiddleX) {</span>
+<span class="cstat-no" title="statement not covered" >          item.playCard(item.card, 0);</span>
+<span class="cstat-no" title="statement not covered" >        } else {</span>
+<span class="cstat-no" title="statement not covered" >          item.playCard(item.card, 1);</span>
+<span class="cstat-no" title="statement not covered" >        }</span>
+<span class="cstat-no" title="statement not covered" >      },</span>
 &nbsp;
-            collect: (monitor) =&gt; ({
-                isOver: !!monitor.isOver(),
-            }),
-        }),
-        [boardLength]
-    );
+      collect: (monitor) =&gt; ({
+        isOver: !!monitor.isOver(),
+      }),
+    }),
+    [boardLength],
+  );
 &nbsp;
-    const minions = board.map((card, i) =&gt; (
-<span class="cstat-no" title="statement not covered" >        &lt;motion.div key={card.key} {...slideAnimation("up")}&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;PlayerMinion</span>
-<span class="cstat-no" title="statement not covered" >                canDrag={playerTurn}</span>
-<span class="cstat-no" title="statement not covered" >                card={card}</span>
-<span class="cstat-no" title="statement not covered" >                key={i}</span>
-<span class="cstat-no" title="statement not covered" >                exhausted={exhaustedMinions.includes(card.key)}</span>
-<span class="cstat-no" title="statement not covered" >            /&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/motion.div&gt;</span>
-    ));
+  const minions = board.map((card, i) =&gt; (
+<span class="cstat-no" title="statement not covered" >    &lt;motion.div key={card.key} {...slideAnimation('up')}&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;PlayerMinion</span>
+<span class="cstat-no" title="statement not covered" >        canDrag={playerTurn}</span>
+<span class="cstat-no" title="statement not covered" >        card={card}</span>
+<span class="cstat-no" title="statement not covered" >        key={i}</span>
+<span class="cstat-no" title="statement not covered" >        exhausted={exhaustedMinions.includes(card.key)}</span>
+<span class="cstat-no" title="statement not covered" >      /&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/motion.div&gt;</span>
+  ));
 &nbsp;
-    return &lt;PlayingArea dropRef={drop} minions={minions} isOver={isOver} /&gt;;
-};
+  return &lt;PlayingArea dropRef={drop} minions={minions} isOver={isOver} /&gt;;
+}
 &nbsp;
 export default PlayingAreaContainer;
 &nbsp;</pre></td></tr></table></pre>
@@ -268,7 +262,7 @@ export default PlayingAreaContainer;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-25T20:20:49.520Z
+                at 2023-07-04T05:29:04.834Z
             </div>
         <script src="../prettify.js"></script>
         <script>

@@ -1,7 +1,6 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import allActions from "../actions";
-import { Player } from "../components";
+import { useDispatch } from 'react-redux';
+import allActions from '../actions';
+import { Player } from '../components';
 
 /**
  * Container component for the player.
@@ -14,34 +13,34 @@ import { Player } from "../components";
  * @param {boolean} props.turn - Indicates if it's currently the turn of the player.
  * @returns {JSX.Element} PlayerContainer component.
  */
-const PlayerContainer = ({
-    name,
-    board,
-    character,
-    playerTurn,
-    onClick,
-    turn,
-}) => {
-    const dispatch = useDispatch();
+function PlayerContainer({
+  name,
+  board,
+  character,
+  playerTurn,
+  onClick,
+  turn,
+}) {
+  const dispatch = useDispatch();
 
-    /**
+  /**
      * Function to draw a card for the player.
      */
-    const drawCard = () => {
-        dispatch(allActions.playerActions.drawCard("PLAYER"));
-    };
+  const drawCard = () => {
+    dispatch(allActions.playerActions.drawCard('PLAYER'));
+  };
 
-    return (
-        <Player
-            name={name}
-            board={board}
-            character={character}
-            playerTurn={playerTurn}
-            onClick={onClick}
-            turn={turn}
-            drawCard={drawCard}
-        />
-    );
-};
+  return (
+    <Player
+      name={name}
+      board={board}
+      character={character}
+      playerTurn={playerTurn}
+      onClick={onClick}
+      turn={turn}
+      drawCard={drawCard}
+    />
+  );
+}
 
 export default PlayerContainer;

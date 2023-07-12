@@ -1,11 +1,7 @@
-import React from 'react'
+import { DisplayMarketplace } from '../components';
 
-import { DisplayMarketplace } from '../components'
-
-const Marketplace = () => {
-  return (
-    <DisplayMarketplace />
-  )
+function Marketplace() {
+  return <DisplayMarketplace />;
 }
 
-export default Marketplace
+export default Marketplace;

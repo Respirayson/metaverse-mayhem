@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">77.01% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>67/87</span>
+                <span class='fraction'>85/85</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>17/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">77.01% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>67/87</span>
+                <span class='fraction'>85/85</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -148,9 +148,7 @@
 <a name='L83'></a><a href='#L83'>83</a>
 <a name='L84'></a><a href='#L84'>84</a>
 <a name='L85'></a><a href='#L85'>85</a>
-<a name='L86'></a><a href='#L86'>86</a>
-<a name='L87'></a><a href='#L87'>87</a>
-<a name='L88'></a><a href='#L88'>88</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L86'></a><a href='#L86'>86</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -158,26 +156,23 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -237,92 +232,91 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export const transition = { type: "spring", duration: 0.8 };
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export const transition = { type: 'spring', duration: 0.8 };
 &nbsp;
 /**
  * Generates a slide animation object based on the specified direction
  * @param {string} direction - The direction of the slide animation ("left", "right", "up", or "down")
  * @returns {object} - The slide animation object with initial, animate, and exit properties
  */
-export const slideAnimation = <span class="fstat-no" title="function not covered" >(direction) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    return {</span>
-<span class="cstat-no" title="statement not covered" >        initial: {</span>
-<span class="cstat-no" title="statement not covered" >            x: direction === "left" ? -100 : direction === "right" ? 100 : 0,</span>
-<span class="cstat-no" title="statement not covered" >            y: direction === "up" ? 100 : direction === "down" ? -100 : 0,</span>
-<span class="cstat-no" title="statement not covered" >            opacity: 0,</span>
-<span class="cstat-no" title="statement not covered" >            transition: { ...transition, delay: 0.5 },</span>
-<span class="cstat-no" title="statement not covered" >        },</span>
-<span class="cstat-no" title="statement not covered" >        animate: {</span>
-<span class="cstat-no" title="statement not covered" >            x: 0,</span>
-<span class="cstat-no" title="statement not covered" >            y: 0,</span>
-<span class="cstat-no" title="statement not covered" >            opacity: 1,</span>
-<span class="cstat-no" title="statement not covered" >            transition: { ...transition, delay: 0 },</span>
-<span class="cstat-no" title="statement not covered" >        },</span>
-<span class="cstat-no" title="statement not covered" >        exit: {</span>
-<span class="cstat-no" title="statement not covered" >            x: direction === "left" ? -100 : direction === "right" ? 100 : 0,</span>
-<span class="cstat-no" title="statement not covered" >            y: direction === "up" ? 100 : direction === "down" ? -100 : 0,</span>
-<span class="cstat-no" title="statement not covered" >            transition: { ...transition, delay: 0 },</span>
-<span class="cstat-no" title="statement not covered" >        },</span>
-<span class="cstat-no" title="statement not covered" >    };</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+export const slideAnimation = (direction) =&gt; ({
+  initial: {
+    x: direction === 'left' ? -100 : direction === 'right' ? 100 : 0,
+    y: direction === 'up' ? 100 : direction === 'down' ? -100 : 0,
+    opacity: 0,
+    transition: { ...transition, delay: 0.5 },
+  },
+  animate: {
+    x: 0,
+    y: 0,
+    opacity: 1,
+    transition: { ...transition, delay: 0 },
+  },
+  exit: {
+    x: direction === 'left' ? -100 : direction === 'right' ? 100 : 0,
+    y: direction === 'up' ? 100 : direction === 'down' ? -100 : 0,
+    transition: { ...transition, delay: 0 },
+  },
+});
 &nbsp;
 /**
  * The fade animation object with initial, animate, and exit properties
  */
 export const fadeAnimation = {
-    initial: {
-        opacity: 0,
-        transition: { ...transition, delay: 0.5 },
-    },
-    animate: {
-        opacity: 1,
-        transition: { ...transition, delay: 0 },
-    },
-    exit: {
-        opacity: 0,
-        transition: { ...transition, delay: 0 },
-    },
+  initial: {
+    opacity: 0,
+    transition: { ...transition, delay: 0.5 },
+  },
+  animate: {
+    opacity: 1,
+    transition: { ...transition, delay: 0 },
+  },
+  exit: {
+    opacity: 0,
+    transition: { ...transition, delay: 0 },
+  },
 };
 &nbsp;
 /**
  * The head text animation object with initial, animate, and transition properties
  */
 export const headTextAnimation = {
-    initial: { x: 100, opacity: 0 },
-    animate: { x: 0, opacity: 1 },
-    transition: {
-        type: "spring",
-        damping: 5,
-        stiffness: 40,
-        restDelta: 0.001,
-        duration: 0.3,
-    },
+  initial: { x: 100, opacity: 0 },
+  animate: { x: 0, opacity: 1 },
+  transition: {
+    type: 'spring',
+    damping: 5,
+    stiffness: 40,
+    restDelta: 0.001,
+    duration: 0.3,
+  },
 };
 &nbsp;
 /**
  * The head content animation object with initial, animate, and transition properties
  */
 export const headContentAnimation = {
-    initial: { y: 100, opacity: 0 },
-    animate: { y: 0, opacity: 1 },
-    transition: {
-        type: "spring",
-        damping: 7,
-        stiffness: 30,
-        restDelta: 0.001,
-        duration: 0.6,
-        delay: 0.2,
-        delayChildren: 0.2,
-    },
+  initial: { y: 100, opacity: 0 },
+  animate: { y: 0, opacity: 1 },
+  transition: {
+    type: 'spring',
+    damping: 7,
+    stiffness: 30,
+    restDelta: 0.001,
+    duration: 0.6,
+    delay: 0.2,
+    delayChildren: 0.2,
+  },
 };
 &nbsp;
 /**
  * The head container animation object with initial, animate, and exit properties
  */
 export const headContainerAnimation = {
-    initial: { x: -100, opacity: 0, transition: { ...transition, delay: 0.5 } },
-    animate: { x: 0, opacity: 1, transition: { ...transition, delay: 0 } },
-    exit: { x: -100, opacity: 0, transition: { ...transition, delay: 0 } },
+  initial: { x: -100, opacity: 0, transition: { ...transition, delay: 0.5 } },
+  animate: { x: 0, opacity: 1, transition: { ...transition, delay: 0 } },
+  exit: { x: -100, opacity: 0, transition: { ...transition, delay: 0 } },
 };
 &nbsp;</pre></td></tr></table></pre>
 
@@ -331,7 +325,7 @@ export const headContainerAnimation = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-25T20:20:49.520Z
+                at 2023-07-04T05:29:04.834Z
             </div>
         <script src="../prettify.js"></script>
         <script>
