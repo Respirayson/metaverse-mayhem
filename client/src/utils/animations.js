@@ -24,13 +24,13 @@ function transform($e, xValue, yValue, scaleValue, rotationValue, percent) {
 
 function createParticle(x, y, scale) {
   const $particle = document.createElement('i');
-  const $sparcle = document.createElement('i');
+  const $sparkle = document.createElement('i');
 
   $particle.className = 'particle';
-  $sparcle.className = 'sparcle';
+  $sparkle.className = 'sparkle';
 
   transform($particle, x, y, scale);
-  $particle.appendChild($sparcle);
+  $particle.appendChild($sparkle);
 
   return $particle;
 }
@@ -78,7 +78,7 @@ function explodeGroup(x, y, trans) {
   return $container;
 }
 
-export default function sparcle(event) {
+export default function sparkle(event) {
   const explosions = [];
 
   explosions.push(

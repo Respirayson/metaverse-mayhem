@@ -15,17 +15,14 @@ import { slideAnimation } from '../utils/motion';
  * @returns {JSX.Element} PlayingAreaContainer component.
  */
 function PlayingAreaContainer({ board, exhaustedMinions, playerTurn }) {
-  const [boardLength, setBoardLength] = useState(0);
-
   /**
      * Hook to enable dropping functionality for cards onto the playing area.
      */
   const [{ isOver }, drop] = useDrop(
     () => ({
       accept: itemTypes.CARD,
-      canDrop: () => boardLength < 7,
+      canDrop: () => board.length < 7,
       drop: (item, monitor) => {
-        setBoardLength(boardLength + 1);
         const boundingClientRect = document
           .querySelector('[data-testid="dropBoard"]')
           .getBoundingClientRect();
@@ -44,7 +41,7 @@ function PlayingAreaContainer({ board, exhaustedMinions, playerTurn }) {
         isOver: !!monitor.isOver(),
       }),
     }),
-    [boardLength],
+    [board],
   );
 
   const minions = board.map((card, i) => (
@@ -52,7 +49,6 @@ function PlayingAreaContainer({ board, exhaustedMinions, playerTurn }) {
       <PlayerMinion
         canDrag={playerTurn}
         card={card}
-        key={i}
         exhausted={exhaustedMinions.includes(card.key)}
       />
     </motion.div>

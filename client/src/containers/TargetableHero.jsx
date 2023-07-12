@@ -1,7 +1,8 @@
 import { useDrop } from 'react-dnd';
+import { useEffect } from 'react';
 import { Hero } from '../components';
 import itemTypes from '../constants';
-import sparcle, { getCoords } from '../utils/animations';
+import sparkle from '../utils/animations';
 
 /**
  * Component representing a targetable hero.
@@ -13,6 +14,14 @@ import sparcle, { getCoords } from '../utils/animations';
 function TargetableHero({
   hitFace, character, name, isOpponent, heroRef, getCoords,
 }) {
+  const { health } = character;
+
+  useEffect(() => {
+    if (health < 30) {
+      sparkle(getCoords(heroRef));
+    }
+  }, [getCoords, health, heroRef]);
+
   /**
    * Hook to enable dropping functionality for minions onto the hero.
    */

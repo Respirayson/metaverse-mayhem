@@ -1,4 +1,6 @@
+import { useLayoutEffect, useRef } from 'react';
 import styles from './Minion.module.css';
+import sparkle, { getPlayerCoords } from '../../utils/animations';
 
 /**
  * Component for rendering a minion card.
@@ -11,20 +13,34 @@ function Minion(props) {
   const { card, exhausted, isOver } = props;
   const { attack, defense, portrait } = card;
 
+  const previousDefense = useRef(defense);
+  const reference = useRef(null);
+
+  useLayoutEffect(() => {
+    const elem = reference;
+    if (reference?.current && previousDefense.current !== defense) {
+      sparkle(getPlayerCoords(reference));
+    }
+    return () => {
+      if (elem?.current) {
+        sparkle(getPlayerCoords(elem));
+      }
+    };
+  }, [defense]);
+
   return (
     <div
+      ref={reference}
       className={`${styles.Minion} bg-[image:var(--image-url)] ${
         exhausted ? styles.MinionSleeping : styles.MinionAwake
       }`}
       style={{ '--image-url': `url(${portrait})` }}
     >
-      {isOver && <div className="absolute bg-red-500 w-full h-full bg-opacity-50 rounded-full" />}
-      <div className={`${styles.MinionAttack} text-[2.5vh]`}>
-        {attack}
-      </div>
-      <div className={`${styles.MinionDefense} text-[2.5vh]`}>
-        {defense}
-      </div>
+      {isOver && (
+        <div className="absolute bg-red-500 w-full h-full bg-opacity-50 rounded-full" />
+      )}
+      <div className={`${styles.MinionAttack} text-[2.5vh]`}>{attack}</div>
+      <div className={`${styles.MinionDefense} text-[2.5vh]`}>{defense}</div>
     </div>
   );
 }

@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
 import { Tooltip } from 'react-tooltip';
-import sparcle from '../../utils/animations';
 
 /**
  * Component representing the hero character
@@ -13,15 +11,9 @@ import sparcle from '../../utils/animations';
  * @returns {JSX.Element} - The JSX element
  */
 function Hero({
-  character, isOpponent, name, isOver, heroRef, getCoords,
+  character, isOpponent, name, isOver, heroRef,
 }) {
   const { health, mana } = character;
-
-  useEffect(() => {
-    if (health < 30) {
-      sparcle(getCoords(heroRef));
-    }
-  }, [getCoords, health, heroRef]);
 
   const getHealthColours = (hp) => (hp >= 15 ? 'bg-green-500' : hp >= 8 ? 'bg-orange-500' : 'bg-red-500');
 

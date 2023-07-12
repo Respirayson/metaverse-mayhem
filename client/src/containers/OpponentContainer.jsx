@@ -56,7 +56,6 @@ function OpponentContainer(props) {
   const minions = board.map((card, index) => (
     <motion.div key={card.key} {...slideAnimation('down')}>
       <EnemyMinion
-        key={index}
         card={card}
         attackMinion={attackMinion}
         exhaustedMinions={exhaustedMinions}
