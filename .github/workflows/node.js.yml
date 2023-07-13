@@ -33,12 +33,14 @@ jobs:
       working-directory: ./client
     - run: npm run build --if-present
       working-directory: ./client
-    - run: npm run test
+    - name: Run React Client Unit Test
+      run: npm run test
       working-directory: ./client
     - run: npm install
       working-directory: ./web3
-    - env:
-          ALCHEMY_URL: ${{ secrets.ALCHEMY_URL }}
-          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+    - name: Run Smart Contract Unit Test
+      env:
+        ALCHEMY_URL: ${{ secrets.ALCHEMY_URL }}
+        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
       run: npx hardhat test
       working-directory: ./web3
