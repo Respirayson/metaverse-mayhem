@@ -37,5 +37,8 @@ jobs:
       working-directory: ./client
     - run: npm install
       working-directory: ./web3
-    - run: npx hardhat test
+    - env:
+          ALCHEMY_URL: ${{ secrets.ALCHEMY_URL }}
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+      run: npx hardhat test
       working-directory: ./web3
