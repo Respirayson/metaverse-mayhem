@@ -29,6 +29,9 @@ jobs:
         cache-dependency-path: |
           ./client/package-lock.json
           ./web3/package-lock.json
+      env:
+        ALCHEMY_URL: ${{ secrets.ALCHEMY_URL }}
+        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
     - run: npm install
       working-directory: ./client
     - run: npm run build --if-present
