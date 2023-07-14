@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">11.2% </span>
+                <span class="strong">12.5% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>13/116</span>
+                <span class='fraction'>15/120</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">11.2% </span>
+                <span class="strong">12.5% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>13/116</span>
+                <span class='fraction'>15/120</span>
             </div>
         
             
@@ -179,7 +179,11 @@
 <a name='L114'></a><a href='#L114'>114</a>
 <a name='L115'></a><a href='#L115'>115</a>
 <a name='L116'></a><a href='#L116'>116</a>
-<a name='L117'></a><a href='#L117'>117</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -190,21 +194,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -222,6 +211,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -295,13 +286,32 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useEffect, useState } from 'react';
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, {
+  useEffect, useState, useRef, createContext,
+} from 'react';
 import { ethers } from 'ethers';
 &nbsp;
 import { contractABI, contractAddress } from '../utils/constants';
 import { cards } from '../utils/cards';
 &nbsp;
-export const TradingCardMinterContext = React.createContext();
+export const TradingCardMinterContext = createContext();
 &nbsp;
 const { ethereum } = window;
 &nbsp;
@@ -324,11 +334,13 @@ const getEthereumContract = <span class="fstat-no" title="function not covered" 
 &nbsp;
 export <span class="fstat-no" title="function not covered" >function TradingCardMinterProvider({ children }) {</span>
 <span class="cstat-no" title="statement not covered" >  const [currentAccount, setCurrentAccount] = useState(null);</span>
-<span class="cstat-no" title="statement not covered" >  console.log(currentAccount);</span>
 <span class="cstat-no" title="statement not covered" >  const [formData, setFormData] = useState({</span>
 <span class="cstat-no" title="statement not covered" >    addressTo: '',</span>
 <span class="cstat-no" title="statement not covered" >    name: '',</span>
 <span class="cstat-no" title="statement not covered" >  });</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  const player1Ref = useRef();</span>
+<span class="cstat-no" title="statement not covered" >  const player2Ref = useRef();</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  const checkIfWalletIsConnected = async () =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    try {</span>
@@ -358,9 +370,7 @@ export <span class="fstat-no" title="function not covered" >function TradingCard
 <span class="cstat-no" title="statement not covered" >        const { addressTo, name } = formData;</span>
 <span class="cstat-no" title="statement not covered" >        const contract = getEthereumContract();</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        const transaction = await contract.requestNewCard(</span>
-<span class="cstat-no" title="statement not covered" >          'Hello World!',</span>
-<span class="cstat-no" title="statement not covered" >        );</span>
+<span class="cstat-no" title="statement not covered" >        const transaction = await contract.requestNewCard('Hello World!');</span>
 <span class="cstat-no" title="statement not covered" >        await transaction.wait();</span>
 <span class="cstat-no" title="statement not covered" >        console.log(</span>
 <span class="cstat-no" title="statement not covered" >          `1 Card successfully sent to ${addressTo} under ${name} - Transaction hash: ${transaction.hash}`,</span>
@@ -405,6 +415,8 @@ export <span class="fstat-no" title="function not covered" >function TradingCard
 <span class="cstat-no" title="statement not covered" >        mintTradingCard,</span>
 <span class="cstat-no" title="statement not covered" >        getCardsUnderAddress,</span>
 <span class="cstat-no" title="statement not covered" >        currentAccount,</span>
+<span class="cstat-no" title="statement not covered" >        player1Ref,</span>
+<span class="cstat-no" title="statement not covered" >        player2Ref,</span>
 <span class="cstat-no" title="statement not covered" >      }}</span>
 <span class="cstat-no" title="statement not covered" >    &gt;</span>
 <span class="cstat-no" title="statement not covered" >      {children}</span>
@@ -418,7 +430,7 @@ export <span class="fstat-no" title="function not covered" >function TradingCard
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-10T18:18:48.286Z
+                at 2023-07-14T13:50:33.209Z
             </div>
         <script src="../prettify.js"></script>
         <script>

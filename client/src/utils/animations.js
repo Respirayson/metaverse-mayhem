@@ -117,7 +117,9 @@ export default function sparkle(event) {
 
 //* Get battle card coordinates
 export const getCoords = (cardRef) => {
-  const { left, top, right, bottom } = cardRef.current.getBoundingClientRect();
+  const {
+    left, top, right, bottom,
+  } = cardRef.current.getBoundingClientRect();
 
   return {
     pageX: (right - left) / 2,
@@ -127,11 +129,12 @@ export const getCoords = (cardRef) => {
 
 //* Get battle card coordinates
 export const getPlayerCoords = (cardRef) => {
-  const { left, top, right, bottom } = cardRef.current.getBoundingClientRect();
+  const {
+    left, top, right, bottom,
+  } = cardRef.current.getBoundingClientRect();
 
   return {
     pageX: (right + left) / 2,
     pageY: (bottom + top) / 2,
   };
 };
-

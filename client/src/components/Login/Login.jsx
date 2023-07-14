@@ -159,7 +159,7 @@ function Login(props) {
     <button
       type="button"
       onClick={handleClick}
-      className="flex items-center h-fit py-4 px-6 bg-[#25618B] rounded-[32px] gap-[12px]"
+      className="flex items-center h-fit py-4 px-6 hover:bg-[#25718B] bg-[#25618B] rounded-[32px] gap-[12px]"
     >
       {loading ? (
         'Connecting...'

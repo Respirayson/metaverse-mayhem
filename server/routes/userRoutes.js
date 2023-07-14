@@ -9,14 +9,15 @@ const router = express.Router();
 
 router.route('/').get((req, res) => {
   const publicAddress = req.query;
-  console.log(publicAddress);
-  return User.findOne(publicAddress).then((result) => res.json(result)).catch((err) => console.log(err));
+  return User.findOne(publicAddress)
+    .then((result) => res.json(result))
+    .catch((err) => console.log(err));
 });
 
 router.route('/').post((req, res) => {
-  const user = User.create(req.body)
+  User.create(req.body)
     .then((user) => res.json(user))
-    .catch((next) => console.log(next));
+    .catch((err) => console.log(err));
 });
 
 export default router;

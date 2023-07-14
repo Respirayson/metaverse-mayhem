@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">65.62% </span>
+                <span class="strong">66.1% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>42/64</span>
+                <span class='fraction'>39/59</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">65.62% </span>
+                <span class="strong">66.1% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>42/64</span>
+                <span class='fraction'>39/59</span>
             </div>
         
             
@@ -122,13 +122,7 @@
 <a name='L57'></a><a href='#L57'>57</a>
 <a name='L58'></a><a href='#L58'>58</a>
 <a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L60'></a><a href='#L60'>60</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -152,9 +146,6 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -184,15 +175,13 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useState } from 'react';
-import { useDrop } from 'react-dnd';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useDrop } from 'react-dnd';
 import { motion } from 'framer-motion';
 import { PlayingArea } from '../components';
 import PlayerMinion from './PlayerMinion';
@@ -208,17 +197,14 @@ import { slideAnimation } from '../utils/motion';
  * @returns {JSX.Element} PlayingAreaContainer component.
  */
 function PlayingAreaContainer({ board, exhaustedMinions, playerTurn }) {
-  const [boardLength, setBoardLength] = useState(0);
-&nbsp;
   /**
      * Hook to enable dropping functionality for cards onto the playing area.
      */
   const [{ isOver }, drop] = useDrop(
     () =&gt; ({
       accept: itemTypes.CARD,
-      canDrop: <span class="fstat-no" title="function not covered" >() =&gt; boardLength &lt; 7,</span>
+      canDrop: <span class="fstat-no" title="function not covered" >() =&gt; board.length &lt; 7,</span>
       drop: <span class="fstat-no" title="function not covered" >(item, monitor) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        setBoardLength(boardLength + 1);</span>
 <span class="cstat-no" title="statement not covered" >        const boundingClientRect = document</span>
 <span class="cstat-no" title="statement not covered" >          .querySelector('[data-testid="dropBoard"]')</span>
 <span class="cstat-no" title="statement not covered" >          .getBoundingClientRect();</span>
@@ -237,7 +223,7 @@ function PlayingAreaContainer({ board, exhaustedMinions, playerTurn }) {
         isOver: !!monitor.isOver(),
       }),
     }),
-    [boardLength],
+    [board],
   );
 &nbsp;
   const minions = board.map((card, i) =&gt; (
@@ -245,7 +231,6 @@ function PlayingAreaContainer({ board, exhaustedMinions, playerTurn }) {
 <span class="cstat-no" title="statement not covered" >      &lt;PlayerMinion</span>
 <span class="cstat-no" title="statement not covered" >        canDrag={playerTurn}</span>
 <span class="cstat-no" title="statement not covered" >        card={card}</span>
-<span class="cstat-no" title="statement not covered" >        key={i}</span>
 <span class="cstat-no" title="statement not covered" >        exhausted={exhaustedMinions.includes(card.key)}</span>
 <span class="cstat-no" title="statement not covered" >      /&gt;</span>
 <span class="cstat-no" title="statement not covered" >    &lt;/motion.div&gt;</span>
@@ -262,7 +247,7 @@ export default PlayingAreaContainer;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-10T18:18:48.286Z
+                at 2023-07-14T13:50:33.209Z
             </div>
         <script src="../prettify.js"></script>
         <script>

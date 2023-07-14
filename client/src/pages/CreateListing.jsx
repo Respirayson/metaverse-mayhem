@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { motion } from 'framer-motion';
 import { fadeAnimation } from '../utils/motion';
-import { FormField } from '../components';
+import { FormField, Sidebar } from '../components';
 
 function CreateListing() {
   const [form, setForm] = useState({
@@ -20,7 +20,8 @@ function CreateListing() {
   };
 
   return (
-    <>
+    <div className="flex flex-1 justify-between py-8 sm:px-12 px-8 flex-row">
+      <Sidebar url="Create Listing" />
       <motion.div
         key="custom"
         className="flex justify-center items-center w-2/3 h-full mx-auto"
@@ -110,11 +111,8 @@ function CreateListing() {
           </form>
         </div>
       </motion.div>
-      <motion.div
-        className="absolute z-20 top-5 right-5"
-        {...fadeAnimation}
-      />
-    </>
+      <motion.div className="absolute z-20 top-5 right-5" {...fadeAnimation} />
+    </div>
   );
 }
 

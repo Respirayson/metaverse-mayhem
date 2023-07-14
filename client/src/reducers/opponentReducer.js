@@ -9,7 +9,7 @@ import { NEW_GAME } from '../actions/gameActions';
  */
 const opponentReducer = (state = '', action) => {
   if (action.type === NEW_GAME) {
-    return action.payload.opponent;
+    return action.payload.opponent || 'Enemy';
   }
 
   return state;

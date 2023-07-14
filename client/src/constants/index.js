@@ -80,4 +80,25 @@ export const gameRules = [
   'If a player attacks, they spend 3 Mana',
 ];
 
+export const sideBarLinks = [
+  {
+    name: 'All Listings',
+    id: 'all-listings',
+    imgUrl: '/marketplace.svg',
+    link: '/marketplace',
+  },
+  {
+    name: 'My Listings',
+    id: 'my-listings',
+    imgUrl: '/my-listings.svg',
+    link: '/marketplace/my-listings',
+  },
+  {
+    name: 'Create Listing',
+    id: 'create-listing',
+    imgUrl: '/create-listing.svg',
+    link: '/marketplace/create-listing',
+  },
+];
+
 export default itemTypes;

@@ -6,6 +6,8 @@ import GameNewScreen from './GameNewScreen';
 import StartScreen from './StartScreen';
 import CreateListing from './CreateListing';
 import JoinBattle from './JoinBattle';
+import MyListings from './MyListings';
+import ListingDetails from './ListingDetails';
 
 export {
   Home,
@@ -16,4 +18,6 @@ export {
   StartScreen,
   CreateListing,
   JoinBattle,
+  MyListings,
+  ListingDetails,
 };

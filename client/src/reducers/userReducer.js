@@ -9,7 +9,7 @@ import { NEW_GAME } from '../actions/gameActions';
  */
 const userReducer = (state = '', action) => {
   if (action.type === NEW_GAME) {
-    return action.payload.user;
+    return action.payload.user || 'You';
   }
 
   return state;

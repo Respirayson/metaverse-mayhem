@@ -3,7 +3,6 @@ import { useDrag } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 import { Minion } from '../components';
 import itemTypes from '../constants';
-import { v4 as uuidv4 } from 'uuid';
 
 /**
  * Component for a player's minion.

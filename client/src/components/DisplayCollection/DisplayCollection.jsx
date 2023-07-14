@@ -4,6 +4,7 @@ import Collectible from '../Collectible/Collectible';
 import { TradingCardMinterContext } from '../../context/TradingCardMinter';
 import { cards } from '../../utils/cards';
 import { fadeIn } from '../../utils/motion';
+import Loader from '../Loader';
 
 function DisplayCollection({ index, userCards, loading }) {
   const { mintTradingCard } = React.useContext(TradingCardMinterContext);
@@ -19,20 +20,14 @@ function DisplayCollection({ index, userCards, loading }) {
 
   return (
     <>
-      {loader && (
-        <div className="preloader">
-          <div className="preloader-wrapper">
-            <div className="loading">
-              <div className="circle" />
-              <div className="circle" />
-              <div className="circle" />
-            </div>
-          </div>
-        </div>
-      )}
+      {loader && <Loader />}
 
       <div className="px-16 pt-4">
-        <button type="button" className="text-white" onClick={() => mintTradingCard()}>
+        <button
+          type="button"
+          className="text-white"
+          onClick={() => mintTradingCard()}
+        >
           Test Contract
         </button>
         <h1 className="font-semibold text-white text-left text-[18px]">

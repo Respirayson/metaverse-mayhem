@@ -1,6 +1,6 @@
-import { useState, useRef } from "react";
-
-function Collectible({ name, description, mana, attack, defense, image }) {
+function Collectible({
+  name, description, mana, attack, defense, image,
+}) {
   return (
     <div className="md:w-[12rem] 2xl:w-[288px] rounded-[15px] bg-[#1c1c24] cursor-pointer">
       <img
@@ -14,7 +14,7 @@ function Collectible({ name, description, mana, attack, defense, image }) {
           <h3 className="font-semibold text-white text-[16px] text-left leading-[26px]">
             {name}
           </h3>
-          <p className="mt-[5px] font-normal text-[#808191] text-left leading-[18px]">
+          <p className="mt-[5px] font-normal text-[#808191] text-left leading-[18px] truncate">
             {description}
           </p>
         </div>
@@ -22,13 +22,19 @@ function Collectible({ name, description, mana, attack, defense, image }) {
         <div className="flex flex-wrap justify-between gap-2 mt-[15px]">
           <div className="flex flex-col">
             <h4 className="font-semibold text-[14px] text-[#b2b3bd] leading-[22px]">
-              Mana: {mana}
+              Mana:
+              {' '}
+              {mana}
             </h4>
             <h4 className="font-semibold text-[14px] text-[#b2b3bd] leading-[22px]">
-              Attack: {attack}
+              Attack:
+              {' '}
+              {attack}
             </h4>
             <h4 className="font-semibold text-[14px] text-[#b2b3bd] leading-[22px]">
-              Defense: {defense}
+              Defense:
+              {' '}
+              {defense}
             </h4>
           </div>
         </div>

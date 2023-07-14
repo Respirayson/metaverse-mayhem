@@ -18,6 +18,7 @@ function Board() {
   } = useSelector(
     (state) => state,
   );
+  console.log(turn);
   const dispatch = useDispatch();
 
   /**
