@@ -141,8 +141,10 @@ const connectSockets = () => {
          * Handle leaving a game
          * @param {Object} data - Data containing the gameId
          */
-    socket.on('gameLeave', ({ gameId }) => {
-      socket.leave(gameId);
+    socket.on('leaveGame', ({ gameId }) => {
+      io.in(gameId).emit('playerLeft', {
+        playerCount: sizeOfRoom(io, gameId),
+      });
     });
 
     /**

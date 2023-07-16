@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { gameRules } from '../constants';
+import { socket } from '../utils/socket';
 
 function GameInstruction() {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const navigate = useNavigate();
 
   const handleClick = () => {
+    socket.emit('leaveGame', { gameId: localStorage.getItem('gameId') })
+    localStorage.removeItem('persist:root')
+    localStorage.removeItem('gameId');
     navigate('/');
+    window.location.reload();
   };
 
   return (
@@ -59,7 +64,7 @@ function GameInstruction() {
             <button
               type="button"
               className="px-4 py-2 rounded-lg bg-siteBlue w-fit text-white font-bold my-4"
-              onClick={handleClick}
+              onClick={() => handleClick()}
             >
               Quit Game
             </button>

@@ -1,11 +1,26 @@
-import React, { useContext } from 'react';
-import { Sidebar } from '../components';
-import { TradingCardMinterContext } from '../context/TradingCardMinter';
+import React, { useContext, useState } from "react";
+import { Sidebar, Loader } from "../components";
+import { TradingCardMinterContext } from "../context/TradingCardMinter";
+import { useNavigate } from "react-router-dom";
 
 function Store() {
   const { mintTradingCard, requestNewPack } = useContext(
-    TradingCardMinterContext,
+    TradingCardMinterContext
   );
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const buyCard = async () => {
+    setLoading(true);
+    await mintTradingCard();
+    setLoading(false);
+  };
+
+  const buyPack = async () => {
+    setLoading(true);
+    await requestNewPack();
+    setLoading(false);
+  };
 
   return (
     <div className="flex flex-1 justify-between py-8 sm:px-12 px-8 flex-row">
@@ -19,22 +34,30 @@ function Store() {
         <p className="font-normal text-[24px] text-white my-10">
           Buy new cards here!
         </p>
-        <div className="flex flex-row gap-[24px] text-white font-semibold">
-          <button
-            type="button"
-            className="flex items-center h-fit py-4 px-6 hover:bg-[#25718B] bg-[#25618B] rounded-[32px] gap-[12px]"
-            onClick={mintTradingCard}
-          >
-            Buy a Card
-          </button>
-          <button
-            type="button"
-            className="flex items-center h-fit py-4 px-6 hover:bg-[#25718B] bg-[#25618B] rounded-[32px] gap-[12px]"
-            onClick={requestNewPack}
-          >
-            Buy a Pack
-          </button>
-        </div>
+        {loading && (
+          <div className="mt-16 scale-[100%]">
+            <Loader />
+          </div>
+        )}
+
+        {!loading && (
+          <div className="flex flex-row gap-[24px] text-white font-semibold">
+            <button
+              type="button"
+              className="flex items-center h-fit py-4 px-6 hover:bg-[#25718B] bg-[#25618B] rounded-[32px] gap-[12px]"
+              onClick={buyCard}
+            >
+              Buy a Card
+            </button>
+            <button
+              type="button"
+              className="flex items-center h-fit py-4 px-6 hover:bg-[#25718B] bg-[#25618B] rounded-[32px] gap-[12px]"
+              onClick={buyPack}
+            >
+              Buy a Pack
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

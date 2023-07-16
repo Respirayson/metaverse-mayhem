@@ -16,7 +16,7 @@ import { GameInstruction } from '../components';
 function Board() {
   // Get state values using useSelector hook
   const {
-    user, board, opponent, handCount, character, turn,
+    user, board, opponent, handCount, character, turn, current
   } = useSelector(
     (state) => state,
   );
@@ -25,13 +25,11 @@ function Board() {
 
   useEffect(() => {
     if (character.Player.health <= 0) {
-      window.alert('You lose!');
-      navigate('/');
+      dispatch(allActions.gameActions.endGame(false));
     }
 
     if (character.Enemy.health <= 0) {
-      window.alert('You win!');
-      navigate('/');
+      dispatch(allActions.gameActions.endGame(true));
     }
 
   }, [character, navigate]);
@@ -64,11 +62,6 @@ function Board() {
         />
       </div>
       <GameInstruction />
-      {true && (<div className='glassmorphism absolute w-[50%] h-[50%] top-[12%] left-[25%] rounded-3xl'>
-        <p className='text-5xl text-white align-center justify-center relative flex mt-[20%] font-semibold'>
-            You won
-        </p>
-      </div>)}
     </DndProvider>
   );
 }

@@ -25,6 +25,7 @@ import GameInstruction from './GameInstruction';
 import LoadingScreen from './LoadingScreen';
 import Sidebar from './SideBar';
 import Loader from './Loader';
+import FinalScreen from './FinalScreen';
 
 export {
   Login,
@@ -54,4 +55,5 @@ export {
   LoadingScreen,
   Sidebar,
   Loader,
+  FinalScreen,
 };

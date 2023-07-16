@@ -5,6 +5,7 @@ import {
   UPDATE_HAS_OPPONENT,
   RESET_GAME,
 } from '../actions/beforeGameActions';
+import { END_GAME } from '../actions/gameActions';
 
 /**
  * Initial state of the current game.
@@ -14,6 +15,8 @@ const initialState = {
   loading: false,
   gameId: '',
   hasOpponent: false,
+  gameOver: false,
+  isPlayerWinner: false,
   errors: [],
 };
 
@@ -56,6 +59,14 @@ const currentGameReducer = (state = initialState, action) => {
 
   if (action.type === RESET_GAME) {
     return initialState;
+  }
+
+  if (action.type === END_GAME) {
+    return {
+      ...state,
+      gameOver: true,
+      isPlayerWinner: action.payload.isPlayerWinner,
+    };
   }
 
   return state;

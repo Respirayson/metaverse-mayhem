@@ -89,7 +89,7 @@ const endTurn = () => (dispatch, getState) => {
  * @param {string} target - The target of the game end (e.g., "PLAYER" or "OPPONENT").
  * @returns {object} Action object with type 'END_GAME' and the payload.
  */
-const endGame = (target) => ({ payload: { target }, type: END_GAME });
+const endGame = (target) => ({ payload: { isPlayerWinner: target }, type: END_GAME });
 
 // Export an object with all the action creators
 export default {

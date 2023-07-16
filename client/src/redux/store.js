@@ -4,6 +4,8 @@ import rootReducer from '../reducers';
 import { newRandomCard } from '../utils/cards';
 import { socketMiddleware } from '../utils/socketMiddleware';
 import { socket } from '../utils/socket';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 const initialHand = {
   cards: Array(4)
@@ -11,10 +13,21 @@ const initialHand = {
     .map(() => ({ ...newRandomCard(), key: uuidv4() })),
 };
 
-export default configureStore({
-  reducer: rootReducer,
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const store = configureStore({
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(socketMiddleware(socket)),
   preloadedState: {
     hand: initialHand,
   },
 });
+
+export default store;
+
+export const persistor = persistStore(store);

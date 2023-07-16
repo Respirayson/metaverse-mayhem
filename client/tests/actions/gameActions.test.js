@@ -119,10 +119,10 @@ describe("Actions", () => {
         });
 
         it("should create an action to end the game", () => {
-            const target = "PLAYER";
+            const target = true;
             const expectedAction = {
                 type: "END_GAME",
-                payload: { target },
+                payload: { isPlayerWinner: target },
             };
 
             expect(allActions.gameActions.endGame(target)).toEqual(expectedAction);
