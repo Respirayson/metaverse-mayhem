@@ -20,8 +20,9 @@ function FinalScreen({ isWinner }) {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
+      className="z-[100000000] relative"
     >
-      <div className="flex justify-between items-center absolute z-[100000000] w-full h-screen gameload inset-0 flex-col">
+      <div className="flex justify-between items-center absolute w-full h-screen gameload inset-0 flex-col">
         <div className="flex-1 flex items-center justify-center flex-col">
           <h1 className="font-bold text-white sm:text-6xl text-4xl text-center">
             {isWinner ? (
