@@ -38,7 +38,7 @@ const checkWalletConnected = async () => {
   }
 
   const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-  if (accounts.length !== 0) {
+  if (accounts?.length !== 0) {
     const account = accounts[0];
     console.log(`Connected: ${account}`);
     return account;
