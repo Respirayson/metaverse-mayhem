@@ -7,6 +7,7 @@ import { LoadingScreen } from '../components';
 
 function GameNewScreen() {
   const currentGame = useSelector((state) => state.current);
+  console.log(currentGame)
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

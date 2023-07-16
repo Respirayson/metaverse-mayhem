@@ -1,7 +1,8 @@
 import abi from './TradingCardMinter.json';
+import marketplaceAbi from './NftMarketplace.json';
 
 export const contractABI = abi.abi;
-// export const contractAddress = "0x3B79f006F708e49509c4d569d1B1c27e43B24C9f"; // old one
-export const contractAddress = '0x506d5f7a23C9Ce66B3de908354f61Ceb1c06F2b2';
-export const marketplaceAddress = '0xE69BC5db8F6E8a7f7aEAe2fAB43959b301615F95';
+export const marketplaceABI = marketplaceAbi.abi;
+export const contractAddress = '0xda98BB7892034f580389955e32706b4Eb99d3528';
+export const marketplaceAddress = '0x164e7AB43FdA50207b3D608b2Cf8b55e93d22773';
 export const alchemyApiKey = '5Xo4ZkYW7ruYkb4T34Fj1v19_Kl4IbVB';

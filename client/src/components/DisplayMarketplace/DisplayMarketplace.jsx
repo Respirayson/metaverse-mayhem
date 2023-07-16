@@ -3,18 +3,18 @@ import { useNavigate } from 'react-router-dom';
 import Listing from '../Listing/Listing';
 import Loader from '../Loader';
 
-function DisplayMarketplace({ cards, loading }) {
+function DisplayMarketplace({ listings, loading, subtitle }) {
   const navigate = useNavigate();
 
   const handleNavigate = (listing) => {
-    navigate(`/marketplace/listing-details/${listing.name}`, { state: listing });
+    navigate(`/marketplace/listing-details/${listing.id}/${listing.card.name}`, { state: listing });
   };
 
   return (
     <>
       <h1 className="font-semibold text-white text-left text-[18px]">
         Total Listings &#40;
-        {cards.length}
+        {listings.length}
         &#41;
       </h1>
       {loading && (
@@ -23,24 +23,20 @@ function DisplayMarketplace({ cards, loading }) {
         </div>
       )}
       <div className="flex flex-wrap mt-[20px] gap-[26px]">
-        {!loading && cards.length === 0 && (
+        {!loading && listings.length === 0 && (
           <p className="font-semibold text-[14px] leading-[30px] text-[#818183]">
-            You have not created any listings yet.
+            {subtitle}
           </p>
         )}
 
         {!loading
-          && cards.length > 0
-          && cards.map((card, _index) => (
+          && listings.length > 0
+          && listings.map((listing, index) => (
             <Listing
-              card={card}
-              name={card.name}
-              description={card.description}
-              type={card.type}
-              seller="hello"
-              price={Math.floor(Math.random() * 1000) / 1000}
-              image={card.cardImage}
-              handleClick={() => handleNavigate(card)}
+              card={listing.card}
+              seller={listing.seller}
+              price={listing.price}
+              handleClick={() => handleNavigate(listing)}
             />
           ))}
       </div>

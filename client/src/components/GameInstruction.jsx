@@ -28,7 +28,7 @@ function GameInstruction() {
 
       <div
         className={`absolute z-50 p-8 right-0 top-[10%] h-[80%] rounded-[20px] flex-col transition-all ease-in duration-300 ${
-          toggleSidebar ? 'translate-x-0' : ' translate-x-full'
+          toggleSidebar ? 'translate-x-0' : 'hidden translate-x-full'
         } bg-white backdrop-filter backdrop-blur-lg bg-opacity-10 flex justify-between items-center backdrop-blur-3xl`}
       >
         <div className="flex flex-col">

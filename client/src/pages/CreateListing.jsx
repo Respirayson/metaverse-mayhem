@@ -1,117 +1,73 @@
-import { useState } from 'react';
-
-import { motion } from 'framer-motion';
-import { fadeAnimation } from '../utils/motion';
-import { FormField, Sidebar } from '../components';
+import { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { TradingCardMinterContext } from '../context/TradingCardMinter';
+import { Sidebar, Loader } from '../components';
+import Collectible from '../components/Collectible/Collectible';
 
 function CreateListing() {
-  const [form, setForm] = useState({
-    name: '',
-    description: '',
-    seller: '',
-    price: '',
-    url: '',
-    telegramHandle: '',
-    category: '',
-  });
+  const navigate = useNavigate();
+  const [userCards, setUserCards] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const { getCardsUnderAddress, currentAccount } = useContext(
+    TradingCardMinterContext,
+  );
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    const fetchCards = async () => {
+      setLoading(true);
+      const data = await getCardsUnderAddress();
+      setUserCards(data);
+      setLoading(false);
+    };
+
+    fetchCards();
+  }, [getCardsUnderAddress, currentAccount]);
+
+  const handleNavigate = (listing) => {
+    navigate(
+      `/marketplace/selling-details/${listing.card.name}`,
+      { state: listing },
+    );
   };
 
   return (
     <div className="flex flex-1 justify-between py-8 sm:px-12 px-8 flex-row">
       <Sidebar url="Create Listing" />
-      <motion.div
-        key="custom"
-        className="flex justify-center items-center w-2/3 h-full mx-auto"
-        {...fadeAnimation}
-      >
-        <div className="bg-[#1c1c24] rounded-[10px] sm:p-10">
-          <div className="flex flex-row justify-center items-center p-[16px] bg-[#3a3a43] rounded-[10px]">
-            <h1 className="font-bold sm:text=[25px] text-[18px] leading-[38px] text-white">
-              Start a Listing
-            </h1>
-          </div>
-
-          <form
-            onSubmit={handleSubmit}
-            className="w-full mt-[65px] flex flex-col gap-[30px]"
-          >
-            <div className="flex flex-wrap gap-[40px]">
-              <FormField
-                labelName="Name"
-                placeholder="Enter name of item"
-                inputType="text"
-                value={form.name}
-                handleChange={(e) => setForm({
-                  ...form,
-                  name: e.target.value,
-                })}
-              />
-              <FormField
-                labelName="Description"
-                placeholder="Enter description of item"
-                isTextArea
-                value={form.description}
-                handleChange={(e) => setForm({
-                  ...form,
-                  description: e.target.value,
-                })}
-              />
-              <FormField
-                labelName="Seller"
-                placeholder="Enter your name"
-                inputType="text"
-                value={form.seller}
-                handleChange={(e) => setForm({
-                  ...form,
-                  seller: e.target.value,
-                })}
-              />
-              <FormField
-                labelName="Price"
-                placeholder="Enter price of item"
-                inputType="number"
-                value={form.price}
-                handleChange={(e) => setForm({
-                  ...form,
-                  price: e.target.value,
-                })}
-              />
-              <FormField
-                labelName="Image URL"
-                placeholder="Enter image URL"
-                inputType="url"
-                value={form.url}
-                handleChange={(e) => setForm({
-                  ...form,
-                  url: e.target.value,
-                })}
-              />
-              <FormField
-                labelName="Telegram Handle"
-                placeholder="Enter your Telegram handle"
-                inputType="text"
-                value={form.telegramHandle}
-                handleChange={(e) => setForm({
-                  ...form,
-                  telegramHandle: e.target.value,
-                })}
-              />
-            </div>
-            <div className="flex justify-center items-center">
-              <button
-                type="button"
-                className="w-fit px-4 py-4 font-bold text-l"
-              >
-                Submit new Listing
-              </button>
-            </div>
-          </form>
+      <div className="flex-1 flex flex-col xl:mt-0 my-16">
+        <div className="flex flex-row w-full">
+          <h1 className="flex font-bold text-white sm:text-6xl text-4xl head-text">
+            Create Listing
+          </h1>
         </div>
-      </motion.div>
-      <motion.div className="absolute z-20 top-5 right-5" {...fadeAnimation} />
+        <p className="font-normal text-[24px] text-white my-10">
+          Sell your spare cards here
+        </p>
+
+        {loading && (
+          <div className="mt-16 scale-[100%]">
+            <Loader />
+          </div>
+        )}
+
+        {userCards.length === 0 && !loading && (
+          <div>
+            <p className="font-semibold text-[14px] leading-[30px] text-[#818183]">
+              You have no cards to sell
+            </p>
+          </div>
+        )}
+
+        {userCards.length > 0 && !loading && (
+          <div className="flex flex-row gap-[5%] flex-wrap ml-20">
+            {userCards.map((card) => (
+              <Collectible
+                card={card.card}
+                handleClick={() => handleNavigate(card)}
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

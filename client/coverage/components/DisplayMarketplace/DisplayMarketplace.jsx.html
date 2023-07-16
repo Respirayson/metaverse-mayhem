@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">13.72% </span>
+                <span class="strong">14.89% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/51</span>
+                <span class='fraction'>7/47</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">13.72% </span>
+                <span class="strong">14.89% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/51</span>
+                <span class='fraction'>7/47</span>
             </div>
         
             
@@ -110,19 +110,11 @@
 <a name='L45'></a><a href='#L45'>45</a>
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L48'></a><a href='#L48'>48</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -170,18 +162,18 @@ import { useNavigate } from 'react-router-dom';
 import Listing from '../Listing/Listing';
 import Loader from '../Loader';
 &nbsp;
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function DisplayMarketplace({ cards, loading }) {</span></span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function DisplayMarketplace({ listings, loading, subtitle }) {</span></span>
 <span class="cstat-no" title="statement not covered" >  const navigate = useNavigate();</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  const handleNavigate = (listing) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    navigate(`/marketplace/listing-details/${listing.name}`, { state: listing });</span>
+<span class="cstat-no" title="statement not covered" >    navigate(`/marketplace/listing-details/${listing.id}/${listing.card.name}`, { state: listing });</span>
 <span class="cstat-no" title="statement not covered" >  };</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  return (</span>
 <span class="cstat-no" title="statement not covered" >    &lt;&gt;</span>
 <span class="cstat-no" title="statement not covered" >      &lt;h1 className="font-semibold text-white text-left text-[18px]"&gt;</span>
 <span class="cstat-no" title="statement not covered" >        Total Listings &amp;#40;</span>
-<span class="cstat-no" title="statement not covered" >        {cards.length}</span>
+<span class="cstat-no" title="statement not covered" >        {listings.length}</span>
 <span class="cstat-no" title="statement not covered" >        &amp;#41;</span>
 <span class="cstat-no" title="statement not covered" >      &lt;/h1&gt;</span>
 <span class="cstat-no" title="statement not covered" >      {loading &amp;&amp; (</span>
@@ -190,24 +182,20 @@ import Loader from '../Loader';
 <span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >      )}</span>
 <span class="cstat-no" title="statement not covered" >      &lt;div className="flex flex-wrap mt-[20px] gap-[26px]"&gt;</span>
-<span class="cstat-no" title="statement not covered" >        {!loading &amp;&amp; cards.length === 0 &amp;&amp; (</span>
+<span class="cstat-no" title="statement not covered" >        {!loading &amp;&amp; listings.length === 0 &amp;&amp; (</span>
 <span class="cstat-no" title="statement not covered" >          &lt;p className="font-semibold text-[14px] leading-[30px] text-[#818183]"&gt;</span>
-<span class="cstat-no" title="statement not covered" >            You have not created any listings yet.</span>
+<span class="cstat-no" title="statement not covered" >            {subtitle}</span>
 <span class="cstat-no" title="statement not covered" >          &lt;/p&gt;</span>
 <span class="cstat-no" title="statement not covered" >        )}</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >        {!loading</span>
-<span class="cstat-no" title="statement not covered" >          &amp;&amp; cards.length &gt; 0</span>
-<span class="cstat-no" title="statement not covered" >          &amp;&amp; cards.map((card, _index) =&gt; (</span>
+<span class="cstat-no" title="statement not covered" >          &amp;&amp; listings.length &gt; 0</span>
+<span class="cstat-no" title="statement not covered" >          &amp;&amp; listings.map((listing, index) =&gt; (</span>
 <span class="cstat-no" title="statement not covered" >            &lt;Listing</span>
-<span class="cstat-no" title="statement not covered" >              card={card}</span>
-<span class="cstat-no" title="statement not covered" >              name={card.name}</span>
-<span class="cstat-no" title="statement not covered" >              description={card.description}</span>
-<span class="cstat-no" title="statement not covered" >              type={card.type}</span>
-<span class="cstat-no" title="statement not covered" >              seller="hello"</span>
-<span class="cstat-no" title="statement not covered" >              price={Math.floor(Math.random() * 1000) / 1000}</span>
-<span class="cstat-no" title="statement not covered" >              image={card.cardImage}</span>
-<span class="cstat-no" title="statement not covered" >              handleClick={() =&gt; handleNavigate(card)}</span>
+<span class="cstat-no" title="statement not covered" >              card={listing.card}</span>
+<span class="cstat-no" title="statement not covered" >              seller={listing.seller}</span>
+<span class="cstat-no" title="statement not covered" >              price={listing.price}</span>
+<span class="cstat-no" title="statement not covered" >              handleClick={() =&gt; handleNavigate(listing)}</span>
 <span class="cstat-no" title="statement not covered" >            /&gt;</span>
 <span class="cstat-no" title="statement not covered" >          ))}</span>
 <span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
@@ -223,7 +211,7 @@ export default DisplayMarketplace;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-14T13:50:33.209Z
+                at 2023-07-16T02:13:16.273Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

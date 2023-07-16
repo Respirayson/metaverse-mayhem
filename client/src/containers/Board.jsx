@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import allActions from '../actions';
 import PlayerContainer from './PlayerContainer';
 import OpponentContainer from './OpponentContainer';
@@ -18,8 +20,21 @@ function Board() {
   } = useSelector(
     (state) => state,
   );
-  console.log(turn);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (character.Player.health <= 0) {
+      window.alert('You lose!');
+      navigate('/');
+    }
+
+    if (character.Enemy.health <= 0) {
+      window.alert('You win!');
+      navigate('/');
+    }
+
+  }, [character, navigate]);
 
   /**
      * Ends the turn by dispatching the endTurn action
@@ -49,6 +64,11 @@ function Board() {
         />
       </div>
       <GameInstruction />
+      {true && (<div className='glassmorphism absolute w-[50%] h-[50%] top-[12%] left-[25%] rounded-3xl'>
+        <p className='text-5xl text-white align-center justify-center relative flex mt-[20%] font-semibold'>
+            You won
+        </p>
+      </div>)}
     </DndProvider>
   );
 }

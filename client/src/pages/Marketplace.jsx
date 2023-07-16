@@ -1,9 +1,33 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { DisplayMarketplace, Sidebar } from '../components';
 import { cards } from '../utils/cards';
+import { TradingCardMinterContext } from '../context/TradingCardMinter';
 
 function Marketplace() {
   const [loading, setLoading] = useState(false);
+  const [listings, setListings] = useState([]);
+  const { currentAccount } = useContext(TradingCardMinterContext);
+
+  useEffect(() => {
+    const fetchListings = async () => {
+      setLoading(true);
+      const res = await fetch('http://127.0.0.1:8000/api/v1/marketplace/');
+      const data = await res.json();
+      const updatedListings = data
+        .filter((listing) => listing.seller !== currentAccount)
+        .map((listing) => ({
+          card: cards[listing.cardId],
+          price: listing.price,
+          seller: listing.seller,
+          // eslint-disable-next-line no-underscore-dangle
+          id: listing._id,
+          tokenId: listing.tokenId,
+        }));
+      setListings(updatedListings);
+      setLoading(false);
+    };
+    fetchListings();
+  }, [currentAccount]);
 
   return (
     <div className="flex flex-1 justify-between py-8 sm:px-12 px-8 flex-row">
@@ -18,7 +42,7 @@ function Marketplace() {
           Buy, Sell, Trade your way to Victory
         </p>
 
-        <DisplayMarketplace loading={loading} cards={cards} />
+        <DisplayMarketplace subtitle="No listings are available" loading={loading} listings={listings} />
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 function Listing({
-  name, description, seller, price, image, handleClick, card, type,
+  seller, price, handleClick, card,
 }) {
   return (
     <div
@@ -7,7 +7,7 @@ function Listing({
       onClick={handleClick}
     >
       <img
-        src={image}
+        src={card.cardImage}
         alt=""
         className="h-[158px] w-full object-contain rounded-[15px] bg-white"
       />
@@ -20,16 +20,16 @@ function Listing({
             className="w-[17px] h-[17px] object-contain"
           />
           <p className="ml-[12px] mt-[2px] font-medium text-[12px] text-[#808191]">
-            {type}
+            {card.type}
           </p>
         </div>
 
         <div className="block">
           <h3 className="font-semibold text-white text-[16px] text-left leading-[26px] truncate">
-            {name}
+            {card.name}
           </h3>
           <p className="mt-[5px] font-normal text-[#808191] text-left leading-[18px] truncate">
-            {description}
+            {card.description}
             .
           </p>
         </div>
@@ -40,6 +40,8 @@ function Listing({
               Price:
               {' '}
               {price}
+              {' '}
+              ETH
             </h4>
             <p className="mt-[3px] font-normal text-[12px] leading-[18px] text-[#808191] sm:max-w-[120px] truncate">
               Mana
@@ -67,9 +69,9 @@ function Listing({
           </div>
         </div>
         <div className="flex items-center mt-[20px] gap-[12px]">
-          <div className="w-[30px] h-[30px] rounded-full flex justify-center items-center bg-[#13131a]">
+          <div className="w-[30px] h-[30px] rounded-full flex justify-center items-center bg-[#13161a]">
             <img
-              src=""
+              src="/account.svg"
               alt="seller"
               className="w-1/2 h-1/2 object-contain"
             />

@@ -15,6 +15,8 @@ import {
   JoinBattle,
   MyListings,
   ListingDetails,
+  Store,
+  SellingDetails,
 } from './pages';
 
 import { Login, Footer } from './components';
@@ -124,7 +126,9 @@ function App() {
             <Route path="" element={<Marketplace />} />
             <Route path="create-listing" element={<CreateListing />} />
             <Route path="my-listings" element={<MyListings />} />
-            <Route path="listing-details/:id" element={<ListingDetails />} />
+            <Route path="store" element={<Store />} />
+            <Route path="listing-details/:id/:name" element={<ListingDetails />} />
+            <Route path="selling-details/:name" element={<SellingDetails />} />
           </Route>
           <Route path="/collection" element={<Collection />} />
 

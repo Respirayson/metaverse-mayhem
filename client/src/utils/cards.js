@@ -1,6 +1,6 @@
 export const cards = [
   {
-    id: 1,
+    id: 0,
     name: 'The Red Dragon',
     mana: 1,
     attack: 2,
@@ -11,7 +11,7 @@ export const cards = [
     type: 'Minion',
   },
   {
-    id: 2,
+    id: 1,
     name: 'Fire Phoenix',
     mana: 2,
     attack: 2,
@@ -22,7 +22,7 @@ export const cards = [
     type: 'Minion',
   },
   {
-    id: 3,
+    id: 2,
     name: 'Beetroot',
     mana: 1,
     attack: 2,
@@ -33,7 +33,7 @@ export const cards = [
     type: 'Minion',
   },
   {
-    id: 4,
+    id: 3,
     name: 'Carrot',
     mana: 1,
     attack: 1,
@@ -44,7 +44,7 @@ export const cards = [
     type: 'Minion',
   },
   {
-    id: 5,
+    id: 4,
     name: 'The Wizard Frog',
     mana: 3,
     attack: 4,
@@ -55,18 +55,18 @@ export const cards = [
     type: 'Minion',
   },
   {
-    id: 6,
+    id: 5,
     name: 'Corgi',
     mana: 2,
     attack: 3,
     defense: 2,
-    portrait: 'https://i.imgur.com/JkZwHJG.jpg',
+    portrait: '/corgi.jpg',
     description: 'Corgi is a charming and agile card with moderate attack and defense abilities. With a mana cost of 2, it can swiftly navigate the battlefield and deliver swift strikes to opponents.',
     cardImage: '/cards/8.png',
     type: 'Minion',
   },
   {
-    id: 7,
+    id: 6,
     name: 'Octopus',
     mana: 2,
     attack: 3,
@@ -77,7 +77,7 @@ export const cards = [
     type: 'Minion',
   },
   {
-    id: 8,
+    id: 7,
     name: 'SSS Snake',
     mana: 2,
     attack: 3,
@@ -88,7 +88,7 @@ export const cards = [
     type: 'Minion',
   },
   {
-    id: 9,
+    id: 8,
     name: 'The onion',
     mana: 3,
     attack: 4,
@@ -99,7 +99,7 @@ export const cards = [
     type: 'Minion',
   },
   {
-    id: 10,
+    id: 9,
     name: 'Twin Mushrooms',
     mana: 4,
     attack: 5,
@@ -110,7 +110,7 @@ export const cards = [
     type: 'Minion',
   },
   {
-    id: 11,
+    id: 10,
     name: 'Booo',
     mana: 4,
     attack: 5,
@@ -121,7 +121,7 @@ export const cards = [
     type: 'Minion',
   },
   {
-    id: 12,
+    id: 11,
     name: 'Bee Bee',
     mana: 4,
     attack: 5,
@@ -132,7 +132,7 @@ export const cards = [
     type: 'Minion',
   },
   {
-    id: 13,
+    id: 12,
     name: 'Poison Flower',
     mana: 5,
     attack: 5,
@@ -143,7 +143,7 @@ export const cards = [
     type: 'Minion',
   },
   {
-    id: 14,
+    id: 13,
     name: 'The Sea Friends',
     mana: 3,
     attack: 4,
@@ -154,7 +154,7 @@ export const cards = [
     type: 'Minion',
   },
   {
-    id: 15,
+    id: 14,
     name: 'Angry Cat',
     mana: 3,
     attack: 3,
@@ -165,7 +165,7 @@ export const cards = [
     type: 'Minion',
   },
   {
-    id: 16,
+    id: 15,
     name: 'Rocket',
     mana: 4,
     attack: 5,

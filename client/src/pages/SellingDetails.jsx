@@ -2,17 +2,21 @@ import React, { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Loader, Sidebar } from '../components';
 import { NftMarketplaceContext } from '../context/NftMarketplace';
+import { TradingCardMinterContext } from '../context/TradingCardMinter';
 
-function ListingDetails() {
+function SellingDetails() {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const { buyItem, currentAccount } = useContext(NftMarketplaceContext);
+  const { addListing } = useContext(NftMarketplaceContext);
+  const { approveMarketplaceContract } = useContext(TradingCardMinterContext);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [price, setPrice] = useState();
 
-  const handleClick = async (listing) => {
+  const handleClick = async (collectible) => {
     setIsLoading(true);
-    await buyItem(listing.id, listing.tokenId);
+    await approveMarketplaceContract(collectible.tokenId);
+    await addListing(collectible, price);
     setIsLoading(false);
     navigate('/marketplace');
   };
@@ -85,30 +89,6 @@ function ListingDetails() {
                 <div className="flex-[2] flex flex-col gap-[40px]">
                   <div>
                     <h4 className="font-semibold text-[18px] text-white uppercase">
-                      Creator
-                    </h4>
-
-                    <div className="mt-[20px] flex flex-row items-center flex-wrap gap-[14px]">
-                      <div className="w-[52px] h-[52px] flex items-center justify-center rounded-full bg-[#2c2f32] cursor-pointer">
-                        <img
-                          src="/my-listings.svg"
-                          alt="user"
-                          className="w-[60%] h-[60%] object-contain"
-                        />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-[14px] text-white break-all">
-                          {state.seller || 'hello'}
-                        </h4>
-                        <p className="mt-[4px] font-normal text-[12px] text-[#808191]">
-                          Avid Collector
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <h4 className="font-semibold text-[18px] text-white uppercase">
                       Description
                     </h4>
 
@@ -125,31 +105,29 @@ function ListingDetails() {
                   </h4>
 
                   <div className="mt-[20px] flex flex-col p-4 bg-[#1c1c24] rounded-[10px]">
-                    <p className="font-epilogue fount-medium text-[20px] leading-[30px] text-center text-[#808191]">
-                      Price:
-                      {' '}
-                      {state.price || 0.0}
-                      {' '}
-                      ETH
-                    </p>
+                    <input
+                      type="number"
+                      placeholder="ETH 0.1"
+                      step="0.01"
+                      className="w-full py-[10px] sm:px-[20px] px-[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent text-white text-[18px] leading-[30px] placeholder:text-[#4b5264] rounded-[10px]"
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
+                    />
                     <div className="mt-[30px]">
                       <div className="p-4 bg-[#13131a] rounded-[10px]">
                         <h4 className="font-epilogue font-semibold text-[14px] leading-[22px] text-white">
-                          Buy it to instantly own it
+                          Sell your collectible for a fixed price
                         </h4>
                         <p className="my-4 font-epilogue font-normal leading-[22px] text-[#808191]">
-                          Conquer the Metaverse with this new addition to your
-                          collection.
+                          Exchange your NFTs for real money
                         </p>
-                        {state.seller !== currentAccount && (
                         <button
                           type="button"
                           className="font-semibold text-[16px] leading-[26px] text-white min-h-[52px] px-4 rounded-[10px] w-full bg-[#25618B] hover:bg-[#25718B]"
                           onClick={() => handleClick(state)}
                         >
-                          Buy Now
+                          Sell Now
                         </button>
-                        )}
                       </div>
                     </div>
                   </div>
@@ -163,4 +141,4 @@ function ListingDetails() {
   );
 }
 
-export default ListingDetails;
+export default SellingDetails;

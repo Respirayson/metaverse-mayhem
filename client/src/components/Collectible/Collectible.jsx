@@ -1,43 +1,27 @@
 function Collectible({
-  name, description, mana, attack, defense, image,
+  card, handleClick,
 }) {
   return (
-    <div className="md:w-[12rem] 2xl:w-[288px] rounded-[15px] bg-[#1c1c24] cursor-pointer">
+    <div className="relative z-0 md:w-[12rem] 2xl:w-[288px] rounded-[15px] bg-[#1c1c24] cursor-pointer" onClick={handleClick}>
       <img
         alt="portrait"
-        src={image}
-        className="md:h-[12rem] 2xl:h-[288px] w-full object-cover rounded-[15px]"
+        src={card.cardImage}
+        className="w-full h-full object-fill"
       />
 
-      <div className="flex flex-col p-4">
-        <div className="block">
-          <h3 className="font-semibold text-white text-[16px] text-left leading-[26px]">
-            {name}
-          </h3>
-          <p className="mt-[5px] font-normal text-[#808191] text-left leading-[18px] truncate">
-            {description}
-          </p>
-        </div>
-
-        <div className="flex flex-wrap justify-between gap-2 mt-[15px]">
-          <div className="flex flex-col">
-            <h4 className="font-semibold text-[14px] text-[#b2b3bd] leading-[22px]">
-              Mana:
-              {' '}
-              {mana}
-            </h4>
-            <h4 className="font-semibold text-[14px] text-[#b2b3bd] leading-[22px]">
-              Attack:
-              {' '}
-              {attack}
-            </h4>
-            <h4 className="font-semibold text-[14px] text-[#b2b3bd] leading-[22px]">
-              Defense:
-              {' '}
-              {defense}
-            </h4>
-          </div>
-        </div>
+      <div className="absolute w-[32px] 2xl:top-[5%] 2xl:left-[9%] h-[32px] rounded-[25px] top-[2.8%] left-[5.9%] flex items-center justify-center">
+        <p className="2xl:text-[32px] text-[20px] font-bold text-blue-200 absolute">{card.mana || 0}</p>
+      </div>
+      <div className="absolute w-[32px] 2xl:top-[41%] 2xl:left-[8.5%] h-[32px] rounded-[25px] bottom-[51.2%] left-[5.9%] flex items-center justify-center">
+        <p className="2xl:text-[32px] text-[20px] font-bold text-yellow-400">{card.attack || 0}</p>
+      </div>
+      <div className="absolute w-[32px] h-[32px] 2xl:top-[41%] 2xl:right-[8.5%] rounded-[25px] bottom-[51.2%] right-[5.2%] flex items-center justify-center">
+        <p className="2xl:text-[32px] text-[20px] font-bold text-red-700">{card.defense || 0}</p>
+      </div>
+      <div className="absolute w-[80%] bottom-[7.5%] text-[9px] left-[10%]">
+        <p className="text-white text-justify 2xl:text-[14px]">
+          {card.description}
+        </p>
       </div>
     </div>
   );

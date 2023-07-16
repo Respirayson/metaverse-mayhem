@@ -15,7 +15,7 @@ describe('newRandomCard', () => {
   it('should return a random card', () => {
     const mockRandom = vi.spyOn(Math, 'random').mockReturnValue(0.5);
     const expectedCard = {
-      id: 9,
+      id: 8,
       name: 'The onion',
       mana: 3,
       attack: 4,
@@ -39,7 +39,7 @@ describe('newRandomCard', () => {
       .mockReturnValueOnce(0.3)
       .mockReturnValueOnce(0.7);
     const expectedCard1 = {
-      id: 5,
+      id: 4,
       name: 'The Wizard Frog',
       mana: 3,
       attack: 4,
@@ -51,7 +51,7 @@ describe('newRandomCard', () => {
       type: 'Minion',
     };
     const expectedCard2 = {
-      id: 12,
+      id: 11,
       name: 'Bee Bee',
       mana: 4,
       attack: 5,

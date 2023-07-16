@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { DisplayCollection } from '../components';
 import { TradingCardMinterContext } from '../context/TradingCardMinter';
-import { cards } from '../utils/cards';
 
 function Collection() {
   const [index, setIndex] = useState(0);
@@ -48,7 +47,7 @@ function Collection() {
                 />
               </button>
             )}
-            {index < cards.length - 4 && (
+            {index < userCards.length - 4 && (
               <button type="button" onClick={() => setIndex(index + 4)}>
                 <img
                   src="/arrow-right.svg"

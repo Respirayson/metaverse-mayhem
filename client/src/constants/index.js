@@ -42,13 +42,13 @@ export const newFeatures = [
     imgUrl: '/vrpano.svg',
     title: 'Your Own Cards',
     subtitle:
-        'Cards will be minted as NFTs on the Ethereum blockchain, and you will be able to trade them with other players',
+      'Cards will be minted as NFTs on the Ethereum blockchain, and you will be able to trade them with other players',
   },
   {
     imgUrl: '/headset.svg',
     title: 'Fun Gameplay',
     subtitle:
-        'You will be able to fight against other players in the arena, and win rewards for your victories',
+      'You will be able to fight against other players in the arena, and win rewards for your victories',
   },
 ];
 
@@ -72,12 +72,12 @@ export const socials = [
 ];
 
 export const gameRules = [
-  'Card with the same defense and attack point will cancel each other out.',
-  'Attack points from the attacking card will deduct the opposing player’s health points.',
-  'If P1 does not defend, their health wil be deducted by P2’s attack.',
-  'If P1 defends, P2’s attack is equal to P2’s attack - P1’s defense.',
-  'If a player defends, they refill 3 Mana',
-  'If a player attacks, they spend 3 Mana',
+  'Players start with 15 cards in their deck, a hero, and 1 mana.',
+  'The game progresses in turns, with players alternating.',
+  'Each turn, players gain 1 mana, up to a maximum of 10, and draw a card.',
+  'Cards can be played by spending the appropriate amount of mana.',
+  'Minions can be placed on the game board and can attack enemy minions or the opponent\'s hero.',
+  'The game ends when one player\'s health reaches zero, declaring the opposing player as the winner.',
 ];
 
 export const sideBarLinks = [
@@ -92,6 +92,12 @@ export const sideBarLinks = [
     id: 'my-listings',
     imgUrl: '/my-listings.svg',
     link: '/marketplace/my-listings',
+  },
+  {
+    name: 'Store',
+    id: 'store',
+    imgUrl: '/store.svg',
+    link: '/marketplace/store',
   },
   {
     name: 'Create Listing',

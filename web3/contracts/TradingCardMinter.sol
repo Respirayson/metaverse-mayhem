@@ -10,12 +10,8 @@ contract TradingCardMinter is ERC721, ERC721Enumerable {
     using Strings for string;
 
     struct Card {
-        string name;
         uint256 cardId;
-        uint256 attack;
-        uint256 health;
-        uint256 defense;
-        string rarity;
+        uint256 tokenId;
     }
 
     Card[] public cards;
@@ -76,17 +72,15 @@ contract TradingCardMinter is ERC721, ERC721Enumerable {
         return randomValue;
     }
 
-    function requestNewCard(
-        string memory name
-    ) public payable returns (uint256) {
+    function requestNewCard() public payable returns (uint256) {
         require(
             address(this).balance >= fee,
             "Insufficient ETH - fill contract with ETH"
         );
 
         uint256 id = cards.length;
-        uint256 cardId = _createRandomNum(5, msg.sender);
-        Card memory newCard = Card(name, cardId, 0, 0, 0, "common");
+        uint256 cardId = _createRandomNum(15, msg.sender);
+        Card memory newCard = Card(cardId, id);
         userCards[msg.sender].push(newCard);
 
         cards.push(newCard);
@@ -94,15 +88,34 @@ contract TradingCardMinter is ERC721, ERC721Enumerable {
         return id;
     }
 
-    function buyCardPack(string memory name) public payable {
+    function buyCardPack() public payable {
         require(
             address(this).balance >= fee,
             "Insufficient ETH - fill contract with ETH"
         );
 
         for (int i = 0; i < 5; i++) {
-            requestNewCard(name);
+            requestNewCard();
         }
+    }
+
+    function transferCardToNewOwner(
+        uint256 tokenId,
+        address from,
+        address to
+    ) public {
+        Card memory card = cards[tokenId];
+
+        for (uint256 i = 0; i < userCards[from].length; i++) {
+            if (userCards[from][i].tokenId == card.tokenId) {
+                userCards[from][i] = userCards[from][
+                    userCards[from].length - 1
+                ];
+                userCards[from].pop();
+                break;
+            }
+        }
+        userCards[to].push(card);
     }
 
     function getCardsUnderOwner(

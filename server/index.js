@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/game', gameRoutes);
-app.use('api/v1/marketplace', marketplaceRoutes);
+app.use('/api/v1/marketplace', marketplaceRoutes);
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, {

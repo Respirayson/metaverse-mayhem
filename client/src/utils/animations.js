@@ -1,6 +1,6 @@
 const prefixes = ['webkit', 'moz', 'ms', ''];
 function prefixedEvent(element, type, callback) {
-  for (let p = 0; p < prefixes.length; p++) {
+  for (let p = 0; p < prefixes.length; p += 1) {
     if (!prefixes[p]) type = type.toLowerCase();
     element.addEventListener(prefixes[p] + type, callback, false);
   }

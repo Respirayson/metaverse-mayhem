@@ -4,15 +4,15 @@ import { Listing } from "../../src/components";
 
 describe("Listing component", () => {
   const props = {
-    type: "Minion",
-    name: "Product Name",
-    description: "Product Description",
     seller: "Seller Name",
     price: "$10.99",
     card: {
+      name: "Product Name",
+      description: "Product Description",
       mana: 5,
       attack: 3,
       defense: 2,
+      type: "Minion",
     },
   };
 

@@ -8,6 +8,8 @@ import CreateListing from './CreateListing';
 import JoinBattle from './JoinBattle';
 import MyListings from './MyListings';
 import ListingDetails from './ListingDetails';
+import Store from './Store';
+import SellingDetails from './SellingDetails';
 
 export {
   Home,
@@ -20,4 +22,6 @@ export {
   JoinBattle,
   MyListings,
   ListingDetails,
+  Store,
+  SellingDetails,
 };

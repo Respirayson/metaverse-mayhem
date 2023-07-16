@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiFillPlayCircle } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 import { connectWallet, checkWalletConnected } from '../../utils/connect';
 
 /**
@@ -9,11 +10,12 @@ import { connectWallet, checkWalletConnected } from '../../utils/connect';
  * @returns {JSX.Element} Login button component.
  */
 function Login(props) {
-  const [loading, setLoading] = React.useState(false); // Loading button state
-  const [currentAccount, setCurrentAccount] = React.useState(''); // Connected wallet public address
+  const [loading, setLoading] = useState(false); // Loading button state
+  const [currentAccount, setCurrentAccount] = useState(''); // Connected wallet public address
   const { onLoggedIn, text } = props;
+  const navigate = useNavigate();
 
-  React.useEffect(() => {
+  useEffect(() => {
     /**
          * Fetches the connected wallet account on component mount.
          */
@@ -120,7 +122,7 @@ function Login(props) {
         return users;
       })
     // Popup MetaMask confirmation modal to sign message
-      .then(async (res) => await handleSignMessage(res.publicAddress, res.nonce))
+      .then(async (res) => handleSignMessage(res.publicAddress, res.nonce))
     // Send signature to backend on the /auth route
       .then(async (res) => {
         const data = await handleAuthenticate(
@@ -130,6 +132,8 @@ function Login(props) {
         return data;
       })
       .then((res) => onLoggedIn(res.token))
+      .then(() => navigate('/'))
+      .then(() => window.location.reload())
       .catch((err) => {
         window.alert(err);
         setLoading(false);
