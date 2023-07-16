@@ -14,7 +14,6 @@ import {
  * @param {boolean} props.playerTurn - Indicates if it's the player's turn.
  * @param {function} props.onClick - Function to handle the click event.
  * @param {number} props.turn - Current turn number.
- * @param {function} props.drawCard - Function to draw a card.
  * @returns {JSX.Element} Player component.
  */
 function Player({
@@ -24,17 +23,15 @@ function Player({
   playerTurn,
   onClick,
   turn,
-  drawCard,
+  heroRef,
+  getCoords,
 }) {
   return (
-    <div className={styles.Player} data-testid="targetable-player-hero">
+    <div className="flex flex-end w-full" data-testid="targetable-player-hero">
       <div className={`${styles.PlayerHandWrapper}`}>
-        <h1 onClick={drawCard} className={`${styles.PlayerName}`}>
-          {name || 'Unnamed'}
-          <TargetableHero character={character} />
-        </h1>
         <button
-          className={`absolute right-[60px] top-[630px] font-semibold ${
+          type="button"
+          className={`z-50 absolute right-[60px] top-[50%] font-semibold ${
             turn ? 'bg-green-700' : 'bg-gray-700'
           } text-white p-2 rounded-full px-4`}
           onClick={onClick}
@@ -51,6 +48,8 @@ function Player({
           currentMana={character.mana.current}
           playerTurn={playerTurn}
         />
+        <TargetableHero getCoords={getCoords} heroRef={heroRef} character={character} name={name} />
+
       </div>
     </div>
   );

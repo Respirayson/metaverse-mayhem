@@ -1,12 +1,6 @@
-.Player {
-    display: flex;
-    align-items: flex-end;
-    width: 100%;
-  }
-  
   .PlayerHandWrapper {
     flex-grow: 1;
-    height: 80vh;
+    height: 100vh;
   }
   
   .PlayerName {

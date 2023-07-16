@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { motion } from 'framer-motion';
 import { fadeAnimation } from '../utils/motion';
-import { FormField, CustomButton } from '../components';
+import { FormField } from '../components';
 
 function CreateListing() {
   const [form, setForm] = useState({
@@ -100,11 +100,12 @@ function CreateListing() {
               />
             </div>
             <div className="flex justify-center items-center">
-              <CustomButton
-                type="filled"
-                title="Submit new Listing"
-                customStyles="w-fit px-4 py-4 font-bold text-l"
-              />
+              <button
+                type="button"
+                className="w-fit px-4 py-4 font-bold text-l"
+              >
+                Submit new Listing
+              </button>
             </div>
           </form>
         </div>

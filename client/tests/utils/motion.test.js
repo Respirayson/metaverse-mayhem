@@ -1,9 +1,6 @@
 import {
   slideAnimation,
   fadeAnimation,
-  headTextAnimation,
-  headContentAnimation,
-  headContainerAnimation,
 } from "../../src/utils/motion";
 
 describe("slideAnimation", () => {
@@ -119,58 +116,3 @@ describe("fadeAnimation", () => {
   });
 });
 
-describe("headTextAnimation", () => {
-  it("should return the correct animation properties", () => {
-    const animation = headTextAnimation;
-
-    expect(animation.initial).toEqual({ x: 100, opacity: 0 });
-    expect(animation.animate).toEqual({ x: 0, opacity: 1 });
-    expect(animation.transition).toEqual({
-      type: "spring",
-      damping: 5,
-      stiffness: 40,
-      restDelta: 0.001,
-      duration: 0.3,
-    });
-  });
-});
-
-describe("headContentAnimation", () => {
-  it("should return the correct animation properties", () => {
-    const animation = headContentAnimation;
-
-    expect(animation.initial).toEqual({ y: 100, opacity: 0 });
-    expect(animation.animate).toEqual({ y: 0, opacity: 1 });
-    expect(animation.transition).toEqual({
-      type: "spring",
-      damping: 7,
-      stiffness: 30,
-      restDelta: 0.001,
-      duration: 0.6,
-      delay: 0.2,
-      delayChildren: 0.2,
-    });
-  });
-});
-
-describe("headContainerAnimation", () => {
-  it("should return the correct animation properties", () => {
-    const animation = headContainerAnimation;
-
-    expect(animation.initial).toEqual({
-      x: -100,
-      opacity: 0,
-      transition: { type: "spring", duration: 0.8, delay: 0.5 },
-    });
-    expect(animation.animate).toEqual({
-      x: 0,
-      opacity: 1,
-      transition: { type: "spring", duration: 0.8, delay: 0 },
-    });
-    expect(animation.exit).toEqual({
-      x: -100,
-      opacity: 0,
-      transition: { type: "spring", duration: 0.8, delay: 0 },
-    });
-  });
-});

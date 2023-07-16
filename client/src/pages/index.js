@@ -5,6 +5,7 @@ import Collection from './Collection';
 import GameNewScreen from './GameNewScreen';
 import StartScreen from './StartScreen';
 import CreateListing from './CreateListing';
+import JoinBattle from './JoinBattle';
 
 export {
   Home,
@@ -14,4 +15,5 @@ export {
   GameNewScreen,
   StartScreen,
   CreateListing,
+  JoinBattle,
 };

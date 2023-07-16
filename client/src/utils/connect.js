@@ -20,7 +20,7 @@ const connectWallet = async () => {
       // If this happens, the user rejected the connection request.
       console.log('Please connect to MetaMask.');
     } else {
-      console.error(err);
+      console.log(err);
     }
   }
 };

@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  useEffect, useState, useRef, createContext,
+} from 'react';
 import { ethers } from 'ethers';
 
 import { contractABI, contractAddress } from '../utils/constants';
 import { cards } from '../utils/cards';
 
-export const TradingCardMinterContext = React.createContext();
+export const TradingCardMinterContext = createContext();
 
 const { ethereum } = window;
 
@@ -27,11 +29,13 @@ const getEthereumContract = () => {
 
 export function TradingCardMinterProvider({ children }) {
   const [currentAccount, setCurrentAccount] = useState(null);
-  console.log(currentAccount);
   const [formData, setFormData] = useState({
     addressTo: '',
     name: '',
   });
+
+  const player1Ref = useRef();
+  const player2Ref = useRef();
 
   const checkIfWalletIsConnected = async () => {
     try {
@@ -61,9 +65,7 @@ export function TradingCardMinterProvider({ children }) {
         const { addressTo, name } = formData;
         const contract = getEthereumContract();
 
-        const transaction = await contract.requestNewCard(
-          'Hello World!',
-        );
+        const transaction = await contract.requestNewCard('Hello World!');
         await transaction.wait();
         console.log(
           `1 Card successfully sent to ${addressTo} under ${name} - Transaction hash: ${transaction.hash}`,
@@ -107,6 +109,9 @@ export function TradingCardMinterProvider({ children }) {
         formData,
         mintTradingCard,
         getCardsUnderAddress,
+        currentAccount,
+        player1Ref,
+        player2Ref,
       }}
     >
       {children}

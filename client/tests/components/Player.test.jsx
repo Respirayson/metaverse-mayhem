@@ -51,34 +51,10 @@ describe("Player", () => {
         );
     });
 
-    it("renders player name", () => {
-        expect(screen.getByText("Player Name")).toBeInTheDocument();
-        expect(screen.getByText("Player Name").nodeName).toBe("H1");
-        expect(screen.getByText("Player Name").className).toBe("PlayerName");
-    });
-
-    it('renders player name as "Unnamed" when name prop is not provided', () => {
-        defaultProps.name = "";
-        render(
-            <Provider store={store}>
-                <DndProvider backend={HTML5Backend}>
-                    <Player {...defaultProps} />
-                </DndProvider>
-            </Provider>
-        );
-
-        expect(screen.getByText("Unnamed")).toBeInTheDocument();
-    });
-
     it("renders targetable hero", () => {
         expect(
             screen.getAllByTestId("targetable-player-hero")[0]
         ).toBeInTheDocument();
-    });
-
-    it("calls drawCard when player name is clicked", () => {
-        fireEvent.click(screen.getByText("Player Name"));
-        expect(mockDrawCard).toHaveBeenCalled();
     });
 
     it("renders end turn button", () => {

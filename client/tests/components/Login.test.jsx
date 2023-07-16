@@ -23,7 +23,7 @@ global.fetch = vi.fn(() =>
 
 describe("Login component", () => {
   beforeEach(() => {
-    render(<Login onLoggedIn={vi.fn()} />);
+    render(<Login onLoggedIn={vi.fn()} text="Connect Wallet" />);
   });
 
   it("renders the Connect Wallet button", () => {

@@ -7,33 +7,38 @@ import styles from './Card.module.css';
  * @param {number} props.cardsLength - The total number of cards in the deck.
  * @param {number} props.index - The index of the card in the deck.
  * @param {boolean} props.canDrag - Flag indicating if the card is draggable.
- * @param {Object} props.card - The card object with properties like name, mana, attack, defense, and portrait.
+ * @param {Object} props.card - The card object with properties like
+ * name, mana, attack, defense, and portrait.
  * @returns {JSX.Element} The rendered Card component.
  */
 function Card(props) {
-  const { cardsLength, index, canDrag } = props;
+  const {
+    cardsLength, index, canDrag, card,
+  } = props;
   const {
     name, mana, attack, defense, portrait,
-  } = props.card;
+  } = card;
 
   return (
     <div
       data-testid="dragCard"
-      className={`${styles.Card} ${styles.CardPlayer} ${
+      className={`${styles.Card} ${styles.CardPlayer} ${canDrag ? styles.CardAbleToDrag : null} ${
         styles[`CardTotal-${cardsLength}`]
-      } ${styles[`CardNumber-${index + 1}-of-${cardsLength}`]} 
-      ${canDrag ? styles.CardAbleToDrag : null}`}
+      } ${styles[`CardNumber-${index + 1}-of-${cardsLength}`]} relative w-[180px] h-[285px] z-0 transition-all`}
     >
-      <div
-        className={`${styles.CardPortrait} bg-[image:var(--image-url)]`}
-        style={{ '--image-url': `url(${portrait})` }}
-      />
-      <div className={styles.CardMana}>{mana || 0}</div>
-      <h1 className={`${styles.CardName} font-medium`}>{name}</h1>
-      {attack ? <div className={styles.CardAttack}>{attack}</div> : null}
-      {defense ? (
-        <div className={styles.CardDefense}>{defense}</div>
-      ) : null}
+      <img src="/cardtryout.jpg" alt={name} className="w-full h-full object-fill" />
+
+      <div className="absolute w-[32px] h-[32px] rounded-[25px] top-[2.8%] left-[5.9%] flex items-center justify-center">
+        <p className="text-[20px] font-bold text-blue-200">{mana || 0}</p>
+      </div>
+
+      <div className="absolute w-[32px] h-[32px] rounded-[25px] bottom-[50.2%] left-[5.9%] flex items-center justify-center">
+        <p className="text-[20px] font-bold text-yellow-400">{attack || 0}</p>
+      </div>
+      <div className="absolute w-[32px] h-[32px] rounded-[25px] bottom-[50.2%] right-[5.2%] flex items-center justify-center">
+        <p className="text-[20px] font-bold text-red-700">{defense || 0}</p>
+      </div>
+
     </div>
   );
 }

@@ -1,11 +1,12 @@
 import { useDispatch } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid';
 import { motion } from 'framer-motion';
+import { useContext } from 'react';
 import allActions from '../actions';
-import { newRandomCard } from '../utils/cards';
 import { Opponent } from '../components';
 import EnemyMinion from './EnemyMinion';
 import { slideAnimation } from '../utils/motion';
+import { TradingCardMinterContext } from '../context/TradingCardMinter';
+import { getCoords } from '../utils/animations';
 
 /**
  * Container component for the opponent.
@@ -18,27 +19,12 @@ import { slideAnimation } from '../utils/motion';
  */
 function OpponentContainer(props) {
   const dispatch = useDispatch();
+  const { player1Ref } = useContext(TradingCardMinterContext);
 
   const {
     name, handCount, character, turn,
   } = props;
   const { board, exhaustedMinions } = props.board;
-
-  /**
-     * Function to draw a card for the opponent.
-     */
-  const drawCard = () => {
-    dispatch(
-      allActions.playerActions.playCard(
-        {
-          ...newRandomCard(),
-          key: uuidv4(),
-        },
-        0,
-        'OPPONENT',
-      ),
-    );
-  };
 
   /**
      * Function to hit the opponent's face with a minion.
@@ -70,7 +56,6 @@ function OpponentContainer(props) {
   const minions = board.map((card, index) => (
     <motion.div key={card.key} {...slideAnimation('down')}>
       <EnemyMinion
-        key={index}
         card={card}
         attackMinion={attackMinion}
         exhaustedMinions={exhaustedMinions}
@@ -86,11 +71,12 @@ function OpponentContainer(props) {
       character={character}
       board={board}
       exhaustedMinions={exhaustedMinions}
-      drawCard={drawCard}
       hitFace={hitFace}
       attackMinion={attackMinion}
       turn={turn}
       minions={minions}
+      heroRef={player1Ref}
+      getCoords={getCoords}
     />
   );
 }

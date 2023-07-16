@@ -1,6 +1,9 @@
 import { useDispatch } from 'react-redux';
 import allActions from '../actions';
 import { Player } from '../components';
+import { TradingCardMinterContext } from '../context/TradingCardMinter';
+import { useContext } from 'react';
+import { getPlayerCoords } from '../utils/animations';
 
 /**
  * Container component for the player.
@@ -22,7 +25,7 @@ function PlayerContainer({
   turn,
 }) {
   const dispatch = useDispatch();
-
+  const { player2Ref } = useContext(TradingCardMinterContext);
   /**
      * Function to draw a card for the player.
      */
@@ -39,6 +42,8 @@ function PlayerContainer({
       onClick={onClick}
       turn={turn}
       drawCard={drawCard}
+      heroRef={player2Ref}
+      getCoords={getPlayerCoords}
     />
   );
 }

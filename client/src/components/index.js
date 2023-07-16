@@ -13,7 +13,16 @@ import Listing from './Listing/Listing';
 import DisplayCollection from './DisplayCollection/DisplayCollection';
 import Hero from './Hero/Hero';
 import FormField from './FormField';
-import CustomButton from './CustomButton';
+import Introduction from './Introduction';
+import About from './About';
+import Explore from './Explore';
+import GetStarted from './GetStarted';
+import Map from './Map';
+import NewFeatures from './NewFeatures';
+import Footer from './Footer';
+import CustomInput from './CustomInput';
+import GameInstruction from './GameInstruction';
+import LoadingScreen from './LoadingScreen';
 
 export {
   Login,
@@ -31,5 +40,14 @@ export {
   DisplayCollection,
   Hero,
   FormField,
-  CustomButton,
+  Introduction,
+  About,
+  Explore,
+  GetStarted,
+  Map,
+  NewFeatures,
+  Footer,
+  CustomInput,
+  GameInstruction,
+  LoadingScreen,
 };

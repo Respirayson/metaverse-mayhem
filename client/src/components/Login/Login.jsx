@@ -11,7 +11,7 @@ import { connectWallet, checkWalletConnected } from '../../utils/connect';
 function Login(props) {
   const [loading, setLoading] = React.useState(false); // Loading button state
   const [currentAccount, setCurrentAccount] = React.useState(''); // Connected wallet public address
-  const { onLoggedIn } = props;
+  const { onLoggedIn, text } = props;
 
   React.useEffect(() => {
     /**
@@ -159,15 +159,15 @@ function Login(props) {
     <button
       type="button"
       onClick={handleClick}
-      className="flex flex-row justify-center items-center bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd]"
+      className="flex items-center h-fit py-4 px-6 bg-[#25618B] rounded-[32px] gap-[12px]"
     >
       {loading ? (
         'Connecting...'
       ) : (
         <>
-          <AiFillPlayCircle className="text-white mr-2" />
-          <p className="text-white text-base font-semibold">
-            Connect Wallet
+          <AiFillPlayCircle className="w-[24px] h-[24px] object-contain text-white" />
+          <p className="text-white text-[16px] font-semibold">
+            {text}
           </p>
         </>
       )}
