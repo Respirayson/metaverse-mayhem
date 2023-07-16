@@ -37,14 +37,18 @@ const checkWalletConnected = async () => {
     return undefined;
   }
 
-  const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-  if (accounts?.length !== 0) {
-    const account = accounts[0];
-    console.log(`Connected: ${account}`);
-    return account;
+  try {
+    const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+    if (accounts.length !== 0) {
+      const account = accounts[0];
+      console.log(`Connected: ${account}`);
+      return account;
+    }
+    console.log('Not connected');
+    return '';
+  } catch (err) {
+    console.log(err);
   }
-  console.log('Not connected');
-  return '';
 };
 
 const getEthereumContract = (address, abi) => {
