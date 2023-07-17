@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">34.88% </span>
+                <span class="strong">76.74% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/43</span>
+                <span class='fraction'>33/43</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">34.88% </span>
+                <span class="strong">76.74% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/43</span>
+                <span class='fraction'>33/43</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -119,6 +119,11 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -129,24 +134,19 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useDrop } from 'react-dnd';
@@ -162,11 +162,11 @@ import itemTypes from '../constants';
  * @param {boolean} props.turn - Indicates if it's the player's turn.
  * @returns {JSX.Element} EnemyMinion component.
  */
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function EnemyMinion({</span></span>
-<span class="cstat-no" title="statement not covered" >  card, attackMinion, exhaustedMinions, turn,</span>
-<span class="cstat-no" title="statement not covered" >}) {</span>
-<span class="cstat-no" title="statement not covered" >  const [{ isOver }, drop] = useDrop(</span>
-<span class="cstat-no" title="statement not covered" >    () =&gt; ({</span>
+function EnemyMinion({
+  card, attackMinion, exhaustedMinions, turn,
+}) {
+  const [{ isOver }, drop] = useDrop(
+    () =&gt; ({
 <span class="cstat-no" title="statement not covered" >      accept: itemTypes.MINION,</span>
 <span class="cstat-no" title="statement not covered" >      drop: (item) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        const { attack } = item.card;</span>
@@ -177,19 +177,19 @@ import itemTypes from '../constants';
 <span class="cstat-no" title="statement not covered" >        isOver: !!monitor.isOver(),</span>
 <span class="cstat-no" title="statement not covered" >      }),</span>
 <span class="cstat-no" title="statement not covered" >    }),</span>
-<span class="cstat-no" title="statement not covered" >    [card],</span>
-<span class="cstat-no" title="statement not covered" >  );</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;div ref={drop}&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;Minion</span>
-<span class="cstat-no" title="statement not covered" >        card={card}</span>
-<span class="cstat-no" title="statement not covered" >        exhausted={exhaustedMinions.includes(card.key) || !turn}</span>
-<span class="cstat-no" title="statement not covered" >        isOver={isOver}</span>
-<span class="cstat-no" title="statement not covered" >      /&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >  );</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+    [card],
+  );
+&nbsp;
+  return (
+    &lt;div ref={drop}&gt;
+      &lt;Minion
+        card={card}
+        exhausted={exhaustedMinions.includes(card.key) || !turn}
+        isOver={isOver}
+      /&gt;
+    &lt;/div&gt;
+  );
+}
 &nbsp;
 export default EnemyMinion;
 &nbsp;</pre></td></tr></table></pre>
@@ -199,7 +199,7 @@ export default EnemyMinion;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-16T18:31:47.290Z
+                at 2023-07-17T14:53:57.238Z
             </div>
         <script src="../prettify.js"></script>
         <script>

@@ -13,7 +13,7 @@ function Loader() {
   }, []);
 
   return (
-    <div className="preloader">
+    <div data-testid="loader" className="preloader">
       <div className="preloader-wrapper flex flex-col">
         <div className="loading">
           <div className="circle" />
@@ -21,7 +21,7 @@ function Loader() {
           <div className="circle" />
         </div>
         <div>
-          <p className='text-white w-[80%] relative mx-auto text-center mt-4'>
+          <p data-testid='quote' className='text-white w-[80%] relative mx-auto text-center mt-4'>
             {quote}
           </p>
         </div>

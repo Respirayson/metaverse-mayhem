@@ -23,6 +23,9 @@ function Game() {
     return () => {
       document.querySelector("footer").style.display = "block";
       document.querySelector("header").style.display = "block";
+      localStorage.removeItem("persist:root");
+      localStorage.removeItem("gameId");
+      window.location.reload();
     };
   }, []);
 
@@ -47,7 +50,7 @@ function Game() {
       });
     }
 
-    if(currentGame.gameOver) {
+    if (currentGame.gameOver) {
       setGameOver(true);
       setIsWinner(currentGame.isPlayerWinner);
     }

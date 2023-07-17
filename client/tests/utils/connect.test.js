@@ -1,6 +1,6 @@
 import Web3 from 'web3';
-import { connectWallet, checkWalletConnected } from '../../src/utils/connect';
-import { connect } from 'react-redux';
+import { connectWallet, checkWalletConnected, getEthereumContract } from '../../src/utils/connect';
+import { ethers } from 'ethers';
 
 vi.mock('web3');
 
@@ -76,5 +76,52 @@ describe('Wallet Utils', () => {
 
     expect(window.ethereum.request).toHaveBeenCalledWith({ method: 'eth_accounts' });
     expect(account).toBe('');
+  });
+});
+
+describe("getEthereumContract", () => {
+  it("returns the contract object when window.ethereum is available", () => {
+    // Mock window.ethereum
+    window.ethereum = true;
+
+    // Mock dependencies
+    const address = "0x123456789";
+    const abi = [];
+    const providerMock = {
+      getSigner: vi.fn(() => ({
+        connect: vi.fn(),
+        getAddress: vi.fn(),
+        signMessage: vi.fn(),
+        sendTransaction: vi.fn(),
+      })),
+    };
+    const ContractMock = vi.fn();
+
+    // Mock ethers providers and contracts
+    vi.spyOn(ethers.providers, "Web3Provider").mockImplementation(() => providerMock);
+    vi.spyOn(ethers, "Contract").mockImplementation(() => ContractMock);
+
+    // Call the function
+    const result = getEthereumContract(address, abi);
+
+    // Assert the expected output
+    expect(ethers.providers.Web3Provider).toHaveBeenCalledWith(window.ethereum);
+    expect(providerMock.getSigner).toHaveBeenCalled();
+    expect(ethers.Contract).toHaveBeenCalledWith(address, abi, expect.any(Object));
+    expect(result).toBe(ContractMock);
+
+    // Clear mocks
+    vi.restoreAllMocks();
+  });
+
+  it("returns undefined when window.ethereum is not available", () => {
+    // Mock window.ethereum
+    window.ethereum = undefined;
+
+    // Call the function
+    const result = getEthereumContract("0x123456789", []);
+
+    // Assert the expected output
+    expect(result).toBeUndefined();
   });
 });

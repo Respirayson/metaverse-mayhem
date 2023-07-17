@@ -66,6 +66,7 @@ function Sidebar({ url }) {
               {sideBarLinks.map((link) => (
                 <Icon
                   {...link}
+                  key={link.id}
                   isActive={isActive}
                   handleClick={() => {
                     if (!link.disabled) {
@@ -81,7 +82,7 @@ function Sidebar({ url }) {
         </div>
       </div>
       {sideBarLinks.map((link) => (
-        <Tooltip anchorSelect={`#${link.id}`} place="right">
+        <Tooltip key={link.id} anchorSelect={`#${link.id}`} place="right">
           <p className="font-medium">
             {link.name}
           </p>

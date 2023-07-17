@@ -8,10 +8,7 @@ function FinalScreen({ isWinner }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    localStorage.removeItem("persist:root");
-    localStorage.removeItem("gameId");
     navigate("/");
-    window.location.reload();
   };
 
   return (

@@ -2,6 +2,7 @@ import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 
 import playerActions from "../../src/actions/playerActions";
+import allActions from "../../src/actions";
 
 const mockStore = configureStore([thunk]);
 
@@ -194,4 +195,5 @@ describe("Player Actions", () => {
       expect(actions).toEqual(expectedActions);
     });
   });
+
 });

@@ -12,7 +12,6 @@ import DisplayMarketplace from './DisplayMarketplace/DisplayMarketplace';
 import Listing from './Listing/Listing';
 import DisplayCollection from './DisplayCollection/DisplayCollection';
 import Hero from './Hero/Hero';
-import FormField from './FormField';
 import Introduction from './Introduction';
 import About from './About';
 import Explore from './Explore';
@@ -42,7 +41,6 @@ export {
   Listing,
   DisplayCollection,
   Hero,
-  FormField,
   Introduction,
   About,
   Explore,
