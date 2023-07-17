@@ -24,6 +24,7 @@ function Login(props) {
       setCurrentAccount(account);
     }
     fetchData();
+    window?.ethereum?.on('accountsChanged', fetchData);
   }, []);
 
   /**
