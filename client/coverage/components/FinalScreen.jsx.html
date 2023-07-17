@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for containers/Board.jsx</title>
+    <title>Code coverage report for components/FinalScreen.jsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">containers</a> Board.jsx</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">components</a> FinalScreen.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">24.63% </span>
+                <span class="strong">11.42% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>17/69</span>
+                <span class='fraction'>8/70</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">24.63% </span>
+                <span class="strong">11.42% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>17/69</span>
+                <span class='fraction'>8/70</span>
             </div>
         
             
@@ -132,16 +132,8 @@
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a>
 <a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -199,77 +191,88 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useDispatch, useSelector } from 'react-redux';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import allActions from '../actions';
-import PlayerContainer from './PlayerContainer';
-import OpponentContainer from './OpponentContainer';
-import CustomDragLayer from './CustomDragLayer';
-import { GameInstruction } from '../components';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from "react";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 &nbsp;
-/**
- * Component representing the game board
- * @returns {JSX.Element} - The JSX element
- */
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function Board() {</span></span>
-<span class="cstat-no" title="statement not covered" >  // Get state values using useSelector hook</span>
-<span class="cstat-no" title="statement not covered" >  const {</span>
-<span class="cstat-no" title="statement not covered" >    user, board, opponent, handCount, character, turn, current</span>
-<span class="cstat-no" title="statement not covered" >  } = useSelector(</span>
-<span class="cstat-no" title="statement not covered" >    (state) =&gt; state,</span>
-<span class="cstat-no" title="statement not covered" >  );</span>
-<span class="cstat-no" title="statement not covered" >  const dispatch = useDispatch();</span>
+import { fadeIn } from "../utils/motion";
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function FinalScreen({ isWinner }) {</span></span>
 <span class="cstat-no" title="statement not covered" >  const navigate = useNavigate();</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  useEffect(() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    if (character.Player.health &lt;= 0) {</span>
-<span class="cstat-no" title="statement not covered" >      dispatch(allActions.gameActions.endGame(false));</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    if (character.Enemy.health &lt;= 0) {</span>
-<span class="cstat-no" title="statement not covered" >      dispatch(allActions.gameActions.endGame(true));</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  }, [character, navigate]);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  /**</span>
-<span class="cstat-no" title="statement not covered" >     * Ends the turn by dispatching the endTurn action</span>
-<span class="cstat-no" title="statement not covered" >     */</span>
-<span class="cstat-no" title="statement not covered" >  const endTurn = () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    dispatch(allActions.gameActions.endTurn());</span>
+<span class="cstat-no" title="statement not covered" >  const handleClick = () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    localStorage.removeItem("persist:root");</span>
+<span class="cstat-no" title="statement not covered" >    localStorage.removeItem("gameId");</span>
+<span class="cstat-no" title="statement not covered" >    navigate("/");</span>
+<span class="cstat-no" title="statement not covered" >    window.location.reload();</span>
 <span class="cstat-no" title="statement not covered" >  };</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;DndProvider backend={HTML5Backend}&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;CustomDragLayer /&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;div className="w-full"&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;OpponentContainer</span>
-<span class="cstat-no" title="statement not covered" >          board={board.Opponent}</span>
-<span class="cstat-no" title="statement not covered" >          name={opponent}</span>
-<span class="cstat-no" title="statement not covered" >          handCount={handCount}</span>
-<span class="cstat-no" title="statement not covered" >          character={character.Enemy}</span>
-<span class="cstat-no" title="statement not covered" >          turn={!turn}</span>
-<span class="cstat-no" title="statement not covered" >        /&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;PlayerContainer</span>
-<span class="cstat-no" title="statement not covered" >          name={user}</span>
-<span class="cstat-no" title="statement not covered" >          board={board.Player}</span>
-<span class="cstat-no" title="statement not covered" >          character={character.Player}</span>
-<span class="cstat-no" title="statement not covered" >          playerTurn={turn}</span>
-<span class="cstat-no" title="statement not covered" >          onClick={endTurn}</span>
-<span class="cstat-no" title="statement not covered" >          turn={turn}</span>
-<span class="cstat-no" title="statement not covered" >        /&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;motion.div</span>
+<span class="cstat-no" title="statement not covered" >      variants={fadeIn("up", "tween", 0.2, 0.5)}</span>
+<span class="cstat-no" title="statement not covered" >      initial="hidden"</span>
+<span class="cstat-no" title="statement not covered" >      whileInView="show"</span>
+<span class="cstat-no" title="statement not covered" >      viewport={{ once: true }}</span>
+<span class="cstat-no" title="statement not covered" >      className="z-[100000000] relative"</span>
+<span class="cstat-no" title="statement not covered" >    &gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;div className="flex justify-between items-center absolute w-full h-screen gameload inset-0 flex-col"&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;div className="flex-1 flex items-center justify-center flex-col"&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;h1 className="font-bold text-white sm:text-6xl text-4xl text-center"&gt;</span>
+<span class="cstat-no" title="statement not covered" >            {isWinner ? (</span>
+<span class="cstat-no" title="statement not covered" >              &lt;div&gt;</span>
+<span class="cstat-no" title="statement not covered" >                Congratulations &lt;br /&gt; you have prevailed</span>
+<span class="cstat-no" title="statement not covered" >              &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >            ) : (</span>
+<span class="cstat-no" title="statement not covered" >              &lt;div&gt;</span>
+<span class="cstat-no" title="statement not covered" >                Oops sorry &lt;br /&gt; you have lost</span>
+<span class="cstat-no" title="statement not covered" >              &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >            )}</span>
+<span class="cstat-no" title="statement not covered" >          &lt;/h1&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;div className="bg-siteWhite text-white outline-none px-4 py-2 mt-4 justify-center align-center flex rounded-md max-w-full"&gt;</span>
+<span class="cstat-no" title="statement not covered" >            {isWinner ? 'Will your luck last?' : 'Try again next time buddy'}</span>
+<span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >          &lt;div className="flex justify-evenly items-center mt-12"&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;div className="flex items-center justify-center flex-col"&gt;</span>
+<span class="cstat-no" title="statement not covered" >              &lt;img</span>
+<span class="cstat-no" title="statement not covered" >                src="/player01.jpg"</span>
+<span class="cstat-no" title="statement not covered" >                alt="player01"</span>
+<span class="cstat-no" title="statement not covered" >                className="md:w-36 w-24 md:h-36 h-24 object-contain rounded-full drop-shadow-lg"</span>
+<span class="cstat-no" title="statement not covered" >              /&gt;</span>
+<span class="cstat-no" title="statement not covered" >              &lt;p className="mt-3 text-white md:text-xl text-base"&gt;</span>
+<span class="cstat-no" title="statement not covered" >                {localStorage.getItem("username")}</span>
+<span class="cstat-no" title="statement not covered" >              &lt;/p&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >          &lt;div className="mt-4"&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;button</span>
+<span class="cstat-no" title="statement not covered" >              type="button"</span>
+<span class="cstat-no" title="statement not covered" >              className="px-4 py-2 rounded-lg bg-siteBlue w-fit text-white font-bold my-4"</span>
+<span class="cstat-no" title="statement not covered" >              onClick={handleClick}</span>
+<span class="cstat-no" title="statement not covered" >            &gt;</span>
+<span class="cstat-no" title="statement not covered" >              Go back to Home</span>
+<span class="cstat-no" title="statement not covered" >            &lt;/button&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;GameInstruction /&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/DndProvider&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/motion.div&gt;</span>
 <span class="cstat-no" title="statement not covered" >  );</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;
-export default Board;
+export default FinalScreen;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

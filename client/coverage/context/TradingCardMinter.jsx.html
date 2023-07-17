@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">11.51% </span>
+                <span class="strong">12.23% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>16/139</span>
+                <span class='fraction'>17/139</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">11.51% </span>
+                <span class="strong">12.23% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>16/139</span>
+                <span class='fraction'>17/139</span>
             </div>
         
             
@@ -218,6 +218,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -340,17 +341,17 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useEffect, useState, useRef, createContext } from "react";
-import { ethers } from "ethers";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, {
+  useEffect, useState, useRef, createContext,
+} from 'react';
 &nbsp;
 import {
   contractABI,
   contractAddress,
   marketplaceAddress,
-} from "../utils/constants";
-import { cards } from "../utils/cards";
-import { getEthereumContract } from "../utils/connect";
+} from '../utils/constants';
+import { cards } from '../utils/cards';
+import { getEthereumContract } from '../utils/connect';
 &nbsp;
 export const TradingCardMinterContext = createContext();
 &nbsp;
@@ -365,18 +366,18 @@ export <span class="fstat-no" title="function not covered" >function TradingCard
 <span class="cstat-no" title="statement not covered" >    try {</span>
 <span class="cstat-no" title="statement not covered" >      if (!ethereum) {</span>
 <span class="cstat-no" title="statement not covered" >        // eslint-disable-next-line no-alert</span>
-<span class="cstat-no" title="statement not covered" >        window.alert("Please install MetaMask");</span>
+<span class="cstat-no" title="statement not covered" >        window.alert('Please install MetaMask');</span>
 <span class="cstat-no" title="statement not covered" >        return;</span>
 <span class="cstat-no" title="statement not covered" >      }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >      const accounts = await ethereum.request({ method: "eth_accounts" });</span>
+<span class="cstat-no" title="statement not covered" >      const accounts = await ethereum.request({ method: 'eth_accounts' });</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >      if (accounts.length) {</span>
 <span class="cstat-no" title="statement not covered" >        const account = accounts[0];</span>
-<span class="cstat-no" title="statement not covered" >        console.log("Found an authorized account: ", account);</span>
+<span class="cstat-no" title="statement not covered" >        console.log('Found an authorized account: ', account);</span>
 <span class="cstat-no" title="statement not covered" >        setCurrentAccount(account);</span>
 <span class="cstat-no" title="statement not covered" >      } else {</span>
-<span class="cstat-no" title="statement not covered" >        console.log("No authorized account found");</span>
+<span class="cstat-no" title="statement not covered" >        console.log('No authorized account found');</span>
 <span class="cstat-no" title="statement not covered" >      }</span>
 <span class="cstat-no" title="statement not covered" >    } catch (err) {</span>
 <span class="cstat-no" title="statement not covered" >      console.log(err);</span>
@@ -391,10 +392,10 @@ export <span class="fstat-no" title="function not covered" >function TradingCard
 <span class="cstat-no" title="statement not covered" >        const transaction = await contract.requestNewCard();</span>
 <span class="cstat-no" title="statement not covered" >        await transaction.wait();</span>
 <span class="cstat-no" title="statement not covered" >        console.log(</span>
-<span class="cstat-no" title="statement not covered" >          `1 Card successfully sent - Transaction hash: ${transaction.hash}`</span>
+<span class="cstat-no" title="statement not covered" >          `1 Card successfully sent - Transaction hash: ${transaction.hash}`,</span>
 <span class="cstat-no" title="statement not covered" >        );</span>
 <span class="cstat-no" title="statement not covered" >      } else {</span>
-<span class="cstat-no" title="statement not covered" >        console.log("Ethereum is not present");</span>
+<span class="cstat-no" title="statement not covered" >        console.log('Ethereum is not present');</span>
 <span class="cstat-no" title="statement not covered" >      }</span>
 <span class="cstat-no" title="statement not covered" >    } catch (err) {</span>
 <span class="cstat-no" title="statement not covered" >      console.log(err);</span>
@@ -431,10 +432,10 @@ export <span class="fstat-no" title="function not covered" >function TradingCard
 <span class="cstat-no" title="statement not covered" >        const transaction = await contract.approve(marketplaceAddress, tokenId);</span>
 <span class="cstat-no" title="statement not covered" >        await transaction.wait();</span>
 <span class="cstat-no" title="statement not covered" >        console.log(</span>
-<span class="cstat-no" title="statement not covered" >          `Approved marketplace contract to sell card with id ${tokenId} - Transaction hash: ${transaction.hash}`</span>
+<span class="cstat-no" title="statement not covered" >          `Approved marketplace contract to sell card with id ${tokenId} - Transaction hash: ${transaction.hash}`,</span>
 <span class="cstat-no" title="statement not covered" >        );</span>
 <span class="cstat-no" title="statement not covered" >      } else {</span>
-<span class="cstat-no" title="statement not covered" >        console.log("Ethereum is not present");</span>
+<span class="cstat-no" title="statement not covered" >        console.log('Ethereum is not present');</span>
 <span class="cstat-no" title="statement not covered" >      }</span>
 <span class="cstat-no" title="statement not covered" >    } catch (err) {</span>
 <span class="cstat-no" title="statement not covered" >      console.log(err);</span>
@@ -449,16 +450,15 @@ export <span class="fstat-no" title="function not covered" >function TradingCard
 <span class="cstat-no" title="statement not covered" >        const transaction = await contract.buyCardPack();</span>
 <span class="cstat-no" title="statement not covered" >        await transaction.wait();</span>
 <span class="cstat-no" title="statement not covered" >        console.log(</span>
-<span class="cstat-no" title="statement not covered" >          `1 Pack successfully sent - Transaction hash: ${transaction.hash}`</span>
+<span class="cstat-no" title="statement not covered" >          `1 Pack successfully sent - Transaction hash: ${transaction.hash}`,</span>
 <span class="cstat-no" title="statement not covered" >        );</span>
 <span class="cstat-no" title="statement not covered" >      } else {</span>
-<span class="cstat-no" title="statement not covered" >        console.log("Ethereum is not present");</span>
+<span class="cstat-no" title="statement not covered" >        console.log('Ethereum is not present');</span>
 <span class="cstat-no" title="statement not covered" >      }</span>
 <span class="cstat-no" title="statement not covered" >    } catch (err) {</span>
 <span class="cstat-no" title="statement not covered" >      console.log(err);</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" >  };</span>
-<span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  useEffect(() =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    checkIfWalletIsConnected();</span>
@@ -487,7 +487,7 @@ export <span class="fstat-no" title="function not covered" >function TradingCard
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-16T02:13:16.273Z
+                at 2023-07-16T18:31:47.290Z
             </div>
         <script src="../prettify.js"></script>
         <script>

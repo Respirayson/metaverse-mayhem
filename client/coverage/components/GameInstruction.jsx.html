@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">8.21% </span>
+                <span class="strong">8.97% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/73</span>
+                <span class='fraction'>7/78</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">8.21% </span>
+                <span class="strong">8.97% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/73</span>
+                <span class='fraction'>7/78</span>
             </div>
         
             
@@ -136,10 +136,20 @@
 <a name='L71'></a><a href='#L71'>71</a>
 <a name='L72'></a><a href='#L72'>72</a>
 <a name='L73'></a><a href='#L73'>73</a>
-<a name='L74'></a><a href='#L74'>74</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -212,13 +222,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { gameRules } from '../constants';
+import { socket } from '../utils/socket';
 &nbsp;
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function GameInstruction() {</span></span>
 <span class="cstat-no" title="statement not covered" >  const [toggleSidebar, setToggleSidebar] = useState(false);</span>
 <span class="cstat-no" title="statement not covered" >  const navigate = useNavigate();</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  const handleClick = () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    socket.emit('leaveGame', { gameId: localStorage.getItem('gameId') })</span>
+<span class="cstat-no" title="statement not covered" >    localStorage.removeItem('persist:root')</span>
+<span class="cstat-no" title="statement not covered" >    localStorage.removeItem('gameId');</span>
 <span class="cstat-no" title="statement not covered" >    navigate('/');</span>
+<span class="cstat-no" title="statement not covered" >    window.location.reload();</span>
 <span class="cstat-no" title="statement not covered" >  };</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  return (</span>
@@ -239,7 +254,7 @@ import { gameRules } from '../constants';
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >      &lt;div</span>
 <span class="cstat-no" title="statement not covered" >        className={`absolute z-50 p-8 right-0 top-[10%] h-[80%] rounded-[20px] flex-col transition-all ease-in duration-300 ${</span>
-<span class="cstat-no" title="statement not covered" >          toggleSidebar ? 'translate-x-0' : ' translate-x-full'</span>
+<span class="cstat-no" title="statement not covered" >          toggleSidebar ? 'translate-x-0' : 'hidden translate-x-full'</span>
 <span class="cstat-no" title="statement not covered" >        } bg-white backdrop-filter backdrop-blur-lg bg-opacity-10 flex justify-between items-center backdrop-blur-3xl`}</span>
 <span class="cstat-no" title="statement not covered" >      &gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;div className="flex flex-col"&gt;</span>
@@ -270,7 +285,7 @@ import { gameRules } from '../constants';
 <span class="cstat-no" title="statement not covered" >            &lt;button</span>
 <span class="cstat-no" title="statement not covered" >              type="button"</span>
 <span class="cstat-no" title="statement not covered" >              className="px-4 py-2 rounded-lg bg-siteBlue w-fit text-white font-bold my-4"</span>
-<span class="cstat-no" title="statement not covered" >              onClick={handleClick}</span>
+<span class="cstat-no" title="statement not covered" >              onClick={() =&gt; handleClick()}</span>
 <span class="cstat-no" title="statement not covered" >            &gt;</span>
 <span class="cstat-no" title="statement not covered" >              Quit Game</span>
 <span class="cstat-no" title="statement not covered" >            &lt;/button&gt;</span>
@@ -289,7 +304,7 @@ export default GameInstruction;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-16T02:13:16.273Z
+                at 2023-07-16T18:31:47.290Z
             </div>
         <script src="../prettify.js"></script>
         <script>

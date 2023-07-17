@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">34.52% </span>
+                <span class="strong">13.09% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>29/84</span>
+                <span class='fraction'>11/84</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">34.52% </span>
+                <span class="strong">13.09% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>29/84</span>
+                <span class='fraction'>11/84</span>
             </div>
         
             
@@ -198,24 +198,24 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -251,10 +251,41 @@ import itemTypes from '../constants';
 <span class="cstat-no" title="statement not covered" >    isDragging: monitor.isDragging(),</span>
 <span class="cstat-no" title="statement not covered" >  }));</span>
 <span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  const layerStyles = {</span>
+<span class="cstat-no" title="statement not covered" >    position: 'fixed',</span>
+<span class="cstat-no" title="statement not covered" >    pointerEvents: 'none',</span>
+<span class="cstat-no" title="statement not covered" >    zIndex: 100,</span>
+<span class="cstat-no" title="statement not covered" >    left: 0,</span>
+<span class="cstat-no" title="statement not covered" >    top: 0,</span>
+<span class="cstat-no" title="statement not covered" >    width: '100%',</span>
+<span class="cstat-no" title="statement not covered" >    height: '100%',</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
+<span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  /**</span>
-<span class="cstat-no" title="statement not covered" >     * Renders the draggable item based on the item type.</span>
-<span class="cstat-no" title="statement not covered" >     * @returns {JSX.Element | null} Draggable item component.</span>
-<span class="cstat-no" title="statement not covered" >     */</span>
+<span class="cstat-no" title="statement not covered" >   * Calculates the styles for the draggable item.</span>
+<span class="cstat-no" title="statement not covered" >   * @param {Object} initialOffset - The initial offset of the drag.</span>
+<span class="cstat-no" title="statement not covered" >   * @param {Object} currentOffset - The current offset of the drag.</span>
+<span class="cstat-no" title="statement not covered" >   * @returns {Object} Styles object for the draggable item.</span>
+<span class="cstat-no" title="statement not covered" >   */</span>
+<span class="cstat-no" title="statement not covered" >  const getItemStyles = (iOffset, cOffset) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    if (!iOffset || !cOffset) {</span>
+<span class="cstat-no" title="statement not covered" >      return {</span>
+<span class="cstat-no" title="statement not covered" >        display: 'none',</span>
+<span class="cstat-no" title="statement not covered" >      };</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    const { x, y } = cOffset;</span>
+<span class="cstat-no" title="statement not covered" >    const transform = `translate(${x}px, ${y}px)`;</span>
+<span class="cstat-no" title="statement not covered" >    return {</span>
+<span class="cstat-no" title="statement not covered" >      transform,</span>
+<span class="cstat-no" title="statement not covered" >      WebkitTransform: transform,</span>
+<span class="cstat-no" title="statement not covered" >    };</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  /**</span>
+<span class="cstat-no" title="statement not covered" >   * Renders the draggable item based on the item type.</span>
+<span class="cstat-no" title="statement not covered" >   * @returns {JSX.Element | null} Draggable item component.</span>
+<span class="cstat-no" title="statement not covered" >   */</span>
 <span class="cstat-no" title="statement not covered" >  const renderItem = () =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    switch (itemType) {</span>
 <span class="cstat-no" title="statement not covered" >      case itemTypes.CARD:</span>
@@ -283,37 +314,6 @@ import itemTypes from '../constants';
 <span class="cstat-no" title="statement not covered" >  );</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;
-const layerStyles = {
-  position: 'fixed',
-  pointerEvents: 'none',
-  zIndex: 100,
-  left: 0,
-  top: 0,
-  width: '100%',
-  height: '100%',
-};
-&nbsp;
-/**
- * Calculates the styles for the draggable item.
- * @param {Object} initialOffset - The initial offset of the drag.
- * @param {Object} currentOffset - The current offset of the drag.
- * @returns {Object} Styles object for the draggable item.
- */
-const getItemStyles = <span class="fstat-no" title="function not covered" >(initialOffset, currentOffset) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  if (!initialOffset || !currentOffset) {</span>
-<span class="cstat-no" title="statement not covered" >    return {</span>
-<span class="cstat-no" title="statement not covered" >      display: 'none',</span>
-<span class="cstat-no" title="statement not covered" >    };</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const { x, y } = currentOffset;</span>
-<span class="cstat-no" title="statement not covered" >  const transform = `translate(${x}px, ${y}px)`;</span>
-<span class="cstat-no" title="statement not covered" >  return {</span>
-<span class="cstat-no" title="statement not covered" >    transform,</span>
-<span class="cstat-no" title="statement not covered" >    WebkitTransform: transform,</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
-<span class="cstat-no" title="statement not covered" >};</span>
-&nbsp;
 export default CustomDragLayer;
 &nbsp;</pre></td></tr></table></pre>
 
@@ -322,7 +322,7 @@ export default CustomDragLayer;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-16T02:13:16.273Z
+                at 2023-07-16T18:31:47.290Z
             </div>
         <script src="../prettify.js"></script>
         <script>

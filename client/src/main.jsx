@@ -6,6 +6,7 @@ import store, { persistor } from "./redux/store.js";
 import { TradingCardMinterProvider } from "./context/TradingCardMinter";
 import { NftMarketplaceProvider } from "./context/NftMarketplace";
 import { PersistGate } from "redux-persist/integration/react";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -14,7 +15,9 @@ root.render(
     <NftMarketplaceProvider>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <App />
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
         </PersistGate>
       </Provider>
     </NftMarketplaceProvider>

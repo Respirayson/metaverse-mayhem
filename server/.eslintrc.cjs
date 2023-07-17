@@ -26,5 +26,7 @@ module.exports = {
       'error',
       'ignorePackages',
     ],
+    'no-console': 'off',
+    'no-param-reassign': 'off',
   },
 };

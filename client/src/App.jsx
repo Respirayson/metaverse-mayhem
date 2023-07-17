@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
-import {
-  BrowserRouter, Link, Route, Routes,
-} from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from "react";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useDispatch } from "react-redux";
 import {
   Home,
   Marketplace,
@@ -17,31 +15,32 @@ import {
   ListingDetails,
   Store,
   SellingDetails,
-} from './pages';
+} from "./pages";
 
-import { Login, Footer } from './components';
-import { navVariants } from './utils/motion';
+import { Login, Footer } from "./components";
+import { navVariants } from "./utils/motion";
 
-import { socketActions } from './utils/socketActions';
-import { socket } from './utils/socket';
+import { socketActions } from "./utils/socketActions";
+import { socket } from "./utils/socket";
 
 function App() {
   const [authenticated, setAuthenticated] = React.useState(false);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     socketActions(dispatch, socket);
   }, [dispatch]);
 
   const checkAuthenticated = () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
-      fetch('https://metaverse-mayhem.onrender.com/api/v1/auth/verify', {
+      fetch("https://metaverse-mayhem.onrender.com/api/v1/auth/verify", {
         body: JSON.stringify({ token }),
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        method: 'POST',
+        method: "POST",
       })
         .catch((errors) => {
           console.warn(errors);
@@ -59,17 +58,19 @@ function App() {
   };
 
   const handleLogin = (token) => {
-    localStorage.setItem('token', token);
+    localStorage.setItem("token", token);
     setAuthenticated(true);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     setAuthenticated(false);
+    navigate("/");
+    window.location.reload();
   };
 
   return (
-    <BrowserRouter>
+    <>
       <header>
         <motion.nav
           variants={navVariants}
@@ -108,13 +109,9 @@ function App() {
           </div>
         </motion.nav>
       </header>
-
       <main className="w-full min-h-[100vh] bg-primary-black overflow-hidden">
         <Routes>
-          <Route
-            path="/"
-            element={<Home handleLogin={handleLogin} />}
-          />
+          <Route path="/" element={<Home handleLogin={handleLogin} />} />
 
           <Route path="/game">
             <Route path="" element={<StartScreen />} />
@@ -127,17 +124,20 @@ function App() {
             <Route path="create-listing" element={<CreateListing />} />
             <Route path="my-listings" element={<MyListings />} />
             <Route path="store" element={<Store />} />
-            <Route path="listing-details/:id/:name" element={<ListingDetails />} />
+            <Route
+              path="listing-details/:id/:name"
+              element={<ListingDetails />}
+            />
             <Route path="selling-details/:name" element={<SellingDetails />} />
           </Route>
           <Route path="/collection" element={<Collection />} />
 
           {/* <Route
-            element={
-              <PrivateRoutes authenticated={authenticated} />
-                        }
-          >
-          </Route> */}
+      element={
+        <PrivateRoutes authenticated={authenticated} />
+                  }
+    >
+    </Route> */}
         </Routes>
       </main>
       <footer className="bg-primary-black">
@@ -147,7 +147,7 @@ function App() {
           handleLogout={handleLogout}
         />
       </footer>
-    </BrowserRouter>
+    </>
   );
 }
 

@@ -1,12 +1,12 @@
-import React, { useEffect, useState, createContext } from 'react';
-import { ethers } from 'ethers';
+import React, { useEffect, useState, createContext } from "react";
+import { ethers } from "ethers";
 
 import {
   marketplaceABI,
   marketplaceAddress,
   contractAddress,
-} from '../utils/constants';
-import { getEthereumContract } from '../utils/connect';
+} from "../utils/constants";
+import { getEthereumContract } from "../utils/connect";
 
 export const NftMarketplaceContext = createContext();
 
@@ -21,7 +21,7 @@ export function NftMarketplaceProvider({ children }) {
         return;
       }
 
-      const accounts = await ethereum.request({ method: 'eth_accounts' });
+      const accounts = await ethereum.request({ method: "eth_accounts" });
 
       if (accounts.length) {
         const account = accounts[0];
@@ -38,23 +38,23 @@ export function NftMarketplaceProvider({ children }) {
       if (ethereum) {
         const contract = getEthereumContract(
           marketplaceAddress,
-          marketplaceABI,
+          marketplaceABI
         );
         const parsedPrice = ethers.utils.parseEther(price.toString());
         const transaction = await contract.listItem(
           contractAddress,
           collectible.tokenId,
-          parsedPrice,
+          parsedPrice
         );
         await transaction.wait();
         console.log(
-          `Successfully listed NFT with id ${collectible.tokenId} for ${price} ETH`,
+          `Successfully listed NFT with id ${collectible.tokenId} for ${price} ETH`
         );
 
-        await fetch('http://localhost:8000/api/v1/marketplace', {
-          method: 'POST',
+        await fetch("http://localhost:8000/api/v1/marketplace", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             tokenId: collectible.tokenId,
@@ -63,9 +63,9 @@ export function NftMarketplaceProvider({ children }) {
             cardId: collectible.card.id,
           }),
         });
-        console.log('Successfully listed NFT');
+        console.log("Successfully listed NFT");
       } else {
-        console.log('Ethereum is not present');
+        console.log("Ethereum is not present");
       }
     } catch (err) {
       console.log(err);
@@ -77,7 +77,7 @@ export function NftMarketplaceProvider({ children }) {
       if (ethereum) {
         const contract = getEthereumContract(
           marketplaceAddress,
-          marketplaceABI,
+          marketplaceABI
         );
         const listing = await contract.getListing(contractAddress, tokenId);
         const transaction = await contract.buyItem(contractAddress, tokenId, {
@@ -86,9 +86,40 @@ export function NftMarketplaceProvider({ children }) {
         await transaction.wait();
         console.log(`Successfully bought NFT with id ${tokenId}`);
         await fetch(`http://localhost:8000/api/v1/marketplace/${listingId}`, {
-          method: 'DELETE',
+          method: "DELETE",
         });
-        console.log('Successfully deleted listing');
+        console.log("Successfully deleted listing");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getProceeds = async () => {
+    try {
+      if (ethereum) {
+        const contract = getEthereumContract(
+          marketplaceAddress,
+          marketplaceABI
+        );
+        const transaction = await contract.getProceeds(currentAccount);
+        return ethers.utils.formatEther(transaction);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const withdrawProceeds = async () => {
+    try {
+      if (ethereum) {
+        const contract = getEthereumContract(
+          marketplaceAddress,
+          marketplaceABI
+        );
+        const transaction = await contract.withdrawProceeds();
+        await transaction.wait();
+        console.log("Successfully withdrew proceeds");
       }
     } catch (err) {
       console.log(err);
@@ -100,7 +131,15 @@ export function NftMarketplaceProvider({ children }) {
   }, []);
 
   return (
-    <NftMarketplaceContext.Provider value={{ addListing, buyItem, currentAccount }}>
+    <NftMarketplaceContext.Provider
+      value={{
+        addListing,
+        buyItem,
+        currentAccount,
+        getProceeds,
+        withdrawProceeds,
+      }}
+    >
       {children}
     </NftMarketplaceContext.Provider>
   );
