@@ -1,5 +1,5 @@
 import React, {
-  useEffect, useState, useRef, createContext,
+  useEffect, useState, useRef, createContext, useContext,
 } from 'react';
 
 import {
@@ -9,6 +9,7 @@ import {
 } from '../utils/constants';
 import { cards } from '../utils/cards';
 import { getEthereumContract } from '../utils/connect';
+import { WebContext } from './WebContext';
 
 export const TradingCardMinterContext = createContext();
 
@@ -16,14 +17,16 @@ const { ethereum } = window;
 
 export function TradingCardMinterProvider({ children }) {
   const [currentAccount, setCurrentAccount] = useState(null);
+  const { setShowAlert, setSuccess, setAlertMessage } = useContext(WebContext);
   const player1Ref = useRef();
   const player2Ref = useRef();
 
   const checkIfWalletIsConnected = async () => {
     try {
       if (!ethereum) {
-        // eslint-disable-next-line no-alert
-        window.alert('Please install MetaMask');
+        setAlertMessage('Make sure you have metamask!');
+        setShowAlert(true);
+        setSuccess(false);
         return;
       }
 

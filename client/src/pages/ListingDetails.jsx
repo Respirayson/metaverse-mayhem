@@ -1,20 +1,32 @@
-import React, { useContext, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Loader, Sidebar } from '../components';
-import { NftMarketplaceContext } from '../context/NftMarketplace';
+import React, { useContext, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Loader, Sidebar } from "../components";
+import { NftMarketplaceContext } from "../context/NftMarketplace";
+import { WebContext } from "../context/WebContext";
 
 function ListingDetails() {
   const { state } = useLocation();
   const navigate = useNavigate();
   const { buyItem, currentAccount } = useContext(NftMarketplaceContext);
+  const { setShowAlert, setSuccess, setAlertMessage } = useContext(WebContext);
 
   const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = async (listing) => {
-    setIsLoading(true);
-    await buyItem(listing.id, listing.tokenId);
-    setIsLoading(false);
-    navigate('/marketplace');
+    try {
+      setIsLoading(true);
+      await buyItem(listing.id, listing.tokenId);
+      setIsLoading(false);
+      navigate("/marketplace");
+      setShowAlert(true);
+      setSuccess(true);
+      setAlertMessage("Item bought successfully");
+    } catch (err) {
+      setIsLoading(false);
+      setShowAlert(true);
+      setSuccess(false);
+      setAlertMessage(err.message);
+    }
   };
 
   return (
@@ -98,7 +110,7 @@ function ListingDetails() {
                       </div>
                       <div>
                         <h4 className="font-semibold text-[14px] text-white break-all">
-                          {state.seller || 'hello'}
+                          {state.seller || "hello"}
                         </h4>
                         <p className="mt-[4px] font-normal text-[12px] text-[#808191]">
                           Avid Collector
@@ -114,7 +126,7 @@ function ListingDetails() {
 
                     <div className="mt-[20px]">
                       <p className="font-normal text-[16px] text-[#808191] leading-[26px] text-justify">
-                        {state.card.description || 'test'}
+                        {state.card.description || "test"}
                       </p>
                     </div>
                   </div>
@@ -126,11 +138,7 @@ function ListingDetails() {
 
                   <div className="mt-[20px] flex flex-col p-4 bg-[#1c1c24] rounded-[10px]">
                     <p className="font-epilogue fount-medium text-[20px] leading-[30px] text-center text-[#808191]">
-                      Price:
-                      {' '}
-                      {state.price || 0.0}
-                      {' '}
-                      ETH
+                      Price: {state.price || 0.0} ETH
                     </p>
                     <div className="mt-[30px]">
                       <div className="p-4 bg-[#13131a] rounded-[10px]">
@@ -142,13 +150,13 @@ function ListingDetails() {
                           collection.
                         </p>
                         {state.seller !== currentAccount && (
-                        <button
-                          type="button"
-                          className="font-semibold text-[16px] leading-[26px] text-white min-h-[52px] px-4 rounded-[10px] w-full bg-[#25618B] hover:bg-[#25718B]"
-                          onClick={() => handleClick(state)}
-                        >
-                          Buy Now
-                        </button>
+                          <button
+                            type="button"
+                            className="font-semibold text-[16px] leading-[26px] text-white min-h-[52px] px-4 rounded-[10px] w-full bg-[#25618B] hover:bg-[#25718B]"
+                            onClick={() => handleClick(state)}
+                          >
+                            Buy Now
+                          </button>
                         )}
                       </div>
                     </div>

@@ -3,22 +3,35 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Loader, Sidebar } from '../components';
 import { NftMarketplaceContext } from '../context/NftMarketplace';
 import { TradingCardMinterContext } from '../context/TradingCardMinter';
+import { WebContext } from '../context/WebContext';
 
 function SellingDetails() {
   const { state } = useLocation();
   const navigate = useNavigate();
   const { addListing } = useContext(NftMarketplaceContext);
   const { approveMarketplaceContract } = useContext(TradingCardMinterContext);
+  const { setShowAlert, setSuccess, setAlertMessage } = useContext(WebContext);
 
   const [isLoading, setIsLoading] = useState(false);
   const [price, setPrice] = useState();
 
   const handleClick = async (collectible) => {
-    setIsLoading(true);
-    await approveMarketplaceContract(collectible.tokenId);
-    await addListing(collectible, price);
-    setIsLoading(false);
-    navigate('/marketplace');
+    try {
+      setIsLoading(true);
+      await approveMarketplaceContract(collectible.tokenId);
+      await addListing(collectible, price);
+      setIsLoading(false);
+      navigate('/marketplace');
+      setShowAlert(true);
+      setSuccess(true);
+      setAlertMessage('Item listed successfully');
+    } catch (err) {
+      setIsLoading(false);
+      setShowAlert(true);
+      setSuccess(false);
+      setAlertMessage(err.message);
+    }
+    
   };
 
   return (

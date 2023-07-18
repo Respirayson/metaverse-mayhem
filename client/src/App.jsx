@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
@@ -17,14 +17,17 @@ import {
   SellingDetails,
 } from "./pages";
 
-import { Login, Footer } from "./components";
+import { Login, Footer, Alert } from "./components";
 import { navVariants } from "./utils/motion";
 
 import { socketActions } from "./utils/socketActions";
 import { socket } from "./utils/socket";
 
+import { WebContext } from "./context/WebContext";
+
 function App() {
-  const [authenticated, setAuthenticated] = React.useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
+  const { showAlert, alertMessage, success } = useContext(WebContext);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -110,6 +113,7 @@ function App() {
         </motion.nav>
       </header>
       <main className="w-full min-h-[100vh] bg-primary-black overflow-hidden">
+        {showAlert && (<Alert success={success} message={alertMessage} />)}
         <Routes>
           <Route path="/" element={<Home handleLogin={handleLogin} />} />
 
@@ -131,13 +135,6 @@ function App() {
             <Route path="selling-details/:name" element={<SellingDetails />} />
           </Route>
           <Route path="/collection" element={<Collection />} />
-
-          {/* <Route
-      element={
-        <PrivateRoutes authenticated={authenticated} />
-                  }
-    >
-    </Route> */}
         </Routes>
       </main>
       <footer className="bg-primary-black">

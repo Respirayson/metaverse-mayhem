@@ -7,19 +7,22 @@ import { TradingCardMinterProvider } from "./context/TradingCardMinter";
 import { NftMarketplaceProvider } from "./context/NftMarketplace";
 import { PersistGate } from "redux-persist/integration/react";
 import { BrowserRouter } from "react-router-dom";
+import { WebProvider } from "./context/WebContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <TradingCardMinterProvider>
-    <NftMarketplaceProvider>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </PersistGate>
-      </Provider>
-    </NftMarketplaceProvider>
-  </TradingCardMinterProvider>
+  <WebProvider>
+    <TradingCardMinterProvider>
+      <NftMarketplaceProvider>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </PersistGate>
+        </Provider>
+      </NftMarketplaceProvider>
+    </TradingCardMinterProvider>
+  </WebProvider>
 );

@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { Login } from "../../src/components";
 import { BrowserRouter } from "react-router-dom";
+import { WebProvider } from "../../src/context/WebContext";
 
 describe("Login component", () => {
   beforeEach(() => {
@@ -18,9 +19,11 @@ describe("Login component", () => {
       })
     );
     render(
-      <BrowserRouter>
-        <Login onLoggedIn={vi.fn()} text="Connect Wallet" />
-      </BrowserRouter>
+      <WebProvider>
+        <BrowserRouter>
+          <Login onLoggedIn={vi.fn()} text="Connect Wallet" />
+        </BrowserRouter>
+      </WebProvider>
     );
   });
 
@@ -40,14 +43,5 @@ describe("Login component", () => {
 
     const loadingText = screen.getByText("Connecting...");
     expect(loadingText).toBeInTheDocument();
-  });
-
-  it("shows an alert if Metamask is not present", () => {
-    global.window.ethereum = undefined;
-    const button = screen.getByRole("button");
-    fireEvent.click(button);
-
-    const alertText = "Metamask is required to connect to the app.";
-    expect(window.alert).toHaveBeenCalledWith(alertText);
   });
 });

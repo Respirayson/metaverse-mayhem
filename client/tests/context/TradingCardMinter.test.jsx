@@ -4,6 +4,7 @@ import {
   TradingCardMinterProvider,
   TradingCardMinterContext,
 } from "../../src/context/TradingCardMinter";
+import { WebProvider } from "../../src/context/WebContext";
 
 describe("TradingCardMinterProvider", () => {
   beforeEach(() => {
@@ -12,9 +13,11 @@ describe("TradingCardMinterProvider", () => {
 
   it("should render the provider and pass down the correct context values", () => {
     render(
-      <TradingCardMinterProvider>
-        <ChildComponent />
-      </TradingCardMinterProvider>
+      <WebProvider>
+        <TradingCardMinterProvider>
+          <ChildComponent />
+        </TradingCardMinterProvider>
+      </WebProvider>
     );
 
     expect(screen.getByText("Current Account:")).toBeInTheDocument();

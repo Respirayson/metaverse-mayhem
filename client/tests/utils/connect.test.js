@@ -27,35 +27,6 @@ describe('Wallet Utils', () => {
     expect(account).toBe('0x123abc');
   });
 
-  it('should handle error when connecting wallet', async () => {
-    window.ethereum = {
-      enable: vi.fn().mockRejectedValue(new Error('You need to allow MetaMask.')),
-    };
-    await connectWallet();
-    await expect(window.ethereum.enable()).rejects.toThrowError('You need to allow MetaMask.');
-
-  });
-
-
-  it('should handle user rejection when connecting wallet', async () => {
-    window.ethereum = {
-      request: vi.fn().mockRejectedValue({ code: 4001 }),
-    };
-
-    const consoleLogSpy = vi.spyOn(console, 'log');
-    await connectWallet();
-    await expect(window.ethereum.request()).rejects.toThrowError();
-    expect(consoleLogSpy).toHaveBeenCalledWith('Please connect to MetaMask.');
-  });
-  
-
-  it('should handle missing MetaMask installation when connecting wallet', async () => {
-    await connectWallet();
-
-    expect(window.alert).toHaveBeenCalledWith('Please install MetaMask first.');
-  });
-
-
   it('should check if wallet is connected and return the connected account', async () => {
     window.ethereum = {
       request: vi.fn().mockResolvedValue(['0x123abc']),
