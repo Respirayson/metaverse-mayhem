@@ -18,7 +18,7 @@ function Icon({
       } flex justify-center items-center ${
         !disabled && 'cursor-pointer'
       }`}
-      onClick={handleClick}
+      onClick={!disabled ? handleClick : null}
       {...fadeAnimation}
     >
       {!isActive ? (

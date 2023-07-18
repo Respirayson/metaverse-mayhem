@@ -32,7 +32,7 @@ describe("Sidebar", () => {
 
     fireEvent.click(withdrawButton);
 
-    expect(mockWithdrawProceeds).toHaveBeenCalledTimes(1);
+    expect(mockWithdrawProceeds).toHaveBeenCalledTimes(0);
 
     expect(container).toMatchSnapshot();
   });

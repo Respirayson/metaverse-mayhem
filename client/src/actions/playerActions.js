@@ -58,13 +58,7 @@ const drawCard = (target, viaServer) => ({ payload: { target, viaServer }, type:
 const hitFace = (card, target) => ({ payload: { card, target }, type: HIT_FACE });
 
 const attackHero = (card, target) => (dispatch, getState) => {
-  const { character } = getState();
   dispatch(hitFace(card, target));
-  console.log(character.Enemy.health);
-
-  // if (character.Enemy.health <= 0) {
-  //   dispatch(gameActions.endGame("PLAYER"));
-  // }
 };
 
 /**

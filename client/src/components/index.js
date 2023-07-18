@@ -25,6 +25,7 @@ import LoadingScreen from './LoadingScreen';
 import Sidebar from './SideBar';
 import Loader from './Loader';
 import FinalScreen from './FinalScreen';
+import Alert from './Alert';
 
 export {
   Login,
@@ -54,4 +55,5 @@ export {
   Sidebar,
   Loader,
   FinalScreen,
+  Alert
 };
