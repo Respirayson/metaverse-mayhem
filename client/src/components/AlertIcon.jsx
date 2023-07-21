@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
-const AlertIcon = ({ success }) => {
+function AlertIcon({ success }) {
   return (
     <svg
       aria-hidden="true"
       className={`flex-shrink-0 inline w-6 h-6 mr-2 ${
         success
-          ? "text-green-700 bg-green-100 dark:bg-green-200 dark:text-green-800"
-          : "text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+          ? 'text-green-700 bg-green-100 dark:bg-green-200 dark:text-green-800'
+          : 'text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800'
       }`}
       fill="currentColor"
       viewBox="0 0 20 20"
@@ -20,6 +20,6 @@ const AlertIcon = ({ success }) => {
       />
     </svg>
   );
-};
+}
 
 export default AlertIcon;

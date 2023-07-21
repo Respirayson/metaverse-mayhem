@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import rootReducer from '../reducers';
 import { newRandomCard } from '../utils/cards';
 import { socketMiddleware } from '../utils/socketMiddleware';
 import { socket } from '../utils/socket';
-import { persistReducer, persistStore } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 
 const initialHand = {
   cards: Array(4)
@@ -16,7 +16,7 @@ const initialHand = {
 const persistConfig = {
   key: 'root',
   storage,
-}
+};
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

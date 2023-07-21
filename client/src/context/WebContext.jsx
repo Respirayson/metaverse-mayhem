@@ -11,7 +11,7 @@ export function WebProvider({ children }) {
     if (showAlert) {
       const timer = setTimeout(() => {
         setShowAlert(false);
-        setAlertMessage("");
+        setAlertMessage('');
         setSuccess(false);
       }, [3500]);
 

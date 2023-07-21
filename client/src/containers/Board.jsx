@@ -16,7 +16,7 @@ import { GameInstruction } from '../components';
 function Board() {
   // Get state values using useSelector hook
   const {
-    user, board, opponent, handCount, character, turn, current
+    user, board, opponent, handCount, character, turn, current,
   } = useSelector(
     (state) => state,
   );
@@ -31,7 +31,6 @@ function Board() {
     if (character.Enemy.health <= 0) {
       dispatch(allActions.gameActions.endGame(true));
     }
-
   }, [character, navigate]);
 
   /**

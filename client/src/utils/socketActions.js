@@ -47,5 +47,5 @@ export const socketActions = (dispatch, socket) => {
     const { playerCount } = payload;
     console.log('playerCount', playerCount);
     dispatch(allActions.gameActions.endGame(true));
-  })
+  });
 };

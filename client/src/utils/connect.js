@@ -1,4 +1,4 @@
-import { ethers } from "ethers";
+import { ethers } from 'ethers';
 
 /**
  * Connects the wallet using MetaMask
@@ -6,7 +6,7 @@ import { ethers } from "ethers";
  */
 const connectWallet = async () => {
   const accounts = await window.ethereum.request({
-    method: "eth_requestAccounts",
+    method: 'eth_requestAccounts',
   });
   return accounts[0];
 };
@@ -22,14 +22,14 @@ const checkWalletConnected = async () => {
   }
 
   try {
-    const accounts = await window.ethereum.request({ method: "eth_accounts" });
+    const accounts = await window.ethereum.request({ method: 'eth_accounts' });
     if (accounts.length !== 0) {
       const account = accounts[0];
       console.log(`Connected: ${account}`);
       return account;
     }
-    console.log("Not connected");
-    return "";
+    console.log('Not connected');
+    return '';
   } catch (err) {
     console.log(err);
   }

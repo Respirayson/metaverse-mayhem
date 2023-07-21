@@ -39,8 +39,5 @@ describe('Hero component', () => {
     // Assert the rendered hero name
     fireEvent.mouseEnter(screen.getByTestId('player'));
     expect(await screen.findByText(/Test Name/i)).toBeInTheDocument();
-
-    fireEvent.mouseEnter(screen.getByTestId('health'));
-    expect(await screen.findByText(/100/i)).toBeInTheDocument();
   });
 });

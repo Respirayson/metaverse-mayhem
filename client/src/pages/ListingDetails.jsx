@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { Loader, Sidebar } from "../components";
-import { NftMarketplaceContext } from "../context/NftMarketplace";
-import { WebContext } from "../context/WebContext";
+import React, { useContext, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Loader, Sidebar } from '../components';
+import { NftMarketplaceContext } from '../context/NftMarketplace';
+import { WebContext } from '../context/WebContext';
 
 function ListingDetails() {
   const { state } = useLocation();
@@ -17,10 +17,10 @@ function ListingDetails() {
       setIsLoading(true);
       await buyItem(listing.id, listing.tokenId);
       setIsLoading(false);
-      navigate("/marketplace");
+      navigate('/marketplace');
       setShowAlert(true);
       setSuccess(true);
-      setAlertMessage("Item bought successfully");
+      setAlertMessage('Item bought successfully');
     } catch (err) {
       setIsLoading(false);
       setShowAlert(true);
@@ -110,7 +110,7 @@ function ListingDetails() {
                       </div>
                       <div>
                         <h4 className="font-semibold text-[14px] text-white break-all">
-                          {state.seller || "hello"}
+                          {state.seller || 'hello'}
                         </h4>
                         <p className="mt-[4px] font-normal text-[12px] text-[#808191]">
                           Avid Collector
@@ -126,7 +126,7 @@ function ListingDetails() {
 
                     <div className="mt-[20px]">
                       <p className="font-normal text-[16px] text-[#808191] leading-[26px] text-justify">
-                        {state.card.description || "test"}
+                        {state.card.description || 'test'}
                       </p>
                     </div>
                   </div>
@@ -138,7 +138,11 @@ function ListingDetails() {
 
                   <div className="mt-[20px] flex flex-col p-4 bg-[#1c1c24] rounded-[10px]">
                     <p className="font-epilogue fount-medium text-[20px] leading-[30px] text-center text-[#808191]">
-                      Price: {state.price || 0.0} ETH
+                      Price:
+                      {' '}
+                      {state.price || 0.0}
+                      {' '}
+                      ETH
                     </p>
                     <div className="mt-[30px]">
                       <div className="p-4 bg-[#13131a] rounded-[10px]">

@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { gameRules } from "../constants";
-import { socket } from "../utils/socket";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { gameRules } from '../constants';
+import { socket } from '../utils/socket';
 
 function GameInstruction() {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const navigate = useNavigate();
 
   const handleClick = () => {
-    socket.emit("leaveGame", { gameId: localStorage.getItem("gameId") });
-    navigate("/");
+    socket.emit('leaveGame', { gameId: localStorage.getItem('gameId') });
+    navigate('/');
   };
 
   return (
@@ -32,7 +32,7 @@ function GameInstruction() {
       <div
         data-testid="sidebar"
         className={`absolute z-50 p-8 right-0 top-[10%] h-[80%] rounded-[20px] flex-col transition-all ease-in duration-300 ${
-          toggleSidebar ? "translate-x-0" : "translate-x-full"
+          toggleSidebar ? 'translate-x-0' : 'translate-x-full'
         } bg-white backdrop-filter backdrop-blur-lg bg-opacity-10 flex justify-between items-center backdrop-blur-3xl`}
       >
         <div className="flex flex-col">
@@ -53,7 +53,9 @@ function GameInstruction() {
                 key={`game-rule-${index}`}
                 className="font-medium text-white text-xl mb-2"
               >
-                <span className="font-bold">{index + 1}</span>.{rule}
+                <span className="font-bold">{index + 1}</span>
+                .
+                {rule}
               </p>
             ))}
           </div>

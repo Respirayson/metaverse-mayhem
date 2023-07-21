@@ -78,7 +78,6 @@ export function TradingCardMinterProvider({ children }) {
         return ids;
       }
     } catch (err) {
-      // eslint-disable-next-line no-console
       console.log(err);
     }
     return [];
@@ -122,7 +121,7 @@ export function TradingCardMinterProvider({ children }) {
 
   useEffect(() => {
     checkIfWalletIsConnected();
-  }, []);
+  }, [checkIfWalletIsConnected]);
 
   return (
     <TradingCardMinterContext.Provider

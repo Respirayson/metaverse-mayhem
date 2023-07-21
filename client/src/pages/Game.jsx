@@ -1,10 +1,10 @@
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Board } from "../containers";
-import bg from "../assets/bg.mp3";
-import { FinalScreen, Loader } from "../components";
-import { socket } from "../utils/socket";
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Board } from '../containers';
+import bg from '../assets/bg.mp3';
+import { FinalScreen, Loader } from '../components';
+import { socket } from '../utils/socket';
 
 function Game() {
   const currentGame = useSelector((state) => state.current);
@@ -14,17 +14,17 @@ function Game() {
   const [isWinner, setIsWinner] = useState(false);
 
   useEffect(() => {
-    document.querySelector("footer").style.display = "none";
-    document.querySelector("header").style.display = "none";
+    document.querySelector('footer').style.display = 'none';
+    document.querySelector('header').style.display = 'none';
     setTimeout(() => {
       setLoading(false);
     }, 2000);
 
     return () => {
-      document.querySelector("footer").style.display = "block";
-      document.querySelector("header").style.display = "block";
-      localStorage.removeItem("persist:root");
-      localStorage.removeItem("gameId");
+      document.querySelector('footer').style.display = 'block';
+      document.querySelector('header').style.display = 'block';
+      localStorage.removeItem('persist:root');
+      localStorage.removeItem('gameId');
       window.location.reload();
     };
   }, []);
@@ -40,13 +40,13 @@ function Game() {
 
   useEffect(() => {
     if (!currentGame.gameId) {
-      navigate("/game/new");
+      navigate('/game/new');
     } else {
-      localStorage.setItem("gameId", currentGame.gameId);
+      localStorage.setItem('gameId', currentGame.gameId);
       navigate(`/game/${currentGame.gameId}`);
-      socket.emit("joinGame", {
+      socket.emit('joinGame', {
         gameId: currentGame.gameId,
-        name: localStorage.getItem("username"),
+        name: localStorage.getItem('username'),
       });
     }
 

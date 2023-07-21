@@ -55,5 +55,5 @@ export {
   Sidebar,
   Loader,
   FinalScreen,
-  Alert
+  Alert,
 };

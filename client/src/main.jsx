@@ -1,15 +1,16 @@
-import ReactDOM from "react-dom/client";
-import { Provider } from "react-redux";
-import App from "./App";
-import "./index.css";
-import store, { persistor } from "./redux/store.js";
-import { TradingCardMinterProvider } from "./context/TradingCardMinter";
-import { NftMarketplaceProvider } from "./context/NftMarketplace";
-import { PersistGate } from "redux-persist/integration/react";
-import { BrowserRouter } from "react-router-dom";
-import { WebProvider } from "./context/WebContext";
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/integration/react';
+import { Provider } from 'react-redux';
+import App from './App';
+import './index.css';
+import store, { persistor } from './redux/store.js';
+import { TradingCardMinterProvider } from './context/TradingCardMinter';
+import { NftMarketplaceProvider } from './context/NftMarketplace';
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+import { WebProvider } from './context/WebContext';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <WebProvider>
@@ -24,5 +25,5 @@ root.render(
         </Provider>
       </NftMarketplaceProvider>
     </TradingCardMinterProvider>
-  </WebProvider>
+  </WebProvider>,
 );

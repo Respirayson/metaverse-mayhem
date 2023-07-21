@@ -31,7 +31,6 @@ function SellingDetails() {
       setSuccess(false);
       setAlertMessage(err.message);
     }
-    
   };
 
   return (

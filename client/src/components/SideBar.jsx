@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
+import wallet from '/wallet.svg';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Tooltip } from 'react-tooltip';
 import { sideBarLinks } from '../constants';
 import { fadeAnimation } from '../utils/motion';
-import wallet from '/wallet.svg';
 import { NftMarketplaceContext } from '../context/NftMarketplace';
 
 function Icon({
@@ -47,15 +47,15 @@ function Sidebar({ url }) {
       const amount = await getProceeds();
       setProceeds(amount);
       setHasProceeds(amount > 0);
-    }
+    };
     checkProceeds();
-  }, [getProceeds, proceeds])
+  }, [getProceeds, proceeds]);
 
   const handleClick = async () => {
     await withdrawProceeds();
     setProceeds(0);
     setHasProceeds(false);
-  }
+  };
 
   return (
     <>
@@ -88,11 +88,17 @@ function Sidebar({ url }) {
           </p>
         </Tooltip>
       ))}
-      <Tooltip anchorSelect={`#withdraw`} place="right">
-          <p className="font-medium">
-            Withdraw: <br /> {proceeds} ETH
-          </p>
-        </Tooltip>
+      <Tooltip anchorSelect="#withdraw" place="right">
+        <p className="font-medium">
+          Withdraw:
+          {' '}
+          <br />
+          {' '}
+          {proceeds}
+          {' '}
+          ETH
+        </p>
+      </Tooltip>
     </>
   );
 }

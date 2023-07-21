@@ -13,7 +13,7 @@ function LoadingScreen({ loading, gameId, battleName }) {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
-      className='relative z-20'
+      className="relative z-20"
     >
       <div className="flex justify-between items-center absolute w-full h-screen gameload inset-0 flex-col">
 

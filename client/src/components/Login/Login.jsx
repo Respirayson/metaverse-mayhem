@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
-import { AiFillPlayCircle } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
-import { connectWallet, checkWalletConnected } from "../../utils/connect";
-import { WebContext } from "../../context/WebContext";
+import React, { useContext, useEffect, useState } from 'react';
+import { AiFillPlayCircle } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
+import { connectWallet, checkWalletConnected } from '../../utils/connect';
+import { WebContext } from '../../context/WebContext';
 
 /**
  * Component for the login button.
@@ -12,7 +12,7 @@ import { WebContext } from "../../context/WebContext";
  */
 function Login({ onLoggedIn, text }) {
   const [loading, setLoading] = useState(false); // Loading button state
-  const [currentAccount, setCurrentAccount] = useState(""); // Connected wallet public address
+  const [currentAccount, setCurrentAccount] = useState(''); // Connected wallet public address
   const { setShowAlert, setSuccess, setAlertMessage } = useContext(WebContext);
   const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ function Login({ onLoggedIn, text }) {
       setCurrentAccount(account);
     }
     fetchData();
-    window?.ethereum?.on("accountsChanged", fetchData);
+    window?.ethereum?.on('accountsChanged', fetchData);
   }, []);
 
   /**
@@ -34,17 +34,16 @@ function Login({ onLoggedIn, text }) {
    * @param {string} signature - Signed message signature.
    * @returns {Promise<Object>} Authentication response.
    */
-  const handleAuthenticate = (publicAddress, signature) =>
-    fetch("https://metaverse-mayhem.onrender.com/api/v1/auth", {
-      body: JSON.stringify({
-        publicAddress,
-        signature,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-    }).then((response) => response.json());
+  const handleAuthenticate = (publicAddress, signature) => fetch('https://metaverse-mayhem.onrender.com/api/v1/auth', {
+    body: JSON.stringify({
+      publicAddress,
+      signature,
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'POST',
+  }).then((response) => response.json());
 
   /**
    * Signs the message with the wallet and returns the signature.
@@ -67,12 +66,12 @@ function Login({ onLoggedIn, text }) {
             By signing your one-time nonce: ${nonce}, you confirm your understanding and acceptance of these terms and conditions.`;
 
       const signature = await window.ethereum.request({
-        method: "personal_sign",
-        params: [message, publicAddress, ""],
+        method: 'personal_sign',
+        params: [message, publicAddress, ''],
       });
       return { publicAddress, signature };
     } catch (err) {
-      throw new Error("You need to sign the message to be able to log in.");
+      throw new Error('You need to sign the message to be able to log in.');
     }
   };
 
@@ -83,20 +82,20 @@ function Login({ onLoggedIn, text }) {
    */
   const handleSignup = (publicAddress) => {
     if (publicAddress == null) {
-      throw new Error("Unable to create user account. Please try again.");
+      throw new Error('Unable to create user account. Please try again.');
     }
-    return fetch("https://metaverse-mayhem.onrender.com/api/v1/users/", {
+    return fetch('https://metaverse-mayhem.onrender.com/api/v1/users/', {
       body: JSON.stringify({
         publicAddress,
         username: publicAddress
           .slice(0, 3)
-          .concat("...")
+          .concat('...')
           .concat(publicAddress?.slice(-3)),
       }),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      method: "POST",
+      method: 'POST',
     })
       .then((response) => response.json())
       .catch((err) => {
@@ -111,7 +110,7 @@ function Login({ onLoggedIn, text }) {
    * @returns {Promise<string>} Connected wallet account.
    */
   const connectWalletHandler = async () => {
-    if (currentAccount === "") {
+    if (currentAccount === '') {
       try {
         const account = await connectWallet();
         setCurrentAccount(account);
@@ -132,7 +131,7 @@ function Login({ onLoggedIn, text }) {
    */
   const authenticateUser = (account) => {
     fetch(
-      `https://metaverse-mayhem.onrender.com/api/v1/users?publicAddress=${account}`
+      `https://metaverse-mayhem.onrender.com/api/v1/users?publicAddress=${account}`,
     )
       .then((response) => response.json())
       // If yes, retrieve it. If no, create it.
@@ -150,7 +149,7 @@ function Login({ onLoggedIn, text }) {
         return data;
       })
       .then((res) => onLoggedIn(res.token))
-      .then(() => navigate("/"))
+      .then(() => navigate('/'))
       .then(() => window.location.reload())
       .catch((err) => {
         setShowAlert(true);
@@ -168,7 +167,7 @@ function Login({ onLoggedIn, text }) {
     setLoading(true);
 
     if (!window.ethereum) {
-      setAlertMessage("Please install MetaMask to continue.");
+      setAlertMessage('Please install MetaMask to continue.');
       setShowAlert(true);
       setSuccess(false);
       setLoading(false);
@@ -185,7 +184,7 @@ function Login({ onLoggedIn, text }) {
       className="flex items-center h-fit py-4 px-6 hover:bg-[#25718B] bg-[#25618B] rounded-[32px] gap-[12px]"
     >
       {loading ? (
-        "Connecting..."
+        'Connecting...'
       ) : (
         <>
           <AiFillPlayCircle className="w-[24px] h-[24px] object-contain text-white" />

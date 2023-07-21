@@ -1,19 +1,19 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
-import { fadeIn } from "../utils/motion";
+import { fadeIn } from '../utils/motion';
 
 function FinalScreen({ isWinner }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/");
+    navigate('/');
   };
 
   return (
     <motion.div
-      variants={fadeIn("up", "tween", 0.2, 0.5)}
+      variants={fadeIn('up', 'tween', 0.2, 0.5)}
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
@@ -24,11 +24,19 @@ function FinalScreen({ isWinner }) {
           <h1 className="font-bold text-white sm:text-6xl text-4xl text-center">
             {isWinner ? (
               <div>
-                Congratulations <br /> you have prevailed
+                Congratulations
+                {' '}
+                <br />
+                {' '}
+                you have prevailed
               </div>
             ) : (
               <div>
-                Oops sorry <br /> you have lost
+                Oops sorry
+                {' '}
+                <br />
+                {' '}
+                you have lost
               </div>
             )}
           </h1>
@@ -44,7 +52,7 @@ function FinalScreen({ isWinner }) {
                 className="md:w-36 w-24 md:h-36 h-24 object-contain rounded-full drop-shadow-lg"
               />
               <p className="mt-3 text-white md:text-xl text-base">
-                {localStorage.getItem("username")}
+                {localStorage.getItem('username')}
               </p>
             </div>
           </div>

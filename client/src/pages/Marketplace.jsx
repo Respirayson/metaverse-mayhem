@@ -32,7 +32,7 @@ function Marketplace() {
   return (
     <div className="flex flex-1 justify-between py-8 sm:px-12 px-8 flex-row">
       <Sidebar url="All Listings" />
-      <div className='gradient-04 z-0' />
+      <div className="gradient-04 z-0" />
       <div className="flex-1 flex flex-col xl:mt-0 my-16 z-10">
         <div className="flex flex-row w-full">
           <h1 className="flex font-bold text-white sm:text-6xl text-4xl head-text">

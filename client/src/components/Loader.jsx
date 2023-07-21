@@ -21,7 +21,7 @@ function Loader() {
           <div className="circle" />
         </div>
         <div>
-          <p data-testid='quote' className='text-white w-[80%] relative mx-auto text-center mt-4'>
+          <p data-testid="quote" className="text-white w-[80%] relative mx-auto text-center mt-4">
             {quote}
           </p>
         </div>

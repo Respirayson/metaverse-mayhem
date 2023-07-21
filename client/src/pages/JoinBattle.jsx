@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useContext, useEffect, useState } from "react";
-import { Alert, CustomInput } from "../components";
+import { CustomInput } from "../components";
 import allActions from "../actions";
 import { socket } from "../utils/socket";
 import { WebContext } from "../context/WebContext";
@@ -19,20 +19,22 @@ function JoinBattle() {
   }, []);
 
   const joinNewGame = async (gameId) => {
-    // const res = await fetch(`https://metaverse-mayhem.onrender.com/api/v1/game/?gameId=${gameId}`)
-    // const data = await res.json();
-    // if (data !== null) {
-    dispatch(allActions.beforeGameActions.joinGame(gameId));
-    socket.emit("joinGame", { gameId, name: username });
-    setShowAlert(true);
-    setSuccess(true);
-    setAlertMessage("Joined game successfully");
-    setTimeout(() => {
-      navigate(`/game/${gameId}`);
-    }, 2000);
-    // } else {
-    //   setAlertMessage("Game not found");
-    // }
+    const res = await fetch(
+      `https://metaverse-mayhem.onrender.com/api/v1/game/?gameId=${gameId}`
+    );
+    const data = await res.json();
+    if (data !== null) {
+      dispatch(allActions.beforeGameActions.joinGame(gameId));
+      socket.emit("joinGame", { gameId, name: username });
+      setShowAlert(true);
+      setSuccess(true);
+      setAlertMessage("Joined game successfully");
+      setTimeout(() => {
+        navigate(`/game/${gameId}`);
+      }, 2000);
+    } else {
+      setAlertMessage("Game not found");
+    }
   };
 
   const handleClick = () => {

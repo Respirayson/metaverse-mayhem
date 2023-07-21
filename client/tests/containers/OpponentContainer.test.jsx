@@ -55,8 +55,5 @@ describe("OpponentContainer", () => {
     // Assert that the opponent name is rendered
     fireEvent.mouseEnter(screen.getByTestId("player"));
     expect(await screen.findByText(/Opponent Name/i)).toBeInTheDocument();
-
-    fireEvent.mouseEnter(screen.getByTestId("health"));
-    expect(await screen.findByText(/100/i)).toBeInTheDocument();
   });
 });

@@ -1,7 +1,9 @@
-import React, { useEffect, useState, useContext } from "react";
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState, useContext } from 'react';
+import {
+  Link, Route, Routes, useNavigate,
+} from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { useDispatch } from 'react-redux';
 import {
   Home,
   Marketplace,
@@ -15,15 +17,15 @@ import {
   ListingDetails,
   Store,
   SellingDetails,
-} from "./pages";
+} from './pages';
 
-import { Login, Footer, Alert } from "./components";
-import { navVariants } from "./utils/motion";
+import { Login, Footer, Alert } from './components';
+import { navVariants } from './utils/motion';
 
-import { socketActions } from "./utils/socketActions";
-import { socket } from "./utils/socket";
+import { socketActions } from './utils/socketActions';
+import { socket } from './utils/socket';
 
-import { WebContext } from "./context/WebContext";
+import { WebContext } from './context/WebContext';
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -36,14 +38,14 @@ function App() {
   }, [dispatch]);
 
   const checkAuthenticated = () => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     if (token) {
-      fetch("https://metaverse-mayhem.onrender.com/api/v1/auth/verify", {
+      fetch('https://metaverse-mayhem.onrender.com/api/v1/auth/verify', {
         body: JSON.stringify({ token }),
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-        method: "POST",
+        method: 'POST',
       })
         .catch((errors) => {
           console.warn(errors);
@@ -61,14 +63,14 @@ function App() {
   };
 
   const handleLogin = (token) => {
-    localStorage.setItem("token", token);
+    localStorage.setItem('token', token);
     setAuthenticated(true);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
     setAuthenticated(false);
-    navigate("/");
+    navigate('/');
     window.location.reload();
   };
 
@@ -101,7 +103,7 @@ function App() {
             {checkAuthenticated() ? (
               <button
                 type="button"
-                className="flex items-center h-fit py-4 px-6 bg-[#25618B] rounded-[32px] gap-[12px]"
+                className="flex items-center h-fit py-4 px-6 bg-[#25618B] rounded-[32px] gap-[12px] hover:bg-[#25718B]"
                 onClick={handleLogout}
               >
                 Logout
