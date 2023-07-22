@@ -19,11 +19,11 @@ function JoinBattle() {
   }, []);
 
   const joinNewGame = async (gameId) => {
-    const res = await fetch(
-      `https://metaverse-mayhem.onrender.com/api/v1/game/?gameId=${gameId}`
-    );
-    const data = await res.json();
-    if (data !== null) {
+    // const res = await fetch(
+    //   `https://metaverse-mayhem.onrender.com/api/v1/game/?gameId=${gameId}`
+    // );
+    // const data = await res.json();
+    // if (data !== null) {
       dispatch(allActions.beforeGameActions.joinGame(gameId));
       socket.emit("joinGame", { gameId, name: username });
       setShowAlert(true);
@@ -32,11 +32,11 @@ function JoinBattle() {
       setTimeout(() => {
         navigate(`/game/${gameId}`);
       }, 2000);
-    } else {
-      setAlertMessage("Game not found");
-      setShowAlert(true);
-      setSuccess(false);
-    }
+    // } else {
+    //   setAlertMessage("Game not found");
+    //   setShowAlert(true);
+    //   setSuccess(false);
+    // }
   };
 
   const handleClick = () => {

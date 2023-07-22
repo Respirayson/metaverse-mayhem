@@ -35,4 +35,24 @@ describe('Game API Endpoints', () => {
 
     expect(response.statusCode).toBe(200);
   });
+
+  it('POST should update a user with the given address and cards', async () => {
+    const publicAddress = '0x1234567890123456789012345678901234567890';
+    const response = await request(app)
+      .post('/api/v1/game/cards')
+      .send({ address: publicAddress, cards: [1, 2, 3] });
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toBeInstanceOf(Object);
+  });
+
+  it('GET should return user cards with the given address', async () => {
+    const publicAddress = '0x1234567890123456789012345678901234567890';
+    const response = await request(app).get(
+      `/api/v1/game/cards?publicAddress=${publicAddress}`,
+    );
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body.cards).toEqual([1, 2, 3]);
+  });
 });

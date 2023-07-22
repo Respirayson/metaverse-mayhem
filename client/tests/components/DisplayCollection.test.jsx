@@ -1,10 +1,18 @@
 import { render, screen } from "@testing-library/react";
 import DisplayCollection from "../../src/components/DisplayCollection/DisplayCollection";
+import { TradingCardMinterProvider } from "../../src/context/TradingCardMinter";
+import { WebProvider } from "../../src/context/WebContext";
 
 describe("DisplayCollection", () => {
   it("renders the loader initially", () => {
     // Render the component with loader set to true
-    render(<DisplayCollection index={0} userCards={[]} loading={true} />);
+    render(
+      <WebProvider>
+        <TradingCardMinterProvider>
+          <DisplayCollection index={0} userCards={[]} loading={true} deck={[]} />
+        </TradingCardMinterProvider>
+      </WebProvider>
+    );
 
     // Assert that the loader is rendered
     const loaderElement = screen.getByTestId("loader");
@@ -30,7 +38,11 @@ describe("DisplayCollection", () => {
 
     // Render the component with loader set to false and userCards provided
     render(
-      <DisplayCollection index={0} userCards={userCards} loading={false} />
+      <WebProvider>
+        <TradingCardMinterProvider>
+          <DisplayCollection index={0} userCards={userCards} loading={false} deck={[]} />
+        </TradingCardMinterProvider>
+      </WebProvider>
     );
 
     // Assert that the collection cards are rendered
@@ -40,7 +52,13 @@ describe("DisplayCollection", () => {
 
   it("renders the no cards message when userCards is empty", () => {
     // Render the component with empty userCards array
-    render(<DisplayCollection index={0} userCards={[]} loading={false} />);
+    render(
+      <WebProvider>
+        <TradingCardMinterProvider>
+          <DisplayCollection index={0} userCards={[]} loading={false} deck={[]} />
+        </TradingCardMinterProvider>
+      </WebProvider>
+    );
 
     // Assert that the no cards message is rendered
     const noCardsMessage = screen.getByText(

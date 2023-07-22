@@ -31,7 +31,11 @@ function Board() {
     if (character.Enemy.health <= 0) {
       dispatch(allActions.gameActions.endGame(true));
     }
-  }, [character, navigate]);
+  }, [character, dispatch, navigate]);
+
+  useEffect(() => {
+    dispatch(allActions.gameActions.loadHand(localStorage.getItem('deck')));
+  }, [dispatch]);
 
   /**
      * Ends the turn by dispatching the endTurn action
