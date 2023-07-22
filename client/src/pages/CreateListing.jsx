@@ -1,15 +1,16 @@
-import { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { TradingCardMinterContext } from '../context/TradingCardMinter';
-import { Sidebar, Loader } from '../components';
-import Collectible from '../components/Collectible/Collectible';
+import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { TradingCardMinterContext } from "../context/TradingCardMinter";
+import { Sidebar, Loader } from "../components";
+import Collectible from "../components/Collectible/Collectible";
 
 function CreateListing() {
   const navigate = useNavigate();
   const [userCards, setUserCards] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [index, setIndex] = useState(0);
   const { getCardsUnderAddress, currentAccount } = useContext(
-    TradingCardMinterContext,
+    TradingCardMinterContext
   );
 
   useEffect(() => {
@@ -60,13 +61,33 @@ function CreateListing() {
 
           {userCards.length > 0 && !loading && (
             <div className="flex flex-row gap-[5%] flex-wrap ml-20">
-              {userCards.map((card) => (
+              {userCards.slice(index, index + 8).map((card) => (
                 <Collectible
                   card={card.card}
                   handleClick={() => handleNavigate(card)}
                 />
               ))}
             </div>
+          )}
+        </div>
+        <div className="mt-16 ">
+          {index > 0 && (
+            <button type="button" onClick={() => setIndex(index - 8)}>
+              <img
+                src="/arrow-right.svg"
+                alt="arrow-right"
+                className="absolute right-0 bottom-0 mb-4 mr-16 h-8 w-8 rotate-180 hover:scale-[1.1]"
+              />
+            </button>
+          )}
+          {index < userCards.length - 8 && (
+            <button type="button" onClick={() => setIndex(index + 8)}>
+              <img
+                src="/arrow-right.svg"
+                alt="arrow-right"
+                className="absolute right-0 bottom-0 mb-4 mr-4 h-8 w-8 hover:scale-[1.1]"
+              />
+            </button>
           )}
         </div>
       </div>

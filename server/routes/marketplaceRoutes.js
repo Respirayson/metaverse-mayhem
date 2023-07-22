@@ -23,13 +23,12 @@ router.route('/').post(async (req, res) => {
       .then((user) => res.json(user))
       .catch((err) => console.log(err));
   } else {
-    // Do nothing
-    console.log('Listing already exists');
+    res.status(403).json({ message: 'Listing already exists' });
   }
 });
 
 router.route('/:id').get((req, res) => {
-  // Get a specific Listing
+  // Get listings under a seller
   Listing.find({ seller: req.params.id })
     .then((listing) => res.json(listing))
     .catch((err) => console.log(err));

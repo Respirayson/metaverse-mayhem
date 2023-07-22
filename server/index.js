@@ -212,7 +212,7 @@ const connectSockets = () => {
 /**
  * Start the server
  */
-const startServer = async () => {
+export const startServer = async () => {
   try {
     // Connect to MongoDB
     connectDB(process.env.ATLAS_URL);
@@ -231,4 +231,6 @@ const startServer = async () => {
   }
 };
 
-startServer();
+// startServer();
+
+export default app;

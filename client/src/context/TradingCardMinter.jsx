@@ -1,15 +1,19 @@
 import React, {
-  useEffect, useState, useRef, createContext, useContext,
-} from 'react';
+  useEffect,
+  useState,
+  useRef,
+  createContext,
+  useContext,
+} from "react";
 
 import {
   contractABI,
   contractAddress,
   marketplaceAddress,
-} from '../utils/constants';
-import { cards } from '../utils/cards';
-import { getEthereumContract } from '../utils/connect';
-import { WebContext } from './WebContext';
+} from "../utils/constants";
+import { cards } from "../utils/cards";
+import { getEthereumContract } from "../utils/connect";
+import { WebContext } from "./WebContext";
 
 export const TradingCardMinterContext = createContext();
 
@@ -21,29 +25,6 @@ export function TradingCardMinterProvider({ children }) {
   const player1Ref = useRef();
   const player2Ref = useRef();
 
-  const checkIfWalletIsConnected = async () => {
-    try {
-      if (!ethereum) {
-        setAlertMessage('Make sure you have metamask!');
-        setShowAlert(true);
-        setSuccess(false);
-        return;
-      }
-
-      const accounts = await ethereum.request({ method: 'eth_accounts' });
-
-      if (accounts.length) {
-        const account = accounts[0];
-        console.log('Found an authorized account: ', account);
-        setCurrentAccount(account);
-      } else {
-        console.log('No authorized account found');
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   const mintTradingCard = async () => {
     try {
       if (ethereum) {
@@ -52,10 +33,10 @@ export function TradingCardMinterProvider({ children }) {
         const transaction = await contract.requestNewCard();
         await transaction.wait();
         console.log(
-          `1 Card successfully sent - Transaction hash: ${transaction.hash}`,
+          `1 Card successfully sent - Transaction hash: ${transaction.hash}`
         );
       } else {
-        console.log('Ethereum is not present');
+        console.log("Ethereum is not present");
       }
     } catch (err) {
       console.log(err);
@@ -91,10 +72,10 @@ export function TradingCardMinterProvider({ children }) {
         const transaction = await contract.approve(marketplaceAddress, tokenId);
         await transaction.wait();
         console.log(
-          `Approved marketplace contract to sell card with id ${tokenId} - Transaction hash: ${transaction.hash}`,
+          `Approved marketplace contract to sell card with id ${tokenId} - Transaction hash: ${transaction.hash}`
         );
       } else {
-        console.log('Ethereum is not present');
+        console.log("Ethereum is not present");
       }
     } catch (err) {
       console.log(err);
@@ -109,10 +90,10 @@ export function TradingCardMinterProvider({ children }) {
         const transaction = await contract.buyCardPack();
         await transaction.wait();
         console.log(
-          `1 Pack successfully sent - Transaction hash: ${transaction.hash}`,
+          `1 Pack successfully sent - Transaction hash: ${transaction.hash}`
         );
       } else {
-        console.log('Ethereum is not present');
+        console.log("Ethereum is not present");
       }
     } catch (err) {
       console.log(err);
@@ -120,8 +101,30 @@ export function TradingCardMinterProvider({ children }) {
   };
 
   useEffect(() => {
+    const checkIfWalletIsConnected = async () => {
+      try {
+        if (!ethereum) {
+          setAlertMessage("Make sure you have metamask!");
+          setShowAlert(true);
+          setSuccess(false);
+          return;
+        }
+
+        const accounts = await ethereum.request({ method: "eth_accounts" });
+
+        if (accounts.length) {
+          const account = accounts[0];
+          console.log("Found an authorized account: ", account);
+          setCurrentAccount(account);
+        } else {
+          console.log("No authorized account found");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
     checkIfWalletIsConnected();
-  }, [checkIfWalletIsConnected]);
+  }, [setAlertMessage, setShowAlert, setSuccess]);
 
   return (
     <TradingCardMinterContext.Provider

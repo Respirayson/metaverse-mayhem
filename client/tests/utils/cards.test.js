@@ -20,7 +20,7 @@ describe("newRandomCard", () => {
       mana: 2,
       attack: 2,
       defense: 3,
-      portrait: "/cards/23.png",
+      portrait: "/portraits/23.jpg",
       description:
         "Capybara is a friendly and sociable creature found in the wild. With a mana cost of 2, it has moderate attack and defense capabilities. Its friendly nature can sometimes influence the actions of opponents.",
       cardImage: "/cards/23.png",
@@ -56,7 +56,7 @@ describe("newRandomCard", () => {
       mana: 1,
       attack: 3,
       defense: 1,
-      portrait: "/cards/31.png",
+      portrait: "/portraits/31.jpg",
       description:
         "Seashell is a beautiful shell found on beaches. With a mana cost of 1, it has no attack power and low defense. It serves as a decorative piece rather than a formidable minion.",
       cardImage: "/cards/31.png",

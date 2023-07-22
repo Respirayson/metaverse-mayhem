@@ -34,6 +34,8 @@ function JoinBattle() {
       }, 2000);
     } else {
       setAlertMessage("Game not found");
+      setShowAlert(true);
+      setSuccess(false);
     }
   };
 

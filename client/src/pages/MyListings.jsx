@@ -11,7 +11,7 @@ function MyListings() {
   const fetchMyListings = async (address) => {
     setLoading(true);
     const data = await fetch(
-      `http://127.0.0.1:8000/api/v1/marketplace/${address}`,
+      `https://metaverse-mayhem.onrender.com/api/v1/marketplace/${address}`,
     );
     const json = await data.json();
     const myListings = json.map((listing) => ({

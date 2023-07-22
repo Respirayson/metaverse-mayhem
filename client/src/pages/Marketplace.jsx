@@ -11,7 +11,7 @@ function Marketplace() {
   useEffect(() => {
     const fetchListings = async () => {
       setLoading(true);
-      const res = await fetch('http://127.0.0.1:8000/api/v1/marketplace/');
+      const res = await fetch('https://metaverse-mayhem.onrender.com/api/v1/marketplace/');
       const data = await res.json();
       const updatedListings = data
         .filter((listing) => listing.seller !== currentAccount)
