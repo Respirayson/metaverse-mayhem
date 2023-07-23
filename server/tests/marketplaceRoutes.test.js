@@ -44,7 +44,7 @@ describe('Marketplace API Endpoints', () => {
       tokenId: 100,
       price: 100,
       seller: '0x1234567890123456789012345678901234567890',
-      cardId: 0,
+      cardId: 2,
     };
 
     const response = await request(app)

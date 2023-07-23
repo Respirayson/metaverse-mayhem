@@ -20,7 +20,6 @@ function Player({
   name,
   board,
   character,
-  playerTurn,
   onClick,
   turn,
   heroRef,
@@ -40,13 +39,13 @@ function Player({
           End Turn
         </button>
         <PlayingAreaContainer
-          playerTurn={playerTurn}
+          playerTurn={turn}
           board={board.board}
           exhaustedMinions={board.exhaustedMinions}
         />
         <HandContainer
           currentMana={character.mana.current}
-          playerTurn={playerTurn}
+          playerTurn={turn}
         />
         <TargetableHero getCoords={getCoords} heroRef={heroRef} character={character} name={name} />
 

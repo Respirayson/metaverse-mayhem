@@ -76,6 +76,7 @@ export const gameRules = [
   'The game progresses in turns, with players alternating.',
   'Each turn, players gain 1 mana, up to a maximum of 10, and draw a card.',
   'Cards can be played by spending the appropriate amount of mana.',
+  'Blue is for mana, yellow is for attack, and red is for health',
   "Minions can be placed on the game board and can attack enemy minions or the opponent's hero.",
   "The game ends when one player's health reaches zero, declaring the opposing player as the winner.",
 ];

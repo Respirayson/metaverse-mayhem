@@ -59,7 +59,6 @@ function Board() {
           name={user}
           board={board.Player}
           character={character.Player}
-          playerTurn={turn}
           onClick={endTurn}
           turn={turn}
         />

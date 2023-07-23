@@ -1,16 +1,16 @@
-import allActions from ".";
-import { v4 as uuidv4 } from "uuid";
-import { newRandomCard } from "../utils/cards";
+import { v4 as uuidv4 } from 'uuid';
+import allActions from '.';
+import { newRandomCard } from '../utils/cards';
 
 // Action types
-export const ADD_MAX_MANA = "ADD_MAX_MANA";
-export const ADD_PLAYABLE_MANA = "ADD_PLAYABLE_MANA";
-export const FILL_MANA = "FILL_MANA";
-export const USE_MANA = "USE_MANA";
-export const NEW_GAME = "NEW_GAME";
-export const END_TURN = "END_TURN";
-export const END_GAME = "END_GAME";
-export const LOAD_HAND = "LOAD_HAND";
+export const ADD_MAX_MANA = 'ADD_MAX_MANA';
+export const ADD_PLAYABLE_MANA = 'ADD_PLAYABLE_MANA';
+export const FILL_MANA = 'FILL_MANA';
+export const USE_MANA = 'USE_MANA';
+export const NEW_GAME = 'NEW_GAME';
+export const END_TURN = 'END_TURN';
+export const END_GAME = 'END_GAME';
+export const LOAD_HAND = 'LOAD_HAND';
 
 /**
  * Action creator for adding maximum mana to a target.
@@ -53,12 +53,10 @@ const fillMana = (target, viaServer) => ({
  * @param {boolean} viaServer - Flag indicating if the action is performed via the server.
  * @returns {function} Thunk function that dispatches addMaxMana and fillMana actions.
  */
-const addAndFillMana =
-  (target, amount = 1, viaServer) =>
-  (dispatch) => {
-    dispatch(addMaxMana(target, amount, viaServer));
-    dispatch(fillMana(target, viaServer));
-  };
+const addAndFillMana = (target, amount = 1, viaServer) => (dispatch) => {
+  dispatch(addMaxMana(target, amount, viaServer));
+  dispatch(fillMana(target, viaServer));
+};
 
 /**
  * Action creator for using mana from a target.
@@ -80,7 +78,7 @@ const useMana = (target, amount) => ({
  * @returns {function} Thunk function that dispatches addAndFillMana and 'NEW_GAME' action.
  */
 const newGame = (user, opponent, playerStarts, viaServer) => (dispatch) => {
-  dispatch(addAndFillMana("PLAYER", 1, viaServer));
+  dispatch(addAndFillMana('PLAYER', 1, viaServer));
   dispatch({
     payload: {
       user,
@@ -98,7 +96,7 @@ const newGame = (user, opponent, playerStarts, viaServer) => (dispatch) => {
  */
 const endTurn = () => (dispatch, getState) => {
   const { turn } = getState();
-  const source = turn ? "OPPONENT" : "PLAYER";
+  const source = turn ? 'OPPONENT' : 'PLAYER';
   dispatch({ payload: { source }, type: END_TURN });
   dispatch(addAndFillMana(source));
   dispatch(allActions.playerActions.drawCard(source));

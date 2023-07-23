@@ -41,21 +41,22 @@ function Store() {
           )}
 
           {!loading && (
-            <div className="flex flex-row gap-[24px] text-white font-semibold">
+            <div className="flex flex-row text-white font-semibold">
               <button
                 type="button"
-                className="flex items-center h-fit py-4 px-6 hover:bg-[#25718B] bg-[#25618B] rounded-[32px] gap-[12px]"
+                className="flex items-center h-fit py-4 px-6 hover:bg-[#25718B] bg-[#25618B] rounded-[32px] mr-4"
                 onClick={buyCard}
               >
                 Buy a Card
               </button>
               <button
                 type="button"
-                className="flex items-center h-fit py-4 px-6 hover:bg-[#25718B] bg-[#25618B] rounded-[32px] gap-[12px]"
+                className="flex items-center h-fit py-4 px-6 hover:bg-[#25718B] bg-[#25618B] rounded-[32px] gap-[12px] mr-1"
                 onClick={buyPack}
               >
                 Buy a Pack
               </button>
+              <p className="text-white italic">(5 cards inside!)</p>
             </div>
           )}
         </div>

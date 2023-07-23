@@ -1,42 +1,42 @@
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useContext, useEffect, useState } from "react";
-import { CustomInput } from "../components";
-import allActions from "../actions";
-import { socket } from "../utils/socket";
-import { WebContext } from "../context/WebContext";
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useContext, useEffect, useState } from 'react';
+import { CustomInput } from '../components';
+import allActions from '../actions';
+import { socket } from '../utils/socket';
+import { WebContext } from '../context/WebContext';
 
 function JoinBattle() {
-  const [gameId, setGameId] = useState("");
-  const [username, setUsername] = useState("");
+  const [gameId, setGameId] = useState('');
+  const [username, setUsername] = useState('');
   const { setShowAlert, setAlertMessage, setSuccess } = useContext(WebContext);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    setUsername(localStorage.getItem("username"));
+    setUsername(localStorage.getItem('username'));
   }, []);
 
   const joinNewGame = async (gameId) => {
-    // const res = await fetch(
-    //   `https://metaverse-mayhem.onrender.com/api/v1/game/?gameId=${gameId}`
-    // );
-    // const data = await res.json();
-    // if (data !== null) {
+    const res = await fetch(
+      `https://metaverse-mayhem.onrender.com/api/v1/game/?gameId=${gameId}`,
+    );
+    const data = await res.json();
+    if (data !== null) {
       dispatch(allActions.beforeGameActions.joinGame(gameId));
-      socket.emit("joinGame", { gameId, name: username });
+      socket.emit('joinGame', { gameId, name: username });
       setShowAlert(true);
       setSuccess(true);
-      setAlertMessage("Joined game successfully");
+      setAlertMessage('Joined game successfully');
       setTimeout(() => {
         navigate(`/game/${gameId}`);
       }, 2000);
-    // } else {
-    //   setAlertMessage("Game not found");
-    //   setShowAlert(true);
-    //   setSuccess(false);
-    // }
+    } else {
+      setAlertMessage('Game not found');
+      setShowAlert(true);
+      setSuccess(false);
+    }
   };
 
   const handleClick = () => {
@@ -74,7 +74,7 @@ function JoinBattle() {
 
         <p
           className="font-medium text-lg text-siteBlue cursor-pointer mt-4"
-          onClick={() => navigate("/game/new")}
+          onClick={() => navigate('/game/new')}
         >
           Or create a new battle
         </p>

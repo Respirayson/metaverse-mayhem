@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import wallet from '/wallet.svg';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Tooltip } from 'react-tooltip';
+import wallet from '/wallet.svg'; // eslint-disable-line
 import { sideBarLinks } from '../constants';
 import { fadeAnimation } from '../utils/motion';
 import { NftMarketplaceContext } from '../context/NftMarketplace';

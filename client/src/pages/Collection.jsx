@@ -14,7 +14,7 @@ function Collection() {
     const fetchCards = async () => {
       setLoading(true);
       const data = await getCardsUnderAddress();
-      const cardsDeck = await fetch(`http://127.0.0.1:8000/api/v1/game/cards/?publicAddress=${currentAccount}`);
+      const cardsDeck = await fetch(`https://metaverse-mayhem.onrender.com/api/v1/game/cards/?publicAddress=${currentAccount}`);
       const currentDeck = await cardsDeck.json();
       if (currentDeck != null) {
         setDeck(currentDeck.cards);

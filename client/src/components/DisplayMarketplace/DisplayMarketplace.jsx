@@ -31,7 +31,7 @@ function DisplayMarketplace({ listings, loading, subtitle }) {
 
         {!loading
           && listings.length > 0
-          && listings.map((listing, index) => (
+          && listings.map((listing, _index) => (
             <Listing
               card={listing.card}
               seller={listing.seller}

@@ -136,7 +136,6 @@ const connectSockets = () => {
       }
     });
 
-    // TODO: implement leave socket logic
     /**
          * Handle leaving a game
          * @param {Object} data - Data containing the gameId
@@ -161,7 +160,6 @@ const connectSockets = () => {
     socket.on('action', (payload) => {
       const { action } = payload;
       const { gameId } = payload;
-      console.log(payload);
       console.log('====================================');
 
       console.log(

@@ -1,7 +1,7 @@
-import { v4 as uuidv4 } from "uuid";
-import { newRandomCard } from "../utils/cards";
-import { PLAY_CARD, DRAW_CARD } from "../actions/playerActions";
-import { LOAD_HAND } from "../actions/gameActions";
+import { v4 as uuidv4 } from 'uuid';
+import { newRandomCard } from '../utils/cards';
+import { PLAY_CARD, DRAW_CARD } from '../actions/playerActions';
+import { LOAD_HAND } from '../actions/gameActions';
 
 const MAX_CARDS = 7;
 
@@ -14,11 +14,11 @@ const MAX_CARDS = 7;
  */
 const handReducer = (state = { cards: [], deck: [] }, action) => {
   if (action.type === PLAY_CARD) {
-    if (action.payload.source === "PLAYER") {
+    if (action.payload.source === 'PLAYER') {
       const { length } = state.cards;
 
       const index = state.cards.findIndex(
-        (item) => item === action.payload.card
+        (item) => item === action.payload.card,
       );
 
       return {
@@ -32,7 +32,7 @@ const handReducer = (state = { cards: [], deck: [] }, action) => {
   }
 
   if (action.type === DRAW_CARD) {
-    if (action.payload.target === "PLAYER") {
+    if (action.payload.target === 'PLAYER') {
       if (state.cards.length + 1 > MAX_CARDS) {
         return state;
       }

@@ -1,22 +1,31 @@
-import { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { TradingCardMinterContext } from "../context/TradingCardMinter";
-import { Sidebar, Loader } from "../components";
-import Collectible from "../components/Collectible/Collectible";
+import { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { TradingCardMinterContext } from '../context/TradingCardMinter';
+import { Sidebar, Loader } from '../components';
+import Collectible from '../components/Collectible/Collectible';
 
 function CreateListing() {
   const navigate = useNavigate();
   const [userCards, setUserCards] = useState([]);
+  const [alreadyListed, setAlreadyListed] = useState([]);
   const [loading, setLoading] = useState(false);
   const [index, setIndex] = useState(0);
   const { getCardsUnderAddress, currentAccount } = useContext(
-    TradingCardMinterContext
+    TradingCardMinterContext,
   );
 
   useEffect(() => {
     const fetchCards = async () => {
       setLoading(true);
       const data = await getCardsUnderAddress();
+      const currentListings = await fetch(
+        `https://metaverse-mayhem.onrender.com/api/v1/marketplace/${currentAccount}`,
+      );
+      const json = await currentListings.json();
+      const myListings = json.map((listing) => ({
+        tokenId: listing.tokenId,
+      }));
+      setAlreadyListed(myListings);
       setUserCards(data);
       setLoading(false);
     };
@@ -61,12 +70,19 @@ function CreateListing() {
 
           {userCards.length > 0 && !loading && (
             <div className="flex flex-row gap-[5%] flex-wrap ml-20">
-              {userCards.slice(index, index + 8).map((card) => (
-                <Collectible
-                  card={card.card}
-                  handleClick={() => handleNavigate(card)}
-                />
-              ))}
+              {userCards
+                .filter(
+                  (c) => alreadyListed.findIndex(
+                    (listed) => listed.tokenId === c.tokenId,
+                  ) === -1,
+                )
+                .slice(index, index + 8)
+                .map((card) => (
+                  <Collectible
+                    card={card.card}
+                    handleClick={() => handleNavigate(card)}
+                  />
+                ))}
             </div>
           )}
         </div>

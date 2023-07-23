@@ -25,7 +25,7 @@ function ListingDetails() {
       setIsLoading(false);
       setShowAlert(true);
       setSuccess(false);
-      setAlertMessage(err.message);
+      setAlertMessage('Unable to purchase. Please try again later.');
     }
   };
 

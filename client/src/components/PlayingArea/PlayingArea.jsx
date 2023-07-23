@@ -5,7 +5,8 @@ import styles from './PlayingArea.module.css';
  * @param {Object} props - Component props.
  * @param {React.Ref} props.dropRef - Reference for the drop area.
  * @param {JSX.Element[]} props.minions - Array of minion components.
- * @param {boolean} props.isOver - Indicates if a draggable item is being dragged over the playing area.
+ * @param {boolean} props.isOver - Indicates if a
+ * draggable item is being dragged over the playing area.
  * @returns {JSX.Element} PlayingArea component.
  */
 function PlayingArea({ dropRef, minions, isOver }) {

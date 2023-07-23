@@ -1,12 +1,14 @@
-import React, { useEffect, useState, useContext } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import Collectible from "../Collectible/Collectible";
-import { fadeIn } from "../../utils/motion";
-import Loader from "../Loader";
-import { TradingCardMinterContext } from "../../context/TradingCardMinter";
-import { WebContext } from "../../context/WebContext";
+import React, { useEffect, useState, useContext } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import Collectible from '../Collectible/Collectible';
+import { fadeIn } from '../../utils/motion';
+import Loader from '../Loader';
+import { TradingCardMinterContext } from '../../context/TradingCardMinter';
+import { WebContext } from '../../context/WebContext';
 
-function DisplayCollection({ index, userCards, loading, deck }) {
+function DisplayCollection({
+  index, userCards, loading, deck,
+}) {
   const [loader, setLoader] = useState(true);
   const [cardsInGame, setCardsInGame] = useState([]);
   const { currentAccount } = useContext(TradingCardMinterContext);
@@ -29,7 +31,7 @@ function DisplayCollection({ index, userCards, loading, deck }) {
   const addCard = (card) => {
     if (cardsInGame.length === 15) {
       setShowAlert(true);
-      setAlertMessage("You can only have 15 cards in your deck");
+      setAlertMessage('You can only have 15 cards in your deck');
       setSuccess(false);
       return;
     }
@@ -47,15 +49,15 @@ function DisplayCollection({ index, userCards, loading, deck }) {
   const handleSubmit = async () => {
     if (cardsInGame.length !== 15) {
       setShowAlert(true);
-      setAlertMessage("Please select 15 cards");
+      setAlertMessage('Please select 15 cards');
       setSuccess(false);
       return;
     }
     setLoader(true);
-    await fetch("http://127.0.0.1:8000/api/v1/game/cards", { // update the database
-      method: "POST",
+    await fetch('https://metaverse-mayhem.onrender.com/api/v1/game/cards', { // update the database
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         address: currentAccount,
@@ -64,7 +66,7 @@ function DisplayCollection({ index, userCards, loading, deck }) {
     });
     setLoader(false);
     setShowAlert(true);
-    setAlertMessage("Deck Submitted Successfully");
+    setAlertMessage('Deck Submitted Successfully');
     setSuccess(true);
   };
 
@@ -87,7 +89,9 @@ function DisplayCollection({ index, userCards, loading, deck }) {
             )}
             {cardsInGame.length > 0 && (
               <p className="text-gray-400 mx-auto text-[16px] my-4 font-semibold">
-                {cardsInGame.length} Cards in your Deck
+                {cardsInGame.length}
+                {' '}
+                Cards in your Deck
               </p>
             )}
             {cardsInGame.slice().sort((a, b) => a.mana - b.mana).map((card) => (
@@ -95,11 +99,14 @@ function DisplayCollection({ index, userCards, loading, deck }) {
                 onClick={() => removeCard(card)}
                 className="text-white mx-auto my-2 cursor-pointer hover:text-gray-300"
               >
-                {card.name}{" "}
-                <span className="text-blue-500 font-semibold">{card.mana}</span>{" "}
+                {card.name}
+                {' '}
+                <span className="text-blue-500 font-semibold">{card.mana}</span>
+                {' '}
                 <span className="text-yellow-500 font-semibold">
                   {card.attack}
-                </span>{" "}
+                </span>
+                {' '}
                 <span className="text-red-500 font-semibold">
                   {card.defense}
                 </span>
@@ -138,10 +145,10 @@ function DisplayCollection({ index, userCards, loading, deck }) {
                     key={collectible.card.name}
                     whileHover={{ scale: 1.1 }}
                     variants={fadeIn(
-                      "up",
-                      "tween",
+                      'up',
+                      'tween',
                       (loader ? 2 : 0) + index / 10,
-                      0.5
+                      0.5,
                     )}
                     initial="hidden"
                     whileInView="show"

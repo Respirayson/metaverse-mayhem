@@ -20,7 +20,6 @@ function PlayerContainer({
   name,
   board,
   character,
-  playerTurn,
   onClick,
   turn,
 }) {
@@ -38,7 +37,6 @@ function PlayerContainer({
       name={name}
       board={board}
       character={character}
-      playerTurn={playerTurn}
       onClick={onClick}
       turn={turn}
       drawCard={drawCard}

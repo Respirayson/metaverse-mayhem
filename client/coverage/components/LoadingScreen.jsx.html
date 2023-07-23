@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>62/62</span>
+                <span class='fraction'>85/85</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>62/62</span>
+                <span class='fraction'>85/85</span>
             </div>
         
             
@@ -125,12 +125,58 @@
 <a name='L60'></a><a href='#L60'>60</a>
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
@@ -196,6 +242,12 @@ import { fadeIn } from '../utils/motion';
 function LoadingScreen({ loading, gameId, battleName }) {
   const navigate = useNavigate();
 &nbsp;
+  const handleClick = () =&gt; {
+    document.querySelector('footer').style.display = 'block';
+    document.querySelector('header').style.display = 'block';
+    navigate('/game/join-battle');
+  };
+&nbsp;
   return (
     &lt;motion.div
       variants={fadeIn('up', 'tween', 0.2, 0.5)}
@@ -205,7 +257,6 @@ function LoadingScreen({ loading, gameId, battleName }) {
       className="relative z-20"
     &gt;
       &lt;div className="flex justify-between items-center absolute w-full h-screen gameload inset-0 flex-col"&gt;
-&nbsp;
         &lt;div className="flex-1 flex items-center justify-center flex-col"&gt;
           &lt;h1 className="font-bold text-white sm:text-6xl text-4xl text-center"&gt;
             Waiting for a
@@ -223,24 +274,42 @@ function LoadingScreen({ loading, gameId, battleName }) {
 &nbsp;
           &lt;div className="flex justify-evenly items-center mt-12"&gt;
             &lt;div className="flex items-center justify-center flex-col"&gt;
-              &lt;img src="/player01.jpg" alt="player01" className="md:w-36 w-24 md:h-36 h-24 object-contain rounded-full drop-shadow-lg" /&gt;
+              &lt;img
+                src="/player01.jpg"
+                alt="player01"
+                className="md:w-36 w-24 md:h-36 h-24 object-contain rounded-full drop-shadow-lg"
+              /&gt;
               &lt;p className="mt-3 text-white md:text-xl text-base"&gt;
                 {battleName}
               &lt;/p&gt;
             &lt;/div&gt;
 &nbsp;
-            &lt;h2 className="font-extrabold text-siteViolet text-7xl mx-16"&gt;Vs&lt;/h2&gt;
+            &lt;h2 className="font-extrabold text-siteViolet text-7xl mx-16"&gt;
+              Vs
+            &lt;/h2&gt;
 &nbsp;
             &lt;div className="flex items-center justify-center flex-col"&gt;
-              &lt;img src="/player02.jpg" alt="player02" className="md:w-36 w-24 md:h-36 h-24 object-contain rounded-full drop-shadow-lg" /&gt;
+              &lt;img
+                src="/player02.jpg"
+                alt="player02"
+                className="md:w-36 w-24 md:h-36 h-24 object-contain rounded-full drop-shadow-lg"
+              /&gt;
               &lt;p className="mt-3 text-white md:text-xl text-base"&gt;??????????&lt;/p&gt;
             &lt;/div&gt;
           &lt;/div&gt;
 &nbsp;
           &lt;div className="mt-4"&gt;
-            &lt;p className="font-medium text-white text-xl mb-2 text-center mb-5"&gt;OR&lt;/p&gt;
+            &lt;p className="font-medium text-white text-xl mb-2 text-center mb-5"&gt;
+              OR
+            &lt;/p&gt;
 &nbsp;
-            &lt;button type="button" className="px-4 py-2 rounded-lg bg-siteBlue w-fit text-white font-bold my-4" onClick={() =&gt; navigate('/game/join-battle')}&gt;Join an existing Game&lt;/button&gt;
+            &lt;button
+              type="button"
+              className="px-4 py-2 rounded-lg bg-siteBlue w-fit text-white font-bold my-4"
+              onClick={handleClick}
+            &gt;
+              Join an existing Game
+            &lt;/button&gt;
           &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
@@ -256,7 +325,7 @@ export default LoadingScreen;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-22T15:30:26.356Z
+                at 2023-07-23T14:52:22.377Z
             </div>
         <script src="../prettify.js"></script>
         <script>

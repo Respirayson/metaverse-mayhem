@@ -23,11 +23,13 @@ describe("LoadingScreen", () => {
     // Render the component
     render(
       <BrowserRouter>
+        <header />
         <LoadingScreen
           loading={loading}
           gameId={gameId}
           battleName={battleName}
         />
+        <footer />
       </BrowserRouter>
     );
   });
