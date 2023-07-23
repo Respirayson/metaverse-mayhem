@@ -216,7 +216,7 @@ export const cards = [
     defense: 4,
     portrait: '/portraits/22.jpg',
     description: 'Giraffe is a tall and graceful creature with a long neck. With a mana cost of 3, it possesses moderate attack and defense capabilities. Its height allows it to see distant enemies and plan strategic moves.',
-    cardImage: '/cards/22.png',
+    cardImage: '/cards/22.jpg',
     type: 'Minion',
   },
   {
