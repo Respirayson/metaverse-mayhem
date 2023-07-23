@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useDrop } from 'react-dnd';
 import { motion } from 'framer-motion';
 import { PlayingArea } from '../components';

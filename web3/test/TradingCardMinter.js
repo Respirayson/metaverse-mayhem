@@ -28,7 +28,7 @@ describe("TradingCardMinter", function () {
     });
 
     it("should request a new card", async function () {
-        await tradingCardMinter.connect(owner).requestNewCard("New Card");
+        await tradingCardMinter.connect(owner).requestNewCard();
         expect(await tradingCardMinter.totalSupply()).to.equal(1);
         expect(await tradingCardMinter.ownerOf(0)).to.equal(owner.address);
         expect(
@@ -37,7 +37,7 @@ describe("TradingCardMinter", function () {
     });
 
     it("should buy a card pack", async function () {
-        await tradingCardMinter.connect(owner).buyCardPack("Card Pack");
+        await tradingCardMinter.connect(owner).buyCardPack();
         expect(await tradingCardMinter.totalSupply()).to.equal(5);
         expect(
             (await tradingCardMinter.getCardsUnderOwner(owner.address)).length

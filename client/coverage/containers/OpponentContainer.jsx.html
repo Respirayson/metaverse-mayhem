@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">24.69% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>20/81</span>
+                <span class='fraction'>21/84</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">24.69% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/81</span>
+                <span class='fraction'>21/84</span>
             </div>
         
             
@@ -144,7 +144,10 @@
 <a name='L79'></a><a href='#L79'>79</a>
 <a name='L80'></a><a href='#L80'>80</a>
 <a name='L81'></a><a href='#L81'>81</a>
-<a name='L82'></a><a href='#L82'>82</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -162,6 +165,9 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -226,13 +232,14 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useDispatch } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid';
 import { motion } from 'framer-motion';
+import { useContext } from 'react';
 import allActions from '../actions';
-import { newRandomCard } from '../utils/cards';
 import { Opponent } from '../components';
 import EnemyMinion from './EnemyMinion';
 import { slideAnimation } from '../utils/motion';
+import { TradingCardMinterContext } from '../context/TradingCardMinter';
+import { getCoords } from '../utils/animations';
 &nbsp;
 /**
  * Container component for the opponent.
@@ -245,6 +252,7 @@ import { slideAnimation } from '../utils/motion';
  */
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function OpponentContainer(props) {</span></span>
 <span class="cstat-no" title="statement not covered" >  const dispatch = useDispatch();</span>
+<span class="cstat-no" title="statement not covered" >  const { player1Ref } = useContext(TradingCardMinterContext);</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  const {</span>
 <span class="cstat-no" title="statement not covered" >    name, handCount, character, turn,</span>
@@ -281,7 +289,6 @@ import { slideAnimation } from '../utils/motion';
 <span class="cstat-no" title="statement not covered" >  const minions = board.map((card, index) =&gt; (</span>
 <span class="cstat-no" title="statement not covered" >    &lt;motion.div key={card.key} {...slideAnimation('down')}&gt;</span>
 <span class="cstat-no" title="statement not covered" >      &lt;EnemyMinion</span>
-<span class="cstat-no" title="statement not covered" >        key={index}</span>
 <span class="cstat-no" title="statement not covered" >        card={card}</span>
 <span class="cstat-no" title="statement not covered" >        attackMinion={attackMinion}</span>
 <span class="cstat-no" title="statement not covered" >        exhaustedMinions={exhaustedMinions}</span>
@@ -301,6 +308,8 @@ import { slideAnimation } from '../utils/motion';
 <span class="cstat-no" title="statement not covered" >      attackMinion={attackMinion}</span>
 <span class="cstat-no" title="statement not covered" >      turn={turn}</span>
 <span class="cstat-no" title="statement not covered" >      minions={minions}</span>
+<span class="cstat-no" title="statement not covered" >      heroRef={player1Ref}</span>
+<span class="cstat-no" title="statement not covered" >      getCoords={getCoords}</span>
 <span class="cstat-no" title="statement not covered" >    /&gt;</span>
 <span class="cstat-no" title="statement not covered" >  );</span>
 <span class="cstat-no" title="statement not covered" >}</span>
@@ -313,7 +322,7 @@ export default OpponentContainer;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-10T18:18:48.286Z
+                at 2023-07-16T02:13:16.273Z
             </div>
         <script src="../prettify.js"></script>
         <script>

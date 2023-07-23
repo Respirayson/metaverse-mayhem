@@ -1,5 +1,5 @@
-import CardBack from "../CardBack/CardBack";
-import { Tooltip } from "react-tooltip";
+import { Tooltip } from 'react-tooltip';
+import CardBack from '../CardBack/CardBack';
 
 /**
  * Component for rendering the opponent's hand of cards.
@@ -24,7 +24,8 @@ function OpponentHand(props) {
       </div>
       <Tooltip anchorSelect="#opponentHand" place="bottom">
         <p className="font-medium">
-          <span className="font-extrabold text-white">Hand Count:</span>{" "}
+          <span className="font-extrabold text-white">Hand Count:</span>
+          {' '}
           {handCount}
         </p>
       </Tooltip>

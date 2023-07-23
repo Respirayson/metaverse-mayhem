@@ -18,10 +18,41 @@ function CustomDragLayer() {
     isDragging: monitor.isDragging(),
   }));
 
+  const layerStyles = {
+    position: 'fixed',
+    pointerEvents: 'none',
+    zIndex: 100,
+    left: 0,
+    top: 0,
+    width: '100%',
+    height: '100%',
+  };
+
   /**
-     * Renders the draggable item based on the item type.
-     * @returns {JSX.Element | null} Draggable item component.
-     */
+   * Calculates the styles for the draggable item.
+   * @param {Object} initialOffset - The initial offset of the drag.
+   * @param {Object} currentOffset - The current offset of the drag.
+   * @returns {Object} Styles object for the draggable item.
+   */
+  const getItemStyles = (iOffset, cOffset) => {
+    if (!iOffset || !cOffset) {
+      return {
+        display: 'none',
+      };
+    }
+
+    const { x, y } = cOffset;
+    const transform = `translate(${x}px, ${y}px)`;
+    return {
+      transform,
+      WebkitTransform: transform,
+    };
+  };
+
+  /**
+   * Renders the draggable item based on the item type.
+   * @returns {JSX.Element | null} Draggable item component.
+   */
   const renderItem = () => {
     switch (itemType) {
       case itemTypes.CARD:
@@ -49,36 +80,5 @@ function CustomDragLayer() {
     </div>
   );
 }
-
-const layerStyles = {
-  position: 'fixed',
-  pointerEvents: 'none',
-  zIndex: 100,
-  left: 0,
-  top: 0,
-  width: '100%',
-  height: '100%',
-};
-
-/**
- * Calculates the styles for the draggable item.
- * @param {Object} initialOffset - The initial offset of the drag.
- * @param {Object} currentOffset - The current offset of the drag.
- * @returns {Object} Styles object for the draggable item.
- */
-const getItemStyles = (initialOffset, currentOffset) => {
-  if (!initialOffset || !currentOffset) {
-    return {
-      display: 'none',
-    };
-  }
-
-  const { x, y } = currentOffset;
-  const transform = `translate(${x}px, ${y}px)`;
-  return {
-    transform,
-    WebkitTransform: transform,
-  };
-};
 
 export default CustomDragLayer;

@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>83/83</span>
+                <span class='fraction'>111/111</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>83/83</span>
+                <span class='fraction'>111/111</span>
             </div>
         
             
@@ -146,7 +146,63 @@
 <a name='L81'></a><a href='#L81'>81</a>
 <a name='L82'></a><a href='#L82'>82</a>
 <a name='L83'></a><a href='#L83'>83</a>
-<a name='L84'></a><a href='#L84'>84</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -273,13 +329,13 @@ export const newFeatures = [
     imgUrl: '/vrpano.svg',
     title: 'Your Own Cards',
     subtitle:
-        'Cards will be minted as NFTs on the Ethereum blockchain, and you will be able to trade them with other players',
+      'Cards will be minted as NFTs on the Ethereum blockchain, and you will be able to trade them with other players',
   },
   {
     imgUrl: '/headset.svg',
     title: 'Fun Gameplay',
     subtitle:
-        'You will be able to fight against other players in the arena, and win rewards for your victories',
+      'You will be able to fight against other players in the arena, and win rewards for your victories',
   },
 ];
 &nbsp;
@@ -303,12 +359,40 @@ export const socials = [
 ];
 &nbsp;
 export const gameRules = [
-  'Card with the same defense and attack point will cancel each other out.',
-  'Attack points from the attacking card will deduct the opposing player’s health points.',
-  'If P1 does not defend, their health wil be deducted by P2’s attack.',
-  'If P1 defends, P2’s attack is equal to P2’s attack - P1’s defense.',
-  'If a player defends, they refill 3 Mana',
-  'If a player attacks, they spend 3 Mana',
+  'Players start with 15 cards in their deck, a hero, and 1 mana.',
+  'The game progresses in turns, with players alternating.',
+  'Each turn, players gain 1 mana, up to a maximum of 10, and draw a card.',
+  'Cards can be played by spending the appropriate amount of mana.',
+  'Minions can be placed on the game board and can attack enemy minions or the opponent\'s hero.',
+  'The game ends when one player\'s health reaches zero, declaring the opposing player as the winner.',
+];
+&nbsp;
+&nbsp;
+export const sideBarLinks = [
+  {
+    name: 'All Listings',
+    id: 'all-listings',
+    imgUrl: '/marketplace.svg',
+    link: '/marketplace',
+  },
+  {
+    name: 'My Listings',
+    id: 'my-listings',
+    imgUrl: '/my-listings.svg',
+    link: '/marketplace/my-listings',
+  },
+  {
+    name: 'Store',
+    id: 'store',
+    imgUrl: '/store.svg',
+    link: '/marketplace/store',
+  },
+  {
+    name: 'Create Listing',
+    id: 'create-listing',
+    imgUrl: '/create-listing.svg',
+    link: '/marketplace/create-listing',
+  },
 ];
 &nbsp;
 export default itemTypes;
@@ -319,7 +403,7 @@ export default itemTypes;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-10T18:18:48.286Z
+                at 2023-07-16T02:13:16.273Z
             </div>
         <script src="../prettify.js"></script>
         <script>

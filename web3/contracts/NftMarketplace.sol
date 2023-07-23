@@ -3,6 +3,7 @@ pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "./TradingCardMinter.sol";
 
 /**
  * @title MMT Marketplace Contract
@@ -148,6 +149,8 @@ contract NftMarketplace is ReentrancyGuard {
             msg.sender,
             tokenId
         );
+        TradingCardMinter instanceMinter = TradingCardMinter(nftAddress);
+        instanceMinter.transferCardToNewOwner(tokenId, listedItem.seller, msg.sender);
         emit ItemBought(msg.sender, nftAddress, tokenId, listedItem.price);
     }
 

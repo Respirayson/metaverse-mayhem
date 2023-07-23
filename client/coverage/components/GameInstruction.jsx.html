@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">9.43% </span>
+                <span class="strong">8.21% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/53</span>
+                <span class='fraction'>6/73</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">9.43% </span>
+                <span class="strong">8.21% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/53</span>
+                <span class='fraction'>6/73</span>
             </div>
         
             
@@ -116,9 +116,49 @@
 <a name='L51'></a><a href='#L51'>51</a>
 <a name='L52'></a><a href='#L52'>52</a>
 <a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -170,21 +210,25 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { gameRules } from '../constants';
 &nbsp;
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function GameInstruction() {</span></span>
 <span class="cstat-no" title="statement not covered" >  const [toggleSidebar, setToggleSidebar] = useState(false);</span>
+<span class="cstat-no" title="statement not covered" >  const navigate = useNavigate();</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  const handleClick = () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    navigate('/');</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  return (</span>
 <span class="cstat-no" title="statement not covered" >    &lt;&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;div className="absolute right-4 top-1/2"&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;div className="absolute right-4 top-[40%] z-50"&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;div</span>
 <span class="cstat-no" title="statement not covered" >          className="absolute right-[10px] top-1/2 flex items-center justify-center cursor-pointer"</span>
 <span class="cstat-no" title="statement not covered" >          onClick={() =&gt; setToggleSidebar(true)}</span>
 <span class="cstat-no" title="statement not covered" >        &gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;p className="font-semibold text-[16px] text-white"&gt;</span>
-<span class="cstat-no" title="statement not covered" >            Instructions</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/p&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;p className="font-semibold text-[16px] text-white"&gt;Instructions&lt;/p&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;img</span>
 <span class="cstat-no" title="statement not covered" >            src="/alertIcon.svg"</span>
 <span class="cstat-no" title="statement not covered" >            alt="info"</span>
@@ -193,7 +237,11 @@ import { gameRules } from '../constants';
 <span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >      &lt;div className={`absolute z-50 p-8 right-0 top-[200px] h-[80%] rounded-[20px] flex-col transition-all ease-in duration-300 ${toggleSidebar ? 'translate-x-0' : 'translate-x-full'} bg-white backdrop-filter backdrop-blur-lg bg-opacity-10 flex justify-between items-center backdrop-blur-3xl`}&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;div</span>
+<span class="cstat-no" title="statement not covered" >        className={`absolute z-50 p-8 right-0 top-[10%] h-[80%] rounded-[20px] flex-col transition-all ease-in duration-300 ${</span>
+<span class="cstat-no" title="statement not covered" >          toggleSidebar ? 'translate-x-0' : ' translate-x-full'</span>
+<span class="cstat-no" title="statement not covered" >        } bg-white backdrop-filter backdrop-blur-lg bg-opacity-10 flex justify-between items-center backdrop-blur-3xl`}</span>
+<span class="cstat-no" title="statement not covered" >      &gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;div className="flex flex-col"&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;div className="flex justify-end mb-8"&gt;</span>
 <span class="cstat-no" title="statement not covered" >            &lt;div</span>
@@ -208,12 +256,24 @@ import { gameRules } from '../constants';
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >          &lt;div className="mt-3"&gt;</span>
 <span class="cstat-no" title="statement not covered" >            {gameRules.map((rule, index) =&gt; (</span>
-<span class="cstat-no" title="statement not covered" >              &lt;p key={`game-rule-${index}`} className="font-medium text-white text-xl mb-2"&gt;</span>
+<span class="cstat-no" title="statement not covered" >              &lt;p</span>
+<span class="cstat-no" title="statement not covered" >                key={`game-rule-${index}`}</span>
+<span class="cstat-no" title="statement not covered" >                className="font-medium text-white text-xl mb-2"</span>
+<span class="cstat-no" title="statement not covered" >              &gt;</span>
 <span class="cstat-no" title="statement not covered" >                &lt;span className="font-bold"&gt;{index + 1}&lt;/span&gt;</span>
 <span class="cstat-no" title="statement not covered" >                .</span>
 <span class="cstat-no" title="statement not covered" >                {rule}</span>
 <span class="cstat-no" title="statement not covered" >              &lt;/p&gt;</span>
 <span class="cstat-no" title="statement not covered" >            ))}</span>
+<span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;div className="flex justify-between items-center"&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;button</span>
+<span class="cstat-no" title="statement not covered" >              type="button"</span>
+<span class="cstat-no" title="statement not covered" >              className="px-4 py-2 rounded-lg bg-siteBlue w-fit text-white font-bold my-4"</span>
+<span class="cstat-no" title="statement not covered" >              onClick={handleClick}</span>
+<span class="cstat-no" title="statement not covered" >            &gt;</span>
+<span class="cstat-no" title="statement not covered" >              Quit Game</span>
+<span class="cstat-no" title="statement not covered" >            &lt;/button&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >      &lt;/div&gt;</span>
@@ -229,7 +289,7 @@ export default GameInstruction;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-10T18:18:48.286Z
+                at 2023-07-16T02:13:16.273Z
             </div>
         <script src="../prettify.js"></script>
         <script>

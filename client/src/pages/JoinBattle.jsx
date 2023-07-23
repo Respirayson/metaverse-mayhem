@@ -14,8 +14,6 @@ function JoinBattle() {
 
   useEffect(() => {
     setUsername(localStorage.getItem('username'));
-    document.querySelector('footer').style.display = 'block';
-    document.querySelector('header').style.display = 'block';
   }, []);
 
   const joinNewGame = (gameId) => {

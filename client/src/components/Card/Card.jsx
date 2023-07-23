@@ -16,7 +16,7 @@ function Card(props) {
     cardsLength, index, canDrag, card,
   } = props;
   const {
-    name, mana, attack, defense, portrait,
+    name, mana, attack, defense, cardImage,
   } = card;
 
   return (
@@ -26,7 +26,7 @@ function Card(props) {
         styles[`CardTotal-${cardsLength}`]
       } ${styles[`CardNumber-${index + 1}-of-${cardsLength}`]} relative w-[180px] h-[285px] z-0 transition-all`}
     >
-      <img src="/cardtryout.jpg" alt={name} className="w-full h-full object-fill" />
+      <img src={cardImage} alt={name} className="w-full h-full object-fill" />
 
       <div className="absolute w-[32px] h-[32px] rounded-[25px] top-[2.8%] left-[5.9%] flex items-center justify-center">
         <p className="text-[20px] font-bold text-blue-200">{mana || 0}</p>

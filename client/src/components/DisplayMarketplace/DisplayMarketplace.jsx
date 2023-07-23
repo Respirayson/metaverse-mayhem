@@ -1,34 +1,44 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Listing } from '..';
-import { cards } from '../../utils/cards';
-import { TradingCardMinterContext } from '../../context/TradingCardMinter';
+import Listing from '../Listing/Listing';
+import Loader from '../Loader';
 
-function DisplayMarketplace() {
+function DisplayMarketplace({ listings, loading, subtitle }) {
   const navigate = useNavigate();
-  const [loading, setLoading] = React.useState(false);
 
-  const { mintTradingCard, getCardsUnderAddress } = React.useContext(TradingCardMinterContext);
+  const handleNavigate = (listing) => {
+    navigate(`/marketplace/listing-details/${listing.id}/${listing.card.name}`, { state: listing });
+  };
 
   return (
     <>
       <h1 className="font-semibold text-white text-left text-[18px]">
-        All Listings &#40;3&#41;
+        Total Listings &#40;
+        {listings.length}
+        &#41;
       </h1>
-      <button className="text-white" onClick={() => navigate('/create')}>Create Listing</button>
-
+      {loading && (
+        <div className="mt-16 scale-[100%]">
+          <Loader />
+        </div>
+      )}
       <div className="flex flex-wrap mt-[20px] gap-[26px]">
-        {cards.map((card, index) => (
-          <Listing
-            key={index}
-            name={card.name}
-            description="test"
-            seller="hello"
-            price={Math.random()}
-            minion={card.minion}
-            image={card.portrait}
-          />
-        ))}
+        {!loading && listings.length === 0 && (
+          <p className="font-semibold text-[14px] leading-[30px] text-[#818183]">
+            {subtitle}
+          </p>
+        )}
+
+        {!loading
+          && listings.length > 0
+          && listings.map((listing, index) => (
+            <Listing
+              card={listing.card}
+              seller={listing.seller}
+              price={listing.price}
+              handleClick={() => handleNavigate(listing)}
+            />
+          ))}
       </div>
     </>
   );

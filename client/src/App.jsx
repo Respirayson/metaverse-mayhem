@@ -13,6 +13,10 @@ import {
   StartScreen,
   CreateListing,
   JoinBattle,
+  MyListings,
+  ListingDetails,
+  Store,
+  SellingDetails,
 } from './pages';
 
 import { Login, Footer } from './components';
@@ -81,13 +85,13 @@ function App() {
           </div>
 
           <div className="relative z-20 text-white md:flex hidden list-none flex-row justify-between items-center flex-initial text-l">
-            <Link to="/game" className="mx-6">
+            <Link to="/game" className="mx-6 hover:scale-[1.1]">
               Game
             </Link>
-            <Link to="/marketplace" className="mx-6">
+            <Link to="/marketplace" className="mx-6 hover:scale-[1.1]">
               Marketplace
             </Link>
-            <Link to="/collection" className="mx-6">
+            <Link to="/collection" className="mx-6 hover:scale-[1.1]">
               Collection
             </Link>
             {checkAuthenticated() ? (
@@ -118,8 +122,14 @@ function App() {
             <Route path="join-battle" element={<JoinBattle />} />
             <Route path=":id" element={<Game />} />
           </Route>
-          <Route path="/marketplace" element={<Marketplace />} />
-          <Route path="/create" element={<CreateListing />} />
+          <Route path="/marketplace">
+            <Route path="" element={<Marketplace />} />
+            <Route path="create-listing" element={<CreateListing />} />
+            <Route path="my-listings" element={<MyListings />} />
+            <Route path="store" element={<Store />} />
+            <Route path="listing-details/:id/:name" element={<ListingDetails />} />
+            <Route path="selling-details/:name" element={<SellingDetails />} />
+          </Route>
           <Route path="/collection" element={<Collection />} />
 
           {/* <Route

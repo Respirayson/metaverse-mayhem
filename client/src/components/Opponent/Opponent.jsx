@@ -1,4 +1,3 @@
-import { Tooltip } from 'react-tooltip';
 import { TargetableHero } from '../../containers';
 import OpponentHand from '../OpponentHand/OpponentHand';
 

@@ -7,9 +7,9 @@ import { NEW_GAME } from '../actions/gameActions';
  * @param {Object} action - Action object containing the type and payload.
  * @returns {string} - Updated opponent's information.
  */
-const opponentReducer = (state = '', action) => {
+const opponentReducer = (state = 'Enemy', action) => {
   if (action.type === NEW_GAME) {
-    return action.payload.opponent;
+    return action.payload.opponent || 'Enemy';
   }
 
   return state;

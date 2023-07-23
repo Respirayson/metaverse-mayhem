@@ -1,17 +1,19 @@
 import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
+import { Provider } from 'react-redux';
+import App from './App';
 import './index.css';
 import store from './redux/store.js';
-import { Provider } from 'react-redux';
-import { TradingCardMinterProvider } from './context/TradingCardMinter.jsx';
+import { TradingCardMinterProvider } from './context/TradingCardMinter';
+import { NftMarketplaceProvider } from './context/NftMarketplace';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-
   <TradingCardMinterProvider>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <NftMarketplaceProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </NftMarketplaceProvider>
   </TradingCardMinterProvider>,
 );

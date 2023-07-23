@@ -22,8 +22,6 @@ router.route('/').post(async (req, res) => {
     });
   }
 
-  // console.log(user)
-
   const msg = `By proceeding, you agree to the following terms and conditions:
 
             1. You will comply with the provided terms.
@@ -52,7 +50,6 @@ router.route('/').post(async (req, res) => {
       id: user.id,
       address: user.publicAddress,
     }, process.env.JWT_SECRET, { expiresIn: '6h' });
-    console.log(token);
     res.status(200).json({
       success: true,
       token,
@@ -68,15 +65,14 @@ router.route('/').post(async (req, res) => {
 
 router.route('/verify').post(async (req, res) => {
   const { token } = req.body;
-  // console.log(token)
   let payload;
   try {
     payload = jwt.verify(token, process.env.JWT_SECRET);
   } catch (err) {
     if (err instanceof jwt.JsonWebTokenError) {
-      return res.status(401).json({ error: 'Invalid token' });
+      res.status(401).json({ error: 'Invalid token' });
     }
-    return res.status(400).json({ error: 'Bad request' });
+    res.status(400).json({ error: 'Bad request' });
   }
   res.send(payload);
 });

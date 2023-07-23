@@ -8,6 +8,7 @@ import connectDB from './mongodb/connect.js';
 import userRoutes from './routes/userRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import gameRoutes from './routes/gameRoutes.js';
+import marketplaceRoutes from './routes/marketplaceRoutes.js';
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/game', gameRoutes);
+app.use('/api/v1/marketplace', marketplaceRoutes);
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, {

@@ -26,7 +26,7 @@ describe("NftMarketplace", function () {
     });
 
     it("should list an NFT for sale", async function () {
-        await nftContract.connect(owner).requestNewCard("test");
+        await nftContract.connect(owner).requestNewCard();
         await nftContract
             .connect(owner)
             .approve(nftMarketplace.address, tokenId);
@@ -42,7 +42,7 @@ describe("NftMarketplace", function () {
     });
 
     it("should cancel a listing", async function () {
-        await nftContract.connect(owner).requestNewCard("test");
+        await nftContract.connect(owner).requestNewCard();
         await nftContract
             .connect(owner)
             .approve(nftMarketplace.address, tokenId);
@@ -62,7 +62,7 @@ describe("NftMarketplace", function () {
     });
 
     it("should buy an NFT", async function () {
-        await nftContract.connect(owner).requestNewCard("test");
+        await nftContract.connect(owner).requestNewCard();
         await nftContract.approve(nftMarketplace.address, tokenId);
 
         await nftMarketplace.listItem(nftContract.address, tokenId, price);
@@ -83,7 +83,7 @@ describe("NftMarketplace", function () {
     });
 
     it("should update the price of a listed NFT", async function () {
-        await nftContract.connect(owner).requestNewCard("test");
+        await nftContract.connect(owner).requestNewCard();
         await nftContract
             .connect(owner)
             .approve(nftMarketplace.address, tokenId);
@@ -106,7 +106,7 @@ describe("NftMarketplace", function () {
     });
 
     it("should withdraw proceeds", async function () {
-        await nftContract.connect(owner).requestNewCard("test");
+        await nftContract.connect(owner).requestNewCard();
         await nftContract.approve(nftMarketplace.address, tokenId);
 
         await nftMarketplace.listItem(nftContract.address, tokenId, price);

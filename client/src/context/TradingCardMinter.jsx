@@ -1,39 +1,21 @@
 import React, {
   useEffect, useState, useRef, createContext,
 } from 'react';
-import { ethers } from 'ethers';
 
-import { contractABI, contractAddress } from '../utils/constants';
+import {
+  contractABI,
+  contractAddress,
+  marketplaceAddress,
+} from '../utils/constants';
 import { cards } from '../utils/cards';
+import { getEthereumContract } from '../utils/connect';
 
 export const TradingCardMinterContext = createContext();
 
 const { ethereum } = window;
 
-const getEthereumContract = () => {
-  if (!ethereum) {
-    return alert('Please install MetaMask');
-  }
-  const provider = new ethers.providers.Web3Provider(ethereum);
-  const signer = provider.getSigner();
-  const contract = new ethers.Contract(contractAddress, contractABI, signer);
-
-  console.log({
-    provider,
-    signer,
-    contract,
-  });
-
-  return contract;
-};
-
 export function TradingCardMinterProvider({ children }) {
   const [currentAccount, setCurrentAccount] = useState(null);
-  const [formData, setFormData] = useState({
-    addressTo: '',
-    name: '',
-  });
-
   const player1Ref = useRef();
   const player2Ref = useRef();
 
@@ -62,13 +44,12 @@ export function TradingCardMinterProvider({ children }) {
   const mintTradingCard = async () => {
     try {
       if (ethereum) {
-        const { addressTo, name } = formData;
-        const contract = getEthereumContract();
+        const contract = getEthereumContract(contractAddress, contractABI);
 
-        const transaction = await contract.requestNewCard('Hello World!');
+        const transaction = await contract.requestNewCard();
         await transaction.wait();
         console.log(
-          `1 Card successfully sent to ${addressTo} under ${name} - Transaction hash: ${transaction.hash}`,
+          `1 Card successfully sent - Transaction hash: ${transaction.hash}`,
         );
       } else {
         console.log('Ethereum is not present');
@@ -81,10 +62,16 @@ export function TradingCardMinterProvider({ children }) {
   const getCardsUnderAddress = async () => {
     try {
       if (ethereum) {
-        const contract = getEthereumContract();
+        if (!currentAccount) {
+          return [];
+        }
+        const contract = getEthereumContract(contractAddress, contractABI);
 
         const data = await contract.getCardsUnderOwner(currentAccount);
-        const ids = data.map((card) => cards[card.cardId.toNumber()]);
+        const ids = data.map((card) => ({
+          card: cards[card.cardId.toNumber()],
+          tokenId: card.tokenId.toNumber(),
+        }));
         return ids;
       }
     } catch (err) {
@@ -94,8 +81,40 @@ export function TradingCardMinterProvider({ children }) {
     return [];
   };
 
-  const handleChange = (e, name) => {
-    setFormData({ ...formData, [name]: e.target.value });
+  const approveMarketplaceContract = async (tokenId) => {
+    try {
+      if (ethereum) {
+        const contract = getEthereumContract(contractAddress, contractABI);
+
+        const transaction = await contract.approve(marketplaceAddress, tokenId);
+        await transaction.wait();
+        console.log(
+          `Approved marketplace contract to sell card with id ${tokenId} - Transaction hash: ${transaction.hash}`,
+        );
+      } else {
+        console.log('Ethereum is not present');
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const requestNewPack = async () => {
+    try {
+      if (ethereum) {
+        const contract = getEthereumContract(contractAddress, contractABI);
+
+        const transaction = await contract.buyCardPack();
+        await transaction.wait();
+        console.log(
+          `1 Pack successfully sent - Transaction hash: ${transaction.hash}`,
+        );
+      } else {
+        console.log('Ethereum is not present');
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -105,13 +124,13 @@ export function TradingCardMinterProvider({ children }) {
   return (
     <TradingCardMinterContext.Provider
       value={{
-        handleChange,
-        formData,
         mintTradingCard,
         getCardsUnderAddress,
         currentAccount,
         player1Ref,
         player2Ref,
+        approveMarketplaceContract,
+        requestNewPack,
       }}
     >
       {children}

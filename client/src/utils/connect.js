@@ -1,3 +1,5 @@
+import { ethers } from 'ethers';
+
 /**
  * Connects the wallet using MetaMask
  * @returns {Promise<string>} - The connected account address
@@ -35,14 +37,35 @@ const checkWalletConnected = async () => {
     return undefined;
   }
 
-  const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-  if (accounts.length !== 0) {
-    const account = accounts[0];
-    console.log(`Connected: ${account}`);
-    return account;
+  try {
+    const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+    if (accounts.length !== 0) {
+      const account = accounts[0];
+      console.log(`Connected: ${account}`);
+      return account;
+    }
+    console.log('Not connected');
+    return '';
+  } catch (err) {
+    console.log(err);
   }
-  console.log('Not connected');
-  return '';
 };
 
-export { connectWallet, checkWalletConnected };
+const getEthereumContract = (address, abi) => {
+  if (!window.ethereum) {
+    return undefined;
+  }
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const signer = provider.getSigner();
+  const contract = new ethers.Contract(address, abi, signer);
+
+  console.log({
+    provider,
+    signer,
+    contract,
+  });
+
+  return contract;
+};
+
+export { connectWallet, checkWalletConnected, getEthereumContract };

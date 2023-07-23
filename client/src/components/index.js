@@ -23,6 +23,8 @@ import Footer from './Footer';
 import CustomInput from './CustomInput';
 import GameInstruction from './GameInstruction';
 import LoadingScreen from './LoadingScreen';
+import Sidebar from './SideBar';
+import Loader from './Loader';
 
 export {
   Login,
@@ -50,4 +52,6 @@ export {
   CustomInput,
   GameInstruction,
   LoadingScreen,
+  Sidebar,
+  Loader,
 };

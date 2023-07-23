@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
+import { useContext } from 'react';
 import allActions from '../actions';
 import { Player } from '../components';
 import { TradingCardMinterContext } from '../context/TradingCardMinter';
-import { useContext } from 'react';
 import { getPlayerCoords } from '../utils/animations';
 
 /**
