@@ -25,7 +25,7 @@ function JoinBattle() {
     const data = await res.json();
     if (data !== null) {
       dispatch(allActions.beforeGameActions.joinGame(gameId));
-      socket.emit('joinGame', { gameId, name: username });
+      socket.emit('joinGame', { gameId: gameId.toString(), name: username });
       setShowAlert(true);
       setSuccess(true);
       setAlertMessage('Joined game successfully');

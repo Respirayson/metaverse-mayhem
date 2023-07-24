@@ -23,7 +23,7 @@ function GameNewScreen() {
   useEffect(() => {
     dispatch(allActions.beforeGameActions.fetchNewGame(true)).then(
       (gameId) => {
-        socket.emit('joinGame', { gameId, name: localStorage.getItem('username') });
+        socket.emit('joinGame', { gameId: gameId.toString(), name: localStorage.getItem('username') });
       },
     );
   }, [dispatch]);

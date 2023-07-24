@@ -16,7 +16,7 @@ import { GameInstruction } from '../components';
 function Board() {
   // Get state values using useSelector hook
   const {
-    user, board, opponent, handCount, character, turn, current,
+    user, board, opponent, handCount, character, turn,
   } = useSelector(
     (state) => state,
   );
@@ -32,10 +32,6 @@ function Board() {
       dispatch(allActions.gameActions.endGame(true));
     }
   }, [character, dispatch, navigate]);
-
-  useEffect(() => {
-    dispatch(allActions.gameActions.loadHand(localStorage.getItem('deck')));
-  }, [dispatch]);
 
   /**
      * Ends the turn by dispatching the endTurn action

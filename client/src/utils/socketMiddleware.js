@@ -13,7 +13,7 @@ export const socketMiddleware = (socket) => (params) => (next) => (action) => {
   // Check if the action should be sent via the server
   if (!action.viaServer && gameId && hasOpponent) {
     // Emit the action to the socket
-    socket.emit('action', { gameId, action });
+    socket.emit('action', { gameId: gameId.toString(), action });
   }
 
   // Pass the action to the next middleware or reducer

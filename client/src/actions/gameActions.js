@@ -12,6 +12,27 @@ export const END_TURN = 'END_TURN';
 export const END_GAME = 'END_GAME';
 export const LOAD_HAND = 'LOAD_HAND';
 
+const loadHand = (deck) => {
+  const cards = JSON.parse(deck);
+  if (cards !== null && cards !== undefined) {
+    return {
+      type: LOAD_HAND,
+      payload: { cards, deck: cards },
+      viaServer: true,
+    };
+  }
+  return {
+    type: LOAD_HAND,
+    payload: {
+      cards: Array(4)
+        .fill(0)
+        .map(() => ({ ...newRandomCard(), key: uuidv4() })),
+      deck: undefined,
+    },
+    viaServer: true,
+  };
+};
+
 /**
  * Action creator for adding maximum mana to a target.
  * @param {string} target - The target to add maximum mana to.
@@ -88,6 +109,7 @@ const newGame = (user, opponent, playerStarts, viaServer) => (dispatch) => {
     },
     type: NEW_GAME,
   });
+  dispatch(loadHand(localStorage.getItem('deck')));
 };
 
 /**
@@ -111,28 +133,6 @@ const endGame = (target) => ({
   payload: { isPlayerWinner: target },
   type: END_GAME,
 });
-
-const loadHand = (deck) => {
-  const cards = JSON.parse(deck);
-  console.log(cards);
-  if (cards !== null && cards !== undefined) {
-    return {
-      type: LOAD_HAND,
-      payload: { cards, deck: cards },
-      viaServer: true,
-    };
-  }
-  return {
-    type: LOAD_HAND,
-    payload: {
-      cards: Array(4)
-        .fill(0)
-        .map(() => ({ ...newRandomCard(), key: uuidv4() })),
-      deck: undefined,
-    },
-    viaServer: true,
-  };
-};
 
 // Export an object with all the action creators
 export default {
