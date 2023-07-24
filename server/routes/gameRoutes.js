@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.route('/new').post(async (req, res) => {
   const newGameId = Math.floor(100000 + Math.random() * 900000);
-  Game.create({ gameId: newGameId }).then((id) => res.json(id));
+  Game.create({ gameId: newGameId.toString() }).then((id) => res.json(id));
 });
 
 router.route('/').get((req, res) => {

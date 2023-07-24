@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.48% </span>
+                <span class="strong">92.56% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>128/148</span>
+                <span class='fraction'>137/148</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">91.66% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>11/12</span>
+                <span class='fraction'>12/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.88% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>8/9</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.48% </span>
+                <span class="strong">92.56% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>128/148</span>
+                <span class='fraction'>137/148</span>
             </div>
         
             
@@ -233,6 +233,27 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -325,27 +346,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -372,6 +372,27 @@ export const NEW_GAME = 'NEW_GAME';
 export const END_TURN = 'END_TURN';
 export const END_GAME = 'END_GAME';
 export const LOAD_HAND = 'LOAD_HAND';
+&nbsp;
+const loadHand = (deck) =&gt; {
+  const cards = JSON.parse(deck);
+  if (cards !== null &amp;&amp; cards !== undefined) {
+    return {
+      type: LOAD_HAND,
+      payload: { cards, deck: cards },
+      viaServer: true,
+    };
+  }
+<span class="cstat-no" title="statement not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >  return {</span></span>
+<span class="cstat-no" title="statement not covered" >    type: LOAD_HAND,</span>
+<span class="cstat-no" title="statement not covered" >    payload: {</span>
+<span class="cstat-no" title="statement not covered" >      cards: Array(4)</span>
+<span class="cstat-no" title="statement not covered" >        .fill(0)</span>
+<span class="cstat-no" title="statement not covered" >        .map(() =&gt; ({ ...newRandomCard(), key: uuidv4() })),</span>
+<span class="cstat-no" title="statement not covered" >      deck: undefined,</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >    viaServer: true,</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
+<span class="cstat-no" title="statement not covered" >};</span>
 &nbsp;
 /**
  * Action creator for adding maximum mana to a target.
@@ -449,6 +470,7 @@ const newGame = (user, opponent, playerStarts, viaServer) =&gt; (dispatch) =&gt;
     },
     type: NEW_GAME,
   });
+  dispatch(loadHand(localStorage.getItem('deck')));
 };
 &nbsp;
 /**
@@ -473,28 +495,6 @@ const endGame = (target) =&gt; ({
   type: END_GAME,
 });
 &nbsp;
-const loadHand = <span class="fstat-no" title="function not covered" >(deck) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const cards = JSON.parse(deck);</span>
-<span class="cstat-no" title="statement not covered" >  console.log(cards);</span>
-<span class="cstat-no" title="statement not covered" >  if (cards !== null &amp;&amp; cards !== undefined) {</span>
-<span class="cstat-no" title="statement not covered" >    return {</span>
-<span class="cstat-no" title="statement not covered" >      type: LOAD_HAND,</span>
-<span class="cstat-no" title="statement not covered" >      payload: { cards, deck: cards },</span>
-<span class="cstat-no" title="statement not covered" >      viaServer: true,</span>
-<span class="cstat-no" title="statement not covered" >    };</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >  return {</span>
-<span class="cstat-no" title="statement not covered" >    type: LOAD_HAND,</span>
-<span class="cstat-no" title="statement not covered" >    payload: {</span>
-<span class="cstat-no" title="statement not covered" >      cards: Array(4)</span>
-<span class="cstat-no" title="statement not covered" >        .fill(0)</span>
-<span class="cstat-no" title="statement not covered" >        .map(() =&gt; ({ ...newRandomCard(), key: uuidv4() })),</span>
-<span class="cstat-no" title="statement not covered" >      deck: undefined,</span>
-<span class="cstat-no" title="statement not covered" >    },</span>
-<span class="cstat-no" title="statement not covered" >    viaServer: true,</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
-<span class="cstat-no" title="statement not covered" >};</span>
-&nbsp;
 // Export an object with all the action creators
 export default {
   newGame,
@@ -514,7 +514,7 @@ export default {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-23T14:52:22.377Z
+                at 2023-07-24T05:10:04.032Z
             </div>
         <script src="../prettify.js"></script>
         <script>

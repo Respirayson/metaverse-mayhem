@@ -40,7 +40,7 @@ function PlayerCard({
   }, [preview]);
 
   return (
-    <div ref={drag} className={`${isDragging ? 'opacity-0' : 'opacity: 1'}`}>
+    <div data-testid="draggableCard" ref={drag} className={`${isDragging ? 'opacity-0' : 'opacity: 1'}`}>
       <Card
         canDrag={canDrag && card.mana <= currentMana}
         card={card}

@@ -114,13 +114,20 @@ const connectSockets = () => {
       );
 
       if (getPlayerCount() === 2) {
+        const sockets = await io.in(gameId).fetchSockets();
+        if (sockets[0].data.started || sockets[1].data.started) {
+          return;
+        }
+
         console.log(
           '[JOIN_GAME] [START] Time to start the game',
           gameId,
         );
         const playerOneStarts = Math.random() >= 0.5;
         const [playerOne, playerTwo] = getSocketsInRoom(io, gameId);
-        const sockets = await io.in(gameId).fetchSockets();
+        console.log('[JOIN_GAME] [START] Player one:', playerOne);
+        console.log('[JOIN_GAME] [START] Player two:', playerTwo);
+
         io.to(playerOne).emit('newGame', {
           user: sockets[1].data.username,
           gameId,
@@ -133,7 +140,18 @@ const connectSockets = () => {
           opponentName: sockets[1].data.username,
           isStarting: !playerOneStarts,
         });
+        sockets[0].data.started = true;
+        sockets[1].data.started = true;
       }
+    });
+
+    socket.on("rejoinGame", async ({ gameId, name }) => {
+      socket.data.username = name;
+      await socket.join(gameId);
+      io.in(gameId).emit('playerJoined', {
+        playerCount: sizeOfRoom(io, gameId),
+        name,
+      });
     });
 
     /**

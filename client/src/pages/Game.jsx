@@ -60,7 +60,7 @@ function Game() {
       localStorage.setItem('gameId', currentGame.gameId);
       navigate(`/game/${currentGame.gameId}`);
       socket.emit('joinGame', {
-        gameId: currentGame.gameId,
+        gameId: currentGame.gameId.toString(),
         name: localStorage.getItem('username'),
       });
     }

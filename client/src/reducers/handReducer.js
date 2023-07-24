@@ -40,7 +40,7 @@ const handReducer = (state = { cards: [], deck: [] }, action) => {
         const card = { ...newRandomCard(), key: uuidv4() };
         return { ...state, cards: [...state.cards, card] };
       }
-      const card = { ...[...state.deck].sort().pop(), key: uuidv4() };
+      const card = { ...state.deck[Math.floor(Math.random() * state.deck.length)], key: uuidv4() };
       return { ...state, cards: [...state.cards, card] };
     }
   }
