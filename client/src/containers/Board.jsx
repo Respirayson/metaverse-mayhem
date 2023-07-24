@@ -25,11 +25,11 @@ function Board() {
 
   useEffect(() => {
     if (character.Player.health <= 0) {
-      dispatch(allActions.gameActions.endGame(false));
+      dispatch(allActions.gameActions.endGame(true));
     }
 
     if (character.Enemy.health <= 0) {
-      dispatch(allActions.gameActions.endGame(true));
+      dispatch(allActions.gameActions.endGame(false));
     }
   }, [character, dispatch, navigate]);
 
