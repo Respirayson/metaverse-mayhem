@@ -1,5 +1,9 @@
 import React, {
-  useEffect, useState, useRef, createContext,
+  useEffect,
+  useState,
+  useRef,
+  createContext,
+  useContext,
 } from 'react';
 
 import {
@@ -9,6 +13,7 @@ import {
 } from '../utils/constants';
 import { cards } from '../utils/cards';
 import { getEthereumContract } from '../utils/connect';
+import { WebContext } from './WebContext';
 
 export const TradingCardMinterContext = createContext();
 
@@ -16,30 +21,9 @@ const { ethereum } = window;
 
 export function TradingCardMinterProvider({ children }) {
   const [currentAccount, setCurrentAccount] = useState(null);
+  const { setShowAlert, setSuccess, setAlertMessage } = useContext(WebContext);
   const player1Ref = useRef();
   const player2Ref = useRef();
-
-  const checkIfWalletIsConnected = async () => {
-    try {
-      if (!ethereum) {
-        // eslint-disable-next-line no-alert
-        window.alert('Please install MetaMask');
-        return;
-      }
-
-      const accounts = await ethereum.request({ method: 'eth_accounts' });
-
-      if (accounts.length) {
-        const account = accounts[0];
-        console.log('Found an authorized account: ', account);
-        setCurrentAccount(account);
-      } else {
-        console.log('No authorized account found');
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   const mintTradingCard = async () => {
     try {
@@ -75,27 +59,22 @@ export function TradingCardMinterProvider({ children }) {
         return ids;
       }
     } catch (err) {
-      // eslint-disable-next-line no-console
       console.log(err);
     }
     return [];
   };
 
   const approveMarketplaceContract = async (tokenId) => {
-    try {
-      if (ethereum) {
-        const contract = getEthereumContract(contractAddress, contractABI);
+    if (ethereum) {
+      const contract = getEthereumContract(contractAddress, contractABI);
 
-        const transaction = await contract.approve(marketplaceAddress, tokenId);
-        await transaction.wait();
-        console.log(
-          `Approved marketplace contract to sell card with id ${tokenId} - Transaction hash: ${transaction.hash}`,
-        );
-      } else {
-        console.log('Ethereum is not present');
-      }
-    } catch (err) {
-      console.log(err);
+      const transaction = await contract.approve(marketplaceAddress, tokenId);
+      await transaction.wait();
+      console.log(
+        `Approved marketplace contract to sell card with id ${tokenId} - Transaction hash: ${transaction.hash}`,
+      );
+    } else {
+      console.log('Ethereum is not present');
     }
   };
 
@@ -118,8 +97,30 @@ export function TradingCardMinterProvider({ children }) {
   };
 
   useEffect(() => {
+    const checkIfWalletIsConnected = async () => {
+      try {
+        if (!ethereum) {
+          setAlertMessage('Make sure you have metamask!');
+          setShowAlert(true);
+          setSuccess(false);
+          return;
+        }
+
+        const accounts = await ethereum.request({ method: 'eth_accounts' });
+
+        if (accounts.length) {
+          const account = accounts[0];
+          console.log('Found an authorized account: ', account);
+          setCurrentAccount(account);
+        } else {
+          console.log('No authorized account found');
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
     checkIfWalletIsConnected();
-  }, []);
+  }, [setAlertMessage, setShowAlert, setSuccess]);
 
   return (
     <TradingCardMinterContext.Provider

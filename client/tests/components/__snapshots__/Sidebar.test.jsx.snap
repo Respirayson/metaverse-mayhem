@@ -1,0 +1,77 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Sidebar > renders the component with correct content 1`] = `
+<div>
+  <div
+    class="sm:flex hidden mr-10 relative z-[100000]"
+  >
+    <div
+      class="flex justify-between items-center flex-col sticky top-5 h-[80vh]"
+    >
+      <div
+        class="flex-1 flex flex-col justify-between items-center bg-[#1c1c24] rounded-[20px] w-[76px] py-4 mt-12"
+      >
+        <div
+          class="flex flex-col justify-center items-center gap-3 relative"
+        >
+          <div
+            class="w-[48px] h-[48px] rounded-[10px] false flex justify-center items-center cursor-pointer"
+            id="all-listings"
+            style="opacity: 0;"
+          >
+            <img
+              alt="logo"
+              class="w-1/2 h-1/2 grayscale"
+              src="/marketplace.svg"
+            />
+          </div>
+          <div
+            class="w-[48px] h-[48px] rounded-[10px] false flex justify-center items-center cursor-pointer"
+            id="my-listings"
+            style="opacity: 0;"
+          >
+            <img
+              alt="logo"
+              class="w-1/2 h-1/2 grayscale"
+              src="/my-listings.svg"
+            />
+          </div>
+          <div
+            class="w-[48px] h-[48px] rounded-[10px] false flex justify-center items-center cursor-pointer"
+            id="store"
+            style="opacity: 0;"
+          >
+            <img
+              alt="logo"
+              class="w-1/2 h-1/2 grayscale"
+              src="/store.svg"
+            />
+          </div>
+          <div
+            class="w-[48px] h-[48px] rounded-[10px] false flex justify-center items-center cursor-pointer"
+            id="create-listing"
+            style="opacity: 0;"
+          >
+            <img
+              alt="logo"
+              class="w-1/2 h-1/2 grayscale"
+              src="/create-listing.svg"
+            />
+          </div>
+        </div>
+        <div
+          class="w-[48px] h-[48px] rounded-[10px] undefined flex justify-center items-center false"
+          id="withdraw"
+          style="opacity: 0;"
+        >
+          <img
+            alt="logo"
+            class="w-1/2 h-1/2"
+            src="/wallet.svg"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

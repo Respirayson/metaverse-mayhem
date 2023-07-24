@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import { connectWallet, checkWalletConnected } from '../../utils/connect';
+import { WebContext } from '../../context/WebContext';
 
 /**
  * Component for the login button.
@@ -9,29 +10,30 @@ import { connectWallet, checkWalletConnected } from '../../utils/connect';
  * @param {Function} props.onLoggedIn - Callback function for successful login.
  * @returns {JSX.Element} Login button component.
  */
-function Login(props) {
+function Login({ onLoggedIn, text }) {
   const [loading, setLoading] = useState(false); // Loading button state
   const [currentAccount, setCurrentAccount] = useState(''); // Connected wallet public address
-  const { onLoggedIn, text } = props;
+  const { setShowAlert, setSuccess, setAlertMessage } = useContext(WebContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     /**
-         * Fetches the connected wallet account on component mount.
-         */
+     * Fetches the connected wallet account on component mount.
+     */
     async function fetchData() {
       const account = await checkWalletConnected();
       setCurrentAccount(account);
     }
     fetchData();
+    window?.ethereum?.on('accountsChanged', fetchData);
   }, []);
 
   /**
-     * Sends authentication request to the backend.
-     * @param {string} publicAddress - Wallet public address.
-     * @param {string} signature - Signed message signature.
-     * @returns {Promise<Object>} Authentication response.
-     */
+   * Sends authentication request to the backend.
+   * @param {string} publicAddress - Wallet public address.
+   * @param {string} signature - Signed message signature.
+   * @returns {Promise<Object>} Authentication response.
+   */
   const handleAuthenticate = (publicAddress, signature) => fetch('https://metaverse-mayhem.onrender.com/api/v1/auth', {
     body: JSON.stringify({
       publicAddress,
@@ -44,12 +46,12 @@ function Login(props) {
   }).then((response) => response.json());
 
   /**
-     * Signs the message with the wallet and returns the signature.
-     * @param {string} publicAddress - Wallet public address.
-     * @param {string} nonce - One-time nonce for message signing.
-     * @returns {Promise<Object>} Object containing publicAddress and signature.
-     * @throws {Error} If the message signing fails.
-     */
+   * Signs the message with the wallet and returns the signature.
+   * @param {string} publicAddress - Wallet public address.
+   * @param {string} nonce - One-time nonce for message signing.
+   * @returns {Promise<Object>} Object containing publicAddress and signature.
+   * @throws {Error} If the message signing fails.
+   */
   const handleSignMessage = async (publicAddress, nonce) => {
     try {
       const message = `By proceeding, you agree to the following terms and conditions:
@@ -69,94 +71,110 @@ function Login(props) {
       });
       return { publicAddress, signature };
     } catch (err) {
-      throw new Error(
-        'You need to sign the message to be able to log in.',
-      );
+      throw new Error('You need to sign the message to be able to log in.');
     }
   };
 
   /**
-     * Creates a new user account on the backend.
-     * @param {string} publicAddress - Wallet public address.
-     * @returns {Promise<Object>} Signup response.
-     */
-  const handleSignup = (publicAddress) => fetch('https://metaverse-mayhem.onrender.com/api/v1/users/', {
-    body: JSON.stringify({
-      publicAddress,
-      username: publicAddress
-        .slice(0, 3)
-        .concat('...')
-        .concat(publicAddress.slice(-3)),
-    }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
-  }).then((response) => response.json());
+   * Creates a new user account on the backend.
+   * @param {string} publicAddress - Wallet public address.
+   * @returns {Promise<Object>} Signup response.
+   */
+  const handleSignup = (publicAddress) => {
+    if (publicAddress == null) {
+      throw new Error('Unable to create user account. Please try again.');
+    }
+    return fetch('https://metaverse-mayhem.onrender.com/api/v1/users/', {
+      body: JSON.stringify({
+        publicAddress,
+        username: publicAddress
+          .slice(0, 3)
+          .concat('...')
+          .concat(publicAddress?.slice(-3)),
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+    })
+      .then((response) => response.json())
+      .catch((err) => {
+        setAlertMessage(err.message);
+        setShowAlert(true);
+        setSuccess(false);
+      });
+  };
 
   /**
-     * Handles the connection to the wallet.
-     * @returns {Promise<string>} Connected wallet account.
-     */
+   * Handles the connection to the wallet.
+   * @returns {Promise<string>} Connected wallet account.
+   */
   const connectWalletHandler = async () => {
     if (currentAccount === '') {
-      const account = await connectWallet();
-      setCurrentAccount(account);
-      return account;
+      try {
+        const account = await connectWallet();
+        setCurrentAccount(account);
+        return account;
+      } catch (err) {
+        setAlertMessage(err.message);
+        setShowAlert(true);
+        setSuccess(false);
+        setLoading(false);
+      }
     }
     return currentAccount;
   };
 
   /**
-     * Authenticates the user by performing the necessary steps.
-     * @param {string} account - Wallet public address.
-     */
+   * Authenticates the user by performing the necessary steps.
+   * @param {string} account - Wallet public address.
+   */
   const authenticateUser = (account) => {
-    fetch(`https://metaverse-mayhem.onrender.com/api/v1/users?publicAddress=${account}`)
+    fetch(
+      `https://metaverse-mayhem.onrender.com/api/v1/users?publicAddress=${account}`,
+    )
       .then((response) => response.json())
-    // If yes, retrieve it. If no, create it.
+      // If yes, retrieve it. If no, create it.
       .then(async (users) => {
         if (users == null) {
           users = await handleSignup(account);
         }
         return users;
       })
-    // Popup MetaMask confirmation modal to sign message
+      // Popup MetaMask confirmation modal to sign message
       .then(async (res) => handleSignMessage(res.publicAddress, res.nonce))
-    // Send signature to backend on the /auth route
+      // Send signature to backend on the /auth route
       .then(async (res) => {
-        const data = await handleAuthenticate(
-          res.publicAddress,
-          res.signature,
-        );
+        const data = await handleAuthenticate(res.publicAddress, res.signature);
         return data;
       })
       .then((res) => onLoggedIn(res.token))
       .then(() => navigate('/'))
       .then(() => window.location.reload())
       .catch((err) => {
-        window.alert(err);
+        setShowAlert(true);
+        setAlertMessage(err.message);
+        setSuccess(false);
         setLoading(false);
       });
   };
 
   /**
-     * Handles the click event of the login button.
-     * @param {Object} e - Event object.
-     */
+   * Handles the click event of the login button.
+   * @param {Object} e - Event object.
+   */
   const handleClick = async (e) => {
-    e.preventDefault();
-
     setLoading(true);
 
     if (!window.ethereum) {
-      alert('Metamask is required to connect to the app.');
+      setAlertMessage('Please install MetaMask to continue.');
+      setShowAlert(true);
+      setSuccess(false);
       setLoading(false);
       return;
     }
 
-    // Look if user with current publicAddress is already present on backend
-    connectWalletHandler().then((address) => authenticateUser(address));
+    connectWalletHandler().then((account) => authenticateUser(account));
   };
 
   return (
@@ -170,9 +188,7 @@ function Login(props) {
       ) : (
         <>
           <AiFillPlayCircle className="w-[24px] h-[24px] object-contain text-white" />
-          <p className="text-white text-[16px] font-semibold">
-            {text}
-          </p>
+          <p className="text-white text-[16px] font-semibold">{text}</p>
         </>
       )}
     </button>

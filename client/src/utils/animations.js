@@ -1,12 +1,14 @@
+import attack from '../assets/Laser1.wav';
+
 const prefixes = ['webkit', 'moz', 'ms', ''];
-function prefixedEvent(element, type, callback) {
+const prefixedEvent = (element, type, callback) => {
   for (let p = 0; p < prefixes.length; p += 1) {
     if (!prefixes[p]) type = type.toLowerCase();
     element.addEventListener(prefixes[p] + type, callback, false);
   }
-}
+};
 
-function transform($e, xValue, yValue, scaleValue, rotationValue, percent) {
+const transform = ($e, xValue, yValue, scaleValue, rotationValue, percent) => {
   const x = xValue || 0;
   const y = yValue || 0;
   const scale = scaleValue || 1;
@@ -20,9 +22,15 @@ function transform($e, xValue, yValue, scaleValue, rotationValue, percent) {
   $e.style.webkitTransform = transfromString;
   $e.style.MozTransform = transfromString;
   $e.style.transform = transfromString;
-}
+};
 
-function createParticle(x, y, scale) {
+const playAttackSound = () => {
+  const audio = new Audio(attack);
+  audio.volume = 0.1;
+  return audio.play();
+};
+
+const createParticle = (x, y, scale) => {
   const $particle = document.createElement('i');
   const $sparkle = document.createElement('i');
 
@@ -33,9 +41,9 @@ function createParticle(x, y, scale) {
   $particle.appendChild($sparkle);
 
   return $particle;
-}
+};
 
-function explode($container) {
+const explode = ($container) => {
   const particles = [];
 
   particles.push(createParticle(0, 0, 1));
@@ -63,9 +71,9 @@ function explode($container) {
 
     document.querySelectorAll('.container').forEach((el) => el.remove());
   });
-}
+};
 
-function explodeGroup(x, y, trans) {
+const explodeGroup = (x, y, trans) => {
   const $container = document.createElement('div');
 
   $container.className = 'container';
@@ -76,7 +84,7 @@ function explodeGroup(x, y, trans) {
 
   explode($container);
   return $container;
-}
+};
 
 export default function sparkle(event) {
   const explosions = [];
@@ -107,6 +115,7 @@ export default function sparkle(event) {
   );
 
   requestAnimationFrame(() => {
+    playAttackSound();
     explosions.forEach((boum, i) => {
       setTimeout(() => {
         document.body.appendChild(boum);

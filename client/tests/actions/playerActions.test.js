@@ -2,14 +2,25 @@ import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 
 import playerActions from "../../src/actions/playerActions";
-
-const mockStore = configureStore([thunk]);
+import allActions from "../../src/actions";
+import gameActions, { USE_MANA } from "../../src/actions/gameActions";
 
 describe("Player Actions", () => {
   let store;
+  const mockStore = configureStore([thunk]);
 
   beforeEach(() => {
-    store = mockStore({});
+    store = mockStore({
+      character: {
+        Player: {
+          health: 30,
+          mana: {
+            max: 0,
+            current: 0,
+          }
+        }
+      }
+    });
   });
 
   afterEach(() => {
@@ -192,6 +203,75 @@ describe("Player Actions", () => {
       const actions = store.getActions();
 
       expect(actions).toEqual(expectedActions);
+    });
+  });
+
+  describe("attackHero", () => {
+    it("should create actions to attack the hero", () => {
+      const card = { name: "Dragon", defense: 5, key: "Dragon123" };
+      const target = "OPPONENT";
+      const expectedAction = {
+        type: "HIT_FACE",
+        payload: { card, target },
+      };
+
+      store.dispatch(playerActions.attackHero(card, target));
+      const actions = store.getActions();
+
+      expect(actions).toEqual([expectedAction]);
+    });
+  });
+
+  describe("spendManaAndPlayCard", () => {
+    it("should not create an action to play a card if there is not enough mana", () => {
+      const card = { name: "Fireball", mana: 3 };
+      const index = 1;
+      const source = "PLAYER";
+      const target = "OPPONENT";
+      const amount = 1;
+      const expectedAction = [
+        {
+          payload: { target: source, amount }, type: "ADD_PLAYABLE_MANA"
+        },
+        {
+          type: "PLAY_CARD",
+          payload: { card, index, source },
+        },
+        { payload: { target, amount }, type: "USE_MANA" },
+      ];
+      store.dispatch(gameActions.addPlayableMana(source, amount));
+      store.dispatch(playerActions.spendManaAndPlayCard(card, index, source));
+      const actions = store.getActions();
+
+      expect(actions).not.toEqual(expectedAction);
+    });
+
+    it("should create an action to play a card if there is enough mana", () => {
+      store = mockStore({
+        character: {
+          Player: {
+            health: 30,
+            mana: {
+              max: 0,
+              current: 6,
+            }
+          }
+        }
+      });
+      const card = { name: "Fireball", mana: 1 };
+      const index = 1;
+      const source = "PLAYER";
+      const expectedAction = [
+        {
+          type: "PLAY_CARD",
+          payload: { card, index, source, viaServer: undefined },
+        },
+        { payload: { target: source, amount: card.mana }, type: "USE_MANA" },
+      ];
+      store.dispatch(playerActions.spendManaAndPlayCard(card, index, source));
+      const actions = store.getActions();
+
+      expect(actions).toEqual(expectedAction);
     });
   });
 });

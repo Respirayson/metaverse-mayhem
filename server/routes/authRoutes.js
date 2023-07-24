@@ -13,13 +13,19 @@ const router = express.Router();
 router.route('/').post(async (req, res) => {
   const { signature, publicAddress } = req.body;
 
-  if (!signature || !publicAddress) { res.status(400).send({ error: 'Request should have signature and publicAddress' }); }
+  if (!signature || !publicAddress) {
+    res
+      .status(400)
+      .send({ error: 'Request should have signature and publicAddress' });
+    return;
+  }
 
   let user = await User.findOne({ publicAddress });
   if (!user) {
     res.status(401).send({
       error: `User with publicAddress ${publicAddress} is not found in database`,
     });
+    return;
   }
 
   const msg = `By proceeding, you agree to the following terms and conditions:
@@ -46,10 +52,14 @@ router.route('/').post(async (req, res) => {
   if (address.toLowerCase() === publicAddress.toLowerCase()) {
     user.nonce = Math.floor(Math.random() * 10000);
     user = await user.save();
-    const token = jwt.sign({
-      id: user.id,
-      address: user.publicAddress,
-    }, process.env.JWT_SECRET, { expiresIn: '6h' });
+    const token = jwt.sign(
+      {
+        id: user.id,
+        address: user.publicAddress,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: '6h' },
+    );
     res.status(200).json({
       success: true,
       token,

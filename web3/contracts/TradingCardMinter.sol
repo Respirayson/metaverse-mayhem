@@ -20,7 +20,7 @@ contract TradingCardMinter is ERC721, ERC721Enumerable {
 
     uint public constant mintPrice = 0;
     uint256 internal fee = 0.1 * 10 ** 18;
-    uint256 internal constant MAX_CARDS = 50;
+    uint256 internal constant MAX_CARDS = 41;
 
     constructor() payable ERC721("MetaverseMayhemCards", "MMT") {}
 
@@ -60,7 +60,7 @@ contract TradingCardMinter is ERC721, ERC721Enumerable {
     ) internal view returns (uint256 randomValue) {
         uint256 randomNum = uint256(
             keccak256(
-                abi.encodePacked(block.difficulty, block.timestamp, _sender)
+                abi.encodePacked(block.difficulty, block.timestamp, _sender, cards.length)
             )
         );
 
@@ -79,7 +79,7 @@ contract TradingCardMinter is ERC721, ERC721Enumerable {
         );
 
         uint256 id = cards.length;
-        uint256 cardId = _createRandomNum(15, msg.sender);
+        uint256 cardId = _createRandomNum(MAX_CARDS, msg.sender);
         Card memory newCard = Card(cardId, id);
         userCards[msg.sender].push(newCard);
 

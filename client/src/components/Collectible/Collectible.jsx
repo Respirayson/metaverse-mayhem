@@ -2,7 +2,7 @@ function Collectible({
   card, handleClick,
 }) {
   return (
-    <div className="relative z-0 md:w-[12rem] 2xl:w-[288px] rounded-[15px] bg-[#1c1c24] cursor-pointer" onClick={handleClick}>
+    <div data-testid="collectible-card" className="relative z-0 md:w-[12rem] 2xl:w-[288px] rounded-[15px] bg-[#1c1c24] cursor-pointer" onClick={() => handleClick(card)}>
       <img
         alt="portrait"
         src={card.cardImage}
@@ -18,7 +18,7 @@ function Collectible({
       <div className="absolute w-[32px] h-[32px] 2xl:top-[41%] 2xl:right-[8.5%] rounded-[25px] bottom-[51.2%] right-[5.2%] flex items-center justify-center">
         <p className="2xl:text-[32px] text-[20px] font-bold text-red-700">{card.defense || 0}</p>
       </div>
-      <div className="absolute w-[80%] bottom-[7.5%] text-[9px] left-[10%]">
+      <div className="absolute w-[80%] bottom-[7%] text-[9px] left-[10%]">
         <p className="text-white text-justify 2xl:text-[14px]">
           {card.description}
         </p>

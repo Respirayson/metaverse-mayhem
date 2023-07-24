@@ -12,7 +12,6 @@ import DisplayMarketplace from './DisplayMarketplace/DisplayMarketplace';
 import Listing from './Listing/Listing';
 import DisplayCollection from './DisplayCollection/DisplayCollection';
 import Hero from './Hero/Hero';
-import FormField from './FormField';
 import Introduction from './Introduction';
 import About from './About';
 import Explore from './Explore';
@@ -25,6 +24,8 @@ import GameInstruction from './GameInstruction';
 import LoadingScreen from './LoadingScreen';
 import Sidebar from './SideBar';
 import Loader from './Loader';
+import FinalScreen from './FinalScreen';
+import Alert from './Alert';
 
 export {
   Login,
@@ -41,7 +42,6 @@ export {
   Listing,
   DisplayCollection,
   Hero,
-  FormField,
   Introduction,
   About,
   Explore,
@@ -54,4 +54,6 @@ export {
   LoadingScreen,
   Sidebar,
   Loader,
+  FinalScreen,
+  Alert,
 };

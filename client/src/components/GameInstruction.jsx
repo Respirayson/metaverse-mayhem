@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { gameRules } from '../constants';
+import { socket } from '../utils/socket';
 
 function GameInstruction() {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const navigate = useNavigate();
 
   const handleClick = () => {
+    socket.emit('leaveGame', { gameId: localStorage.getItem('gameId') });
     navigate('/');
   };
 
   return (
     <>
       <div className="absolute right-4 top-[40%] z-50">
-        <div
+        <button
+          type="button"
           className="absolute right-[10px] top-1/2 flex items-center justify-center cursor-pointer"
           onClick={() => setToggleSidebar(true)}
         >
@@ -23,12 +26,13 @@ function GameInstruction() {
             alt="info"
             className="w-2/5 h-2/5 object-contain invert"
           />
-        </div>
+        </button>
       </div>
 
       <div
+        data-testid="sidebar"
         className={`absolute z-50 p-8 right-0 top-[10%] h-[80%] rounded-[20px] flex-col transition-all ease-in duration-300 ${
-          toggleSidebar ? 'translate-x-0' : 'hidden translate-x-full'
+          toggleSidebar ? 'translate-x-0' : 'translate-x-full'
         } bg-white backdrop-filter backdrop-blur-lg bg-opacity-10 flex justify-between items-center backdrop-blur-3xl`}
       >
         <div className="flex flex-col">
@@ -59,7 +63,7 @@ function GameInstruction() {
             <button
               type="button"
               className="px-4 py-2 rounded-lg bg-siteBlue w-fit text-white font-bold my-4"
-              onClick={handleClick}
+              onClick={() => handleClick()}
             >
               Quit Game
             </button>

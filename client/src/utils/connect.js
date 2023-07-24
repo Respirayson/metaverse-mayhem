@@ -5,26 +5,10 @@ import { ethers } from 'ethers';
  * @returns {Promise<string>} - The connected account address
  */
 const connectWallet = async () => {
-  // Check if MetaMask is installed
-  if (!window.ethereum) {
-    window.alert('Please install MetaMask first.');
-    return undefined;
-  }
-
-  try {
-    const accounts = await window.ethereum.request({
-      method: 'eth_requestAccounts',
-    });
-    return accounts[0];
-  } catch (err) {
-    if (err.code === 4001) {
-      // EIP-1193 userRejectedRequest error
-      // If this happens, the user rejected the connection request.
-      console.log('Please connect to MetaMask.');
-    } else {
-      console.log(err);
-    }
-  }
+  const accounts = await window.ethereum.request({
+    method: 'eth_requestAccounts',
+  });
+  return accounts[0];
 };
 
 /**

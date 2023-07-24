@@ -40,7 +40,7 @@ function Footer({ handleLogin, authenticated, handleLogout }) {
                 <img
                   key={social.name}
                   src={social.url}
-                  alt={social.name}
+                  alt="social"
                   className="w-[24px] h-[24px] object-contain cursor-pointer"
                 />
               ))}

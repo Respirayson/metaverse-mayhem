@@ -26,5 +26,9 @@ module.exports = {
       'error',
       'ignorePackages',
     ],
+    'no-console': 'off',
+    'no-param-reassign': 'off',
+    'no-underscore-dangle': 'off',
+    'no-undef': 'off',
   },
 };

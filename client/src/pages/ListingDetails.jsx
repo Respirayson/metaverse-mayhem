@@ -2,19 +2,31 @@ import React, { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Loader, Sidebar } from '../components';
 import { NftMarketplaceContext } from '../context/NftMarketplace';
+import { WebContext } from '../context/WebContext';
 
 function ListingDetails() {
   const { state } = useLocation();
   const navigate = useNavigate();
   const { buyItem, currentAccount } = useContext(NftMarketplaceContext);
+  const { setShowAlert, setSuccess, setAlertMessage } = useContext(WebContext);
 
   const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = async (listing) => {
-    setIsLoading(true);
-    await buyItem(listing.id, listing.tokenId);
-    setIsLoading(false);
-    navigate('/marketplace');
+    try {
+      setIsLoading(true);
+      await buyItem(listing.id, listing.tokenId);
+      setIsLoading(false);
+      navigate('/marketplace');
+      setShowAlert(true);
+      setSuccess(true);
+      setAlertMessage('Item bought successfully');
+    } catch (err) {
+      setIsLoading(false);
+      setShowAlert(true);
+      setSuccess(false);
+      setAlertMessage('Unable to purchase. Please try again later.');
+    }
   };
 
   return (
@@ -142,13 +154,13 @@ function ListingDetails() {
                           collection.
                         </p>
                         {state.seller !== currentAccount && (
-                        <button
-                          type="button"
-                          className="font-semibold text-[16px] leading-[26px] text-white min-h-[52px] px-4 rounded-[10px] w-full bg-[#25618B] hover:bg-[#25718B]"
-                          onClick={() => handleClick(state)}
-                        >
-                          Buy Now
-                        </button>
+                          <button
+                            type="button"
+                            className="font-semibold text-[16px] leading-[26px] text-white min-h-[52px] px-4 rounded-[10px] w-full bg-[#25618B] hover:bg-[#25718B]"
+                            onClick={() => handleClick(state)}
+                          >
+                            Buy Now
+                          </button>
                         )}
                       </div>
                     </div>

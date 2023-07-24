@@ -3,22 +3,34 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Loader, Sidebar } from '../components';
 import { NftMarketplaceContext } from '../context/NftMarketplace';
 import { TradingCardMinterContext } from '../context/TradingCardMinter';
+import { WebContext } from '../context/WebContext';
 
 function SellingDetails() {
   const { state } = useLocation();
   const navigate = useNavigate();
   const { addListing } = useContext(NftMarketplaceContext);
   const { approveMarketplaceContract } = useContext(TradingCardMinterContext);
+  const { setShowAlert, setSuccess, setAlertMessage } = useContext(WebContext);
 
   const [isLoading, setIsLoading] = useState(false);
   const [price, setPrice] = useState();
 
   const handleClick = async (collectible) => {
-    setIsLoading(true);
-    await approveMarketplaceContract(collectible.tokenId);
-    await addListing(collectible, price);
-    setIsLoading(false);
-    navigate('/marketplace');
+    try {
+      setIsLoading(true);
+      await approveMarketplaceContract(collectible.tokenId);
+      await addListing(collectible, price);
+      setIsLoading(false);
+      navigate('/marketplace');
+      setShowAlert(true);
+      setSuccess(true);
+      setAlertMessage('Item listed successfully');
+    } catch (err) {
+      setIsLoading(false);
+      setShowAlert(true);
+      setSuccess(false);
+      setAlertMessage('Unable to list. Please try again later.');
+    }
   };
 
   return (
@@ -27,7 +39,7 @@ function SellingDetails() {
       <div className="flex-1 flex flex-col xl:mt-0 my-16">
         <div className="flex flex-row w-full">
           <h1 className="flex font-bold text-white sm:text-6xl text-4xl head-text">
-            Listing Details
+            Selling Details
           </h1>
         </div>
         <p className="font-normal text-[24px] text-white my-10">

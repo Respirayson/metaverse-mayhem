@@ -6,19 +6,25 @@ function Collection() {
   const [index, setIndex] = useState(0);
   const [loading, setLoading] = useState(false);
   const [userCards, setUserCards] = useState([]);
+  const [deck, setDeck] = useState([]);
 
-  const { getCardsUnderAddress } = useContext(TradingCardMinterContext);
+  const { getCardsUnderAddress, currentAccount } = useContext(TradingCardMinterContext);
 
   useEffect(() => {
     const fetchCards = async () => {
       setLoading(true);
       const data = await getCardsUnderAddress();
+      const cardsDeck = await fetch(`https://metaverse-mayhem.onrender.com/api/v1/game/cards/?publicAddress=${currentAccount}`);
+      const currentDeck = await cardsDeck.json();
+      if (currentDeck != null) {
+        setDeck(currentDeck.cards);
+      }
       setUserCards(data);
       setLoading(false);
     };
 
     fetchCards();
-  }, [getCardsUnderAddress]);
+  }, [currentAccount]);
 
   return (
     <div className="flex flex-1 justify-between py-8 sm:px-12 px-8 flex-col">
@@ -36,6 +42,7 @@ function Collection() {
             index={index}
             userCards={userCards}
             loading={loading}
+            deck={deck}
           />
           <div className="mt-16 ">
             {index > 0 && (

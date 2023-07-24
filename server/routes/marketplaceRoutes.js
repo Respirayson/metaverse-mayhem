@@ -1,20 +1,20 @@
-import express from "express";
-import * as dotenv from "dotenv";
+import express from 'express';
+import * as dotenv from 'dotenv';
 
-import Listing from "../mongodb/models/listing.js";
+import Listing from '../mongodb/models/listing.js';
 
 dotenv.config();
 
 const router = express.Router();
 
-router.route("/").get(async (req, res) => {
+router.route('/').get(async (req, res) => {
   // Get all Listings
   Listing.find({})
     .then((listings) => res.json(listings))
     .catch((err) => console.log(err));
 });
 
-router.route("/").post(async (req, res) => {
+router.route('/').post(async (req, res) => {
   // Create a new Listing
   const listings = await Listing.find(req.body);
 
@@ -23,22 +23,21 @@ router.route("/").post(async (req, res) => {
       .then((user) => res.json(user))
       .catch((err) => console.log(err));
   } else {
-    // Do nothing
-    console.log("Listing already exists")
+    res.status(403).json({ message: 'Listing already exists' });
   }
 });
 
-router.route("/:id").get((req, res) => {
-  // Get a specific Listing
+router.route('/:id').get((req, res) => {
+  // Get listings under a seller
   Listing.find({ seller: req.params.id })
     .then((listing) => res.json(listing))
     .catch((err) => console.log(err));
 });
 
-router.route("/:id").delete((req, res) => {
+router.route('/:id').delete((req, res) => {
   // Delete a specific Listing
   Listing.findByIdAndDelete(req.params.id)
-    .then(() => res.json("Listing deleted."))
+    .then(() => res.json('Listing deleted.'))
     .catch((err) => console.log(err));
 });
 

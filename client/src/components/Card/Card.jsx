@@ -38,6 +38,11 @@ function Card(props) {
       <div className="absolute w-[32px] h-[32px] rounded-[25px] bottom-[50.2%] right-[5.2%] flex items-center justify-center">
         <p className="text-[20px] font-bold text-red-700">{defense || 0}</p>
       </div>
+      <div className="absolute w-[80%] top-[65%] text-[8px] left-[10%]">
+        <p className="text-white text-justify">
+          {card.description}
+        </p>
+      </div>
 
     </div>
   );

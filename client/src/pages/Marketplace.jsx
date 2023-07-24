@@ -11,7 +11,7 @@ function Marketplace() {
   useEffect(() => {
     const fetchListings = async () => {
       setLoading(true);
-      const res = await fetch('http://127.0.0.1:8000/api/v1/marketplace/');
+      const res = await fetch('https://metaverse-mayhem.onrender.com/api/v1/marketplace/');
       const data = await res.json();
       const updatedListings = data
         .filter((listing) => listing.seller !== currentAccount)
@@ -32,7 +32,8 @@ function Marketplace() {
   return (
     <div className="flex flex-1 justify-between py-8 sm:px-12 px-8 flex-row">
       <Sidebar url="All Listings" />
-      <div className="flex-1 flex flex-col xl:mt-0 my-16">
+      <div className="gradient-04 z-0" />
+      <div className="flex-1 flex flex-col xl:mt-0 my-16 z-10">
         <div className="flex flex-row w-full">
           <h1 className="flex font-bold text-white sm:text-6xl text-4xl head-text">
             Marketplace

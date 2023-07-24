@@ -27,6 +27,5 @@ describe('PlayerMinion component', () => {
     render(<PlayerMinion card={card} exhausted={exhausted} canDrag={canDrag} />);
 
     expect(mockDrag).toHaveBeenCalled();
-    // Add assertions for the rendered component, such as checking if the card is rendered correctly.
   });
 });
