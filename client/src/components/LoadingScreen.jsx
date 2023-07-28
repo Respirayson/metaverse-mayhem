@@ -4,9 +4,20 @@ import { motion } from 'framer-motion';
 
 import { fadeIn } from '../utils/motion';
 
+/**
+ * Component for rendering the loading screen while waiting for a worthy opponent in the game.
+ * @param {Object} props - Component props.
+ * @param {boolean} props.loading - Flag indicating if the game is loading.
+ * @param {string} props.gameId - Game ID.
+ * @param {string} props.battleName - Name of the battle.
+ * @returns {JSX.Element} LoadingScreen component.
+ */
 function LoadingScreen({ loading, gameId, battleName }) {
   const navigate = useNavigate();
 
+  /**
+   * Handles the click event for joining an existing game.
+   */
   const handleClick = () => {
     document.querySelector('footer').style.display = 'block';
     document.querySelector('header').style.display = 'block';

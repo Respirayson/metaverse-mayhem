@@ -43,7 +43,8 @@ function PlayingAreaContainer({ board, exhaustedMinions, playerTurn }) {
     [board],
   );
 
-  const minions = board.map((card, i) => (
+  const minions = board.map((card, _i) => (
+    // eslint-disable-next-line react/jsx-props-no-spreading
     <motion.div key={card.key} {...slideAnimation('up')}>
       <PlayerMinion
         canDrag={playerTurn}

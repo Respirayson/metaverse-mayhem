@@ -8,13 +8,23 @@ import {
 } from '../utils/constants';
 import { getEthereumContract } from '../utils/connect';
 
+// Create a context for the NFT marketplace
 export const NftMarketplaceContext = createContext();
 
 const { ethereum } = window;
 
+/**
+ * Component representing the NFT marketplace provider
+ * @param {Object} props - The component props
+ * @param {ReactNode} props.children - The children to be rendered inside the provider
+ * @returns {JSX.Element} - The JSX element
+ */
 export function NftMarketplaceProvider({ children }) {
   const [currentAccount, setCurrentAccount] = useState(null);
 
+  /**
+   * Check if the wallet is connected and set the current account
+   */
   const checkIfWalletIsConnected = async () => {
     try {
       if (!ethereum) {
@@ -27,12 +37,18 @@ export function NftMarketplaceProvider({ children }) {
         const account = accounts[0];
         setCurrentAccount(account);
       } else {
+        // No account connected
       }
     } catch (err) {
       console.log(err);
     }
   };
 
+  /**
+   * Add a listing for an NFT
+   * @param {Object} collectible - The NFT collectible object
+   * @param {number} price - The price of the NFT
+   */
   const addListing = async (collectible, price) => {
     if (ethereum) {
       const contract = getEthereumContract(marketplaceAddress, marketplaceABI);
@@ -65,6 +81,11 @@ export function NftMarketplaceProvider({ children }) {
     }
   };
 
+  /**
+   * Buy an NFT
+   * @param {string} listingId - The ID of the NFT listing
+   * @param {string} tokenId - The ID of the NFT token
+   */
   const buyItem = async (listingId, tokenId) => {
     if (ethereum) {
       const contract = getEthereumContract(marketplaceAddress, marketplaceABI);
@@ -84,6 +105,10 @@ export function NftMarketplaceProvider({ children }) {
     }
   };
 
+  /**
+   * Get the proceeds from the NFT marketplace
+   * @returns {number} - The proceeds in ETH
+   */
   const getProceeds = async () => {
     if (ethereum) {
       const contract = getEthereumContract(marketplaceAddress, marketplaceABI);
@@ -93,6 +118,9 @@ export function NftMarketplaceProvider({ children }) {
     return 0;
   };
 
+  /**
+   * Withdraw the proceeds from the NFT marketplace
+   */
   const withdrawProceeds = async () => {
     if (ethereum) {
       const contract = getEthereumContract(marketplaceAddress, marketplaceABI);
@@ -102,6 +130,7 @@ export function NftMarketplaceProvider({ children }) {
     }
   };
 
+  // Check if the wallet is connected on component mount
   useEffect(() => {
     checkIfWalletIsConnected();
   }, []);

@@ -27,8 +27,12 @@ import { socket } from './utils/socket';
 
 import { WebContext } from './context/WebContext';
 
+import menu from '/menu.svg'; //eslint-disable-line
+import close from '/close.svg'; //eslint-disable-line
+
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
+  const [toggle, setToggle] = useState(false);
   const { showAlert, alertMessage, success } = useContext(WebContext);
 
   const dispatch = useDispatch();
@@ -112,10 +116,46 @@ function App() {
               <Login onLoggedIn={handleLogin} text="Connect Wallet" />
             )}
           </div>
+          <div className="md:hidden flex flex-1 items-end justify-end">
+            <img
+              src={toggle ? close : menu}
+              alt="menu"
+              className="w-[28px] h-[28px] object-contain cursor-pointer"
+              onClick={() => setToggle(!toggle)}
+            />
+            <div
+              className={`${
+                !toggle ? 'hidden' : 'flex'
+              } p-6 bg-siteDimBlack mx-4 my-2 top-20 right-0 absolute z-20 rounded-xl`}
+            >
+              <div className="flex justify-end items-center flex-1 flex-col gap-4 text-white">
+                <Link to="/game" className="mx-6 hover:scale-[1.1]">
+                  Game
+                </Link>
+                <Link to="/marketplace" className="mx-6 hover:scale-[1.1]">
+                  Marketplace
+                </Link>
+                <Link to="/collection" className="mx-6 hover:scale-[1.1]">
+                  Collection
+                </Link>
+                {checkAuthenticated() ? (
+                  <button
+                    type="button"
+                    className="flex items-center h-fit py-4 px-6 bg-[#25618B] rounded-[32px] gap-[12px] hover:bg-[#25718B]"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
+                ) : (
+                  <Login onLoggedIn={handleLogin} text="Connect Wallet" />
+                )}
+              </div>
+            </div>
+          </div>
         </motion.nav>
       </header>
       <main className="w-full min-h-[100vh] bg-primary-black overflow-hidden">
-        {showAlert && (<Alert success={success} message={alertMessage} />)}
+        {showAlert && <Alert success={success} message={alertMessage} />}
         <Routes>
           <Route path="/" element={<Home handleLogin={handleLogin} />} />
 

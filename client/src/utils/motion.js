@@ -78,42 +78,80 @@ export const navVariants = {
  * ("left", "right", "up", or "down")
  * @returns {object} - The slide animation object with initial, animate, and exit properties
  */
-export const slideAnimation = (direction) => ({
-  initial: {
-    x: direction === 'left' ? -100 : direction === 'right' ? 100 : 0,
-    y: direction === 'up' ? 100 : direction === 'down' ? -100 : 0,
-    opacity: 0,
-    transition: { ...transition, delay: 0.5 },
-  },
-  animate: {
-    x: 0,
-    y: 0,
-    opacity: 1,
-    transition: { ...transition, delay: 0 },
-  },
-  exit: {
-    x: direction === 'left' ? -100 : direction === 'right' ? 100 : 0,
-    y: direction === 'up' ? 100 : direction === 'down' ? -100 : 0,
-    transition: { ...transition, delay: 0 },
-  },
-});
+export const slideAnimation = (direction) => {
+  let x = 0;
+  let y = 0;
+  let exitX = 0;
+  let exitY = 0;
 
-export const slideIn = (direction, type, delay, duration) => ({
-  hidden: {
-    x: direction === 'left' ? '-100%' : direction === 'right' ? '100%' : 0,
-    y: direction === 'up' ? '100%' : direction === 'down' ? '100%' : 0,
-  },
-  show: {
-    x: 0,
-    y: 0,
-    transition: {
-      type,
-      delay,
-      duration,
-      ease: 'easeOut',
+  if (direction === 'left') {
+    x = -100;
+    exitX = -100;
+  } else if (direction === 'right') {
+    x = 100;
+    exitX = 100;
+  }
+
+  if (direction === 'up') {
+    y = 100;
+    exitY = 100;
+  } else if (direction === 'down') {
+    y = -100;
+    exitY = -100;
+  }
+
+  return {
+    initial: {
+      x,
+      y,
+      opacity: 0,
+      transition: { ...transition, delay: 0.5 },
     },
-  },
-});
+    animate: {
+      x: 0,
+      y: 0,
+      opacity: 1,
+      transition: { ...transition, delay: 0 },
+    },
+    exit: {
+      x: exitX,
+      y: exitY,
+      transition: { ...transition, delay: 0 },
+    },
+  };
+};
+
+export const slideIn = (direction, type, delay, duration) => {
+  let x = 0;
+  let y = 0;
+
+  if (direction === 'left') {
+    x = '-100%';
+  } else if (direction === 'right') {
+    x = '100%';
+  }
+
+  if (direction === 'up' || direction === 'down') {
+    y = '100%';
+  }
+
+  return {
+    hidden: {
+      x,
+      y,
+    },
+    show: {
+      x: 0,
+      y: 0,
+      transition: {
+        type,
+        delay,
+        duration,
+        ease: 'easeOut',
+      },
+    },
+  };
+};
 
 /**
  * The fade animation object with initial, animate, and exit properties
@@ -133,24 +171,41 @@ export const fadeAnimation = {
   },
 };
 
-export const fadeIn = (direction, type, delay, duration) => ({
-  hidden: {
-    x: direction === 'left' ? 100 : direction === 'right' ? -100 : 0,
-    y: direction === 'up' ? 100 : direction === 'down' ? -100 : 0,
-    opacity: 0,
-  },
-  show: {
-    x: 0,
-    y: 0,
-    opacity: 1,
-    transition: {
-      type,
-      delay,
-      duration,
-      ease: 'easeOut',
+export const fadeIn = (direction, type, delay, duration) => {
+  let x = 0;
+  let y = 0;
+
+  if (direction === 'left') {
+    x = 100;
+  } else if (direction === 'right') {
+    x = -100;
+  }
+
+  if (direction === 'up') {
+    y = 100;
+  } else if (direction === 'down') {
+    y = -100;
+  }
+
+  return {
+    hidden: {
+      x,
+      y,
+      opacity: 0,
     },
-  },
-});
+    show: {
+      x: 0,
+      y: 0,
+      opacity: 1,
+      transition: {
+        type,
+        delay,
+        duration,
+        ease: 'easeOut',
+      },
+    },
+  };
+};
 
 export const dioramaAnimation = (direction) => ({
   hidden: {

@@ -4,9 +4,14 @@ import sparkle, { getPlayerCoords } from '../../utils/animations';
 
 /**
  * Component for rendering a minion card.
+ *
  * @param {Object} props - Component props.
  * @param {Object} props.card - Minion card data.
+ * @param {number} props.card.attack - The attack value of the minion card.
+ * @param {number} props.card.defense - The defense value of the minion card.
+ * @param {string} props.card.portrait - The URL of the portrait image for the minion card.
  * @param {boolean} props.exhausted - Flag indicating if the minion is exhausted.
+ * @param {boolean} props.isOver - Flag indicating if the minion is being hovered over.
  * @returns {JSX.Element} Minion component.
  */
 function Minion(props) {

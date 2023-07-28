@@ -1,3 +1,12 @@
+/**
+ * Component for rendering a feature card with an icon, title, and subtitle.
+ * @component
+ * @param {Object} props - Component props.
+ * @param {string} props.imgUrl - URL of the icon image.
+ * @param {string} props.title - Title of the feature.
+ * @param {string} props.subtitle - Subtitle or description of the feature.
+ * @returns {JSX.Element} FeatureCard component.
+ */
 function FeatureCard({ imgUrl, title, subtitle }) {
   return (
     <div className="flex-1 flex flex-col sm:max-w-[250px] min-w-[210px]">

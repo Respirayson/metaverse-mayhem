@@ -1,8 +1,31 @@
-// Action types
+/**
+ * Action type constant for a successful new game creation.
+ * @type {string}
+ */
 export const NEW_GAME_SUCCESS = 'NEW_GAME_SUCCESS';
+
+/**
+ * Action type constant for a failed new game creation.
+ * @type {string}
+ */
 export const NEW_GAME_FAILURE = 'NEW_GAME_FAILURE';
+
+/**
+ * Action type constant for a new game creation request.
+ * @type {string}
+ */
 export const NEW_GAME_REQUEST = 'NEW_GAME_REQUEST';
+
+/**
+ * Action type constant for updating the hasOpponent flag.
+ * @type {string}
+ */
 export const UPDATE_HAS_OPPONENT = 'UPDATE_HAS_OPPONENT';
+
+/**
+ * Action type constant for resetting the game state.
+ * @type {string}
+ */
 export const RESET_GAME = 'RESET_GAME';
 
 /**

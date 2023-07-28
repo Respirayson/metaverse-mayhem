@@ -5,9 +5,13 @@ import allActions from '../actions';
 import { socket } from '../utils/socket';
 import { LoadingScreen } from '../components';
 
+/**
+ * Component representing the new game screen where players
+ * can create a new battle or wait for others to join
+ * @returns {JSX.Element} - The JSX element
+ */
 function GameNewScreen() {
   const currentGame = useSelector((state) => state.current);
-  console.log(currentGame);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -16,33 +20,32 @@ function GameNewScreen() {
   const [username, setUsername] = useState('');
   const [waiting, setWaiting] = useState(false);
 
+  // Get the username from local storage on component mount
   useEffect(() => {
     setUsername(localStorage.getItem('username'));
   }, []);
 
+  // Dispatch the action to fetch a new game on component mount and join the game with the username
   useEffect(() => {
-    dispatch(allActions.beforeGameActions.fetchNewGame(true)).then(
-      (gameId) => {
-        socket.emit('joinGame', { gameId: gameId.toString(), name: localStorage.getItem('username') });
-      },
-    );
+    dispatch(allActions.beforeGameActions.fetchNewGame(true)).then((gameId) => {
+      socket.emit('joinGame', { gameId: gameId.toString(), name: localStorage.getItem('username') });
+    });
   }, [dispatch]);
 
+  // Listen for the 'playerJoined' event from the socket,
+  // update the state if the player count is 2, and navigate to the game page
   useEffect(() => {
     if (previousGameId !== gameId) {
       socket.on('playerJoined', ({ playerCount }) => {
-        console.log('player joined');
         if (playerCount === 2) {
-          console.log('running');
-          dispatch(
-            allActions.beforeGameActions.updateHasOpponent(true),
-          );
+          dispatch(allActions.beforeGameActions.updateHasOpponent(true));
           navigate(`/game/${gameId}`);
         }
       });
     }
   }, [dispatch, gameId, navigate]);
 
+  // Handle the click event to enter the arena, set waiting state to true
   const handleClick = () => {
     document.querySelector('footer').style.display = 'none';
     document.querySelector('header').style.display = 'none';

@@ -5,6 +5,10 @@ import { NftMarketplaceContext } from '../context/NftMarketplace';
 import { TradingCardMinterContext } from '../context/TradingCardMinter';
 import { WebContext } from '../context/WebContext';
 
+/**
+ * Component for displaying details and handling the selling of a collectible in the marketplace.
+ * @returns {JSX.Element} - The JSX element representing the SellingDetails component.
+ */
 function SellingDetails() {
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -15,6 +19,10 @@ function SellingDetails() {
   const [isLoading, setIsLoading] = useState(false);
   const [price, setPrice] = useState();
 
+  /**
+   * Handles the selling of a collectible in the marketplace.
+   * @param {Object} collectible - The collectible object to be listed for selling.
+   */
   const handleClick = async (collectible) => {
     try {
       setIsLoading(true);
@@ -56,6 +64,7 @@ function SellingDetails() {
           {!isLoading && (
             <>
               <div className="w-full flex md:flex-row flex-col gap-[30px]">
+                {/* Display images and details of the collectible */}
                 <div className="flex-1 flex-col">
                   <div className="flex flex-row bg-white rounded-xl">
                     <img
@@ -99,6 +108,7 @@ function SellingDetails() {
               </div>
               <div className="mt-[60px] flex lg:flex-row flex-col gap-5">
                 <div className="flex-[2] flex flex-col gap-[40px]">
+                  {/* Display description of the collectible */}
                   <div>
                     <h4 className="font-semibold text-[18px] text-white uppercase">
                       Description
@@ -117,6 +127,7 @@ function SellingDetails() {
                   </h4>
 
                   <div className="mt-[20px] flex flex-col p-4 bg-[#1c1c24] rounded-[10px]">
+                    {/* Input field to set the price */}
                     <input
                       type="number"
                       placeholder="ETH 0.1"

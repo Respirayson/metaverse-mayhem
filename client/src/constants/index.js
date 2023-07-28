@@ -1,8 +1,10 @@
+// itemTypes defines the types of items in the game.
 const itemTypes = {
   CARD: 'card',
   MINION: 'minion',
 };
 
+// exploreCards is an array containing objects representing explore cards.
 export const exploreCards = [
   {
     id: 'card-1',
@@ -31,12 +33,14 @@ export const exploreCards = [
   },
 ];
 
+// features is an array containing features of the Metaverse Mayhem game.
 export const features = [
   'Build a collection of unique digital cards',
   'Fight against other players in the arena',
   'Trade your cards with other players and have fun!',
 ];
 
+// An array containing new features of the Metaverse Mayhem game.
 export const newFeatures = [
   {
     imgUrl: '/vrpano.svg',
@@ -52,6 +56,7 @@ export const newFeatures = [
   },
 ];
 
+// An array containing social media links.
 export const socials = [
   {
     name: 'twitter',
@@ -71,6 +76,7 @@ export const socials = [
   },
 ];
 
+// An array containing game rules for Metaverse Mayhem.
 export const gameRules = [
   'Players start with 15 cards in their deck, a hero, and 1 mana.',
   'The game progresses in turns, with players alternating.',
@@ -81,6 +87,7 @@ export const gameRules = [
   "The game ends when one player's health reaches zero, declaring the opposing player as the winner.",
 ];
 
+// An array containing sidebar links for the marketplace.
 export const sideBarLinks = [
   {
     name: 'All Listings',
@@ -108,6 +115,7 @@ export const sideBarLinks = [
   },
 ];
 
+// An array containing loading screen quotes for the Metaverse Mayhem game.
 const loadingScreenQuotes = [
   'Loading... Traveling through virtual dimensions. Please refrain from pushing buttons in real life.',
   'Patience, young padawan. The metaverse is aligning its pixels just for you.',
@@ -151,6 +159,13 @@ const loadingScreenQuotes = [
   "Loading... Please refrain from attempting to juggle virtual flaming torches. It's harder than it looks!",
 ];
 
-export const randomQuote = () => loadingScreenQuotes[Math.floor(Math.random() * loadingScreenQuotes.length)];
+/**
+ * Returns a random quote from the loadingScreenQuotes array.
+ * @returns {string} A randomly selected quote.
+ */
+export const randomQuote = () => loadingScreenQuotes[
+  Math.floor(Math.random() * loadingScreenQuotes.length)
+];
 
+// Exporting the constants and the helper function for use in other parts of the application.
 export default itemTypes;

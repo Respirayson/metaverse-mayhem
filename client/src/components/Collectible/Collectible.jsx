@@ -1,3 +1,13 @@
+/**
+ * Collectible component represents a collectible card.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Object} props.card - The card object with properties like
+ * name, mana, attack, defense, cardImage, and description.
+ * @param {function} props.handleClick - The click event handler function to handle card click.
+ * @returns {JSX.Element} The JSX element representing the collectible card.
+ */
 function Collectible({
   card, handleClick,
 }) {

@@ -1,5 +1,13 @@
 import React from 'react';
 
+/**
+ * Component for displaying an icon for alert messages.
+ * @component
+ * @param {Object} props - Component props.
+ * @param {boolean} props.success - Flag indicating
+ * if it's a success icon (true) or an error icon (false).
+ * @returns {JSX.Element} AlertIcon component.
+ */
 function AlertIcon({ success }) {
   return (
     <svg

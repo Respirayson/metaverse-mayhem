@@ -3,12 +3,19 @@ import { DisplayMarketplace, Sidebar } from '../components';
 import { cards } from '../utils/cards';
 import { TradingCardMinterContext } from '../context/TradingCardMinter';
 
+/**
+ * Component for displaying the marketplace with listings of trading cards.
+ * @returns {JSX.Element} - The JSX element representing the Marketplace component.
+ */
 function Marketplace() {
   const [loading, setLoading] = useState(false);
   const [listings, setListings] = useState([]);
   const { currentAccount } = useContext(TradingCardMinterContext);
 
   useEffect(() => {
+    /**
+     * Fetches the marketplace listings from the server and updates the component state.
+     */
     const fetchListings = async () => {
       setLoading(true);
       const res = await fetch('https://metaverse-mayhem.onrender.com/api/v1/marketplace/');
@@ -19,8 +26,7 @@ function Marketplace() {
           card: cards[listing.cardId],
           price: listing.price,
           seller: listing.seller,
-          // eslint-disable-next-line no-underscore-dangle
-          id: listing._id,
+          id: listing._id, // eslint-disable-line no-underscore-dangle
           tokenId: listing.tokenId,
         }));
       setListings(updatedListings);
@@ -43,6 +49,7 @@ function Marketplace() {
           Buy, Sell, Trade your way to Victory
         </p>
 
+        {/* Display the marketplace listings using the DisplayMarketplace component */}
         <DisplayMarketplace subtitle="No listings are available" loading={loading} listings={listings} />
       </div>
     </div>

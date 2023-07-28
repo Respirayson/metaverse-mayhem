@@ -4,9 +4,19 @@ import { motion } from 'framer-motion';
 
 import { fadeIn } from '../utils/motion';
 
+/**
+ * Component for rendering the final screen after the game ends.
+ * @component
+ * @param {Object} props - Component props.
+ * @param {boolean} props.isWinner - Flag indicating if the player is the winner or not.
+ * @returns {JSX.Element} FinalScreen component.
+ */
 function FinalScreen({ isWinner }) {
   const navigate = useNavigate();
 
+  /**
+   * Handles the click event of the "Go back to Home" button.
+   */
   const handleClick = () => {
     navigate('/');
   };
@@ -25,17 +35,13 @@ function FinalScreen({ isWinner }) {
             {isWinner ? (
               <div>
                 Congratulations
-                {' '}
                 <br />
-                {' '}
                 you have prevailed
               </div>
             ) : (
               <div>
                 Oops sorry
-                {' '}
                 <br />
-                {' '}
                 you have lost
               </div>
             )}

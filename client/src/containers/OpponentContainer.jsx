@@ -24,6 +24,7 @@ function OpponentContainer(props) {
   const {
     name, handCount, character, turn,
   } = props;
+  // eslint-disable-next-line react/destructuring-assignment
   const { board, exhaustedMinions } = props.board;
 
   /**
@@ -53,7 +54,8 @@ function OpponentContainer(props) {
     );
   };
 
-  const minions = board.map((card, index) => (
+  const minions = board.map((card, _index) => (
+    // eslint-disable-next-line react/jsx-props-no-spreading
     <motion.div key={card.key} {...slideAnimation('down')}>
       <EnemyMinion
         card={card}

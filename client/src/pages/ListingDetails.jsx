@@ -4,6 +4,10 @@ import { Loader, Sidebar } from '../components';
 import { NftMarketplaceContext } from '../context/NftMarketplace';
 import { WebContext } from '../context/WebContext';
 
+/**
+ * Component for displaying details of a listing.
+ * @returns {JSX.Element} - The JSX element representing the ListingDetails component.
+ */
 function ListingDetails() {
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -12,6 +16,10 @@ function ListingDetails() {
 
   const [isLoading, setIsLoading] = useState(false);
 
+  /**
+   * Handles the click event when the user wants to buy an item.
+   * @param {object} listing - The listing object to be purchased.
+   */
   const handleClick = async (listing) => {
     try {
       setIsLoading(true);

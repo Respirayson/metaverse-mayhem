@@ -6,14 +6,30 @@ import Loader from '../Loader';
 import { TradingCardMinterContext } from '../../context/TradingCardMinter';
 import { WebContext } from '../../context/WebContext';
 
+/**
+ * DisplayCollection component displays the user's card collection and allows
+ * them to add cards to their deck for a game.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {number} props.index - The index of the current card page in the collection.
+ * @param {Object[]} props.userCards - An array of collectible cards in the user's collection.
+ * @param {boolean} props.loading - Flag indicating if the component is in a loading state.
+ * @param {Object[]} props.deck - An array of cards currently in the user's deck for the game.
+ * @returns {JSX.Element} The JSX element representing the DisplayCollection component.
+ */
 function DisplayCollection({
   index, userCards, loading, deck,
 }) {
+  // State for the loader and cards currently in the game
   const [loader, setLoader] = useState(true);
   const [cardsInGame, setCardsInGame] = useState([]);
+
+  // Accessing context data from TradingCardMinterContext and WebContext
   const { currentAccount } = useContext(TradingCardMinterContext);
   const { setShowAlert, setAlertMessage, setSuccess } = useContext(WebContext);
 
+  // useEffect to control the loader display
   useEffect(() => {
     if (!loading) {
       setTimeout(() => {
@@ -22,12 +38,18 @@ function DisplayCollection({
     }
   }, [loading]);
 
+  // useEffect to update the cardsInGame state when the deck prop changes
   useEffect(() => {
     if (deck.length > 0) {
       setCardsInGame(deck);
     }
   }, [deck]);
 
+  /**
+   * Adds a card to the user's deck for the game.
+   * @param {Object} card - The card object to be added to the deck.
+   * @returns {void}
+   */
   const addCard = (card) => {
     if (cardsInGame.length === 15) {
       setShowAlert(true);
@@ -38,6 +60,11 @@ function DisplayCollection({
     setCardsInGame([...cardsInGame, card]);
   };
 
+  /**
+   * Removes a card from the user's deck for the game.
+   * @param {Object} card - The card object to be removed from the deck.
+   * @returns {void}
+   */
   const removeCard = (card) => {
     const loc = cardsInGame.findIndex((c) => c.name === card.name);
     setCardsInGame([
@@ -46,6 +73,11 @@ function DisplayCollection({
     ]);
   };
 
+  /**
+   * Handles the deck submission for the game.
+   * Sends a request to update the database with the selected cards.
+   * @returns {void}
+   */
   const handleSubmit = async () => {
     if (cardsInGame.length !== 15) {
       setShowAlert(true);
@@ -54,7 +86,7 @@ function DisplayCollection({
       return;
     }
     setLoader(true);
-    await fetch('https://metaverse-mayhem.onrender.com/api/v1/game/cards', { // update the database
+    await fetch('https://metaverse-mayhem.onrender.com/api/v1/game/cards', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -139,7 +171,6 @@ function DisplayCollection({
           {userCards.length > 0 ? (
             <div className="grid grid-cols-2 gap-[2rem] mt-[20px] ml-[8%]">
               {userCards.slice(index, index + 4).map((collectible, _i) => (
-                // Remove duplicates: change to [...new Set(userCards)]
                 <AnimatePresence initial mode="wait">
                   <motion.div
                     key={collectible.card.name}

@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-
 import { useLottie } from 'lottie-react';
 import { features } from '../constants';
 import { staggerContainer, fadeIn, dioramaAnimation } from '../utils/motion';
@@ -7,6 +6,10 @@ import { TypingText, TitleText } from './Texts';
 import Starter from './Starter';
 import bitcoinCity from '../assets/bitcoinCity.json';
 
+/**
+ * Component for rendering the "Get Started" section with animation.
+ * @returns {JSX.Element} GetStarted component.
+ */
 function GetStarted() {
   const options = {
     animationData: bitcoinCity,
@@ -14,6 +17,7 @@ function GetStarted() {
   };
 
   const { View } = useLottie(options);
+
   return (
     <section data-testid="lottie-view" className="sm:p-16 xs:p-8 px-6 py-12 relative z-10">
       <motion.div
