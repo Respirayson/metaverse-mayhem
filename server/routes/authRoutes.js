@@ -34,7 +34,7 @@ router.route('/').post(async (req, res) => {
   if (!user) {
     // If user is not found, return an error response
     res.status(401).send({
-      error: `User with publicAddress ${publicAddress} is not found in the database`,
+      error: `User with publicAddress ${publicAddress} is not found in database`,
     });
     return;
   }
