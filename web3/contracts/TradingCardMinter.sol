@@ -108,7 +108,7 @@ contract TradingCardMinter is ERC721, ERC721Enumerable {
      * @dev Internal function to create a random number.
      * @param _max uint256 - The maximum value of the random number.
      * @param _sender address - The sender's address.
-     * @return uint256 - The generated random number.
+     * @return randomValue uint256 - The generated random number.
      */
     function _createRandomNum(uint256 _max, address _sender) internal view returns (uint256 randomValue) {
         uint256 randomNum = uint256(keccak256(abi.encodePacked(block.difficulty, block.timestamp, _sender, cards.length)));
