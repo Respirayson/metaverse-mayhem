@@ -29,12 +29,18 @@ const initialState = {
  * @returns {Object} - Updated state of the board.
  */
 const boardReducer = (state = initialState, action) => {
+  // Check if the action is of type PLAY_CARD
   if (action.type === PLAY_CARD) {
+    // Check if the action is for the PLAYER's board
     if (action.payload.source === 'PLAYER') {
+      // Check if the PLAYER's board is already full
       if (state.Player.board.length === MAX_CARDS) {
+        // Return the current state if the board is full
         return state;
       }
+      // Check if the card should be added to the beginning (index 0) of the board
       if (action.payload.index === 0) {
+        // Add the card to the beginning of the PLAYER's board and update exhaustedMinions list
         return {
           Opponent: state.Opponent,
           Player: {
@@ -52,6 +58,7 @@ const boardReducer = (state = initialState, action) => {
           },
         };
       }
+      // Add the card to the end of the PLAYER's board and update exhaustedMinions list
       return {
         Opponent: state.Opponent,
         Player: {
@@ -70,11 +77,16 @@ const boardReducer = (state = initialState, action) => {
       };
     }
 
+    // Check if the action is for the OPPONENT's board
     if (action.payload.source === 'OPPONENT') {
+      // Check if the OPPONENT's board is already full
       if (state.Opponent.board.length === MAX_CARDS) {
+        // Return the current state if the board is full
         return state;
       }
+      // Check if the card should be added to the beginning (index 0) of the board
       if (action.payload.index === 0) {
+        // Add the card to the beginning of the OPPONENT's board and update exhaustedMinions list
         return {
           Player: state.Player,
           Opponent: {
@@ -92,6 +104,7 @@ const boardReducer = (state = initialState, action) => {
           },
         };
       }
+      // Add the card to the end of the OPPONENT's board and update exhaustedMinions list
       return {
         Player: state.Player,
         Opponent: {
@@ -111,10 +124,12 @@ const boardReducer = (state = initialState, action) => {
     }
   }
 
+  // Check if the action is of type KILL_MINION
   if (action.type === 'KILL_MINION') {
+    // Check the source of the action to determine which board to update
     if (action.payload.source === 'PLAYER') {
+      // Remove the specified minion from the OPPONENT's board
       const index = action.payload.key;
-      // console.log(index);
       return {
         Player: state.Player,
         Opponent: {
@@ -126,9 +141,9 @@ const boardReducer = (state = initialState, action) => {
       };
     }
 
+    // Remove the specified minion from the PLAYER's board
     if (action.payload.source === 'OPPONENT') {
       const index = action.payload.key;
-      // console.log(index);
       return {
         Opponent: state.Opponent,
         Player: {
@@ -141,9 +156,11 @@ const boardReducer = (state = initialState, action) => {
     }
   }
 
+  // Check if the action is of type HIT_MINION
   if (action.type === 'HIT_MINION') {
     const { attack, minion, source } = action.payload;
 
+    // Update the defense value of the targeted minion based on the attack value
     if (source === 'PLAYER') {
       return {
         Opponent: {
@@ -172,8 +189,9 @@ const boardReducer = (state = initialState, action) => {
     }
   }
 
+  // Check if the action is of type END_TURN
   if (action.type === 'END_TURN') {
-    console.log(state);
+    // Clear the exhaustedMinions list for the current player to end their turn
     if (action.payload.source === 'PLAYER') {
       return {
         Opponent: state.Opponent,
@@ -195,7 +213,9 @@ const boardReducer = (state = initialState, action) => {
     }
   }
 
+  // Check if the action is of type HIT_FACE
   if (action.type === 'HIT_FACE') {
+    // Add the attacking minion to the opponent's exhaustedMinions list
     if (action.payload.target === 'OPPONENT') {
       return {
         Opponent: state.Opponent,
@@ -209,6 +229,7 @@ const boardReducer = (state = initialState, action) => {
       };
     }
 
+    // Add the attacking minion to the player's exhaustedMinions list
     if (action.payload.target === 'PLAYER') {
       return {
         Player: state.Player,
@@ -223,6 +244,7 @@ const boardReducer = (state = initialState, action) => {
     }
   }
 
+  // Return the current state for any unknown action types
   return state;
 };
 

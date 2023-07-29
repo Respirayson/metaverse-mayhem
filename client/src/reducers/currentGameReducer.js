@@ -28,6 +28,7 @@ const initialState = {
  * @returns {Object} - Updated state of the current game.
  */
 const currentGameReducer = (state = initialState, action) => {
+  // Check if the action is of type NEW_GAME_REQUEST
   if (action.type === NEW_GAME_REQUEST) {
     return {
       ...state,
@@ -35,6 +36,7 @@ const currentGameReducer = (state = initialState, action) => {
     };
   }
 
+  // Check if the action is of type NEW_GAME_SUCCESS
   if (action.type === NEW_GAME_SUCCESS) {
     return {
       ...state,
@@ -43,6 +45,7 @@ const currentGameReducer = (state = initialState, action) => {
     };
   }
 
+  // Check if the action is of type NEW_GAME_FAILURE
   if (action.type === NEW_GAME_FAILURE) {
     return {
       ...state,
@@ -50,6 +53,7 @@ const currentGameReducer = (state = initialState, action) => {
     };
   }
 
+  // Check if the action is of type UPDATE_HAS_OPPONENT
   if (action.type === UPDATE_HAS_OPPONENT) {
     return {
       ...state,
@@ -57,10 +61,12 @@ const currentGameReducer = (state = initialState, action) => {
     };
   }
 
+  // Check if the action is of type RESET_GAME
   if (action.type === RESET_GAME) {
     return initialState;
   }
 
+  // Check if the action is of type END_GAME
   if (action.type === END_GAME) {
     return {
       ...state,
@@ -69,7 +75,9 @@ const currentGameReducer = (state = initialState, action) => {
     };
   }
 
+  // Return the current state for any unknown action types
   return state;
 };
 
 export default currentGameReducer;
+

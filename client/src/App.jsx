@@ -30,6 +30,10 @@ import { WebContext } from './context/WebContext';
 import menu from '/menu.svg'; //eslint-disable-line
 import close from '/close.svg'; //eslint-disable-line
 
+/**
+ * The main App component that renders the entire application.
+ * @returns {JSX.Element} - The JSX element representing the App component.
+ */
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [toggle, setToggle] = useState(false);
@@ -37,10 +41,15 @@ function App() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   useEffect(() => {
     socketActions(dispatch, socket);
   }, [dispatch]);
 
+  /**
+   * Checks if the user is authenticated by verifying the token with the server.
+   * @returns {boolean} - Returns true if the user is authenticated, false otherwise.
+   */
   const checkAuthenticated = () => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -66,11 +75,19 @@ function App() {
     return authenticated;
   };
 
+  /**
+   * Handles user login by setting the authentication status and saving the token to localStorage.
+   * @param {string} token - The authentication token.
+   */
   const handleLogin = (token) => {
     localStorage.setItem('token', token);
     setAuthenticated(true);
   };
 
+  /**
+   * Handles user logout by removing the token from
+   * localStorage and resetting the authentication status.
+   */
   const handleLogout = () => {
     localStorage.removeItem('token');
     setAuthenticated(false);
@@ -80,7 +97,9 @@ function App() {
 
   return (
     <>
+      {/* Header */}
       <header>
+        {/* Navigation bar */}
         <motion.nav
           variants={navVariants}
           initial="hidden"
@@ -88,12 +107,14 @@ function App() {
           viewport={{ once: true }}
           className="w-full flex justify-between items-center bg-primary-black sm:px-8 px-4 py-4"
         >
+          {/* Logo */}
           <div className="md:flex-[0.5] flex-initial justify-center items-center text-white font-bold text-2xl">
             <Link to="/">
               <h1>Metaverse Mayhem</h1>
             </Link>
           </div>
 
+          {/* Navigation Links */}
           <div className="relative z-20 text-white md:flex hidden list-none flex-row justify-between items-center flex-initial text-l">
             <Link to="/game" className="mx-6 hover:scale-[1.1]">
               Game
@@ -104,7 +125,9 @@ function App() {
             <Link to="/collection" className="mx-6 hover:scale-[1.1]">
               Collection
             </Link>
+            {/* Check if the user is authenticated */}
             {checkAuthenticated() ? (
+              // If authenticated, show the logout button
               <button
                 type="button"
                 className="flex items-center h-fit py-4 px-6 bg-[#25618B] rounded-[32px] gap-[12px] hover:bg-[#25718B]"
@@ -113,9 +136,12 @@ function App() {
                 Logout
               </button>
             ) : (
+              // If not authenticated, show the login button
               <Login onLoggedIn={handleLogin} text="Connect Wallet" />
             )}
           </div>
+
+          {/* Mobile Navigation */}
           <div className="md:hidden flex flex-1 items-end justify-end">
             <img
               src={toggle ? close : menu}
@@ -138,7 +164,9 @@ function App() {
                 <Link to="/collection" className="mx-6 hover:scale-[1.1]">
                   Collection
                 </Link>
+                {/* Check if the user is authenticated */}
                 {checkAuthenticated() ? (
+                  // If authenticated, show the logout button
                   <button
                     type="button"
                     className="flex items-center h-fit py-4 px-6 bg-[#25618B] rounded-[32px] gap-[12px] hover:bg-[#25718B]"
@@ -147,6 +175,7 @@ function App() {
                     Logout
                   </button>
                 ) : (
+                  // If not authenticated, show the login button
                   <Login onLoggedIn={handleLogin} text="Connect Wallet" />
                 )}
               </div>
@@ -154,6 +183,8 @@ function App() {
           </div>
         </motion.nav>
       </header>
+
+      {/* Main content */}
       <main className="w-full min-h-[100vh] bg-primary-black overflow-hidden">
         {showAlert && <Alert success={success} message={alertMessage} />}
         <Routes>
@@ -165,6 +196,7 @@ function App() {
             <Route path="join-battle" element={<JoinBattle />} />
             <Route path=":id" element={<Game />} />
           </Route>
+
           <Route path="/marketplace">
             <Route path="" element={<Marketplace />} />
             <Route path="create-listing" element={<CreateListing />} />
@@ -176,9 +208,12 @@ function App() {
             />
             <Route path="selling-details/:name" element={<SellingDetails />} />
           </Route>
+
           <Route path="/collection" element={<Collection />} />
         </Routes>
       </main>
+
+      {/* Footer */}
       <footer className="bg-primary-black">
         <Footer
           handleLogin={handleLogin}
