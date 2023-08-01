@@ -6,6 +6,11 @@ import { staggerContainer } from '../utils/motion';
 import { TypingText, TitleText } from './Texts';
 import ExploreCard from './ExploreCard';
 
+/**
+ * Component for rendering the Explore section of the Trading Cards page.
+ * @component
+ * @returns {JSX.Element} Explore component.
+ */
 function Explore() {
   const [active, setActive] = useState('card-2');
 

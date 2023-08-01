@@ -8,12 +8,20 @@ function Store() {
   );
   const [loading, setLoading] = useState(false);
 
+  /**
+   * Function to handle buying a single card.
+   * Sets loading state while the card is being minted.
+   */
   const buyCard = async () => {
     setLoading(true);
     await mintTradingCard();
     setLoading(false);
   };
 
+  /**
+   * Function to handle buying a pack of cards.
+   * Sets loading state while the pack is being requested.
+   */
   const buyPack = async () => {
     setLoading(true);
     await requestNewPack();
@@ -42,6 +50,7 @@ function Store() {
 
           {!loading && (
             <div className="flex flex-row text-white font-semibold">
+              {/* Button to buy a single card */}
               <button
                 type="button"
                 className="flex items-center h-fit py-4 px-6 hover:bg-[#25718B] bg-[#25618B] rounded-[32px] mr-4"
@@ -49,6 +58,7 @@ function Store() {
               >
                 Buy a Card
               </button>
+              {/* Button to buy a pack of cards */}
               <button
                 type="button"
                 className="flex items-center h-fit py-4 px-6 hover:bg-[#25718B] bg-[#25618B] rounded-[32px] gap-[12px] mr-1"

@@ -1,9 +1,11 @@
+// Import required modules and setup environment variables using dotenv.config()
 import express from 'express';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 
+// Import MongoDB connection function and route handlers
 import connectDB from './mongodb/connect.js';
 import userRoutes from './routes/userRoutes.js';
 import authRoutes from './routes/authRoutes.js';
@@ -12,17 +14,22 @@ import marketplaceRoutes from './routes/marketplaceRoutes.js';
 
 dotenv.config();
 
+// Create an Express application
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Define routes for user, authentication, game, and marketplace
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/game', gameRoutes);
 app.use('/api/v1/marketplace', marketplaceRoutes);
 
+// Create an HTTP server using the Express app
 const httpServer = createServer(app);
+
+// Create a Socket.IO server with CORS configuration to allow all origins and specific methods
 const io = new Server(httpServer, {
   cors: {
     origin: '*',
@@ -32,6 +39,7 @@ const io = new Server(httpServer, {
 
 /**
  * GET route for checking server status
+ * @route GET /
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
  */
@@ -91,43 +99,41 @@ const isSocketInRoom = (soc, roomName, clientId) => {
  */
 const connectSockets = () => {
   io.on('connection', (socket) => {
-    /**
-         * Handle joining a game
-         * @param {Object} data - Data containing the gameId
-         */
+    // Handle joining a game
     socket.on('joinGame', async ({ gameId, name }) => {
+      // Function to get the player count in a room
       const getPlayerCount = () => sizeOfRoom(io, gameId);
+
+      // If there are already two players in the room, prevent joining
       if (getPlayerCount() === 2) {
         return;
       }
+
+      // Set the username and join the game room
       socket.data.username = name;
       await socket.join(gameId);
 
+      // Emit playerJoined event to all clients in the room
       io.in(gameId).emit('playerJoined', {
         playerCount: getPlayerCount(),
         name,
       });
 
-      console.log(
-        '[JOIN_GAME] Current players:',
-        getSocketsInRoom(io, gameId),
-      );
-
+      // Check if there are two players now, if yes, start the game
       if (getPlayerCount() === 2) {
+        // Get all sockets in the room
         const sockets = await io.in(gameId).fetchSockets();
+
+        // If any player has already started, return
         if (sockets[0].data.started || sockets[1].data.started) {
           return;
         }
 
-        console.log(
-          '[JOIN_GAME] [START] Time to start the game',
-          gameId,
-        );
+        // Randomly determine which player starts the game
         const playerOneStarts = Math.random() >= 0.5;
         const [playerOne, playerTwo] = getSocketsInRoom(io, gameId);
-        console.log('[JOIN_GAME] [START] Player one:', playerOne);
-        console.log('[JOIN_GAME] [START] Player two:', playerTwo);
 
+        // Emit newGame event to both players with necessary game details
         io.to(playerOne).emit('newGame', {
           user: sockets[1].data.username,
           gameId,
@@ -140,50 +146,46 @@ const connectSockets = () => {
           opponentName: sockets[1].data.username,
           isStarting: !playerOneStarts,
         });
+
+        // Mark both players as started to prevent multiple starts
         sockets[0].data.started = true;
         sockets[1].data.started = true;
       }
     });
 
-    socket.on("rejoinGame", async ({ gameId, name }) => {
+    // Handle rejoining a game
+    socket.on('rejoinGame', async ({ gameId, name }) => {
+      // Set the username and join the game room
       socket.data.username = name;
       await socket.join(gameId);
+
+      // Emit playerJoined event to all clients in the room
       io.in(gameId).emit('playerJoined', {
         playerCount: sizeOfRoom(io, gameId),
         name,
       });
     });
 
-    /**
-         * Handle leaving a game
-         * @param {Object} data - Data containing the gameId
-         */
+    // Handle leaving a game
     socket.on('leaveGame', ({ gameId }) => {
+      // Emit playerLeft event to all clients in the room
       io.in(gameId).emit('playerLeft', {
         playerCount: sizeOfRoom(io, gameId),
       });
     });
 
-    /**
-         * Handle disconnection of a client
-         */
+    // Handle disconnection of a client
     socket.on('disconnect', () => {
       console.log('User Disconnected');
     });
 
-    /**
-         * Handle game actions
-         * @param {Object} payload - Data containing the action and gameId
-         */
+    // Handle game actions
     socket.on('action', (payload) => {
       const { action } = payload;
       const { gameId } = payload;
-      console.log('====================================');
 
-      console.log(
-        '[ACTION] current clients:',
-        getSocketsInRoom(io, gameId),
-      );
+      // Log current clients and the source of the action
+      console.log('[ACTION] current clients:', getSocketsInRoom(io, gameId));
       console.log(
         '[ACTION] Current action from:',
         `Player${getSocketsInRoom(io, gameId).indexOf(socket.id) + 1}`,
@@ -194,16 +196,16 @@ const connectSockets = () => {
         return;
       }
 
+      // Reverse the target and source of the action if it's player vs. opponent
       let newAction = action;
       if (action.payload.target) {
         const newPayload = {
           ...action.payload,
           target:
-                        action.payload.target === 'PLAYER'
-                          ? 'OPPONENT'
-                          : 'PLAYER',
+            action.payload.target === 'PLAYER'
+              ? 'OPPONENT'
+              : 'PLAYER',
         };
-
         newAction = { ...action, payload: newPayload };
       }
 
@@ -211,13 +213,14 @@ const connectSockets = () => {
         const newPayload = {
           ...newAction.payload,
           source:
-                        action.payload.source === 'PLAYER'
-                          ? 'OPPONENT'
-                          : 'PLAYER',
+            action.payload.source === 'PLAYER'
+              ? 'OPPONENT'
+              : 'PLAYER',
         };
-
         newAction = { ...action, payload: newPayload };
       }
+
+      // Broadcast the modified action to all clients in the room except the sender
       console.log('[ACTION] Broadcasting an action to:', gameId);
       console.log('[ACTION] Action being sent is:', newAction);
       socket.broadcast.to(gameId).emit('action', { action: newAction });
@@ -226,14 +229,14 @@ const connectSockets = () => {
 };
 
 /**
- * Start the server
+ * Start the server and connect to the database
  */
 export const startServer = async () => {
   try {
-    // Connect to MongoDB
+    // Connect to MongoDB using the provided Atlas URL
     connectDB(process.env.ATLAS_URL);
 
-    // Start the HTTP server
+    // Start the HTTP server on the provided port or the default port 8000
     httpServer.listen(process.env.PORT || 8000, () => {
       console.log(
         `Server is running on port ${process.env.PORT || 8000}`,
@@ -247,6 +250,5 @@ export const startServer = async () => {
   }
 };
 
-// startServer();
-
+// Export the app and startServer function
 export default app;

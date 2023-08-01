@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { randomQuote } from '../constants';
 
+/**
+ * Component for rendering a loader with a rotating animation and a random quote.
+ * @returns {JSX.Element} Loader component.
+ */
 function Loader() {
   const [quote, setQuote] = useState('');
 
+  // Fetch a random quote on component mount
   useEffect(() => {
     const getQuote = () => {
       setQuote(randomQuote());
-      setTimeout(getQuote, 5000);
+      setTimeout(getQuote, 5000); // Fetch a new quote every 5 seconds
     };
     getQuote();
   }, []);

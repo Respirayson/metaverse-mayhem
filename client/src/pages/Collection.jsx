@@ -2,14 +2,20 @@ import { useState, useEffect, useContext } from 'react';
 import { DisplayCollection } from '../components';
 import { TradingCardMinterContext } from '../context/TradingCardMinter';
 
+/**
+ * Component representing the user's collection of trading cards
+ * @returns {JSX.Element} - The JSX element
+ */
 function Collection() {
   const [index, setIndex] = useState(0);
   const [loading, setLoading] = useState(false);
   const [userCards, setUserCards] = useState([]);
   const [deck, setDeck] = useState([]);
 
+  // Get necessary functions from TradingCardMinterContext
   const { getCardsUnderAddress, currentAccount } = useContext(TradingCardMinterContext);
 
+  // Fetch user cards from the smart contract on component mount or when the current account changes
   useEffect(() => {
     const fetchCards = async () => {
       setLoading(true);

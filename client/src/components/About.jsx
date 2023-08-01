@@ -1,11 +1,21 @@
-import { motion } from 'framer-motion';
-import { TypingText } from './Texts';
+import { motion } from "framer-motion";
+import { TypingText } from "./Texts";
 
-import { fadeIn, staggerContainer } from '../utils/motion';
+import { fadeIn, staggerContainer } from "../utils/motion";
 
+/**
+ * Component for the About section of the application.
+ * Displays information about the Metaverse Mayhem card game.
+ * @component
+ * @returns {JSX.Element} About component.
+ */
 function About() {
   return (
-    <section data-testid="component" className="sm:p-16 xs:p-8 px-6 py-12 relative z-10">
+    <section
+      data-testid="component"
+      className="sm:p-16 xs:p-8 px-6 py-12 relative z-10"
+    >
+      {/* Background gradient */}
       <div className="gradient-02 z-0" />
       <motion.div
         variants={staggerContainer}
@@ -14,8 +24,10 @@ function About() {
         viewport={{ once: false, amount: 0.25 }}
         className="2xl:max-w-[1280px] w-full mx-auto flex justify-center items-center flex-col"
       >
+        {/* TypingText component for the title */}
         <TypingText title="| About Metaverse Mayhem" textStyles="text-center" />
 
+        {/* Description of the Metaverse Mayhem card game */}
         <motion.p
           variants={fadeIn('up', 'tween', 0.2, 1)}
           className="mt-[8px] font-normal sm:text-[32px] text-[20px] text-center text-secondary-white"
@@ -46,6 +58,7 @@ function About() {
           the metaverse by scrolling down
         </motion.p>
 
+        {/* Arrow down icon */}
         <motion.img
           variants={fadeIn('up', 'tween', 0.3, 1)}
           src="/arrow-down.svg"

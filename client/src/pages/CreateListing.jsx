@@ -4,6 +4,10 @@ import { TradingCardMinterContext } from '../context/TradingCardMinter';
 import { Sidebar, Loader } from '../components';
 import Collectible from '../components/Collectible/Collectible';
 
+/**
+ * Component representing the page for creating a new listing to sell spare cards
+ * @returns {JSX.Element} - The JSX element
+ */
 function CreateListing() {
   const navigate = useNavigate();
   const [userCards, setUserCards] = useState([]);
@@ -14,6 +18,7 @@ function CreateListing() {
     TradingCardMinterContext,
   );
 
+  // Fetch user cards and already listed cards from the smart contract and the marketplace API
   useEffect(() => {
     const fetchCards = async () => {
       setLoading(true);
@@ -33,6 +38,7 @@ function CreateListing() {
     fetchCards();
   }, [getCardsUnderAddress, currentAccount]);
 
+  // Handle navigation to the selling details page when a card is clicked
   const handleNavigate = (listing) => {
     navigate(`/marketplace/selling-details/${listing.card.name}`, {
       state: listing,

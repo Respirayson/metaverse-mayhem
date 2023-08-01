@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
-
 import { slideIn, staggerContainer, textVariant } from '../utils/motion';
 
+/**
+ * Component for rendering the introduction section with animations.
+ * @returns {JSX.Element} Introduction component.
+ */
 function Introduction() {
   return (
     <section className="sm:py-16 xs:py-8 py-12 sm:pl-16 pl-6">

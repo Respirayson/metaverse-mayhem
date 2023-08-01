@@ -5,7 +5,6 @@ import opponentReducer from './opponentReducer';
 import characterReducer from './characterReducer';
 import boardReducer from './boardReducer';
 import opponentHandCountReducer from './opponentHandCountReducer';
-import deckCountReducer from './deckCountReducer';
 import turnReducer from './turnReducer';
 import currentGameReducer from './currentGameReducer';
 
@@ -16,7 +15,6 @@ const rootReducer = combineReducers({
   character: characterReducer,
   board: boardReducer,
   handCount: opponentHandCountReducer,
-  deckCount: deckCountReducer,
   turn: turnReducer,
   current: currentGameReducer,
 });

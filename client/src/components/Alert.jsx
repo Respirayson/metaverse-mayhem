@@ -3,6 +3,14 @@ import { motion } from 'framer-motion';
 import AlertIcon from './AlertIcon';
 import { fadeAnimation } from '../utils/motion';
 
+/**
+ * Component for displaying an alert message.
+ * @component
+ * @param {Object} props - Component props.
+ * @param {boolean} props.success - Flag indicating if it's a success message (true) or an error message (false).
+ * @param {string} props.message - The content of the alert message.
+ * @returns {JSX.Element} Alert component.
+ */
 function Alert({ success, message }) {
   return (
     <motion.div
@@ -17,6 +25,7 @@ function Alert({ success, message }) {
         }`}
         role="alert"
       >
+        {/* AlertIcon component for indicating success or error */}
         <AlertIcon success={success} />
         {' '}
         {message}

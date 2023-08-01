@@ -3,6 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { gameRules } from '../constants';
 import { socket } from '../utils/socket';
 
+/**
+ * Component for rendering game instructions and allowing users to quit the game.
+ * @component
+ * @returns {JSX.Element} GameInstruction component.
+ */
 function GameInstruction() {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const navigate = useNavigate();

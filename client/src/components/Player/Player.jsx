@@ -7,6 +7,7 @@ import {
 
 /**
  * Component for rendering the player's area including hand and playing area.
+ *
  * @param {Object} props - Component props.
  * @param {string} props.name - Player's name.
  * @param {Object[]} props.board - Player's board of cards.
@@ -20,6 +21,7 @@ function Player({
   name,
   board,
   character,
+  playerTurn,
   onClick,
   turn,
   heroRef,
@@ -39,16 +41,20 @@ function Player({
           End Turn
         </button>
         <PlayingAreaContainer
-          playerTurn={turn}
+          playerTurn={playerTurn}
           board={board.board}
           exhaustedMinions={board.exhaustedMinions}
         />
         <HandContainer
           currentMana={character.mana.current}
-          playerTurn={turn}
+          playerTurn={playerTurn}
         />
-        <TargetableHero getCoords={getCoords} heroRef={heroRef} character={character} name={name} />
-
+        <TargetableHero
+          getCoords={getCoords}
+          heroRef={heroRef}
+          character={character}
+          name={name}
+        />
       </div>
     </div>
   );

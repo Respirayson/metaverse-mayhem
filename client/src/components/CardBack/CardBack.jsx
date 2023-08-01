@@ -1,9 +1,13 @@
 import styles from '../Card/Card.module.css';
 
 /**
- * Component representing the back side of a card
- * @param {object} props - The component props
- * @returns {JSX.Element} - The JSX element
+ * Component representing the back side of a card.
+ *
+ * @component
+ * @param {object} props - The component props.
+ * @param {number} props.index - The index of the card in the deck.
+ * @param {number} props.cardsLength - The total number of cards in the deck.
+ * @returns {JSX.Element} The JSX element representing the card's back.
  */
 function CardBack({ index, cardsLength }) {
   return (

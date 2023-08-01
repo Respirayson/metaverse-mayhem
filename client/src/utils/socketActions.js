@@ -15,19 +15,25 @@ const logAction = (name) => (data) => {
  * @param {object} socket - The socket object
  */
 export const socketActions = (dispatch, socket) => {
+  // Event listener for 'connect' event
   socket.on('connect', logAction('connect'));
 
+  // Event listener for 'disconnect' event
   socket.on('disconnect', logAction('disconnect'));
 
+  // Event listener for 'action' event
   socket.on('action', (payload) => {
     const { action } = payload;
     console.log('Action has come through the socket ', action);
 
+    // Dispatches the received action to the Redux store with 'viaServer' flag set to true
     dispatch({ viaServer: true, ...action });
   });
 
+  // Event listener for 'newGame' event
   socket.on('newGame', (payload) => {
     const { user, opponentName, isStarting } = payload;
+    // Dispatches the 'newGame' action with the received payload data
     dispatch(
       allActions.gameActions.newGame(
         user,
@@ -38,14 +44,17 @@ export const socketActions = (dispatch, socket) => {
     );
   });
 
+  // Event listener for 'playerJoined' event
   socket.on('playerJoined', (payload) => {
     const { playerCount } = payload;
     console.log('playerCount', playerCount);
   });
 
+  // Event listener for 'playerLeft' event
   socket.on('playerLeft', (payload) => {
     const { playerCount } = payload;
     console.log('playerCount', playerCount);
+    // Dispatches the 'endGame' action with 'isPlayerWinner' set to true
     dispatch(allActions.gameActions.endGame(true));
   });
 };

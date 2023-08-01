@@ -1,10 +1,19 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { socials } from '../constants';
 
 import { footerVariants } from '../utils/motion';
 import Login from './Login/Login';
 
-function Footer({ handleLogin, authenticated, handleLogout }) {
+/**
+ * Component for rendering the website footer.
+ * @component
+ * @param {Object} props - Component props.
+ * @param {Function} props.handleLogin - Function to handle user login.
+ * @param {boolean} props.authenticated - Flag indicating if the user is authenticated.
+ * @returns {JSX.Element} Footer component.
+ */
+function Footer({ handleLogin, authenticated }) {
   return (
     <motion.footer
       variants={footerVariants}

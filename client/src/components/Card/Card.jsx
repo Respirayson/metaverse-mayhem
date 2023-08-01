@@ -1,8 +1,10 @@
+import React from 'react';
 import styles from './Card.module.css';
 
 /**
  * Card component represents a card with its properties.
  *
+ * @component
  * @param {Object} props - The component props.
  * @param {number} props.cardsLength - The total number of cards in the deck.
  * @param {number} props.index - The index of the card in the deck.
@@ -43,7 +45,6 @@ function Card(props) {
           {card.description}
         </p>
       </div>
-
     </div>
   );
 }

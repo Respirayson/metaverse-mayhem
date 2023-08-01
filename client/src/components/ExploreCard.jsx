@@ -2,6 +2,18 @@ import { motion } from 'framer-motion';
 
 import { fadeIn } from '../utils/motion';
 
+/**
+ * Component for rendering an Explore Card on the Explore section of the Trading Cards page.
+ * @component
+ * @param {Object} props - Component props.
+ * @param {string} props.id - Unique ID of the card.
+ * @param {string} props.imgUrl - URL of the card image.
+ * @param {string} props.title - Title of the card.
+ * @param {number} props.index - Index of the card in the exploreCards array.
+ * @param {string} props.active - ID of the active card.
+ * @param {Function} props.handleClick - Function to handle the click event on the card.
+ * @returns {JSX.Element} ExploreCard component.
+ */
 function ExploreCard({
   id, imgUrl, title, index, active, handleClick,
 }) {

@@ -7,6 +7,10 @@ import { FinalScreen, Loader } from '../components';
 import { socket } from '../utils/socket';
 import { TradingCardMinterContext } from '../context/TradingCardMinter';
 
+/**
+ * Component representing the game page where players can play the game
+ * @returns {JSX.Element} - The JSX element
+ */
 function Game() {
   const currentGame = useSelector((state) => state.current);
   const navigate = useNavigate();
@@ -15,6 +19,7 @@ function Game() {
   const [isWinner, setIsWinner] = useState(false);
   const { currentAccount } = useContext(TradingCardMinterContext);
 
+  // Hide header and footer during the game, show loading screen for 2 seconds
   useEffect(() => {
     document.querySelector('footer').style.display = 'none';
     document.querySelector('header').style.display = 'none';
@@ -23,6 +28,7 @@ function Game() {
     }, 2000);
 
     return () => {
+      // Restore header and footer, clear local storage, and reload the page on component unmount
       document.querySelector('footer').style.display = 'block';
       document.querySelector('header').style.display = 'block';
       localStorage.removeItem('persist:root');
@@ -31,6 +37,7 @@ function Game() {
     };
   }, []);
 
+  // Play background audio on component mount and pause on unmount
   useEffect(() => {
     const audio = new Audio(bg);
     audio.play();
@@ -40,6 +47,7 @@ function Game() {
     };
   }, []);
 
+  // Fetch the player's deck from the API on component mount
   useEffect(() => {
     const fetchDeck = async () => {
       const cardsDeck = await fetch(
@@ -53,6 +61,7 @@ function Game() {
     fetchDeck();
   }, [currentAccount]);
 
+  // Check if a game is ongoing and join it, show the final screen if the game is over
   useEffect(() => {
     if (!currentGame.gameId) {
       navigate('/game/new');

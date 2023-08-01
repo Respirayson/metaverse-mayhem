@@ -1,6 +1,13 @@
 import { motion } from 'framer-motion';
 import { textContainer, textVariant2 } from '../utils/motion';
 
+/**
+ * TypingText component to display text with a typing effect.
+ * @param {Object} props - The props passed to the TypingText component.
+ * @param {string} props.title - The text to be displayed with a typing effect.
+ * @param {string} props.textStyles - Additional CSS classes for custom styling.
+ * @returns {JSX.Element} TypingText component.
+ */
 export function TypingText({ title, textStyles }) {
   return (
     <motion.p
@@ -16,6 +23,13 @@ export function TypingText({ title, textStyles }) {
   );
 }
 
+/**
+ * TitleText component to display a title.
+ * @param {Object} props - The props passed to the TitleText component.
+ * @param {string} props.title - The title to be displayed.
+ * @param {string} props.textStyles - Additional CSS classes for custom styling.
+ * @returns {JSX.Element} TitleText component.
+ */
 export function TitleText({ title, textStyles }) {
   return (
     <motion.h2

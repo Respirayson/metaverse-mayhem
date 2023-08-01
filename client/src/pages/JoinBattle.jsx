@@ -6,6 +6,10 @@ import allActions from '../actions';
 import { socket } from '../utils/socket';
 import { WebContext } from '../context/WebContext';
 
+/**
+ * Component for joining an existing game.
+ * @returns {JSX.Element} - The JSX element representing the JoinBattle component.
+ */
 function JoinBattle() {
   const [gameId, setGameId] = useState('');
   const [username, setUsername] = useState('');
@@ -18,27 +22,38 @@ function JoinBattle() {
     setUsername(localStorage.getItem('username'));
   }, []);
 
+  /**
+   * Joins a new game with the specified game ID.
+   * @param {string} gameId - The ID of the game to join.
+   */
   const joinNewGame = async (gameId) => {
-    const res = await fetch(
-      `https://metaverse-mayhem.onrender.com/api/v1/game/?gameId=${gameId}`,
-    );
-    const data = await res.json();
-    if (data !== null) {
-      dispatch(allActions.beforeGameActions.joinGame(gameId));
-      socket.emit('joinGame', { gameId: gameId.toString(), name: username });
-      setShowAlert(true);
-      setSuccess(true);
-      setAlertMessage('Joined game successfully');
-      setTimeout(() => {
-        navigate(`/game/${gameId}`);
-      }, 2000);
-    } else {
-      setAlertMessage('Game not found');
-      setShowAlert(true);
-      setSuccess(false);
+    try {
+      const res = await fetch(
+        `https://metaverse-mayhem.onrender.com/api/v1/game/?gameId=${gameId}`,
+      );
+      const data = await res.json();
+      if (data !== null) {
+        dispatch(allActions.beforeGameActions.joinGame(gameId));
+        socket.emit('joinGame', { gameId: gameId.toString(), name: username });
+        setShowAlert(true);
+        setSuccess(true);
+        setAlertMessage('Joined game successfully');
+        setTimeout(() => {
+          navigate(`/game/${gameId}`);
+        }, 2000);
+      } else {
+        setAlertMessage('Game not found');
+        setShowAlert(true);
+        setSuccess(false);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
+  /**
+   * Handles the click event when joining a specific game.
+   */
   const handleClick = () => {
     if (gameId) {
       joinNewGame(gameId);

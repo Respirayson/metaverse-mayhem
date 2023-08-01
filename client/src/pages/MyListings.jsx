@@ -3,11 +3,19 @@ import { Sidebar, DisplayMarketplace } from '../components';
 import { cards } from '../utils/cards';
 import { TradingCardMinterContext } from '../context/TradingCardMinter';
 
+/**
+ * Component for displaying the user's listings in the marketplace.
+ * @returns {JSX.Element} - The JSX element representing the MyListings component.
+ */
 function MyListings() {
   const [loading, setLoading] = useState(false);
   const [listings, setListings] = useState([]);
   const { currentAccount } = useContext(TradingCardMinterContext);
 
+  /**
+   * Fetches the user's listings from the server and updates the component state.
+   * @param {string} address - The user's public address.
+   */
   const fetchMyListings = async (address) => {
     setLoading(true);
     const data = await fetch(
@@ -18,8 +26,7 @@ function MyListings() {
       card: cards[listing.cardId],
       price: listing.price,
       seller: listing.seller,
-      // eslint-disable-next-line no-underscore-dangle
-      id: listing._id,
+      id: listing._id, // eslint-disable-next-line no-underscore-dangle
       tokenId: listing.tokenId,
     }));
     setListings(myListings);
@@ -47,6 +54,7 @@ function MyListings() {
             Check out your listings here!
           </p>
 
+          {/* Display the user's listings using the DisplayMarketplace component */}
           <DisplayMarketplace
             subtitle="You have not created any listings yet."
             loading={loading}

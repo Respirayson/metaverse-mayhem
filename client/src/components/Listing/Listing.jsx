@@ -1,3 +1,15 @@
+import React from 'react';
+
+/**
+ * Component representing a card listing in the marketplace.
+ * @param {Object} props - The component props.
+ * @param {string} props.seller - The seller's name.
+ * @param {number} props.price - The price of the card listing in ETH.
+ * @param {Function} props.handleClick - Function to handle the click event on the listing.
+ * @param {Object} props.card - The card object with
+ * details like name, type, mana, attack, defense, etc.
+ * @returns {JSX.Element} The JSX element representing the card listing.
+ */
 function Listing({
   seller, price, handleClick, card,
 }) {
