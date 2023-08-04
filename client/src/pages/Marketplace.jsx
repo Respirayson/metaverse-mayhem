@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from "react";
-import { DisplayMarketplace, Sidebar } from "../components";
-import { cards } from "../utils/cards";
-import { TradingCardMinterContext } from "../context/TradingCardMinter";
+import { useContext, useEffect, useState } from 'react';
+import { DisplayMarketplace, Sidebar } from '../components';
+import { cards } from '../utils/cards';
+import { TradingCardMinterContext } from '../context/TradingCardMinter';
 
 /**
  * Component for displaying the marketplace with listings of trading cards.
@@ -19,7 +19,7 @@ function Marketplace() {
     const fetchListings = async () => {
       setLoading(true);
       const res = await fetch(
-        "https://metaverse-mayhem.onrender.com/api/v1/marketplace/"
+        'https://metaverse-mayhem.onrender.com/api/v1/marketplace/',
       );
       const data = await res.json();
       const updatedListings = await Promise.all(data

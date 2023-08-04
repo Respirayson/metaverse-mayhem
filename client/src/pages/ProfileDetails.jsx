@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { CustomInput, Loader } from '../components';
-import { NftMarketplaceContext } from '../context/NftMarketplace';
 import { WebContext } from '../context/WebContext';
 
 function ProfileDetails() {
@@ -9,8 +8,9 @@ function ProfileDetails() {
   const [loading, setLoading] = useState(true);
   const [publicAddress, setPublicAddress] = useState('');
 
-  const { currentAccount } = useContext(NftMarketplaceContext);
-  const { setShowAlert, setAlertMessage, setSuccess } = useContext(WebContext);
+  const {
+    setShowAlert, setAlertMessage, setSuccess, currentAccount,
+  } = useContext(WebContext);
 
   useEffect(() => {
     const fetchUserDetails = async () => {

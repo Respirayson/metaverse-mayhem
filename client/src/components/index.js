@@ -26,6 +26,7 @@ import Sidebar from './SideBar';
 import Loader from './Loader';
 import FinalScreen from './FinalScreen';
 import Alert from './Alert';
+import Logout from './Logout';
 
 export {
   Login,
@@ -56,4 +57,5 @@ export {
   Loader,
   FinalScreen,
   Alert,
+  Logout,
 };

@@ -1,6 +1,4 @@
 import React, {
-  useEffect,
-  useState,
   useRef,
   createContext,
   useContext,
@@ -27,8 +25,7 @@ const { ethereum } = window;
  * @returns {JSX.Element} - The JSX element
  */
 export function TradingCardMinterProvider({ children }) {
-  const [currentAccount, setCurrentAccount] = useState(null);
-  const { setShowAlert, setSuccess, setAlertMessage } = useContext(WebContext);
+  const { currentAccount } = useContext(WebContext);
   const player1Ref = useRef();
   const player2Ref = useRef();
 
@@ -117,39 +114,11 @@ export function TradingCardMinterProvider({ children }) {
     }
   };
 
-  // Check if the wallet is connected on component mount
-  useEffect(() => {
-    const checkIfWalletIsConnected = async () => {
-      try {
-        if (!ethereum) {
-          setAlertMessage('Make sure you have metamask!');
-          setShowAlert(true);
-          setSuccess(false);
-          return;
-        }
-
-        const accounts = await ethereum.request({ method: 'eth_accounts' });
-
-        if (accounts.length) {
-          const account = accounts[0];
-          console.log('Found an authorized account: ', account);
-          setCurrentAccount(account);
-        } else {
-          console.log('No authorized account found');
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    checkIfWalletIsConnected();
-  }, [setAlertMessage, setShowAlert, setSuccess]);
-
   return (
     <TradingCardMinterContext.Provider
       value={{
         mintTradingCard,
         getCardsUnderAddress,
-        currentAccount,
         player1Ref,
         player2Ref,
         approveMarketplaceContract,

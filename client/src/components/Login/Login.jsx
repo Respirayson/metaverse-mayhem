@@ -149,8 +149,8 @@ function Login({ onLoggedIn, text }) {
         return data;
       })
       .then((res) => onLoggedIn(res.token))
-      // .then(() => navigate('/'))
-      // .then(() => window.location.reload())
+      .then(() => navigate('/'))
+      .then(() => window.location.reload())
       .catch((err) => {
         setShowAlert(true);
         setAlertMessage(err.message);

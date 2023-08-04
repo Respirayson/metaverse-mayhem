@@ -22,7 +22,9 @@ import {
   ProfileDetails,
 } from './pages';
 
-import { Login, Footer, Alert } from './components';
+import {
+  Login, Footer, Alert, Logout,
+} from './components';
 import { navVariants } from './utils/motion';
 
 import { socketActions } from './utils/socketActions';
@@ -32,7 +34,6 @@ import { WebContext } from './context/WebContext';
 
 import menu from '/menu.svg'; //eslint-disable-line
 import close from '/close.svg'; //eslint-disable-line
-import { NftMarketplaceContext } from './context/NftMarketplace';
 
 /**
  * The main App component that renders the entire application.
@@ -41,8 +42,9 @@ import { NftMarketplaceContext } from './context/NftMarketplace';
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [toggle, setToggle] = useState(false);
-  const { showAlert, alertMessage, success } = useContext(WebContext);
-  const { ethBalance } = useContext(NftMarketplaceContext);
+  const {
+    showAlert, alertMessage, success, ethBalance,
+  } = useContext(WebContext);
   console.log(ethBalance);
 
   const dispatch = useDispatch();
@@ -137,13 +139,7 @@ function App() {
             {/* Check if the user is authenticated */}
             {checkAuthenticated() ? (
               // If authenticated, show the logout button
-              <button
-                type="button"
-                className="flex items-center h-fit py-4 px-6 bg-[#25618B] rounded-[32px] gap-[12px] hover:bg-[#25718B]"
-                onClick={handleLogout}
-              >
-                Logout
-              </button>
+              <Logout handleLogout={handleLogout} ethBalance={ethBalance} />
             ) : (
               // If not authenticated, show the login button
               <Login onLoggedIn={handleLogin} text="Connect Wallet" />

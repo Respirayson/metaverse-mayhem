@@ -11,8 +11,10 @@ import { WebContext } from '../context/WebContext';
 function ListingDetails() {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const { buyItem, currentAccount } = useContext(NftMarketplaceContext);
-  const { setShowAlert, setSuccess, setAlertMessage } = useContext(WebContext);
+  const { buyItem } = useContext(NftMarketplaceContext);
+  const {
+    setShowAlert, setSuccess, setAlertMessage, currentAccount,
+  } = useContext(WebContext);
 
   const [isLoading, setIsLoading] = useState(false);
 
