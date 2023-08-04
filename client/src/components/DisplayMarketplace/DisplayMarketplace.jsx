@@ -47,11 +47,11 @@ function DisplayMarketplace({ listings, loading, subtitle }) {
           </p>
         )}
 
-        {!loading &&
-          listings.length > 0 &&
-          listings.map((listing, _index) => (
+        {!loading
+          && listings.length > 0
+          && listings.map((listing, _index) => (
             <Listing
-              key={listing.id} // Consider adding a unique key prop for the Listing component
+              key={listing.id}
               card={listing.card}
               seller={listing.seller}
               price={listing.price}

@@ -22,13 +22,17 @@ function MyListings() {
       `https://metaverse-mayhem.onrender.com/api/v1/marketplace/${address}`,
     );
     const json = await data.json();
-    const myListings = json.map((listing) => ({
+    const myListings = await Promise.all(json.map(async (listing) => ({
       card: cards[listing.cardId],
       price: listing.price,
-      seller: listing.seller,
-      id: listing._id, // eslint-disable-next-line no-underscore-dangle
+      seller: await fetch(
+        `https://metaverse-mayhem.onrender.com/api/v1/users/?publicAddress=${listing.seller}`,
+      )
+        .then((result) => result.json())
+        .then((ans) => ({ username: ans.username, bio: ans.bio })),
+      id: listing._id, // eslint-disable-line no-underscore-dangle
       tokenId: listing.tokenId,
-    }));
+    })));
     setListings(myListings);
     setLoading(false);
   };

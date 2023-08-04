@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from 'react';
-import { DisplayMarketplace, Sidebar } from '../components';
-import { cards } from '../utils/cards';
-import { TradingCardMinterContext } from '../context/TradingCardMinter';
+import { useContext, useEffect, useState } from "react";
+import { DisplayMarketplace, Sidebar } from "../components";
+import { cards } from "../utils/cards";
+import { TradingCardMinterContext } from "../context/TradingCardMinter";
 
 /**
  * Component for displaying the marketplace with listings of trading cards.
@@ -18,17 +18,23 @@ function Marketplace() {
      */
     const fetchListings = async () => {
       setLoading(true);
-      const res = await fetch('https://metaverse-mayhem.onrender.com/api/v1/marketplace/');
+      const res = await fetch(
+        "https://metaverse-mayhem.onrender.com/api/v1/marketplace/"
+      );
       const data = await res.json();
-      const updatedListings = data
+      const updatedListings = await Promise.all(data
         .filter((listing) => listing.seller !== currentAccount)
-        .map((listing) => ({
+        .map(async (listing) => ({
           card: cards[listing.cardId],
           price: listing.price,
-          seller: listing.seller,
+          seller: await fetch(
+            `https://metaverse-mayhem.onrender.com/api/v1/users/?publicAddress=${listing.seller}`,
+          )
+            .then((result) => result.json())
+            .then((ans) => ({ username: ans.username, bio: ans.bio })),
           id: listing._id, // eslint-disable-line no-underscore-dangle
           tokenId: listing.tokenId,
-        }));
+        })));
       setListings(updatedListings);
       setLoading(false);
     };
@@ -37,7 +43,9 @@ function Marketplace() {
 
   return (
     <div className="flex flex-1 justify-between py-8 sm:px-12 px-8 flex-row">
-      <Sidebar url="All Listings" />
+      <div className="z-20">
+        <Sidebar url="All Listings" />
+      </div>
       <div className="gradient-04 z-0" />
       <div className="flex-1 flex flex-col xl:mt-0 my-16 z-10">
         <div className="flex flex-row w-full">
@@ -50,7 +58,11 @@ function Marketplace() {
         </p>
 
         {/* Display the marketplace listings using the DisplayMarketplace component */}
-        <DisplayMarketplace subtitle="No listings are available" loading={loading} listings={listings} />
+        <DisplayMarketplace
+          subtitle="No listings are available"
+          loading={loading}
+          listings={listings}
+        />
       </div>
     </div>
   );

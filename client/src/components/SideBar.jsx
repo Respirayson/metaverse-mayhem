@@ -68,7 +68,7 @@ function Sidebar({ url }) {
   }, [getProceeds, proceeds]);
 
   /**
-   * Handles the click event for the sidebar icons 
+   * Handles the click event for the sidebar icons
    * and navigates to the corresponding link if not disabled.
    * @param {string} name - The name of the sidebar icon.
    */
@@ -127,6 +127,7 @@ function Sidebar({ url }) {
           Withdraw:
           <br />
           {proceeds}
+          {' '}
           ETH
         </p>
       </Tooltip>

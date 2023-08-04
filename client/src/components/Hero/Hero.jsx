@@ -1,4 +1,4 @@
-import { Tooltip } from "react-tooltip";
+import { Tooltip } from 'react-tooltip';
 
 /**
  * Hero component represents the hero character in the game.
@@ -17,7 +17,9 @@ import { Tooltip } from "react-tooltip";
  * @param {React.RefObject} props.heroRef - React reference object for the hero element.
  * @returns {JSX.Element} The JSX element representing the Hero component.
  */
-function Hero({ character, isOpponent, name, isOver, heroRef }) {
+function Hero({
+  character, isOpponent, name, isOver, heroRef,
+}) {
   const { health, mana } = character;
 
   /**
@@ -27,12 +29,11 @@ function Hero({ character, isOpponent, name, isOver, heroRef }) {
    */
   const getHealthColours = (hp) => {
     if (hp >= 15) {
-      return "bg-green-500";
-    } else if (hp >= 8) {
-      return "bg-orange-500";
-    } else {
-      return "bg-red-500";
+      return 'bg-green-500';
+    } if (hp >= 8) {
+      return 'bg-orange-500';
     }
+    return 'bg-red-500';
   };
 
   return (
@@ -42,29 +43,29 @@ function Hero({ character, isOpponent, name, isOver, heroRef }) {
       )}
       <img
         data-testid="player"
-        id={`Player-${isOpponent ? "1" : "2"}`}
-        src={isOpponent ? "/player02.jpg" : "/player01.jpg"}
+        id={`Player-${isOpponent ? '1' : '2'}`}
+        src={isOpponent ? '/player02.jpg' : '/player01.jpg'}
         alt="player-icon"
         className="w-14 h-14 object-contain rounded-full"
       />
 
       <div
         data-testid="health"
-        id={`Health-${isOpponent ? "1" : "2"}`}
+        id={`Health-${isOpponent ? '1' : '2'}`}
         className="flex flex-row bg-white rounded-md p-2 sm:min-w-[512px] min-w-[312px] sm:min-h-[48px] min-h-[40px] bg-opacity-10 backdrop-filter backdrop-blur-lg mx-3"
       >
         {[...Array(Math.abs(health)).keys()].map((item, _index) => (
           <div
             key={`player-item-${item}`}
             className={`sm:w-4 w-2 sm:h-8 h-6 rounded-sm ${getHealthColours(
-              health
+              health,
             )} mr-1`}
           />
         ))}
       </div>
       <div
         data-testid="mana"
-        id={`Mana-${isOpponent ? "1" : "2"}`}
+        id={`Mana-${isOpponent ? '1' : '2'}`}
         className="flex items-center justify-center bg-blue-700 backdrop-filter backdrop-blur-lg bg-opacity-10 w-20 h-14 rounded-full text-white font-extrabold text-2xl"
       >
         {mana.current}
@@ -72,26 +73,38 @@ function Hero({ character, isOpponent, name, isOver, heroRef }) {
 
       <Tooltip
         data-testid="name"
-        anchorSelect={`#Player-${isOpponent ? "1" : "2"}`}
+        anchorSelect={`#Player-${isOpponent ? '1' : '2'}`}
       >
         <p className="font-medium">
-          <span className="font-extrabold text-white">Name:</span> {name}
+          <span className="font-extrabold text-white">Name:</span>
+          {' '}
+          {name}
         </p>
       </Tooltip>
-      <Tooltip anchorSelect={`#Health-${isOpponent ? "1" : "2"}`}>
+      <Tooltip anchorSelect={`#Health-${isOpponent ? '1' : '2'}`}>
         <p className="font-medium">
           <span className="font-extrabold text-white">
-            Health: {health} / 30
+            Health:
+            {' '}
+            {health}
+            {' '}
+            / 30
           </span>
         </p>
       </Tooltip>
       <Tooltip
         data-testid="mana"
-        anchorSelect={`#Mana-${isOpponent ? "1" : "2"}`}
+        anchorSelect={`#Mana-${isOpponent ? '1' : '2'}`}
       >
         <p className="font-medium">
           <span className="font-extrabold text-white">
-            Mana: {mana.current} / {mana.total}
+            Mana:
+            {' '}
+            {mana.current}
+            {' '}
+            /
+            {' '}
+            {mana.total}
           </span>
         </p>
       </Tooltip>

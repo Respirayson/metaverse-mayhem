@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useEffect, useState, useContext } from 'react';
 import {
   Link, Route, Routes, useNavigate,
@@ -17,6 +19,7 @@ import {
   ListingDetails,
   Store,
   SellingDetails,
+  ProfileDetails,
 } from './pages';
 
 import { Login, Footer, Alert } from './components';
@@ -29,6 +32,7 @@ import { WebContext } from './context/WebContext';
 
 import menu from '/menu.svg'; //eslint-disable-line
 import close from '/close.svg'; //eslint-disable-line
+import { NftMarketplaceContext } from './context/NftMarketplace';
 
 /**
  * The main App component that renders the entire application.
@@ -38,6 +42,8 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [toggle, setToggle] = useState(false);
   const { showAlert, alertMessage, success } = useContext(WebContext);
+  const { ethBalance } = useContext(NftMarketplaceContext);
+  console.log(ethBalance);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -125,6 +131,9 @@ function App() {
             <Link to="/collection" className="mx-6 hover:scale-[1.1]">
               Collection
             </Link>
+            <a href="https://discord.gg/YW9zE7t3KC" target="_blank" className="mx-6 hover:scale-[1.1]" rel="noreferrer">
+              Discord
+            </a>
             {/* Check if the user is authenticated */}
             {checkAuthenticated() ? (
               // If authenticated, show the logout button
@@ -210,6 +219,7 @@ function App() {
           </Route>
 
           <Route path="/collection" element={<Collection />} />
+          <Route path="/profile" element={<ProfileDetails />} />
         </Routes>
       </main>
 

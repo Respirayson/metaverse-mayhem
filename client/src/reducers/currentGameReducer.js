@@ -80,4 +80,3 @@ const currentGameReducer = (state = initialState, action) => {
 };
 
 export default currentGameReducer;
-

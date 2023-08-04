@@ -21,6 +21,7 @@ const { ethereum } = window;
  */
 export function NftMarketplaceProvider({ children }) {
   const [currentAccount, setCurrentAccount] = useState(null);
+  const [ethBalance, setEthBalance] = useState(0);
 
   /**
    * Check if the wallet is connected and set the current account
@@ -34,7 +35,10 @@ export function NftMarketplaceProvider({ children }) {
       const accounts = await ethereum.request({ method: 'eth_accounts' });
 
       if (accounts.length) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
         const account = accounts[0];
+        const balance = await provider.getBalance(accounts[0]);
+        setEthBalance(ethers.utils.formatEther(balance));
         setCurrentAccount(account);
       } else {
         // No account connected
@@ -143,6 +147,7 @@ export function NftMarketplaceProvider({ children }) {
         currentAccount,
         getProceeds,
         withdrawProceeds,
+        ethBalance,
       }}
     >
       {children}
