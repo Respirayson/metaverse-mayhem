@@ -11,6 +11,7 @@ import ListingDetails from './ListingDetails';
 import Store from './Store';
 import SellingDetails from './SellingDetails';
 import ProfileDetails from './ProfileDetails';
+import Battleground from './Battleground';
 
 export {
   Home,
@@ -26,4 +27,5 @@ export {
   Store,
   SellingDetails,
   ProfileDetails,
+  Battleground,
 };

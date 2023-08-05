@@ -20,6 +20,7 @@ import {
   Store,
   SellingDetails,
   ProfileDetails,
+  Battleground,
 } from './pages';
 
 import {
@@ -200,6 +201,7 @@ function App() {
             <Route path="new" element={<GameNewScreen />} />
             <Route path="join-battle" element={<JoinBattle />} />
             <Route path=":id" element={<Game />} />
+            <Route path="change-battleground" element={<Battleground />} />
           </Route>
 
           <Route path="/marketplace">

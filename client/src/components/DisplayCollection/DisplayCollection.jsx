@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Collectible from '../Collectible/Collectible';
 import { fadeIn } from '../../utils/motion';
 import Loader from '../Loader';
-import { TradingCardMinterContext } from '../../context/TradingCardMinter';
 import { WebContext } from '../../context/WebContext';
 
 /**
@@ -25,9 +24,10 @@ function DisplayCollection({
   const [loader, setLoader] = useState(true);
   const [cardsInGame, setCardsInGame] = useState([]);
 
-  // Accessing context data from TradingCardMinterContext and WebContext
-  const { currentAccount } = useContext(TradingCardMinterContext);
-  const { setShowAlert, setAlertMessage, setSuccess } = useContext(WebContext);
+  // Accessing context data from WebContext
+  const {
+    setShowAlert, setAlertMessage, setSuccess, currentAccount,
+  } = useContext(WebContext);
 
   // useEffect to control the loader display
   useEffect(() => {

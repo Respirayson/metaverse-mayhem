@@ -5,7 +5,7 @@ import { Board } from '../containers';
 import bg from '../assets/bg.mp3';
 import { FinalScreen, Loader } from '../components';
 import { socket } from '../utils/socket';
-import { TradingCardMinterContext } from '../context/TradingCardMinter';
+import { WebContext } from '../context/WebContext';
 
 /**
  * Component representing the game page where players can play the game
@@ -17,7 +17,7 @@ function Game() {
   const [loading, setLoading] = useState(true);
   const [gameOver, setGameOver] = useState(false);
   const [isWinner, setIsWinner] = useState(false);
-  const { currentAccount } = useContext(TradingCardMinterContext);
+  const { currentAccount, battleground } = useContext(WebContext);
 
   // Hide header and footer during the game, show loading screen for 2 seconds
   useEffect(() => {
@@ -83,7 +83,7 @@ function Game() {
   return (
     <>
       {gameOver && <FinalScreen isWinner={isWinner} />}
-      <section className="bg-board1 bg-cover w-full h-full">
+      <section className={`${battleground} bg-cover w-full h-full`}>
         {loading && <Loader />}
         <Board />
       </section>

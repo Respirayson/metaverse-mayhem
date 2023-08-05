@@ -76,6 +76,13 @@ export const socials = [
   },
 ];
 
+export const battlegrounds = [
+  { id: 'bg-board', image: '/board.jpg', name: 'Zylorium Prime' },
+  { id: 'bg-board1', image: '/moon.jpg', name: 'Xandorath IX' },
+  { id: 'bg-board2', image: '/board2.jpg', name: 'Quexiloria Minoris' },
+  { id: 'bg-board3', image: '/desert.jpg', name: 'Vortraxia Majoris' },
+];
+
 // An array containing game rules for Metaverse Mayhem.
 export const gameRules = [
   'Players start with 15 cards in their deck, a hero, and 1 mana.',

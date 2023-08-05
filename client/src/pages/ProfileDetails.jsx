@@ -63,7 +63,7 @@ function ProfileDetails() {
       <div className="flex-1 flex flex-col xl:mt-0 my-16 z-10">
         <div className="flex flex-row w-full">
           <h1 className="flex font-bold text-white sm:text-6xl text-4xl head-text">
-            Profile Details
+            Edit Profile
           </h1>
         </div>
         <p className="font-normal text-[24px] text-white my-10">

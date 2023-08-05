@@ -30,6 +30,7 @@ function Collection() {
     };
 
     fetchCards();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentAccount]);
 
   return (

@@ -32,6 +32,7 @@ module.exports = {
         board: "url('/board.jpg')",
         board1: "url('/moon.jpg')",
         board2: "url('/board2.jpg')",
+        board3: "url('/desert.jpg')",
       },
     },
   },

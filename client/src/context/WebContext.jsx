@@ -20,6 +20,8 @@ export function WebProvider({ children }) {
   const [currentAccount, setCurrentAccount] = useState(null);
   const [ethBalance, setEthBalance] = useState(0);
 
+  const [battleground, setBattleground] = useState('bg-board');
+
   /**
    * Check if the wallet is connected and set the current account
    */
@@ -68,6 +70,17 @@ export function WebProvider({ children }) {
     }
   }, [showAlert]);
 
+  //* Set battleground to local storage
+  useEffect(() => {
+    const isBattleground = localStorage.getItem('battleground');
+
+    if (isBattleground) {
+      setBattleground(isBattleground);
+    } else {
+      localStorage.setItem('battleground', battleground);
+    }
+  }, []);
+
   return (
     <WebContext.Provider
       value={{
@@ -79,6 +92,8 @@ export function WebProvider({ children }) {
         setSuccess,
         currentAccount,
         ethBalance,
+        battleground,
+        setBattleground,
       }}
     >
       {children}

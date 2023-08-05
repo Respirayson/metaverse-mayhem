@@ -1,46 +1,71 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Logout({ handleLogout, ethBalance }) {
+  const navigate = useNavigate();
   return (
-    <div className="glassmorphism flex flex-row rounded-xl justify-center items-center">
+    <div
+      className="glassmorphism flex rounded-xl justify-center items-center"
+    >
       <p className="text-[18px] text-white mx-4">
         {ethBalance}
         {' '}
         ETH
       </p>
       <div className="absolute right-1/3 w-0.5 h-full bg-gray-400" />
-      <img
-        src="/player01.jpg"
-        alt="player01"
-        className="peer w-10 h-10 object-contain rounded-full drop-shadow-lg m-2"
-      />
-      <div
-        className="hidden peer-hover:flex hover:flex
-         w-[200px]
-         flex-col bg-white drop-shadow-lg absolute top-16 right-0 rounded-xl"
+      <button
+        type="button"
+        id="dropdownHoverButton"
+        data-dropdown-toggle="dropdownHover"
+        data-dropdown-trigger="hover"
+        data-dropdown-offset-skidding="-58"
       >
-        <a className="px-5 py-3 hover:bg-gray-200" href="#">
-          About Us
-        </a>
-        <a className="px-5 py-3 hover:bg-gray-200" href="#">
-          Contact Us
-        </a>
-        <a className="px-5 py-3 hover:bg-gray-200" href="#">
-          Privacy Policy
-        </a>
+        <img
+          src="/player01.jpg"
+          alt="player01"
+          className="w-10 h-10 object-contain rounded-full drop-shadow-lg mx-2 flex items-center justify-center my-2"
+        />
+      </button>
+
+      <div
+        id="dropdownHover"
+        className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+      >
+        <ul
+          className="py-2 text-sm text-gray-700 dark:text-gray-200"
+          aria-labelledby="dropdownHoverButton"
+        >
+          <li>
+            <button
+              type="button"
+              onClick={() => navigate('/profile')}
+              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full flex justify-start items-start"
+            >
+              Edit Profile
+            </button>
+          </li>
+          <li>
+            <button
+              type="button"
+              onClick={() => navigate('/game/change-battleground')}
+              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full flex justify-start items-start"
+            >
+              Edit Battleground
+            </button>
+          </li>
+          <li>
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full flex justify-start items-start"
+            >
+              Sign out
+            </button>
+          </li>
+        </ul>
       </div>
     </div>
   );
-}
-
-{
-  /* <button
-      type="button"
-      className="flex items-center h-fit py-4 px-6 bg-[#25618B] rounded-[32px] gap-[12px] hover:bg-[#25718B]"
-      onClick={handleLogout}
-    >
-      Logout
-    </button> */
 }
 
 export default Logout;
