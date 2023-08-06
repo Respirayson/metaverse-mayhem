@@ -1,8 +1,9 @@
 import { useDrop } from 'react-dnd';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { Hero } from '../components';
 import itemTypes from '../constants';
 import sparkle from '../utils/animations';
+import { WebContext } from '../context/WebContext';
 
 /**
  * Component representing a targetable hero.
@@ -15,6 +16,8 @@ function TargetableHero({
   hitFace, character, name, isOpponent, heroRef, getCoords,
 }) {
   const { health } = character;
+
+  const { profileIcon } = useContext(WebContext);
 
   useEffect(() => {
     if (health < 30) {
@@ -48,6 +51,7 @@ function TargetableHero({
         isOpponent={isOpponent}
         isOver={isOver}
         getCoords={getCoords}
+        profileIcon={profileIcon}
       />
     </div>
   );

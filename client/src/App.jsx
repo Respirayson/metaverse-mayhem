@@ -21,6 +21,7 @@ import {
   SellingDetails,
   ProfileDetails,
   Battleground,
+  ProfileIcon,
 } from './pages';
 
 import {
@@ -44,7 +45,7 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [toggle, setToggle] = useState(false);
   const {
-    showAlert, alertMessage, success, ethBalance,
+    showAlert, alertMessage, success, ethBalance, profileIcon,
   } = useContext(WebContext);
   console.log(ethBalance);
 
@@ -138,9 +139,9 @@ function App() {
               Discord
             </a>
             {/* Check if the user is authenticated */}
-            {checkAuthenticated() ? (
+            {true ? (
               // If authenticated, show the logout button
-              <Logout handleLogout={handleLogout} ethBalance={ethBalance} />
+              <Logout handleLogout={handleLogout} ethBalance={ethBalance} profileIcon={profileIcon} />
             ) : (
               // If not authenticated, show the login button
               <Login onLoggedIn={handleLogin} text="Connect Wallet" />
@@ -217,7 +218,10 @@ function App() {
           </Route>
 
           <Route path="/collection" element={<Collection />} />
-          <Route path="/profile" element={<ProfileDetails />} />
+          <Route path="/profile">
+            <Route path="" element={<ProfileDetails />} />
+            <Route path="edit" element={<ProfileIcon />} />
+          </Route>
         </Routes>
       </main>
 

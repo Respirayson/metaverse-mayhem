@@ -83,6 +83,17 @@ export const battlegrounds = [
   { id: 'bg-board3', image: '/desert.jpg', name: 'Vortraxia Majoris' },
 ];
 
+export const profileIcons = [
+  { id: '01', image: '/player01.jpg', name: 'Zolara' },
+  { id: '02', image: '/player02.jpg', name: 'Xentra' },
+  { id: '03', image: '/player03.jpg', name: 'Glipthor' },
+  { id: '04', image: '/player04.jpg', name: 'Vexilon' },
+  { id: '05', image: '/player05.jpg', name: 'Quilrax' },
+  { id: '06', image: '/player06.jpg', name: 'Zyndra' },
+  { id: '07', image: '/player07.jpg', name: 'Exidon' },
+  { id: '08', image: '/player08.jpg', name: 'Krulgar' },
+];
+
 // An array containing game rules for Metaverse Mayhem.
 export const gameRules = [
   'Players start with 15 cards in their deck, a hero, and 1 mana.',

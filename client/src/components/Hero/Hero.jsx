@@ -18,7 +18,7 @@ import { Tooltip } from 'react-tooltip';
  * @returns {JSX.Element} The JSX element representing the Hero component.
  */
 function Hero({
-  character, isOpponent, name, isOver, heroRef,
+  character, isOpponent, name, isOver, heroRef, profileIcon,
 }) {
   const { health, mana } = character;
 
@@ -44,7 +44,7 @@ function Hero({
       <img
         data-testid="player"
         id={`Player-${isOpponent ? '1' : '2'}`}
-        src={isOpponent ? '/player02.jpg' : '/player01.jpg'}
+        src={isOpponent ? '/player02.jpg' : `/player${profileIcon}.jpg`}
         alt="player-icon"
         className="w-14 h-14 object-contain rounded-full"
       />

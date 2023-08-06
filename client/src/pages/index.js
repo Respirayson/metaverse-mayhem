@@ -12,6 +12,7 @@ import Store from './Store';
 import SellingDetails from './SellingDetails';
 import ProfileDetails from './ProfileDetails';
 import Battleground from './Battleground';
+import ProfileIcon from './ProfileIcon';
 
 export {
   Home,
@@ -28,4 +29,5 @@ export {
   SellingDetails,
   ProfileDetails,
   Battleground,
+  ProfileIcon,
 };

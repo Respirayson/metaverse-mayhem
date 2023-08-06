@@ -18,7 +18,6 @@ function Board() {
   const {
     user, board, opponent, handCount, character, turn,
   } = useSelector((state) => state);
-  console.log(board);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

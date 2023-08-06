@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Logout({ handleLogout, ethBalance }) {
+function Logout({ handleLogout, ethBalance, profileIcon }) {
   const navigate = useNavigate();
+  console.log(profileIcon);
   return (
     <div
       className="glassmorphism flex rounded-xl justify-center items-center"
@@ -21,7 +22,7 @@ function Logout({ handleLogout, ethBalance }) {
         data-dropdown-offset-skidding="-58"
       >
         <img
-          src="/player01.jpg"
+          src={`/player${profileIcon}.jpg`}
           alt="player01"
           className="w-10 h-10 object-contain rounded-full drop-shadow-lg mx-2 flex items-center justify-center my-2"
         />
@@ -42,6 +43,15 @@ function Logout({ handleLogout, ethBalance }) {
               className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full flex justify-start items-start"
             >
               Edit Profile
+            </button>
+          </li>
+          <li>
+            <button
+              type="button"
+              onClick={() => navigate('/profile/edit')}
+              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-full flex justify-start items-start"
+            >
+              Edit Profile Icon
             </button>
           </li>
           <li>

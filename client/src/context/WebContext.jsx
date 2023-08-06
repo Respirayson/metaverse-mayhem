@@ -21,6 +21,7 @@ export function WebProvider({ children }) {
   const [ethBalance, setEthBalance] = useState(0);
 
   const [battleground, setBattleground] = useState('bg-board');
+  const [profileIcon, setProfileIcon] = useState('01'); 
 
   /**
    * Check if the wallet is connected and set the current account
@@ -79,6 +80,17 @@ export function WebProvider({ children }) {
     } else {
       localStorage.setItem('battleground', battleground);
     }
+  }, [battleground]);
+
+  //* Set profile icon to local storage
+  useEffect(() => {
+    const isProfile = localStorage.getItem('profileIcon');
+
+    if (isProfile) {
+      setProfileIcon(isProfile);
+    } else {
+      localStorage.setItem('profileIcon', profileIcon);
+    }
   }, []);
 
   return (
@@ -94,6 +106,8 @@ export function WebProvider({ children }) {
         ethBalance,
         battleground,
         setBattleground,
+        profileIcon,
+        setProfileIcon,
       }}
     >
       {children}
