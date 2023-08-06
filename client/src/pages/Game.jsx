@@ -17,7 +17,7 @@ function Game() {
   const [loading, setLoading] = useState(true);
   const [gameOver, setGameOver] = useState(false);
   const [isWinner, setIsWinner] = useState(false);
-  const { currentAccount, battleground } = useContext(WebContext);
+  const { currentAccount, battleground, profileIcon } = useContext(WebContext);
 
   // Hide header and footer during the game, show loading screen for 2 seconds
   useEffect(() => {
@@ -82,7 +82,7 @@ function Game() {
 
   return (
     <>
-      {gameOver && <FinalScreen isWinner={isWinner} />}
+      {gameOver && <FinalScreen profileIcon={profileIcon} isWinner={isWinner} />}
       <section className={`${battleground} bg-cover w-full h-full`}>
         {loading && <Loader />}
         <Board />

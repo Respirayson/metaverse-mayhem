@@ -96,12 +96,12 @@ export const profileIcons = [
 
 // An array containing game rules for Metaverse Mayhem.
 export const gameRules = [
-  'Players start with 15 cards in their deck, a hero, and 1 mana.',
-  'The game progresses in turns, with players alternating.',
-  'Each turn, players gain 1 mana, up to a maximum of 10, and draw a card.',
-  'Cards can be played by spending the appropriate amount of mana.',
+  'Players start with 1 mana, with players alternating turns.',
+  'Each turn, players add 1 mana to their max mana (up to 10 max), replenish their mana and draw a card.',
+  'Cards can be placed on the board as minions by spending the appropriate amount of mana.',
   'Blue is for mana, yellow is for attack, and red is for health',
-  "Minions can be placed on the game board and can attack enemy minions or the opponent's hero.",
+  "Minions on the board do not cost mana to use and can attack enemy minions or the opponent's hero.",
+  "Minions can't attack the turn they are placed on the board and the turn they have already made an attack.",
   "The game ends when one player's health reaches zero, declaring the opposing player as the winner.",
 ];
 

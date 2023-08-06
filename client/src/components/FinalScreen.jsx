@@ -11,7 +11,7 @@ import { fadeIn } from '../utils/motion';
  * @param {boolean} props.isWinner - Flag indicating if the player is the winner or not.
  * @returns {JSX.Element} FinalScreen component.
  */
-function FinalScreen({ isWinner }) {
+function FinalScreen({ isWinner, profileIcon }) {
   const navigate = useNavigate();
 
   /**
@@ -53,7 +53,7 @@ function FinalScreen({ isWinner }) {
           <div className="flex justify-evenly items-center mt-12">
             <div className="flex items-center justify-center flex-col">
               <img
-                src="/player01.jpg"
+                src={`/player${profileIcon}.jpg`}
                 alt="player01"
                 className="md:w-36 w-24 md:h-36 h-24 object-contain rounded-full drop-shadow-lg"
               />
