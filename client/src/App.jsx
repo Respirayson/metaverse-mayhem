@@ -139,7 +139,7 @@ function App() {
               Discord
             </a>
             {/* Check if the user is authenticated */}
-            {true ? (
+            { checkAuthenticated() ? (
               // If authenticated, show the logout button
               <Logout handleLogout={handleLogout} ethBalance={ethBalance} profileIcon={profileIcon} />
             ) : (
