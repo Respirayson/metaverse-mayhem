@@ -91,7 +91,7 @@ function Listing({
           <p className="flex-1 font-epilogue font-normal text-[12px] text-[#808191] truncate">
             by
             {' '}
-            <span className="text-[#b2b3bd]">{seller}</span>
+            <span className="text-[#b2b3bd]">{seller.username}</span>
           </p>
         </div>
       </div>

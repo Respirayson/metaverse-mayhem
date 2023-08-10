@@ -19,9 +19,9 @@ const transform = ($e, xValue, yValue, scaleValue, rotationValue, percent) => {
   const unit = percent ? '%' : 'px';
   const rotation = rotationValue || 0;
 
-  const transfromString = `translate(${x}${unit}, ${y}${unit}) ` +
-    `scale(${scale}) ` +
-    `rotate(${rotation}deg)`;
+  const transfromString = `translate(${x}${unit}, ${y}${unit}) `
+    + `scale(${scale}) `
+    + `rotate(${rotation}deg)`;
 
   // Apply the transformation styles using different browser-specific prefixes
   $e.style.webkitTransform = transfromString;

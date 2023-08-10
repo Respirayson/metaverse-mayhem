@@ -88,9 +88,8 @@ function Login({ onLoggedIn, text }) {
       body: JSON.stringify({
         publicAddress,
         username: publicAddress
-          .slice(0, 3)
-          .concat('...')
-          .concat(publicAddress?.slice(-3)),
+          .slice(2, 8)
+          .toUpperCase(),
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -146,6 +145,7 @@ function Login({ onLoggedIn, text }) {
       // Send signature to backend on the /auth route
       .then(async (res) => {
         const data = await handleAuthenticate(res.publicAddress, res.signature);
+        console.log(data);
         return data;
       })
       .then((res) => onLoggedIn(res.token))

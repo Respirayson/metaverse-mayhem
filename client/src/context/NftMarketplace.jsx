@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createContext } from 'react';
+import React, { createContext, useContext } from 'react';
 import { ethers } from 'ethers';
 
 import {
@@ -7,6 +7,7 @@ import {
   contractAddress,
 } from '../utils/constants';
 import { getEthereumContract } from '../utils/connect';
+import { WebContext } from './WebContext';
 
 // Create a context for the NFT marketplace
 export const NftMarketplaceContext = createContext();
@@ -20,29 +21,7 @@ const { ethereum } = window;
  * @returns {JSX.Element} - The JSX element
  */
 export function NftMarketplaceProvider({ children }) {
-  const [currentAccount, setCurrentAccount] = useState(null);
-
-  /**
-   * Check if the wallet is connected and set the current account
-   */
-  const checkIfWalletIsConnected = async () => {
-    try {
-      if (!ethereum) {
-        return;
-      }
-
-      const accounts = await ethereum.request({ method: 'eth_accounts' });
-
-      if (accounts.length) {
-        const account = accounts[0];
-        setCurrentAccount(account);
-      } else {
-        // No account connected
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const { currentAccount } = useContext(WebContext);
 
   /**
    * Add a listing for an NFT
@@ -130,17 +109,11 @@ export function NftMarketplaceProvider({ children }) {
     }
   };
 
-  // Check if the wallet is connected on component mount
-  useEffect(() => {
-    checkIfWalletIsConnected();
-  }, []);
-
   return (
     <NftMarketplaceContext.Provider
       value={{
         addListing,
         buyItem,
-        currentAccount,
         getProceeds,
         withdrawProceeds,
       }}

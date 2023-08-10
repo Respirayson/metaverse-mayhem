@@ -39,5 +39,15 @@ router.route('/').post((req, res) => {
     .catch((err) => console.log(err));
 });
 
+router.route('/profile').post((req, res) => {
+  // Update the profile of the user based on the request body data
+  User.findOneAndUpdate(
+    { publicAddress: req.body.publicAddress },
+    { $set: { username: req.body.username, bio: req.body.bio } },
+  )
+    .then((user) => res.json(user))
+    .catch((err) => console.log(err));
+});
+
 // Export the router
 export default router;

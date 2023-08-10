@@ -30,6 +30,7 @@ function Icon({
         !disabled && 'cursor-pointer'
       }`}
       onClick={!disabled ? handleClick : null}
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...fadeAnimation}
     >
       {!isActive ? (
@@ -68,7 +69,7 @@ function Sidebar({ url }) {
   }, [getProceeds, proceeds]);
 
   /**
-   * Handles the click event for the sidebar icons 
+   * Handles the click event for the sidebar icons
    * and navigates to the corresponding link if not disabled.
    * @param {string} name - The name of the sidebar icon.
    */
@@ -78,7 +79,7 @@ function Sidebar({ url }) {
       setProceeds(0);
       setHasProceeds(false);
     } else {
-      const link = sideBarLinks.find((link) => link.name === name);
+      const link = sideBarLinks.find((lk) => lk.name === name);
       if (link && !link.disabled) {
         setIsActive(name);
         navigate(link.link);
@@ -95,6 +96,7 @@ function Sidebar({ url }) {
             <div className="flex flex-col justify-center items-center gap-3 relative">
               {sideBarLinks.map((link) => (
                 <Icon
+                  // eslint-disable-next-line react/jsx-props-no-spreading
                   {...link}
                   key={link.id}
                   isActive={isActive}
@@ -127,6 +129,7 @@ function Sidebar({ url }) {
           Withdraw:
           <br />
           {proceeds}
+          {' '}
           ETH
         </p>
       </Tooltip>

@@ -1,14 +1,14 @@
 // Import necessary Redux and middleware functions
-import { configureStore } from "@reduxjs/toolkit";
-import { persistReducer, persistStore } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import rootReducer from "../reducers";
-import { socketMiddleware } from "../utils/socketMiddleware";
-import { socket } from "../utils/socket";
+import { configureStore } from '@reduxjs/toolkit';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import rootReducer from '../reducers';
+import { socketMiddleware } from '../utils/socketMiddleware';
+import { socket } from '../utils/socket';
 
 // Configuration for Redux Persist to store data in local storage
 const persistConfig = {
-  key: "root", // The key used to access the persisted data in local storage
+  key: 'root', // The key used to access the persisted data in local storage
   storage, // The storage method to use (in this case, 'storage' represents local storage)
 };
 

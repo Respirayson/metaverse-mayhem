@@ -11,8 +11,10 @@ import { WebContext } from '../context/WebContext';
 function ListingDetails() {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const { buyItem, currentAccount } = useContext(NftMarketplaceContext);
-  const { setShowAlert, setSuccess, setAlertMessage } = useContext(WebContext);
+  const { buyItem } = useContext(NftMarketplaceContext);
+  const {
+    setShowAlert, setSuccess, setAlertMessage, currentAccount,
+  } = useContext(WebContext);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -118,10 +120,10 @@ function ListingDetails() {
                       </div>
                       <div>
                         <h4 className="font-semibold text-[14px] text-white break-all">
-                          {state.seller || 'hello'}
+                          {state.seller.username || 'Metaverse Trader'}
                         </h4>
                         <p className="mt-[4px] font-normal text-[12px] text-[#808191]">
-                          Avid Collector
+                          {state.seller.bio || 'Avid Collector'}
                         </p>
                       </div>
                     </div>

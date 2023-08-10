@@ -10,6 +10,9 @@ import MyListings from './MyListings';
 import ListingDetails from './ListingDetails';
 import Store from './Store';
 import SellingDetails from './SellingDetails';
+import ProfileDetails from './ProfileDetails';
+import Battleground from './Battleground';
+import ProfileIcon from './ProfileIcon';
 
 export {
   Home,
@@ -24,4 +27,7 @@ export {
   ListingDetails,
   Store,
   SellingDetails,
+  ProfileDetails,
+  Battleground,
+  ProfileIcon,
 };

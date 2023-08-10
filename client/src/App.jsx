@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useEffect, useState, useContext } from 'react';
 import {
   Link, Route, Routes, useNavigate,
@@ -17,9 +19,14 @@ import {
   ListingDetails,
   Store,
   SellingDetails,
+  ProfileDetails,
+  Battleground,
+  ProfileIcon,
 } from './pages';
 
-import { Login, Footer, Alert } from './components';
+import {
+  Login, Footer, Alert, Logout,
+} from './components';
 import { navVariants } from './utils/motion';
 
 import { socketActions } from './utils/socketActions';
@@ -37,7 +44,10 @@ import close from '/close.svg'; //eslint-disable-line
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [toggle, setToggle] = useState(false);
-  const { showAlert, alertMessage, success } = useContext(WebContext);
+  const {
+    showAlert, alertMessage, success, ethBalance, profileIcon,
+  } = useContext(WebContext);
+  console.log(ethBalance);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -125,16 +135,13 @@ function App() {
             <Link to="/collection" className="mx-6 hover:scale-[1.1]">
               Collection
             </Link>
+            <a href="https://discord.gg/YW9zE7t3KC" target="_blank" className="mx-6 hover:scale-[1.1]" rel="noreferrer">
+              Discord
+            </a>
             {/* Check if the user is authenticated */}
-            {checkAuthenticated() ? (
+            {true ? (
               // If authenticated, show the logout button
-              <button
-                type="button"
-                className="flex items-center h-fit py-4 px-6 bg-[#25618B] rounded-[32px] gap-[12px] hover:bg-[#25718B]"
-                onClick={handleLogout}
-              >
-                Logout
-              </button>
+              <Logout handleLogout={handleLogout} ethBalance={ethBalance} profileIcon={profileIcon} />
             ) : (
               // If not authenticated, show the login button
               <Login onLoggedIn={handleLogin} text="Connect Wallet" />
@@ -195,6 +202,7 @@ function App() {
             <Route path="new" element={<GameNewScreen />} />
             <Route path="join-battle" element={<JoinBattle />} />
             <Route path=":id" element={<Game />} />
+            <Route path="change-battleground" element={<Battleground />} />
           </Route>
 
           <Route path="/marketplace">
@@ -210,6 +218,10 @@ function App() {
           </Route>
 
           <Route path="/collection" element={<Collection />} />
+          <Route path="/profile">
+            <Route path="" element={<ProfileDetails />} />
+            <Route path="edit" element={<ProfileIcon />} />
+          </Route>
         </Routes>
       </main>
 

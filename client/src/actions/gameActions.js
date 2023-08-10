@@ -57,7 +57,7 @@ export const LOAD_HAND = 'LOAD_HAND';
  */
 const loadHand = (deck) => {
   const cards = JSON.parse(deck);
-  if (cards !== null && cards !== undefined) {
+  if (cards !== null && cards !== undefined && cards.length > 0) {
     return {
       type: LOAD_HAND,
       payload: { cards, deck: cards },

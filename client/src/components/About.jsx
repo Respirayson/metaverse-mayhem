@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
-import { TypingText } from "./Texts";
+import { motion } from 'framer-motion';
+import { TypingText } from './Texts';
 
-import { fadeIn, staggerContainer } from "../utils/motion";
+import { fadeIn, staggerContainer } from '../utils/motion';
 
 /**
  * Component for the About section of the application.

@@ -46,7 +46,7 @@ describe("Signup flow", () => {
         2,
         "https://metaverse-mayhem.onrender.com/api/v1/users/",
         {
-          body: '{"publicAddress":"mockedAddress","username":"moc...ess"}',
+          body: '{"publicAddress":"mockedAddress","username":"CKEDAD"}',
           headers: {
             "Content-Type": "application/json",
           },

@@ -12,16 +12,14 @@ import {
  * @param {string} props.name - Player's name.
  * @param {Object[]} props.board - Player's board of cards.
  * @param {Object} props.character - Player's character.
- * @param {boolean} props.playerTurn - Indicates if it's the player's turn.
  * @param {function} props.onClick - Function to handle the click event.
- * @param {number} props.turn - Current turn number.
+ * @param {number} props.turn - Current player turn.
  * @returns {JSX.Element} Player component.
  */
 function Player({
   name,
   board,
   character,
-  playerTurn,
   onClick,
   turn,
   heroRef,
@@ -41,13 +39,13 @@ function Player({
           End Turn
         </button>
         <PlayingAreaContainer
-          playerTurn={playerTurn}
+          playerTurn={turn}
           board={board.board}
           exhaustedMinions={board.exhaustedMinions}
         />
         <HandContainer
           currentMana={character.mana.current}
-          playerTurn={playerTurn}
+          playerTurn={turn}
         />
         <TargetableHero
           getCoords={getCoords}

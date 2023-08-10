@@ -4,7 +4,7 @@ import { Listing } from "../../src/components";
 
 describe("Listing component", () => {
   const props = {
-    seller: "Seller Name",
+    seller: { username: "Seller Name", bio: "Seller Bio" },
     price: "$10.99",
     card: {
       name: "Product Name",

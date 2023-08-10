@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import allActions from '../actions';
 import { socket } from '../utils/socket';
 import { LoadingScreen } from '../components';
+import { WebContext } from '../context/WebContext';
 
 /**
  * Component representing the new game screen where players
@@ -19,6 +20,8 @@ function GameNewScreen() {
   const previousGameId = useRef(gameId);
   const [username, setUsername] = useState('');
   const [waiting, setWaiting] = useState(false);
+
+  const { profileIcon } = useContext(WebContext)
 
   // Get the username from local storage on component mount
   useEffect(() => {
@@ -54,7 +57,7 @@ function GameNewScreen() {
 
   return (
     <>
-      {waiting && <LoadingScreen loading={loading} gameId={gameId} battleName={username} />}
+      {waiting && <LoadingScreen profileIcon={profileIcon} loading={loading} gameId={gameId} battleName={username} />}
       <div className="flex flex-1 justify-between py-8 sm:px-12 px-8 flex-col">
         <div className="flex-1 flex justify-center flex-col xl:mt-0 my-16">
           <div className="flex flex-row w-full">

@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { NftMarketplaceProvider } from "../../src/context/NftMarketplace";
+import { WebProvider } from "../../src/context/WebContext";
 
 describe("NftMarketplaceProvider", () => {
   afterEach(() => {
@@ -9,9 +10,11 @@ describe("NftMarketplaceProvider", () => {
 
   it("renders without crashing", () => {
     render(
-      <NftMarketplaceProvider>
-        <div>Test</div>
-      </NftMarketplaceProvider>
+      <WebProvider>
+        <NftMarketplaceProvider>
+          <div>Test</div>
+        </NftMarketplaceProvider>
+      </WebProvider>
     );
 
     expect(screen.getByText("Test")).toBeInTheDocument();

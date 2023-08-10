@@ -12,7 +12,7 @@ import { fadeIn } from '../utils/motion';
  * @param {string} props.battleName - Name of the battle.
  * @returns {JSX.Element} LoadingScreen component.
  */
-function LoadingScreen({ loading, gameId, battleName }) {
+function LoadingScreen({ loading, gameId, battleName, profileIcon }) {
   const navigate = useNavigate();
 
   /**
@@ -51,7 +51,7 @@ function LoadingScreen({ loading, gameId, battleName }) {
           <div className="flex justify-evenly items-center mt-12">
             <div className="flex items-center justify-center flex-col">
               <img
-                src="/player01.jpg"
+                src={`/player${profileIcon}.jpg`}
                 alt="player01"
                 className="md:w-36 w-24 md:h-36 h-24 object-contain rounded-full drop-shadow-lg"
               />

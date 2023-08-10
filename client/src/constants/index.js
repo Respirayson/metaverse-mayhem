@@ -76,14 +76,32 @@ export const socials = [
   },
 ];
 
+export const battlegrounds = [
+  { id: 'bg-board', image: '/board.jpg', name: 'Zylorium Prime' },
+  { id: 'bg-board1', image: '/moon.jpg', name: 'Xandorath IX' },
+  { id: 'bg-board2', image: '/board2.jpg', name: 'Quexiloria Minoris' },
+  { id: 'bg-board3', image: '/desert.jpg', name: 'Vortraxia Majoris' },
+];
+
+export const profileIcons = [
+  { id: '01', image: '/player01.jpg', name: 'Zolara' },
+  { id: '02', image: '/player02.jpg', name: 'Xentra' },
+  { id: '03', image: '/player03.jpg', name: 'Glipthor' },
+  { id: '04', image: '/player04.jpg', name: 'Vexilon' },
+  { id: '05', image: '/player05.jpg', name: 'Quilrax' },
+  { id: '06', image: '/player06.jpg', name: 'Zyndra' },
+  { id: '07', image: '/player07.jpg', name: 'Exidon' },
+  { id: '08', image: '/player08.jpg', name: 'Krulgar' },
+];
+
 // An array containing game rules for Metaverse Mayhem.
 export const gameRules = [
-  'Players start with 15 cards in their deck, a hero, and 1 mana.',
-  'The game progresses in turns, with players alternating.',
-  'Each turn, players gain 1 mana, up to a maximum of 10, and draw a card.',
-  'Cards can be played by spending the appropriate amount of mana.',
+  'Players start with 1 mana, with players alternating turns.',
+  'Each turn, players add 1 mana to their max mana (up to 10 max), replenish their mana and draw a card.',
+  'Cards can be placed on the board as minions by spending the appropriate amount of mana.',
   'Blue is for mana, yellow is for attack, and red is for health',
-  "Minions can be placed on the game board and can attack enemy minions or the opponent's hero.",
+  "Minions on the board do not cost mana to use and can attack enemy minions or the opponent's hero.",
+  "Minions can't attack the turn they are placed on the board and the turn they have already made an attack.",
   "The game ends when one player's health reaches zero, declaring the opposing player as the winner.",
 ];
 
